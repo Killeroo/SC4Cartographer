@@ -8,8 +8,8 @@ using System.Drawing.Imaging;
 using System.IO;
 
 using SC4Parser;
-using SC4Parser.Structures;
-using SC4Parser.Structures.Files.SubFiles;
+using SC4Parser.SubFiles;
+
 
 namespace SC4Cartographer
 {
