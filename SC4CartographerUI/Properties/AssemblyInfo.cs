@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SC4Cartographer")]
+[assembly: AssemblyTitle("SC4CartographerUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SC4Cartographer")]
+[assembly: AssemblyProduct("SC4CartographerUI")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("74945f4e-5ba5-4551-9ea3-8bc23f84f3a6")]
+[assembly: Guid("7dc4ea4d-6f84-44c6-9985-ef38cda84e48")]
 
 // Version information for an assembly consists of the following four values:
 //
