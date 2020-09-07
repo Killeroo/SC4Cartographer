@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.MapPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -51,7 +51,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -69,7 +69,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -79,7 +79,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.MapPictureBox);
             this.groupBox1.Location = new System.Drawing.Point(167, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(511, 491);
@@ -87,13 +87,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
             // 
-            // pictureBox1
+            // MapPictureBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(499, 466);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.MapPictureBox.Location = new System.Drawing.Point(6, 19);
+            this.MapPictureBox.Name = "MapPictureBox";
+            this.MapPictureBox.Size = new System.Drawing.Size(499, 466);
+            this.MapPictureBox.TabIndex = 1;
+            this.MapPictureBox.TabStop = false;
             // 
             // groupBox2
             // 
@@ -312,14 +312,15 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Grid segment size";
             // 
-            // button2
+            // SaveButton
             // 
-            this.button2.Location = new System.Drawing.Point(556, 589);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(124, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new System.Drawing.Point(556, 589);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(124, 23);
+            this.SaveButton.TabIndex = 0;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // checkBox1
             // 
@@ -402,36 +403,36 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // loadSC4SaveToolStripMenuItem
             // 
             this.loadSC4SaveToolStripMenuItem.Name = "loadSC4SaveToolStripMenuItem";
-            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.loadSC4SaveToolStripMenuItem.Text = "Load SC4 Save..";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -446,7 +447,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 685);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox5);
@@ -459,7 +460,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -477,7 +478,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox MapPictureBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -499,7 +500,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox6;

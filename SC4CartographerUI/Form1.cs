@@ -16,5 +16,10 @@ namespace SC4CartographerUI
         {
             InitializeComponent();
         }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            MapPictureBox.Image = Image.FromFile("TestPoster.png");
+        }
     }
 }

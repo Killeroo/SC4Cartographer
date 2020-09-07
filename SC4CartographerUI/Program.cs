@@ -8,6 +8,11 @@ namespace SC4CartographerUI
 {
     static class Program
     {
+        // Zoom
+        //https://stackoverflow.com/a/10916023
+        // Click and drag
+        //https://stackoverflow.com/a/33596149
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
