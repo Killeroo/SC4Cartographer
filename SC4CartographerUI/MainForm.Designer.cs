@@ -37,6 +37,7 @@
             this.FileBrowserButton = new System.Windows.Forms.Button();
             this.SavePathTextbox = new System.Windows.Forms.TextBox();
             this.FileTreeView = new System.Windows.Forms.TreeView();
+            this.FileTreeViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PropertiesButton = new System.Windows.Forms.Button();
-            this.FileTreeViewImageList = new System.Windows.Forms.ImageList(this.components);
+            this.LogTextBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -121,6 +122,25 @@
             this.FileTreeView.Size = new System.Drawing.Size(174, 597);
             this.FileTreeView.TabIndex = 0;
             this.FileTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.FileTreeView_BeforeExpand);
+            // 
+            // FileTreeViewImageList
+            // 
+            this.FileTreeViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FileTreeViewImageList.ImageStream")));
+            this.FileTreeViewImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.FileTreeViewImageList.Images.SetKeyName(0, "1346238561_folder_classic.png");
+            this.FileTreeViewImageList.Images.SetKeyName(1, "1346238604_folder_classic_opened.png");
+            this.FileTreeViewImageList.Images.SetKeyName(2, "1346228331_drive.png");
+            this.FileTreeViewImageList.Images.SetKeyName(3, "1346228337_drive_cd.png");
+            this.FileTreeViewImageList.Images.SetKeyName(4, "1346228356_drive_cd_empty.png");
+            this.FileTreeViewImageList.Images.SetKeyName(5, "1346228364_drive_disk.png");
+            this.FileTreeViewImageList.Images.SetKeyName(6, "1346228591_drive_network.png");
+            this.FileTreeViewImageList.Images.SetKeyName(7, "1346228618_drive_link.png");
+            this.FileTreeViewImageList.Images.SetKeyName(8, "1346228623_drive_error.png");
+            this.FileTreeViewImageList.Images.SetKeyName(9, "1346228633_drive_go.png");
+            this.FileTreeViewImageList.Images.SetKeyName(10, "1346228636_drive_delete.png");
+            this.FileTreeViewImageList.Images.SetKeyName(11, "1346228639_drive_burn.png");
+            this.FileTreeViewImageList.Images.SetKeyName(12, "1346238642_folder_classic_locked.png");
+            this.FileTreeViewImageList.Images.SetKeyName(13, "file.png");
             // 
             // menuStrip1
             // 
@@ -196,30 +216,21 @@
             this.PropertiesButton.Text = "Properties";
             this.PropertiesButton.UseVisualStyleBackColor = true;
             // 
-            // FileTreeViewImageList
+            // LogTextBox
             // 
-            this.FileTreeViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FileTreeViewImageList.ImageStream")));
-            this.FileTreeViewImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.FileTreeViewImageList.Images.SetKeyName(0, "1346238561_folder_classic.png");
-            this.FileTreeViewImageList.Images.SetKeyName(1, "1346238604_folder_classic_opened.png");
-            this.FileTreeViewImageList.Images.SetKeyName(2, "1346228331_drive.png");
-            this.FileTreeViewImageList.Images.SetKeyName(3, "1346228337_drive_cd.png");
-            this.FileTreeViewImageList.Images.SetKeyName(4, "1346228356_drive_cd_empty.png");
-            this.FileTreeViewImageList.Images.SetKeyName(5, "1346228364_drive_disk.png");
-            this.FileTreeViewImageList.Images.SetKeyName(6, "1346228591_drive_network.png");
-            this.FileTreeViewImageList.Images.SetKeyName(7, "1346228618_drive_link.png");
-            this.FileTreeViewImageList.Images.SetKeyName(8, "1346228623_drive_error.png");
-            this.FileTreeViewImageList.Images.SetKeyName(9, "1346228633_drive_go.png");
-            this.FileTreeViewImageList.Images.SetKeyName(10, "1346228636_drive_delete.png");
-            this.FileTreeViewImageList.Images.SetKeyName(11, "1346228639_drive_burn.png");
-            this.FileTreeViewImageList.Images.SetKeyName(12, "1346238642_folder_classic_locked.png");
-            this.FileTreeViewImageList.Images.SetKeyName(13, "file.png");
+            this.LogTextBox.Location = new System.Drawing.Point(12, 677);
+            this.LogTextBox.Name = "LogTextBox";
+            this.LogTextBox.Size = new System.Drawing.Size(772, 160);
+            this.LogTextBox.TabIndex = 10;
+            this.LogTextBox.Text = "";
+            this.LogTextBox.TextChanged += new System.EventHandler(this.LogTextBox_TextChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 680);
+            this.ClientSize = new System.Drawing.Size(798, 849);
+            this.Controls.Add(this.LogTextBox);
             this.Controls.Add(this.PropertiesButton);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.SaveButton);
@@ -260,6 +271,7 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Button PropertiesButton;
         private System.Windows.Forms.ImageList FileTreeViewImageList;
+        private System.Windows.Forms.RichTextBox LogTextBox;
     }
 }
 

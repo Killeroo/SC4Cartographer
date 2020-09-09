@@ -18,12 +18,13 @@ namespace SC4CartographerUI
 {
     public partial class MainForm : Form
     {
-        string CurrentSaveGame = "";
         string RootSimCitySavePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
             "Documents", 
             "SimCity 4", 
             "Regions");
+
+        private RichTextBoxLogger logger = null;
 
         public MainForm()
         {
@@ -42,16 +43,15 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            logger = new RichTextBoxLogger(LogTextBox);
+
             if (Directory.Exists(RootSimCitySavePath))
             {
                 SavePathTextbox.Text = RootSimCitySavePath;
                 string test = FindRandomSavegameFileInPath(RootSimCitySavePath);
 
                 SC4SaveFile save = new SC4SaveFile(test);
-                TypeGroupInstance lotTGI = save.FindIndexEntryWithType("C9BD5D4A").TGI;
-                byte[] lotBytes = save.LoadIndexEntry(lotTGI);
-                LotSubFile lots = new LotSubFile();
-                lots.Parse(lotBytes, lotBytes.Length);
+                LotSubFile lots = save.GetLotSubfile();
 
                 Bitmap mapBitmap = Map.CreateBitmapFromLot(128, 128, 20, lots);
                 MapPictureBox.Image = mapBitmap;
@@ -60,6 +60,7 @@ namespace SC4CartographerUI
             {
                 SavePathTextbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             }
+
         }
 
         /// <summary>
@@ -224,6 +225,15 @@ namespace SC4CartographerUI
             // TODO: Handle this exception, put in log
 
             return savegames[rand.Next(savegames.Count)];
+        }
+
+        private void LogTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Set caret position to end of current text
+            LogTextBox.SelectionStart = LogTextBox.Text.Length;
+
+            // Scroll to bottom automatically
+            LogTextBox.ScrollToCaret();
         }
     }
 }
