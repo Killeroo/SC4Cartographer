@@ -43,17 +43,18 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            logger = new RichTextBoxLogger(LogTextBox);
+            //logger = new RichTextBoxLogger(LogTextBox);
 
             if (Directory.Exists(RootSimCitySavePath))
             {
                 SavePathTextbox.Text = RootSimCitySavePath;
                 string test = FindRandomSavegameFileInPath(RootSimCitySavePath);
 
+                LogTextBox.AppendText(Path.GetFileName(test));
                 SC4SaveFile save = new SC4SaveFile(test);
                 LotSubFile lots = save.GetLotSubfile();
 
-                Bitmap mapBitmap = Map.CreateBitmapFromLot(128, 128, 20, lots);
+                Bitmap mapBitmap = Map.CreateBitmapFromLot(128, 128, 5, lots);
                 MapPictureBox.Image = mapBitmap;
             }
             else
