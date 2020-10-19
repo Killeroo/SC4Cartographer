@@ -11,8 +11,8 @@ using System.Windows.Forms;
 
 using SC4Parser.DataStructures;
 using SC4Parser.Files;
-using SC4Parser.SubFiles;
 using SC4Parser.Types;
+using SC4Parser.Subfiles;
 
 namespace SC4CartographerUI
 {
@@ -23,6 +23,8 @@ namespace SC4CartographerUI
             "Documents", 
             "SimCity 4", 
             "Regions");
+
+        private MapCreationParameters mapCreationParameters = new MapCreationParameters();
 
         private RichTextBoxLogger logger = null;
 
@@ -51,10 +53,11 @@ namespace SC4CartographerUI
                 string test = FindRandomSavegameFileInPath(RootSimCitySavePath);
 
                 LogTextBox.AppendText(Path.GetFileName(test));
-                SC4SaveFile save = new SC4SaveFile(test);
-                LotSubFile lots = save.GetLotSubfile();
+                mapCreationParameters.SaveFile = new SC4SaveFile(test);
+                mapCreationParameters.SaveFilePath = test;
 
-                Bitmap mapBitmap = Map.CreateBitmapFromLot(128, 128, 5, lots);
+                // TODO: Need a way to work out city size
+                Bitmap mapBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
                 MapPictureBox.Image = mapBitmap;
             }
             else
