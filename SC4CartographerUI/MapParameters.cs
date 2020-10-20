@@ -39,7 +39,7 @@ namespace SC4CartographerUI
 
         #region Dimensions 
 
-        public int GridSegmentSize = 5;
+        public int GridSegmentSize = 10;
         public int GridPaddingX = 4;
         public int GridPaddingY = 4;
         public int GridOffsetX = 2;
@@ -66,20 +66,6 @@ namespace SC4CartographerUI
             {MapColorObject.IndustrialMid, Color.FromArgb(129, 129, 43)},
             {MapColorObject.IndustrialLow, Color.FromArgb(180, 180, 46)},
         };
-
-        //public Color BackgroundColor            = Color.FromArgb(64, 64, 64);
-        //public Color InternalGridColor          = Color.FromArgb(32, 32, 95);
-        //public Color BuildingColor              = Color.FromArgb(121, 121, 121);
-
-        //public Color ResidentialHighColor       = Color.FromArgb(0, 126, 47);
-        //public Color ResidentialMidColor        = Color.FromArgb(2, 207, 79);
-        //public Color ResidentialLowColor        = Color.FromArgb(4, 255, 98);
-        //public Color CommercialHighColor        = Color.FromArgb(4, 1, 128);
-        //public Color CommercialMidColor         = Color.FromArgb(1, 93, 188);
-        //public Color CommercialLowColor         = Color.FromArgb(0, 126, 255);
-        //public Color IndustrialHighColor        = Color.FromArgb(103, 103, 22);
-        //public Color IndustrialMidColor         = Color.FromArgb(129, 129, 43);
-        //public Color IndustrialLowColor         = Color.FromArgb(180, 180, 46);
 
         #endregion
 

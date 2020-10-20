@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.MapPictureBox = new System.Windows.Forms.PictureBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.FileBrowserButton = new System.Windows.Forms.Button();
@@ -49,29 +48,24 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PropertiesButton = new System.Windows.Forms.Button();
             this.LogTextBox = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.MapPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.MapPictureBox);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(204, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(580, 616);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
-            // 
-            // MapPictureBox
-            // 
-            this.MapPictureBox.Location = new System.Drawing.Point(6, 19);
-            this.MapPictureBox.Name = "MapPictureBox";
-            this.MapPictureBox.Size = new System.Drawing.Size(568, 591);
-            this.MapPictureBox.TabIndex = 1;
-            this.MapPictureBox.TabStop = false;
             // 
             // SaveButton
             // 
@@ -225,6 +219,24 @@
             this.LogTextBox.Text = "";
             this.LogTextBox.TextChanged += new System.EventHandler(this.LogTextBox_TextChanged);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.MapPictureBox);
+            this.panel1.Location = new System.Drawing.Point(6, 20);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(568, 590);
+            this.panel1.TabIndex = 2;
+            // 
+            // MapPictureBox
+            // 
+            this.MapPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.MapPictureBox.Name = "MapPictureBox";
+            this.MapPictureBox.Size = new System.Drawing.Size(562, 584);
+            this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.MapPictureBox.TabIndex = 2;
+            this.MapPictureBox.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,11 +253,13 @@
             this.Text = "SC4Cartographer";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,7 +268,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox MapPictureBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button FileBrowserButton;
@@ -272,6 +285,8 @@
         private System.Windows.Forms.Button PropertiesButton;
         private System.Windows.Forms.ImageList FileTreeViewImageList;
         private System.Windows.Forms.RichTextBox LogTextBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox MapPictureBox;
     }
 }
 

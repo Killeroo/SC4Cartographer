@@ -46,19 +46,21 @@ namespace SC4CartographerUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             //logger = new RichTextBoxLogger(LogTextBox);
-
             if (Directory.Exists(RootSimCitySavePath))
             {
                 SavePathTextbox.Text = RootSimCitySavePath;
                 string test = FindRandomSavegameFileInPath(RootSimCitySavePath);
 
-                LogTextBox.AppendText(Path.GetFileName(test));
-                mapCreationParameters.SaveFile = new SC4SaveFile(test);
+                LogTextBox.AppendText(Path.GetFileName(@"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4"));
+                mapCreationParameters.SaveFile = new SC4SaveFile(@"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4");
                 mapCreationParameters.SaveFilePath = test;
 
                 // TODO: Need a way to work out city size
                 Bitmap mapBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
+            https://stackoverflow.com/a/10916023
+
                 MapPictureBox.Image = mapBitmap;
+
             }
             else
             {
