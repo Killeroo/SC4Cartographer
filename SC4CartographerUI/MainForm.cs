@@ -31,6 +31,7 @@ namespace SC4CartographerUI
         public MainForm()
         {
             InitializeComponent();
+            logger = new RichTextBoxLogger(LogTextBox);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -51,8 +52,8 @@ namespace SC4CartographerUI
                 SavePathTextbox.Text = RootSimCitySavePath;
                 string test = FindRandomSavegameFileInPath(RootSimCitySavePath);
 
-                LogTextBox.AppendText(Path.GetFileName(@"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4"));
-                mapCreationParameters.SaveFile = new SC4SaveFile(@"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4");
+                LogTextBox.AppendText(test);//Path.GetFileName(@"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4"));
+                mapCreationParameters.SaveFile = new SC4SaveFile(test);// @"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4");
                 mapCreationParameters.SaveFilePath = test;
 
                 // TODO: Need a way to work out city size
@@ -239,7 +240,14 @@ namespace SC4CartographerUI
             LogTextBox.SelectionStart = LogTextBox.Text.Length;
 
             // Scroll to bottom automatically
-            LogTextBox.ScrollToCaret();
+            //LogTextBox.ScrollToCaret();
+        }
+
+        private void PropertiesButton_Click(object sender, EventArgs e)
+        {
+            var propertiesForm = new PropertiesForm();
+            propertiesForm.StartPosition = FormStartPosition.CenterParent;
+            propertiesForm.ShowDialog();
         }
     }
 }

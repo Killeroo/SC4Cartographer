@@ -32,7 +32,7 @@ namespace SC4CartographerUI
         public void Log(LogLevel level, string format, params object[] args)
         {
             string message = args.Length == 0 ? format : string.Format(format, args);
-            message = string.Format("[{0}] [{1}] {2}",
+            message = string.Format("[{0}] [SC4Parser] [{1}] {2}",
                 DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss.ff"),
                 LogLevelText[level],
                 message);

@@ -31,7 +31,7 @@ namespace SC4CartographerUI
     /// <summary>
     /// Stores parameters required to create a map
     /// </summary>
-    class MapCreationParameters
+    public class MapCreationParameters
     {
 
         public SC4SaveFile SaveFile;
@@ -39,6 +39,7 @@ namespace SC4CartographerUI
 
         #region Dimensions 
 
+        public bool ShowGridLines = false;
         public int GridSegmentSize = 10;
         public int GridPaddingX = 4;
         public int GridPaddingY = 4;
