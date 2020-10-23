@@ -34,6 +34,11 @@ namespace SC4CartographerUI
             logger = new RichTextBoxLogger(LogTextBox);
         }
 
+        public void SetMapCreationParameters(MapCreationParameters parameters)
+        {
+            mapCreationParameters = parameters;
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             //MapPictureBox.Image = Image.FromFile("TestPoster.png");
@@ -245,7 +250,7 @@ namespace SC4CartographerUI
 
         private void PropertiesButton_Click(object sender, EventArgs e)
         {
-            var propertiesForm = new PropertiesForm();
+            var propertiesForm = new PropertiesForm(mapCreationParameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
             propertiesForm.ShowDialog();
         }

@@ -28,6 +28,12 @@ namespace SC4CartographerUI
         IndustrialLow
     }
 
+    public enum OutFormat
+    {
+        PNG,
+        JPEG,
+    }
+
     /// <summary>
     /// Stores parameters required to create a map
     /// </summary>
@@ -36,6 +42,14 @@ namespace SC4CartographerUI
 
         public SC4SaveFile SaveFile;
         public string SaveFilePath;
+
+        #region Ouput
+
+        public string OutputPath;
+        public int OutputDPI;
+        public OutFormat OutputFormat;
+
+        #endregion
 
         #region Dimensions 
 

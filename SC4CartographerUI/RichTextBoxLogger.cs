@@ -21,6 +21,15 @@ namespace SC4CartographerUI
             { LogLevel.Fatal, "FATAL" }
         };
 
+        public static readonly Dictionary<LogLevel, Color> LogLevelColors = new Dictionary<LogLevel, Color>
+        {
+            { LogLevel.Debug, Color.Magenta },
+            { LogLevel.Info, Color.Black },
+            { LogLevel.Warning, Color.Yellow },
+            { LogLevel.Error, Color.Red },
+            { LogLevel.Fatal, Color.Magenta }
+        };
+
         private RichTextBox richTextBox;
 
         public RichTextBoxLogger(RichTextBox r)
@@ -36,7 +45,7 @@ namespace SC4CartographerUI
                 DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss.ff"),
                 LogLevelText[level],
                 message);
-
+            //richTextBox.ForeColor = LogLevelColors[level];
             richTextBox.AppendText(message + "\n");
         }
     }
