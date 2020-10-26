@@ -46,8 +46,8 @@ namespace SC4CartographerUI
         #region Ouput
 
         public string OutputPath;
-        public int OutputDPI;
-        public OutFormat OutputFormat;
+        public int OutputDPI = 300;
+        public OutFormat OutputFormat = OutFormat.PNG;
 
         #endregion
 
@@ -55,10 +55,10 @@ namespace SC4CartographerUI
 
         public bool ShowGridLines = false;
         public int GridSegmentSize = 10;
-        public int GridPaddingX = 4;
-        public int GridPaddingY = 4;
-        public int GridOffsetX = 2;
-        public int GridOffsetY = 2;
+        public int SegmentPaddingX = 4;
+        public int SegmentPaddingY = 4;
+        public int SegmentOffsetX = 2;
+        public int SegmentOffsetY = 2;
         public int GridSizeX = 128;
         public int GridSizeY = 128;
 
@@ -69,7 +69,7 @@ namespace SC4CartographerUI
         public Dictionary<MapColorObject, Color> ColorDictionary = new Dictionary<MapColorObject, Color>()
         {
             {MapColorObject.Background, Color.FromArgb(64, 64, 64)},
-            {MapColorObject.GridLines, Color.FromArgb(64, 64, 64)},
+            {MapColorObject.GridLines, Color.FromArgb(73, 73, 73)},
             {MapColorObject.Building, Color.FromArgb(121, 121, 121)},
             {MapColorObject.ResidentialHigh, Color.FromArgb(0, 126, 47)},
             {MapColorObject.ResidentialMid, Color.FromArgb(2, 207, 79)},

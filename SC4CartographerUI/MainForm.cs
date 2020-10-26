@@ -25,18 +25,69 @@ namespace SC4CartographerUI
             "Regions");
 
         private MapCreationParameters mapCreationParameters = new MapCreationParameters();
+        private Bitmap previewNormalMapBitmap;
+        private Bitmap previewZoomedMapBitmap;
+        private bool previewZoomed = false;
 
         private RichTextBoxLogger logger = null;
 
         public MainForm()
         {
             InitializeComponent();
-            logger = new RichTextBoxLogger(LogTextBox);
+            //logger = new RichTextBoxLogger(LogTextBox);
         }
 
         public void SetMapCreationParameters(MapCreationParameters parameters)
         {
             mapCreationParameters = parameters;
+        }
+
+        public void GenerateMapPreview(string path)
+        {
+            this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
+            
+            mapCreationParameters.SaveFile = new SC4SaveFile(path);// @"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4");
+            mapCreationParameters.SaveFilePath = path;
+
+            // Generate normal preview image
+            MapCreationParameters normalMapPreviewParameters = mapCreationParameters;
+            normalMapPreviewParameters.GridSegmentSize = 5;
+            normalMapPreviewParameters.SegmentPaddingX = 2;
+            normalMapPreviewParameters.SegmentPaddingY = 2;
+            normalMapPreviewParameters.SegmentOffsetX = 1;
+            normalMapPreviewParameters.SegmentOffsetY = 1;
+            previewNormalMapBitmap = MapRenderer.CreateMapBitmap(normalMapPreviewParameters);
+
+            // Generate zoomed preview image
+            MapCreationParameters zoomedMapPreviewParameters = mapCreationParameters;
+            zoomedMapPreviewParameters.GridSegmentSize = 10;
+            zoomedMapPreviewParameters.SegmentPaddingX = 4;
+            zoomedMapPreviewParameters.SegmentPaddingY = 4;
+            zoomedMapPreviewParameters.SegmentOffsetX = 2;
+            zoomedMapPreviewParameters.SegmentOffsetY = 2;
+            previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(zoomedMapPreviewParameters);
+
+            // TODO: Need a way to work out city size
+            //Bitmap mapBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
+            //https://stackoverflow.com/a/10916023
+
+            // Set image, reset zoom
+            MapPictureBox.Image = previewNormalMapBitmap;
+            previewZoomed = false;
+        }
+
+        public void TogglePreviewImage()
+        {
+            previewZoomed = !previewZoomed;
+
+            if (previewZoomed)
+            {
+                MapPictureBox.Image = previewZoomedMapBitmap;
+            }
+            else
+            {
+                MapPictureBox.Image = previewNormalMapBitmap;
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -55,18 +106,9 @@ namespace SC4CartographerUI
             if (Directory.Exists(RootSimCitySavePath))
             {
                 SavePathTextbox.Text = RootSimCitySavePath;
-                string test = FindRandomSavegameFileInPath(RootSimCitySavePath);
+                string path = FindRandomSavegameFileInPath(RootSimCitySavePath);
 
-                LogTextBox.AppendText(test);//Path.GetFileName(@"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4"));
-                mapCreationParameters.SaveFile = new SC4SaveFile(test);// @"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4");
-                mapCreationParameters.SaveFilePath = test;
-
-                // TODO: Need a way to work out city size
-                Bitmap mapBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
-            https://stackoverflow.com/a/10916023
-
-                MapPictureBox.Image = mapBitmap;
-
+                GenerateMapPreview(path);
             }
             else
             {
@@ -132,8 +174,8 @@ namespace SC4CartographerUI
 
                 // Only show files with sc4 extension and don't show cities that haven't been
                 // founded yet
-                if (!file.Contains("City - New City (")
-                    && file.Contains(".sc4"))
+                if (file.Contains(".sc4"))
+                    //&& !file.Contains("City - New City ("))
                 {
                     // Add to node
                     FileTreeView.Nodes.Add(node);
@@ -195,11 +237,12 @@ namespace SC4CartographerUI
                         // Display file image on node
                         node.ImageIndex = 13;
                         node.SelectedImageIndex = 13;
+                        node.Tag = file;
 
                         // Only show files with sc4 extension and don't show cities that haven't been
                         // founded yet
-                        if (!file.Contains("City - New City (")
-                            && file.Contains(".sc4"))
+                        if (file.Contains(".sc4") )
+                            //&& !file.Contains("City - New City (")
                         {
                             // Add to node
                             e.Node.Nodes.Add(node);
@@ -242,7 +285,7 @@ namespace SC4CartographerUI
         private void LogTextBox_TextChanged(object sender, EventArgs e)
         {
             // Set caret position to end of current text
-            LogTextBox.SelectionStart = LogTextBox.Text.Length;
+            //LogTextBox.SelectionStart = LogTextBox.Text.Length;
 
             // Scroll to bottom automatically
             //LogTextBox.ScrollToCaret();
@@ -253,6 +296,30 @@ namespace SC4CartographerUI
             var propertiesForm = new PropertiesForm(mapCreationParameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
             propertiesForm.ShowDialog();
+
+            // Generate map again
+            GenerateMapPreview(mapCreationParameters.SaveFilePath);
+        }
+
+        private void FileTreeView_OnNodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            // Check the node we have clicked on is a file
+            // (check the image index that we have set earlier, this is the easiest way)
+            if (e.Node.ImageIndex == 13)
+            {
+                GenerateMapPreview((string) e.Node.Tag);
+
+            }
+        }
+
+        private void FileBrowserButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MapPictureBox_Clicked(object sender, EventArgs e)
+        {
+            TogglePreviewImage();
         }
     }
 }

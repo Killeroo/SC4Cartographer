@@ -49,7 +49,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PropertiesButton = new System.Windows.Forms.Button();
-            this.LogTextBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -62,7 +61,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(204, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(580, 616);
+            this.groupBox1.Size = new System.Drawing.Size(671, 685);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
@@ -73,21 +72,23 @@
             this.panel1.Controls.Add(this.MapPictureBox);
             this.panel1.Location = new System.Drawing.Point(6, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(568, 590);
+            this.panel1.Size = new System.Drawing.Size(659, 659);
             this.panel1.TabIndex = 2;
             // 
             // MapPictureBox
             // 
+            this.MapPictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
             this.MapPictureBox.Location = new System.Drawing.Point(3, 3);
             this.MapPictureBox.Name = "MapPictureBox";
-            this.MapPictureBox.Size = new System.Drawing.Size(562, 584);
+            this.MapPictureBox.Size = new System.Drawing.Size(653, 653);
             this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.MapPictureBox.TabIndex = 2;
             this.MapPictureBox.TabStop = false;
+            this.MapPictureBox.Click += new System.EventHandler(this.MapPictureBox_Clicked);
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(660, 648);
+            this.SaveButton.Location = new System.Drawing.Point(751, 717);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(124, 23);
             this.SaveButton.TabIndex = 0;
@@ -102,7 +103,7 @@
             this.groupBox6.Controls.Add(this.FileTreeView);
             this.groupBox6.Location = new System.Drawing.Point(12, 26);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(186, 645);
+            this.groupBox6.Size = new System.Drawing.Size(186, 685);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Save games";
@@ -115,6 +116,7 @@
             this.FileBrowserButton.TabIndex = 3;
             this.FileBrowserButton.Text = "...";
             this.FileBrowserButton.UseVisualStyleBackColor = true;
+            this.FileBrowserButton.Click += new System.EventHandler(this.FileBrowserButton_Click);
             // 
             // SavePathTextbox
             // 
@@ -131,9 +133,10 @@
             this.FileTreeView.Location = new System.Drawing.Point(6, 42);
             this.FileTreeView.Name = "FileTreeView";
             this.FileTreeView.SelectedImageIndex = 0;
-            this.FileTreeView.Size = new System.Drawing.Size(174, 597);
+            this.FileTreeView.Size = new System.Drawing.Size(174, 637);
             this.FileTreeView.TabIndex = 0;
             this.FileTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.FileTreeView_BeforeExpand);
+            this.FileTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.FileTreeView_OnNodeMouseDoubleClick);
             // 
             // FileTreeViewImageList
             // 
@@ -161,7 +164,7 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(798, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(887, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -221,7 +224,7 @@
             // 
             // PropertiesButton
             // 
-            this.PropertiesButton.Location = new System.Drawing.Point(530, 648);
+            this.PropertiesButton.Location = new System.Drawing.Point(621, 717);
             this.PropertiesButton.Name = "PropertiesButton";
             this.PropertiesButton.Size = new System.Drawing.Size(124, 23);
             this.PropertiesButton.TabIndex = 9;
@@ -229,27 +232,19 @@
             this.PropertiesButton.UseVisualStyleBackColor = true;
             this.PropertiesButton.Click += new System.EventHandler(this.PropertiesButton_Click);
             // 
-            // LogTextBox
-            // 
-            this.LogTextBox.Location = new System.Drawing.Point(12, 677);
-            this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.Size = new System.Drawing.Size(772, 160);
-            this.LogTextBox.TabIndex = 10;
-            this.LogTextBox.Text = "";
-            this.LogTextBox.TextChanged += new System.EventHandler(this.LogTextBox_TextChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 849);
-            this.Controls.Add(this.LogTextBox);
+            this.ClientSize = new System.Drawing.Size(887, 747);
             this.Controls.Add(this.PropertiesButton);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "SC4Cartographer";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -287,7 +282,6 @@
         private System.Windows.Forms.ImageList FileTreeViewImageList;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox MapPictureBox;
-        private System.Windows.Forms.RichTextBox LogTextBox;
     }
 }
 

@@ -38,6 +38,25 @@ namespace SC4CartographerUI
             IndustrialZoneLowTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialLow];
             IndustrialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialMid];
             IndustrialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
+
+            GridSegmentSizeNumericUpDown.Value = parameters.GridSegmentSize;
+            SegmentPaddingNumericUpDown.Value = parameters.SegmentPaddingX;
+            SegmentOffsetNumericUpDown.Value = parameters.SegmentOffsetX;
+            ShowGridLinesCheckbox.Checked = parameters.ShowGridLines;
+
+            OutputPathTextbox.Text = parameters.OutputPath;
+            DPINumericUpDown.Value = parameters.OutputDPI;
+            if (parameters.OutputFormat == OutFormat.PNG)
+            {
+                PNGRadioButton.Checked = true;
+                JPEGRadioButton.Checked = false;
+            }
+            else
+            {
+                PNGRadioButton.Checked = false;
+                JPEGRadioButton.Checked = true;
+            }
+
         }
         private void GetParametersFromUIValues()
         {
@@ -53,6 +72,24 @@ namespace SC4CartographerUI
             parameters.ColorDictionary[MapColorObject.IndustrialLow] = IndustrialZoneLowTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.IndustrialMid] = IndustrialZoneMidTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.IndustrialHigh] = IndustrialZoneHighTextbox.BackColor;
+
+            parameters.GridSegmentSize = (int) GridSegmentSizeNumericUpDown.Value;
+            parameters.SegmentPaddingX = (int)SegmentPaddingNumericUpDown.Value;
+            parameters.SegmentPaddingY = (int)SegmentPaddingNumericUpDown.Value;
+            parameters.SegmentOffsetX = (int)SegmentOffsetNumericUpDown.Value;
+            parameters.SegmentOffsetY = (int)SegmentOffsetNumericUpDown.Value;
+            parameters.ShowGridLines = ShowGridLinesCheckbox.Checked;
+
+            parameters.OutputPath = OutputPathTextbox.Text;
+            parameters.OutputDPI = (int)DPINumericUpDown.Value;
+            if (PNGRadioButton.Checked)
+            {
+                parameters.OutputFormat = OutFormat.PNG;
+            }
+            else
+            {
+                parameters.OutputFormat = OutFormat.JPEG;
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

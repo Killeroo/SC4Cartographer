@@ -30,9 +30,6 @@
         {
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.SegmentOffsetTextbox = new System.Windows.Forms.TextBox();
-            this.SegmentPaddingTextbox = new System.Windows.Forms.TextBox();
-            this.GridSegmentSizeTextbox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -75,60 +72,43 @@
             this.label1 = new System.Windows.Forms.Label();
             this.GridBackgroundTextbox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.JPEGRadioButton = new System.Windows.Forms.RadioButton();
+            this.PNGRadioButton = new System.Windows.Forms.RadioButton();
+            this.label21 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.OutputPathTextbox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.DPITextBox = new System.Windows.Forms.TextBox();
-            this.PNGRadioButton = new System.Windows.Forms.RadioButton();
-            this.JPEGRadioButton = new System.Windows.Forms.RadioButton();
-            this.label22 = new System.Windows.Forms.Label();
+            this.DPINumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.GridSegmentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SegmentPaddingNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SegmentOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DPINumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridSegmentSizeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.SegmentOffsetTextbox);
-            this.groupBox1.Controls.Add(this.SegmentPaddingTextbox);
-            this.groupBox1.Controls.Add(this.GridSegmentSizeTextbox);
+            this.groupBox1.Controls.Add(this.SegmentOffsetNumericUpDown);
+            this.groupBox1.Controls.Add(this.SegmentPaddingNumericUpDown);
+            this.groupBox1.Controls.Add(this.GridSegmentSizeNumericUpDown);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.ShowGridLinesCheckbox);
             this.groupBox1.Location = new System.Drawing.Point(12, 204);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(440, 121);
+            this.groupBox1.Size = new System.Drawing.Size(440, 103);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Grid";
-            // 
-            // SegmentOffsetTextbox
-            // 
-            this.SegmentOffsetTextbox.ForeColor = System.Drawing.Color.Black;
-            this.SegmentOffsetTextbox.Location = new System.Drawing.Point(122, 71);
-            this.SegmentOffsetTextbox.Name = "SegmentOffsetTextbox";
-            this.SegmentOffsetTextbox.Size = new System.Drawing.Size(52, 20);
-            this.SegmentOffsetTextbox.TabIndex = 9;
-            // 
-            // SegmentPaddingTextbox
-            // 
-            this.SegmentPaddingTextbox.ForeColor = System.Drawing.Color.Black;
-            this.SegmentPaddingTextbox.Location = new System.Drawing.Point(122, 43);
-            this.SegmentPaddingTextbox.Name = "SegmentPaddingTextbox";
-            this.SegmentPaddingTextbox.Size = new System.Drawing.Size(52, 20);
-            this.SegmentPaddingTextbox.TabIndex = 7;
-            // 
-            // GridSegmentSizeTextbox
-            // 
-            this.GridSegmentSizeTextbox.ForeColor = System.Drawing.Color.Black;
-            this.GridSegmentSizeTextbox.Location = new System.Drawing.Point(122, 17);
-            this.GridSegmentSizeTextbox.Name = "GridSegmentSizeTextbox";
-            this.GridSegmentSizeTextbox.Size = new System.Drawing.Size(52, 20);
-            this.GridSegmentSizeTextbox.TabIndex = 6;
             // 
             // label15
             // 
@@ -142,7 +122,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 43);
+            this.label14.Location = new System.Drawing.Point(6, 46);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(91, 13);
             this.label14.TabIndex = 2;
@@ -160,7 +140,7 @@
             // ShowGridLinesCheckbox
             // 
             this.ShowGridLinesCheckbox.AutoSize = true;
-            this.ShowGridLinesCheckbox.Location = new System.Drawing.Point(122, 97);
+            this.ShowGridLinesCheckbox.Location = new System.Drawing.Point(227, 19);
             this.ShowGridLinesCheckbox.Name = "ShowGridLinesCheckbox";
             this.ShowGridLinesCheckbox.Size = new System.Drawing.Size(103, 17);
             this.ShowGridLinesCheckbox.TabIndex = 0;
@@ -550,20 +530,60 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.DPINumericUpDown);
             this.groupBox3.Controls.Add(this.label22);
             this.groupBox3.Controls.Add(this.JPEGRadioButton);
             this.groupBox3.Controls.Add(this.PNGRadioButton);
-            this.groupBox3.Controls.Add(this.DPITextBox);
             this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.OutputPathTextbox);
             this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Location = new System.Drawing.Point(12, 331);
+            this.groupBox3.Location = new System.Drawing.Point(12, 313);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(440, 101);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 68);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(74, 13);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "Output Format";
+            // 
+            // JPEGRadioButton
+            // 
+            this.JPEGRadioButton.AutoSize = true;
+            this.JPEGRadioButton.Location = new System.Drawing.Point(176, 66);
+            this.JPEGRadioButton.Name = "JPEGRadioButton";
+            this.JPEGRadioButton.Size = new System.Drawing.Size(52, 17);
+            this.JPEGRadioButton.TabIndex = 21;
+            this.JPEGRadioButton.TabStop = true;
+            this.JPEGRadioButton.Text = "JPEG";
+            this.JPEGRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // PNGRadioButton
+            // 
+            this.PNGRadioButton.AutoSize = true;
+            this.PNGRadioButton.Location = new System.Drawing.Point(122, 66);
+            this.PNGRadioButton.Name = "PNGRadioButton";
+            this.PNGRadioButton.Size = new System.Drawing.Size(48, 17);
+            this.PNGRadioButton.TabIndex = 20;
+            this.PNGRadioButton.TabStop = true;
+            this.PNGRadioButton.Text = "PNG";
+            this.PNGRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 41);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(25, 13);
+            this.label21.TabIndex = 18;
+            this.label21.Text = "DPI";
             // 
             // button1
             // 
@@ -576,9 +596,9 @@
             // 
             // OutputPathTextbox
             // 
-            this.OutputPathTextbox.Location = new System.Drawing.Point(68, 13);
+            this.OutputPathTextbox.Location = new System.Drawing.Point(122, 13);
             this.OutputPathTextbox.Name = "OutputPathTextbox";
-            this.OutputPathTextbox.Size = new System.Drawing.Size(330, 20);
+            this.OutputPathTextbox.Size = new System.Drawing.Size(276, 20);
             this.OutputPathTextbox.TabIndex = 16;
             // 
             // label20
@@ -586,14 +606,14 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(6, 16);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(56, 13);
+            this.label20.Size = new System.Drawing.Size(64, 13);
             this.label20.TabIndex = 15;
-            this.label20.Text = "Save path";
+            this.label20.Text = "Output Path";
             // 
             // CancelButton
             // 
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(377, 438);
+            this.CancelButton.Location = new System.Drawing.Point(377, 420);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 3;
@@ -603,7 +623,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(296, 438);
+            this.OkButton.Location = new System.Drawing.Point(296, 420);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 4;
@@ -611,59 +631,70 @@
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // label21
+            // DPINumericUpDown
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 41);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(25, 13);
-            this.label21.TabIndex = 18;
-            this.label21.Text = "DPI";
+            this.DPINumericUpDown.Location = new System.Drawing.Point(122, 39);
+            this.DPINumericUpDown.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.DPINumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.DPINumericUpDown.Name = "DPINumericUpDown";
+            this.DPINumericUpDown.Size = new System.Drawing.Size(63, 20);
+            this.DPINumericUpDown.TabIndex = 10;
+            this.DPINumericUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
-            // DPITextBox
+            // GridSegmentSizeNumericUpDown
             // 
-            this.DPITextBox.Location = new System.Drawing.Point(68, 39);
-            this.DPITextBox.Name = "DPITextBox";
-            this.DPITextBox.Size = new System.Drawing.Size(62, 20);
-            this.DPITextBox.TabIndex = 19;
+            this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(122, 18);
+            this.GridSegmentSizeNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.GridSegmentSizeNumericUpDown.Name = "GridSegmentSizeNumericUpDown";
+            this.GridSegmentSizeNumericUpDown.Size = new System.Drawing.Size(92, 20);
+            this.GridSegmentSizeNumericUpDown.TabIndex = 10;
             // 
-            // PNGRadioButton
+            // SegmentPaddingNumericUpDown
             // 
-            this.PNGRadioButton.AutoSize = true;
-            this.PNGRadioButton.Location = new System.Drawing.Point(68, 66);
-            this.PNGRadioButton.Name = "PNGRadioButton";
-            this.PNGRadioButton.Size = new System.Drawing.Size(48, 17);
-            this.PNGRadioButton.TabIndex = 20;
-            this.PNGRadioButton.TabStop = true;
-            this.PNGRadioButton.Text = "PNG";
-            this.PNGRadioButton.UseVisualStyleBackColor = true;
+            this.SegmentPaddingNumericUpDown.Location = new System.Drawing.Point(122, 44);
+            this.SegmentPaddingNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.SegmentPaddingNumericUpDown.Name = "SegmentPaddingNumericUpDown";
+            this.SegmentPaddingNumericUpDown.Size = new System.Drawing.Size(92, 20);
+            this.SegmentPaddingNumericUpDown.TabIndex = 11;
             // 
-            // JPEGRadioButton
+            // SegmentOffsetNumericUpDown
             // 
-            this.JPEGRadioButton.AutoSize = true;
-            this.JPEGRadioButton.Location = new System.Drawing.Point(122, 66);
-            this.JPEGRadioButton.Name = "JPEGRadioButton";
-            this.JPEGRadioButton.Size = new System.Drawing.Size(52, 17);
-            this.JPEGRadioButton.TabIndex = 21;
-            this.JPEGRadioButton.TabStop = true;
-            this.JPEGRadioButton.Text = "JPEG";
-            this.JPEGRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 68);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 13);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "Format";
+            this.SegmentOffsetNumericUpDown.Location = new System.Drawing.Point(122, 69);
+            this.SegmentOffsetNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.SegmentOffsetNumericUpDown.Name = "SegmentOffsetNumericUpDown";
+            this.SegmentOffsetNumericUpDown.Size = new System.Drawing.Size(92, 20);
+            this.SegmentOffsetNumericUpDown.TabIndex = 12;
             // 
             // PropertiesForm
             // 
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 469);
+            this.ClientSize = new System.Drawing.Size(464, 446);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox3);
@@ -682,6 +713,10 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DPINumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridSegmentSizeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -730,9 +765,6 @@
         private System.Windows.Forms.Button ResidentialZoneLowEditButton;
         private System.Windows.Forms.Button ResidentialZoneHighEditButton;
         private System.Windows.Forms.Button ResidentialZoneMidEditButton;
-        private System.Windows.Forms.TextBox SegmentOffsetTextbox;
-        private System.Windows.Forms.TextBox SegmentPaddingTextbox;
-        private System.Windows.Forms.TextBox GridSegmentSizeTextbox;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
@@ -743,7 +775,10 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.RadioButton JPEGRadioButton;
         private System.Windows.Forms.RadioButton PNGRadioButton;
-        private System.Windows.Forms.TextBox DPITextBox;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown DPINumericUpDown;
+        private System.Windows.Forms.NumericUpDown SegmentOffsetNumericUpDown;
+        private System.Windows.Forms.NumericUpDown SegmentPaddingNumericUpDown;
+        private System.Windows.Forms.NumericUpDown GridSegmentSizeNumericUpDown;
     }
 }

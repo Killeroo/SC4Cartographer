@@ -78,19 +78,19 @@ namespace SC4CartographerUI
                         case Constants.ORIENTATION_NORTH:
                         case Constants.ORIENTATION_SOUTH:
                             rect = new Rectangle(
-                                (parameters.GridSegmentSize * lot.MinTileX) + parameters.GridOffsetX,
-                                (parameters.GridSegmentSize * lot.MinTileZ) + parameters.GridOffsetY,
-                                (parameters.GridSegmentSize * lot.SizeX) - parameters.GridPaddingX,
-                                (parameters.GridSegmentSize * lot.SizeZ) - parameters.GridPaddingY);
+                                (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
+                                (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                (parameters.GridSegmentSize * lot.SizeX) - parameters.SegmentPaddingX,
+                                (parameters.GridSegmentSize * lot.SizeZ) - parameters.SegmentPaddingY);
                             break;
 
                         case Constants.ORIENTATION_WEST:
                         case Constants.ORIENTATION_EAST:
                             rect = new Rectangle(
-                                (parameters.GridSegmentSize * lot.MinTileX) + parameters.GridOffsetX,
-                                (parameters.GridSegmentSize * lot.MinTileZ) + parameters.GridOffsetY,
-                                (parameters.GridSegmentSize * lot.SizeZ) - parameters.GridPaddingX,
-                                (parameters.GridSegmentSize * lot.SizeX) - parameters.GridPaddingY);
+                                (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
+                                (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                (parameters.GridSegmentSize * lot.SizeZ) - parameters.SegmentPaddingX,
+                                (parameters.GridSegmentSize * lot.SizeX) - parameters.SegmentPaddingY);
 
 
                             break;
@@ -98,6 +98,20 @@ namespace SC4CartographerUI
                     }
 
                     g.FillRectangle(new SolidBrush(c), rect);
+                    //g.DrawRectangle(pen, rect);
+                }
+
+                if (parameters.ShowGridLines)
+                {
+                    for (int y = 0; y < parameters.GridSizeY; ++y)
+                    {
+                        g.DrawLine(pen, 0, y * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
+                    }
+
+                    for (int x = 0; x < parameters.GridSizeX; ++x)
+                    {
+                        g.DrawLine(pen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize);
+                    }
                 }
 
             }
