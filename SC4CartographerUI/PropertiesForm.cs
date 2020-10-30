@@ -28,7 +28,12 @@ namespace SC4CartographerUI
         {
             GridBackgroundTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Background];
             GridLinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.GridLines];
-            BuildingsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Building];
+            BuildingsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+            ZoneOutlinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ZoneOutline];
+            MilitaryTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Military];
+            AirportsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Airport];
+            SeaportTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Seaport];
+            SpaceportTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Spaceport];
             ResidentialZoneLowTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ResidentialLow];
             ResidentialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ResidentialMid];
             ResidentialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ResidentialHigh];
@@ -43,6 +48,7 @@ namespace SC4CartographerUI
             SegmentPaddingNumericUpDown.Value = parameters.SegmentPaddingX;
             SegmentOffsetNumericUpDown.Value = parameters.SegmentOffsetX;
             ShowGridLinesCheckbox.Checked = parameters.ShowGridLines;
+            ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
 
             OutputPathTextbox.Text = parameters.OutputPath;
             DPINumericUpDown.Value = parameters.OutputDPI;
@@ -62,7 +68,12 @@ namespace SC4CartographerUI
         {
             parameters.ColorDictionary[MapColorObject.Background] = GridBackgroundTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.GridLines] = GridLinesTextbox.BackColor;
-            parameters.ColorDictionary[MapColorObject.Building] = BuildingsTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.PloppedBuilding] = BuildingsTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.ZoneOutline] = ZoneOutlinesTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Military] = MilitaryTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Airport] = AirportsTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Seaport] = SeaportTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Spaceport] = SpaceportTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.ResidentialLow] = ResidentialZoneLowTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.ResidentialMid] = ResidentialZoneMidTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.ResidentialHigh] = ResidentialZoneHighTextbox.BackColor;
@@ -79,6 +90,7 @@ namespace SC4CartographerUI
             parameters.SegmentOffsetX = (int)SegmentOffsetNumericUpDown.Value;
             parameters.SegmentOffsetY = (int)SegmentOffsetNumericUpDown.Value;
             parameters.ShowGridLines = ShowGridLinesCheckbox.Checked;
+            parameters.ShowZoneOutlines = ShowZoneOutlinesCheckbox.Checked;
 
             parameters.OutputPath = OutputPathTextbox.Text;
             parameters.OutputDPI = (int)DPINumericUpDown.Value;
@@ -156,6 +168,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = ResidentialZoneLowTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -169,6 +182,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = ResidentialZoneMidTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -182,6 +196,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = ResidentialZoneHighTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -195,6 +210,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = CommercialZoneLowTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -208,6 +224,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = CommercialZoneMidTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -221,6 +238,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = CommercialZoneHighTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -234,6 +252,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = IndustrialZoneLowTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -247,6 +266,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = IndustrialZoneMidTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -260,11 +280,92 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = IndustrialZoneHighTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 IndustrialZoneHighTextbox.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void ZoneOutlinesEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = ZoneOutlinesTextbox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                ZoneOutlinesTextbox.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void MilitaryEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = MilitaryTextbox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                MilitaryTextbox.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void AirportsEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = AirportsTextbox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                AirportsTextbox.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void SeaportsEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = SeaportTextbox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                SeaportTextbox.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void SpaceportEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = SeaportTextbox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                SeaportTextbox.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void EditOutputPathButton_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.SelectedPath = OutputPathTextbox.Text;
+                if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                    OutputPathTextbox.Text = folderDialog.SelectedPath;
             }
         }
     }

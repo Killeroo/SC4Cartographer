@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace SC4CartographerUI
         private Bitmap previewNormalMapBitmap;
         private Bitmap previewZoomedMapBitmap;
         private bool previewZoomed = false;
+        private bool loadedMap = false;
 
         private RichTextBoxLogger logger = null;
 
@@ -42,13 +44,11 @@ namespace SC4CartographerUI
             mapCreationParameters = parameters;
         }
 
-        public void GenerateMapPreview(string path)
+        /// <summary>
+        /// Generates and sets preview map image on form
+        /// </summary>
+        public void GenerateMapPreview()
         {
-            this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
-            
-            mapCreationParameters.SaveFile = new SC4SaveFile(path);// @"C:\Users\Shadowfax\Documents\SimCity 4\Regions\London\City - Luxuria.sc4");
-            mapCreationParameters.SaveFilePath = path;
-
             // Generate normal preview image
             MapCreationParameters normalMapPreviewParameters = mapCreationParameters;
             normalMapPreviewParameters.GridSegmentSize = 5;
@@ -76,6 +76,135 @@ namespace SC4CartographerUI
             previewZoomed = false;
         }
 
+        /// <summary>
+        /// Check if a save has the subfile we need, if it does then we can load it
+        /// if not avoid it otherwise SC4Parsernwill throw an exception
+        /// </summary>
+        public bool CheckSaveCanLoad(string path)
+        {
+            try
+            {
+                SC4SaveFile save = new SC4SaveFile(path);
+                save.GetLotSubfile();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
+
+        /// <summary>
+        /// Common function to load a save game and create a map from it
+        /// </summary>
+        /// <param name="path"></param>
+        public void LoadSaveGame(string path)
+        {
+            if (CheckSaveCanLoad(path))
+            {
+                EnableSaveButtons();
+
+                // Set window title
+                this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
+
+                // Load the save file
+                mapCreationParameters.SaveFile = new SC4SaveFile(path);
+
+                // Generate and set map preview images
+                GenerateMapPreview();
+            }
+            else
+            {
+
+                MessageBox.Show($"Could not create map for {path}. File doesn't have a file containing zone data.", 
+                    "Could not load save game", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        public string GenerateDefaultMapFilename()
+        {
+            string savefile = Path.GetFileNameWithoutExtension(mapCreationParameters.SaveFile.FilePath);
+            savefile = savefile.Replace("City - ", "");
+            return savefile;
+        }
+
+        /// <summary>
+        /// Common function that saves out a map to a file
+        /// </summary>
+        public void SaveMap(string path, string name)
+        {
+            string filePath = Path.Combine(path, name);
+
+            // Get current extension
+            string extension = "";
+            switch (mapCreationParameters.OutputFormat)
+            {
+                case OutFormat.PNG:
+                    extension = ".png";
+                    break;
+                case OutFormat.JPEG:
+                    extension = ".jpg";
+                    break;
+            }
+
+            // Yeah this is hacky, sue me.
+            string currentFilename = filePath + extension;
+            bool goodFilename = false;
+            int counter = 0;
+            while (goodFilename == false)
+            {
+                if (File.Exists(currentFilename))
+                {
+                    counter++;
+                    currentFilename = filePath + $"({counter})" + extension;
+                }
+                else
+                {
+                    goodFilename = true;
+                }
+            }
+
+            try
+            {
+                // Get the bitmap (this time we actually generate it from what the user inputted
+                // not what we needed when we were generating the preview)
+                Bitmap outBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
+
+                // Actually save out the image
+                switch (mapCreationParameters.OutputFormat)
+                {
+                    case OutFormat.PNG:
+                        outBitmap.Save(currentFilename, ImageFormat.Png);
+                        break;
+                    case OutFormat.JPEG:
+                        outBitmap.Save(currentFilename, ImageFormat.Jpeg);
+                        break;
+                }
+
+                // Show form when successfully created
+                var mapCreatedForm = new MapCreatedForm(Path.GetDirectoryName(currentFilename), Path.GetFileName(currentFilename));
+                mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+                mapCreatedForm.ShowDialog();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Could not save map", 
+                    $"Could not save map '{currentFilename}'. Exception [{e.GetType().ToString()}]: {e.Message}, ({e.InnerException.GetType().ToString()} - {e.InnerException.InnerException.Message}) ", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            // Cleanup any stuff after saving (these bitmaps can take up a fair amount of memory)
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+
+        /// <summary>
+        /// Switch between zoomed and normal images
+        /// </summary>
         public void TogglePreviewImage()
         {
             previewZoomed = !previewZoomed;
@@ -90,9 +219,96 @@ namespace SC4CartographerUI
             }
         }
 
+        /// <summary>
+        /// We don't want these buttons to be enabled when nothing is loaded
+        /// </summary>
+        private void EnableSaveButtons()
+        {
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
+            AppearanceButton.Enabled = true;
+            SaveButton.Enabled = true;
+
+            OpenTextLabel.Visible = false;
+        }
+
+        /// <summary>
+        /// Rebuilds tree view and its contents
+        /// </summary>
+        private void RefreshTreeView()
+        {
+            // Clear the tree
+            FileTreeView.Nodes.Clear();
+
+            // If entered directory doesnt exist, dont bother rendering tree
+            if (!Directory.Exists(SavePathTextbox.Text))
+                return;
+
+            // Get folders and files
+            string[] dirs = Directory.GetDirectories(SavePathTextbox.Text);
+            string[] files = Directory.GetFiles(SavePathTextbox.Text);
+
+            foreach (string dir in dirs)
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+                TreeNode node = new TreeNode(di.Name, 0, 1);
+
+                try
+                {
+                    node.Tag = dir;  //keep the directory's full path in the tag for use later
+
+                    //if the directory has any sub directories add the place holder
+                    if (di.GetFiles().Count() > 0 || di.GetDirectories().Count() > 0)//GetDirectories().Count() > 0) di.GetDirectories().Count() > 0)
+                        node.Nodes.Add(null, "...", 0, 0);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //if an unauthorized access exception occured display a locked folder
+                    node.ImageIndex = 12;
+                    node.SelectedImageIndex = 12;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "DirectoryLister", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    FileTreeView.Nodes.Add(node);
+                }
+            }
+
+            foreach (string file in files)
+            {
+                // Creat new node with file name
+                TreeNode node = new TreeNode(Path.GetFileName(file), 0, 1);
+
+                // Display file image on node
+                node.ImageIndex = 13;
+                node.SelectedImageIndex = 13;
+                node.Tag = file;
+
+                // Only show files with sc4 extension and don't show cities that haven't been
+                // founded yet
+                if (file.Contains(".sc4"))
+                //&& !file.Contains("City - New City ("))
+                {
+                    if (FilterNewCitiesCheckbox.Checked
+                        && file.Contains("City - New City ("))
+                    {
+                        continue;
+                    }
+
+                    // Add to node
+                    FileTreeView.Nodes.Add(node);
+                }
+            }
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //MapPictureBox.Image = Image.FromFile("TestPoster.png");
+            string name = GenerateDefaultMapFilename();
+            SaveMap(mapCreationParameters.OutputPath, name);
         }
 
         /// <summary>
@@ -102,18 +318,34 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Load a random map on open
             //logger = new RichTextBoxLogger(LogTextBox);
             if (Directory.Exists(RootSimCitySavePath))
             {
-                SavePathTextbox.Text = RootSimCitySavePath;
-                string path = FindRandomSavegameFileInPath(RootSimCitySavePath);
+                bool validSaveFound = false;
+                string path = "";
 
-                GenerateMapPreview(path);
+                // Find a save that will load without errors (probably doesn't have a lot subfile :/)
+                while (validSaveFound == false)
+                {
+                    SavePathTextbox.Text = RootSimCitySavePath;
+                    path = FindRandomSavegameFileInPath(RootSimCitySavePath);
+                    if (CheckSaveCanLoad(path))
+                    {
+                        validSaveFound = true;
+                    }
+                }
+
+                // Found a good save, load it
+                LoadSaveGame(path);
             }
             else
             {
                 SavePathTextbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             }
+
+            // Set current path as output path
+            mapCreationParameters.OutputPath = Directory.GetCurrentDirectory();
 
         }
 
@@ -171,12 +403,19 @@ namespace SC4CartographerUI
                 // Display file image on node
                 node.ImageIndex = 13;
                 node.SelectedImageIndex = 13;
+                node.Tag = file;
 
                 // Only show files with sc4 extension and don't show cities that haven't been
                 // founded yet
                 if (file.Contains(".sc4"))
                     //&& !file.Contains("City - New City ("))
                 {
+                    if (FilterNewCitiesCheckbox.Checked 
+                        && file.Contains("City - New City"))
+                    {
+                        continue;
+                    }
+
                     // Add to node
                     FileTreeView.Nodes.Add(node);
                 }
@@ -244,6 +483,12 @@ namespace SC4CartographerUI
                         if (file.Contains(".sc4") )
                             //&& !file.Contains("City - New City (")
                         {
+                            if (FilterNewCitiesCheckbox.Checked
+                                && file.Contains("City - New City"))
+                            {
+                                continue;
+                            }
+
                             // Add to node
                             e.Node.Nodes.Add(node);
                         }
@@ -298,28 +543,104 @@ namespace SC4CartographerUI
             propertiesForm.ShowDialog();
 
             // Generate map again
-            GenerateMapPreview(mapCreationParameters.SaveFilePath);
+            LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
         }
 
+        /// <summary>
+        /// Load a file from the tree view
+        /// </summary>
         private void FileTreeView_OnNodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             // Check the node we have clicked on is a file
             // (check the image index that we have set earlier, this is the easiest way)
             if (e.Node.ImageIndex == 13)
             {
-                GenerateMapPreview((string) e.Node.Tag);
+                
+                LoadSaveGame((string) e.Node.Tag);
 
             }
         }
 
         private void FileBrowserButton_Click(object sender, EventArgs e)
         {
-
+            // Create folder browser dialog
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.SelectedPath = SavePathTextbox.Text;
+                if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                    SavePathTextbox.Text = folderDialog.SelectedPath;
+            }
         }
 
         private void MapPictureBox_Clicked(object sender, EventArgs e)
         {
             TogglePreviewImage();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = GenerateDefaultMapFilename();
+            SaveMap(mapCreationParameters.OutputPath, name);
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog fileDialog = new SaveFileDialog())
+            {
+                fileDialog.Title = "Save SimCity 4 map";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.RestoreDirectory = true;
+                //fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                //fileDialog.Filter = "Simcity 4 save files (*.sc4)|*.sc4";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    SaveMap(Path.GetDirectoryName(fileDialog.FileName), Path.GetFileNameWithoutExtension(fileDialog.FileName));
+                }
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void savegameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+            {
+                fileDialog.Title = "Load Simcity 4 save game";
+                fileDialog.InitialDirectory = SavePathTextbox.Text;
+                fileDialog.RestoreDirectory = true;
+                fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "Simcity 4 save files (*.sc4)|*.sc4";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                    LoadSaveGame(fileDialog.FileName);
+            }
+        }
+
+        private void folderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create folder browser dialog
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.SelectedPath = SavePathTextbox.Text;
+                if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                    SavePathTextbox.Text = folderDialog.SelectedPath;
+            }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mapCreatedForm = new AboutBox();
+            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+            mapCreatedForm.ShowDialog();
+        }
+
+        private void FilterNewCitiesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshTreeView();
         }
     }
 }

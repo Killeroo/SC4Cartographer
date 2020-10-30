@@ -35,20 +35,24 @@
             this.MapPictureBox = new System.Windows.Forms.PictureBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.FilterNewCitiesCheckbox = new System.Windows.Forms.CheckBox();
             this.FileBrowserButton = new System.Windows.Forms.Button();
             this.SavePathTextbox = new System.Windows.Forms.TextBox();
             this.FileTreeView = new System.Windows.Forms.TreeView();
             this.FileTreeViewImageList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSC4SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.savegameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PropertiesButton = new System.Windows.Forms.Button();
+            this.AppearanceButton = new System.Windows.Forms.Button();
+            this.OpenTextLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -69,6 +73,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.OpenTextLabel);
             this.panel1.Controls.Add(this.MapPictureBox);
             this.panel1.Location = new System.Drawing.Point(6, 20);
             this.panel1.Name = "panel1";
@@ -88,6 +93,7 @@
             // 
             // SaveButton
             // 
+            this.SaveButton.Enabled = false;
             this.SaveButton.Location = new System.Drawing.Point(751, 717);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(124, 23);
@@ -98,6 +104,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.FilterNewCitiesCheckbox);
             this.groupBox6.Controls.Add(this.FileBrowserButton);
             this.groupBox6.Controls.Add(this.SavePathTextbox);
             this.groupBox6.Controls.Add(this.FileTreeView);
@@ -107,6 +114,19 @@
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Save games";
+            // 
+            // FilterNewCitiesCheckbox
+            // 
+            this.FilterNewCitiesCheckbox.AutoSize = true;
+            this.FilterNewCitiesCheckbox.Checked = true;
+            this.FilterNewCitiesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FilterNewCitiesCheckbox.Location = new System.Drawing.Point(7, 662);
+            this.FilterNewCitiesCheckbox.Name = "FilterNewCitiesCheckbox";
+            this.FilterNewCitiesCheckbox.Size = new System.Drawing.Size(144, 17);
+            this.FilterNewCitiesCheckbox.TabIndex = 4;
+            this.FilterNewCitiesCheckbox.Text = "Filter \'New City\' save files";
+            this.FilterNewCitiesCheckbox.UseVisualStyleBackColor = true;
+            this.FilterNewCitiesCheckbox.CheckedChanged += new System.EventHandler(this.FilterNewCitiesCheckbox_CheckedChanged);
             // 
             // FileBrowserButton
             // 
@@ -130,10 +150,10 @@
             // 
             this.FileTreeView.ImageIndex = 0;
             this.FileTreeView.ImageList = this.FileTreeViewImageList;
-            this.FileTreeView.Location = new System.Drawing.Point(6, 42);
+            this.FileTreeView.Location = new System.Drawing.Point(7, 46);
             this.FileTreeView.Name = "FileTreeView";
             this.FileTreeView.SelectedImageIndex = 0;
-            this.FileTreeView.Size = new System.Drawing.Size(174, 637);
+            this.FileTreeView.Size = new System.Drawing.Size(174, 610);
             this.FileTreeView.TabIndex = 0;
             this.FileTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.FileTreeView_BeforeExpand);
             this.FileTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.FileTreeView_OnNodeMouseDoubleClick);
@@ -171,73 +191,106 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
             this.loadSC4SaveToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
-            this.toolStripMenuItem1,
+            this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
             // loadSC4SaveToolStripMenuItem
             // 
+            this.loadSC4SaveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savegameToolStripMenuItem,
+            this.folderToolStripMenuItem});
             this.loadSC4SaveToolStripMenuItem.Name = "loadSC4SaveToolStripMenuItem";
-            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.loadSC4SaveToolStripMenuItem.Text = "Load SC4 Save..";
+            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadSC4SaveToolStripMenuItem.Text = "Open..";
             // 
-            // saveToolStripMenuItem
+            // savegameToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.saveToolStripMenuItem.Text = "Save";
+            this.savegameToolStripMenuItem.Name = "savegameToolStripMenuItem";
+            this.savegameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.savegameToolStripMenuItem.Text = "Save game";
+            this.savegameToolStripMenuItem.Click += new System.EventHandler(this.savegameToolStripMenuItem_Click);
             // 
-            // saveAsToolStripMenuItem
+            // folderToolStripMenuItem
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.folderToolStripMenuItem.Text = "Folder";
+            this.folderToolStripMenuItem.Click += new System.EventHandler(this.folderToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Enabled = false;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Enabled = false;
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.editToolStripMenuItem.Text = "About";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // PropertiesButton
+            // AppearanceButton
             // 
-            this.PropertiesButton.Location = new System.Drawing.Point(621, 717);
-            this.PropertiesButton.Name = "PropertiesButton";
-            this.PropertiesButton.Size = new System.Drawing.Size(124, 23);
-            this.PropertiesButton.TabIndex = 9;
-            this.PropertiesButton.Text = "Properties";
-            this.PropertiesButton.UseVisualStyleBackColor = true;
-            this.PropertiesButton.Click += new System.EventHandler(this.PropertiesButton_Click);
+            this.AppearanceButton.Enabled = false;
+            this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
+            this.AppearanceButton.Name = "AppearanceButton";
+            this.AppearanceButton.Size = new System.Drawing.Size(124, 23);
+            this.AppearanceButton.TabIndex = 9;
+            this.AppearanceButton.Text = "Appearance";
+            this.AppearanceButton.UseVisualStyleBackColor = true;
+            this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
+            // 
+            // OpenTextLabel
+            // 
+            this.OpenTextLabel.AutoSize = true;
+            this.OpenTextLabel.Location = new System.Drawing.Point(153, 294);
+            this.OpenTextLabel.Name = "OpenTextLabel";
+            this.OpenTextLabel.Size = new System.Drawing.Size(400, 13);
+            this.OpenTextLabel.TabIndex = 3;
+            this.OpenTextLabel.Text = "Open a save game from the left hand side or by going to File -> Open -> Save game" +
+    "";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 747);
-            this.Controls.Add(this.PropertiesButton);
+            this.Controls.Add(this.AppearanceButton);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.groupBox1);
@@ -271,17 +324,21 @@
         private System.Windows.Forms.TreeView FileTreeView;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSC4SaveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.Button PropertiesButton;
+        private System.Windows.Forms.Button AppearanceButton;
         private System.Windows.Forms.ImageList FileTreeViewImageList;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox MapPictureBox;
+        private System.Windows.Forms.CheckBox FilterNewCitiesCheckbox;
+        private System.Windows.Forms.ToolStripMenuItem savegameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Label OpenTextLabel;
     }
 }
 

@@ -22,8 +22,10 @@ namespace SC4CartographerUI
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
-                Pen pen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
-                pen.Width = 1;
+                Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
+                Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
+                gridLinesPen.Width = 1;
+                zoneOutlinePen.Width = 1;
                     
                 foreach (var lot in parameters.SaveFile.GetLotSubfile().Lots)
                 {
@@ -68,8 +70,30 @@ namespace SC4CartographerUI
                             c = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
                             break;
 
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_MILITARY:
+                            c = parameters.ColorDictionary[MapColorObject.Military];
+                            break;
+
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_AIRPORT:
+                            c = parameters.ColorDictionary[MapColorObject.Airport];
+                            break;
+
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_SEAPORT:
+                            c = parameters.ColorDictionary[MapColorObject.Seaport];
+                            break;
+
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_SPACEPORT:
+                            c = parameters.ColorDictionary[MapColorObject.Spaceport];
+                            break;
+
                         case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING:
-                            c = parameters.ColorDictionary[MapColorObject.Building];
+                            c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                            break;
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING_ALT:
+                            c = parameters.ColorDictionary[MapColorObject.Military];
+                            break;
+                        default:
+                            c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
                             break;
                     }
 
@@ -98,19 +122,23 @@ namespace SC4CartographerUI
                     }
 
                     g.FillRectangle(new SolidBrush(c), rect);
-                    //g.DrawRectangle(pen, rect);
+
+                    if (parameters.ShowZoneOutlines)
+                    {
+                        g.DrawRectangle(zoneOutlinePen, rect);
+                    }
                 }
 
                 if (parameters.ShowGridLines)
                 {
                     for (int y = 0; y < parameters.GridSizeY; ++y)
                     {
-                        g.DrawLine(pen, 0, y * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
+                        g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
                     }
 
                     for (int x = 0; x < parameters.GridSizeX; ++x)
                     {
-                        g.DrawLine(pen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize);
+                        g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize);
                     }
                 }
 

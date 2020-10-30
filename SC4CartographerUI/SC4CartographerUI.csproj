@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SC4Parser">
       <HintPath>..\SC4Parser.dll</HintPath>
@@ -61,6 +65,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapCreatedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapCreatedForm.Designer.cs">
+      <DependentUpon>MapCreatedForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapParameters.cs" />
     <Compile Include="MapRenderer.cs" />
     <Compile Include="Program.cs" />
@@ -77,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapCreatedForm.resx">
+      <DependentUpon>MapCreatedForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropertiesForm.resx">
       <DependentUpon>PropertiesForm.cs</DependentUpon>

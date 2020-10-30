@@ -16,7 +16,12 @@ namespace SC4CartographerUI
     {
         Background,
         GridLines,
-        Building,
+        ZoneOutline,
+        PloppedBuilding,
+        Military,
+        Airport,
+        Seaport,
+        Spaceport,
         ResidentialHigh,
         ResidentialMid,
         ResidentialLow,
@@ -39,9 +44,7 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
-
         public SC4SaveFile SaveFile;
-        public string SaveFilePath;
 
         #region Ouput
 
@@ -51,16 +54,17 @@ namespace SC4CartographerUI
 
         #endregion
 
-        #region Dimensions 
+        #region Dimensions/Grid properties
 
         public bool ShowGridLines = false;
+        public bool ShowZoneOutlines = false;
         public int GridSegmentSize = 10;
         public int SegmentPaddingX = 4;
         public int SegmentPaddingY = 4;
         public int SegmentOffsetX = 2;
         public int SegmentOffsetY = 2;
-        public int GridSizeX = 128;
-        public int GridSizeY = 128;
+        public int GridSizeX = 256;//128;
+        public int GridSizeY = 256;//128;
 
         #endregion
 
@@ -70,16 +74,21 @@ namespace SC4CartographerUI
         {
             {MapColorObject.Background, Color.FromArgb(64, 64, 64)},
             {MapColorObject.GridLines, Color.FromArgb(73, 73, 73)},
-            {MapColorObject.Building, Color.FromArgb(121, 121, 121)},
-            {MapColorObject.ResidentialHigh, Color.FromArgb(0, 126, 47)},
-            {MapColorObject.ResidentialMid, Color.FromArgb(2, 207, 79)},
-            {MapColorObject.ResidentialLow, Color.FromArgb(4, 255, 98)},
-            {MapColorObject.CommercialHigh, Color.FromArgb(4, 1, 128)},
-            {MapColorObject.CommercialMid, Color.FromArgb(1, 93, 188)},
-            {MapColorObject.CommercialLow, Color.FromArgb(0, 126, 255)},
-            {MapColorObject.IndustrialHigh, Color.FromArgb(103, 103, 22)},
-            {MapColorObject.IndustrialMid, Color.FromArgb(129, 129, 43)},
-            {MapColorObject.IndustrialLow, Color.FromArgb(180, 180, 46)},
+            {MapColorObject.ZoneOutline, Color.FromArgb(73, 73, 73)},
+            {MapColorObject.PloppedBuilding, Color.FromArgb(121, 121, 121)},
+            {MapColorObject.Military, Color.FromArgb(121, 121, 121)},
+            {MapColorObject.Airport, Color.FromArgb(116, 116, 146)},
+            {MapColorObject.Seaport, Color.FromArgb(116, 116, 146)},
+            {MapColorObject.Spaceport, Color.FromArgb(116, 116, 146)},
+            {MapColorObject.ResidentialHigh, Color.FromArgb(30, 145, 30)},
+            {MapColorObject.ResidentialMid, Color.FromArgb(68, 204, 34)},
+            {MapColorObject.ResidentialLow, Color.FromArgb(0, 255, 0)},
+            {MapColorObject.CommercialHigh, Color.FromArgb(60, 66, 173)},
+            {MapColorObject.CommercialMid, Color.FromArgb(61, 110, 184)},
+            {MapColorObject.CommercialLow, Color.FromArgb(91, 129, 208)},
+            {MapColorObject.IndustrialHigh, Color.FromArgb(188, 159, 55)},
+            {MapColorObject.IndustrialMid, Color.FromArgb(198, 183, 51)},
+            {MapColorObject.IndustrialLow, Color.FromArgb(208, 208, 48)},
         };
 
         #endregion
