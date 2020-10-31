@@ -96,7 +96,7 @@
             this.MapPictureBox.Location = new System.Drawing.Point(3, 3);
             this.MapPictureBox.Name = "MapPictureBox";
             this.MapPictureBox.Size = new System.Drawing.Size(653, 653);
-            this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.MapPictureBox.TabIndex = 2;
             this.MapPictureBox.TabStop = false;
             this.MapPictureBox.Click += new System.EventHandler(this.MapPictureBox_Clicked);

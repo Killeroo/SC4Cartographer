@@ -15,9 +15,32 @@ namespace SC4CartographerUI
     {
         public static Bitmap CreateMapBitmap(MapCreationParameters parameters)
         {
+            // Get map parameters based on city size
+            int GridSizeX = 0;
+            int GridSizeY = 0;
+            switch (parameters.SaveFile.GetRegionViewSubfile().CitySizeX)
+            {
+                case 4: // Large map
+                    GridSizeX = 256;
+                    GridSizeY = 256;
+                    break;
+                case 2: // Medium map
+                    GridSizeX = 128;
+                    GridSizeY = 128;
+                    break;
+                case 1: // Small map
+                    GridSizeX = 64;
+                    GridSizeY = 64;
+                    break;
+                default:
+                    GridSizeX = 256;
+                    GridSizeY = 256;
+                    break;
+            }
+
             Bitmap bmp = new Bitmap(
-                parameters.GridSizeX * parameters.GridSegmentSize + 1, 
-                parameters.GridSizeY * parameters.GridSegmentSize + 1);
+                GridSizeX * parameters.GridSegmentSize + 1, 
+                GridSizeY * parameters.GridSegmentSize + 1);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
@@ -131,14 +154,14 @@ namespace SC4CartographerUI
 
                 if (parameters.ShowGridLines)
                 {
-                    for (int y = 0; y < parameters.GridSizeY; ++y)
+                    for (int y = 0; y < GridSizeY; ++y)
                     {
-                        g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
+                        g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, GridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
                     }
 
-                    for (int x = 0; x < parameters.GridSizeX; ++x)
+                    for (int x = 0; x < GridSizeX; ++x)
                     {
-                        g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, parameters.GridSizeY * parameters.GridSegmentSize);
+                        g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, GridSizeY * parameters.GridSegmentSize);
                     }
                 }
 

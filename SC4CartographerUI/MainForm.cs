@@ -51,7 +51,7 @@ namespace SC4CartographerUI
         {
             // Generate normal preview image
             MapCreationParameters normalMapPreviewParameters = mapCreationParameters;
-            normalMapPreviewParameters.GridSegmentSize = 5;
+            normalMapPreviewParameters.GridSegmentSize = 5;// 4;
             normalMapPreviewParameters.SegmentPaddingX = 2;
             normalMapPreviewParameters.SegmentPaddingY = 2;
             normalMapPreviewParameters.SegmentOffsetX = 1;
@@ -67,9 +67,16 @@ namespace SC4CartographerUI
             zoomedMapPreviewParameters.SegmentOffsetY = 2;
             previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(zoomedMapPreviewParameters);
 
-            // TODO: Need a way to work out city size
-            //Bitmap mapBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
-            //https://stackoverflow.com/a/10916023
+            // If small map, change the picture box to center the image 
+            // (we need to switch this back for other maps so the scrollbars appear)
+            if (mapCreationParameters.SaveFile.GetRegionViewSubfile().CitySizeX == 1)
+            {
+                MapPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            }
+            else
+            {
+                MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            }
 
             // Set image, reset zoom
             MapPictureBox.Image = previewNormalMapBitmap;
@@ -112,6 +119,10 @@ namespace SC4CartographerUI
 
                 // Generate and set map preview images
                 GenerateMapPreview();
+
+                // Call garbage collector to cleanup anything left over from last load
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
             else
             {

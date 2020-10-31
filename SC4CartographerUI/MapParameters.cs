@@ -63,8 +63,6 @@ namespace SC4CartographerUI
         public int SegmentPaddingY = 4;
         public int SegmentOffsetX = 2;
         public int SegmentOffsetY = 2;
-        public int GridSizeX = 256;//128;
-        public int GridSizeY = 256;//128;
 
         #endregion
 
