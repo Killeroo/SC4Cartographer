@@ -152,7 +152,7 @@
             // 
             // SegmentPaddingNumericUpDown
             // 
-            this.SegmentPaddingNumericUpDown.Location = new System.Drawing.Point(122, 44);
+            this.SegmentPaddingNumericUpDown.Location = new System.Drawing.Point(122, 43);
             this.SegmentPaddingNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -164,7 +164,7 @@
             // 
             // GridSegmentSizeNumericUpDown
             // 
-            this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(122, 18);
+            this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(122, 17);
             this.GridSegmentSizeNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -186,7 +186,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 46);
+            this.label14.Location = new System.Drawing.Point(6, 47);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(91, 13);
             this.label14.TabIndex = 2;
@@ -195,7 +195,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 20);
+            this.label13.Location = new System.Drawing.Point(6, 21);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(94, 13);
             this.label13.TabIndex = 1;
@@ -294,7 +294,7 @@
             // 
             this.SpaceportTextbox.Enabled = false;
             this.SpaceportTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.SpaceportTextbox.Location = new System.Drawing.Point(122, 201);
+            this.SpaceportTextbox.Location = new System.Drawing.Point(122, 200);
             this.SpaceportTextbox.Name = "SpaceportTextbox";
             this.SpaceportTextbox.Size = new System.Drawing.Size(52, 20);
             this.SpaceportTextbox.TabIndex = 54;
@@ -322,7 +322,7 @@
             // 
             this.SeaportTextbox.Enabled = false;
             this.SeaportTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.SeaportTextbox.Location = new System.Drawing.Point(122, 175);
+            this.SeaportTextbox.Location = new System.Drawing.Point(122, 174);
             this.SeaportTextbox.Name = "SeaportTextbox";
             this.SeaportTextbox.Size = new System.Drawing.Size(52, 20);
             this.SeaportTextbox.TabIndex = 51;
@@ -350,7 +350,7 @@
             // 
             this.AirportsTextbox.Enabled = false;
             this.AirportsTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.AirportsTextbox.Location = new System.Drawing.Point(122, 149);
+            this.AirportsTextbox.Location = new System.Drawing.Point(122, 148);
             this.AirportsTextbox.Name = "AirportsTextbox";
             this.AirportsTextbox.Size = new System.Drawing.Size(52, 20);
             this.AirportsTextbox.TabIndex = 48;
@@ -378,7 +378,7 @@
             // 
             this.MilitaryTextbox.Enabled = false;
             this.MilitaryTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.MilitaryTextbox.Location = new System.Drawing.Point(122, 123);
+            this.MilitaryTextbox.Location = new System.Drawing.Point(122, 122);
             this.MilitaryTextbox.Name = "MilitaryTextbox";
             this.MilitaryTextbox.Size = new System.Drawing.Size(52, 20);
             this.MilitaryTextbox.TabIndex = 45;
@@ -406,7 +406,7 @@
             // 
             this.ZoneOutlinesTextbox.Enabled = false;
             this.ZoneOutlinesTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.ZoneOutlinesTextbox.Location = new System.Drawing.Point(122, 71);
+            this.ZoneOutlinesTextbox.Location = new System.Drawing.Point(122, 70);
             this.ZoneOutlinesTextbox.Name = "ZoneOutlinesTextbox";
             this.ZoneOutlinesTextbox.Size = new System.Drawing.Size(52, 20);
             this.ZoneOutlinesTextbox.TabIndex = 42;
@@ -465,7 +465,7 @@
             // 
             this.IndustrialZoneMidTextbox.Enabled = false;
             this.IndustrialZoneMidTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.IndustrialZoneMidTextbox.Location = new System.Drawing.Point(336, 201);
+            this.IndustrialZoneMidTextbox.Location = new System.Drawing.Point(336, 200);
             this.IndustrialZoneMidTextbox.Name = "IndustrialZoneMidTextbox";
             this.IndustrialZoneMidTextbox.Size = new System.Drawing.Size(52, 20);
             this.IndustrialZoneMidTextbox.TabIndex = 38;
@@ -484,7 +484,7 @@
             // 
             this.IndustrialZoneHighTextbox.Enabled = false;
             this.IndustrialZoneHighTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.IndustrialZoneHighTextbox.Location = new System.Drawing.Point(336, 227);
+            this.IndustrialZoneHighTextbox.Location = new System.Drawing.Point(336, 226);
             this.IndustrialZoneHighTextbox.Name = "IndustrialZoneHighTextbox";
             this.IndustrialZoneHighTextbox.Size = new System.Drawing.Size(52, 20);
             this.IndustrialZoneHighTextbox.TabIndex = 37;
@@ -493,7 +493,7 @@
             // 
             this.CommercialZoneMidTextbox.Enabled = false;
             this.CommercialZoneMidTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.CommercialZoneMidTextbox.Location = new System.Drawing.Point(336, 123);
+            this.CommercialZoneMidTextbox.Location = new System.Drawing.Point(336, 122);
             this.CommercialZoneMidTextbox.Name = "CommercialZoneMidTextbox";
             this.CommercialZoneMidTextbox.Size = new System.Drawing.Size(52, 20);
             this.CommercialZoneMidTextbox.TabIndex = 36;
@@ -502,7 +502,7 @@
             // 
             this.CommercialZoneHighTextbox.Enabled = false;
             this.CommercialZoneHighTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.CommercialZoneHighTextbox.Location = new System.Drawing.Point(336, 149);
+            this.CommercialZoneHighTextbox.Location = new System.Drawing.Point(336, 148);
             this.CommercialZoneHighTextbox.Name = "CommercialZoneHighTextbox";
             this.CommercialZoneHighTextbox.Size = new System.Drawing.Size(52, 20);
             this.CommercialZoneHighTextbox.TabIndex = 35;
@@ -511,7 +511,7 @@
             // 
             this.IndustrialZoneLowTextbox.Enabled = false;
             this.IndustrialZoneLowTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.IndustrialZoneLowTextbox.Location = new System.Drawing.Point(336, 175);
+            this.IndustrialZoneLowTextbox.Location = new System.Drawing.Point(336, 174);
             this.IndustrialZoneLowTextbox.Name = "IndustrialZoneLowTextbox";
             this.IndustrialZoneLowTextbox.Size = new System.Drawing.Size(52, 20);
             this.IndustrialZoneLowTextbox.TabIndex = 34;
@@ -520,7 +520,7 @@
             // 
             this.CommercialZoneLowTextbox.Enabled = false;
             this.CommercialZoneLowTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.CommercialZoneLowTextbox.Location = new System.Drawing.Point(336, 97);
+            this.CommercialZoneLowTextbox.Location = new System.Drawing.Point(336, 96);
             this.CommercialZoneLowTextbox.Name = "CommercialZoneLowTextbox";
             this.CommercialZoneLowTextbox.Size = new System.Drawing.Size(52, 20);
             this.CommercialZoneLowTextbox.TabIndex = 33;
@@ -688,7 +688,7 @@
             // 
             this.ResidentialZoneHighTextbox.Enabled = false;
             this.ResidentialZoneHighTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.ResidentialZoneHighTextbox.Location = new System.Drawing.Point(336, 72);
+            this.ResidentialZoneHighTextbox.Location = new System.Drawing.Point(336, 70);
             this.ResidentialZoneHighTextbox.Name = "ResidentialZoneHighTextbox";
             this.ResidentialZoneHighTextbox.Size = new System.Drawing.Size(52, 20);
             this.ResidentialZoneHighTextbox.TabIndex = 12;
@@ -697,7 +697,7 @@
             // 
             this.ResidentialZoneMidTextbox.Enabled = false;
             this.ResidentialZoneMidTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.ResidentialZoneMidTextbox.Location = new System.Drawing.Point(336, 45);
+            this.ResidentialZoneMidTextbox.Location = new System.Drawing.Point(336, 44);
             this.ResidentialZoneMidTextbox.Name = "ResidentialZoneMidTextbox";
             this.ResidentialZoneMidTextbox.Size = new System.Drawing.Size(52, 20);
             this.ResidentialZoneMidTextbox.TabIndex = 8;
@@ -706,7 +706,7 @@
             // 
             this.ResidentialZoneLowTextbox.Enabled = false;
             this.ResidentialZoneLowTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.ResidentialZoneLowTextbox.Location = new System.Drawing.Point(336, 19);
+            this.ResidentialZoneLowTextbox.Location = new System.Drawing.Point(336, 18);
             this.ResidentialZoneLowTextbox.Name = "ResidentialZoneLowTextbox";
             this.ResidentialZoneLowTextbox.Size = new System.Drawing.Size(52, 20);
             this.ResidentialZoneLowTextbox.TabIndex = 5;
@@ -715,7 +715,7 @@
             // 
             this.BuildingsTextbox.Enabled = false;
             this.BuildingsTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.BuildingsTextbox.Location = new System.Drawing.Point(122, 97);
+            this.BuildingsTextbox.Location = new System.Drawing.Point(122, 96);
             this.BuildingsTextbox.Name = "BuildingsTextbox";
             this.BuildingsTextbox.Size = new System.Drawing.Size(52, 20);
             this.BuildingsTextbox.TabIndex = 4;
@@ -724,7 +724,7 @@
             // 
             this.GridLinesTextbox.Enabled = false;
             this.GridLinesTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.GridLinesTextbox.Location = new System.Drawing.Point(122, 45);
+            this.GridLinesTextbox.Location = new System.Drawing.Point(122, 44);
             this.GridLinesTextbox.Name = "GridLinesTextbox";
             this.GridLinesTextbox.Size = new System.Drawing.Size(52, 20);
             this.GridLinesTextbox.TabIndex = 3;
@@ -742,7 +742,7 @@
             // 
             this.GridBackgroundTextbox.Enabled = false;
             this.GridBackgroundTextbox.ForeColor = System.Drawing.Color.Maroon;
-            this.GridBackgroundTextbox.Location = new System.Drawing.Point(122, 19);
+            this.GridBackgroundTextbox.Location = new System.Drawing.Point(122, 18);
             this.GridBackgroundTextbox.Name = "GridBackgroundTextbox";
             this.GridBackgroundTextbox.Size = new System.Drawing.Size(52, 20);
             this.GridBackgroundTextbox.TabIndex = 0;
