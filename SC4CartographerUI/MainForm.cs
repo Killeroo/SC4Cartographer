@@ -69,7 +69,7 @@ namespace SC4CartographerUI
 
             // If small map, change the picture box to center the image 
             // (we need to switch this back for other maps so the scrollbars appear)
-            if (mapCreationParameters.SaveFile.GetRegionViewSubfile().CitySizeX == 1)
+            if (mapCreationParameters.SaveFile.GetRegionViewSubfile().CitySizeX == 64)
             {
                 MapPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             }
