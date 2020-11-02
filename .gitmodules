@@ -1,0 +1,3 @@
+[submodule "SC4Parser"]
+	path = SC4Parser
+	url = https://github.com/Killeroo/SC4Parser

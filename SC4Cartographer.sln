@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC4Cartographer", "SC4Cartographer\SC4Cartographer.csproj", "{7DC4EA4D-6F84-44C6-9985-EF38CDA84E48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC4Parser", "SC4Parser\SC4Parser\SC4Parser.csproj", "{06EB8CFF-D61C-4B37-990C-1B2FA1B70048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7DC4EA4D-6F84-44C6-9985-EF38CDA84E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC4EA4D-6F84-44C6-9985-EF38CDA84E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC4EA4D-6F84-44C6-9985-EF38CDA84E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06EB8CFF-D61C-4B37-990C-1B2FA1B70048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06EB8CFF-D61C-4B37-990C-1B2FA1B70048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06EB8CFF-D61C-4B37-990C-1B2FA1B70048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06EB8CFF-D61C-4B37-990C-1B2FA1B70048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
