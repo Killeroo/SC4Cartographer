@@ -91,11 +91,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.GridBackgroundTextbox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.DPINumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
             this.JPEGRadioButton = new System.Windows.Forms.RadioButton();
             this.PNGRadioButton = new System.Windows.Forms.RadioButton();
-            this.label21 = new System.Windows.Forms.Label();
             this.EditOutputPathButton = new System.Windows.Forms.Button();
             this.OutputPathTextbox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -107,7 +105,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridSegmentSizeNumericUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DPINumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // colorDialog
@@ -752,47 +749,23 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.DPINumericUpDown);
             this.groupBox3.Controls.Add(this.label22);
             this.groupBox3.Controls.Add(this.JPEGRadioButton);
             this.groupBox3.Controls.Add(this.PNGRadioButton);
-            this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.EditOutputPathButton);
             this.groupBox3.Controls.Add(this.OutputPathTextbox);
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Location = new System.Drawing.Point(12, 385);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(440, 101);
+            this.groupBox3.Size = new System.Drawing.Size(440, 73);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
             // 
-            // DPINumericUpDown
-            // 
-            this.DPINumericUpDown.Location = new System.Drawing.Point(122, 45);
-            this.DPINumericUpDown.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.DPINumericUpDown.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.DPINumericUpDown.Name = "DPINumericUpDown";
-            this.DPINumericUpDown.Size = new System.Drawing.Size(63, 20);
-            this.DPINumericUpDown.TabIndex = 10;
-            this.DPINumericUpDown.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 73);
+            this.label22.Location = new System.Drawing.Point(6, 48);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(74, 13);
             this.label22.TabIndex = 22;
@@ -801,7 +774,7 @@
             // JPEGRadioButton
             // 
             this.JPEGRadioButton.AutoSize = true;
-            this.JPEGRadioButton.Location = new System.Drawing.Point(180, 71);
+            this.JPEGRadioButton.Location = new System.Drawing.Point(176, 46);
             this.JPEGRadioButton.Name = "JPEGRadioButton";
             this.JPEGRadioButton.Size = new System.Drawing.Size(52, 17);
             this.JPEGRadioButton.TabIndex = 21;
@@ -812,22 +785,13 @@
             // PNGRadioButton
             // 
             this.PNGRadioButton.AutoSize = true;
-            this.PNGRadioButton.Location = new System.Drawing.Point(122, 71);
+            this.PNGRadioButton.Location = new System.Drawing.Point(122, 46);
             this.PNGRadioButton.Name = "PNGRadioButton";
             this.PNGRadioButton.Size = new System.Drawing.Size(48, 17);
             this.PNGRadioButton.TabIndex = 20;
             this.PNGRadioButton.TabStop = true;
             this.PNGRadioButton.Text = "PNG";
             this.PNGRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 47);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(25, 13);
-            this.label21.TabIndex = 18;
-            this.label21.Text = "DPI";
             // 
             // EditOutputPathButton
             // 
@@ -858,7 +822,7 @@
             // CancelButton
             // 
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(377, 492);
+            this.CancelButton.Location = new System.Drawing.Point(377, 464);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 3;
@@ -868,7 +832,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(296, 492);
+            this.OkButton.Location = new System.Drawing.Point(298, 464);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 4;
@@ -881,7 +845,7 @@
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 522);
+            this.ClientSize = new System.Drawing.Size(464, 495);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox3);
@@ -903,7 +867,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DPINumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -962,8 +925,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.RadioButton JPEGRadioButton;
         private System.Windows.Forms.RadioButton PNGRadioButton;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.NumericUpDown DPINumericUpDown;
         private System.Windows.Forms.NumericUpDown SegmentOffsetNumericUpDown;
         private System.Windows.Forms.NumericUpDown SegmentPaddingNumericUpDown;
         private System.Windows.Forms.NumericUpDown GridSegmentSizeNumericUpDown;

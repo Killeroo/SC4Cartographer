@@ -51,7 +51,6 @@ namespace SC4CartographerUI
             ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
 
             OutputPathTextbox.Text = parameters.OutputPath;
-            DPINumericUpDown.Value = parameters.OutputDPI;
             if (parameters.OutputFormat == OutFormat.PNG)
             {
                 PNGRadioButton.Checked = true;
@@ -93,7 +92,6 @@ namespace SC4CartographerUI
             parameters.ShowZoneOutlines = ShowZoneOutlinesCheckbox.Checked;
 
             parameters.OutputPath = OutputPathTextbox.Text;
-            parameters.OutputDPI = (int)DPINumericUpDown.Value;
             if (PNGRadioButton.Checked)
             {
                 parameters.OutputFormat = OutFormat.PNG;

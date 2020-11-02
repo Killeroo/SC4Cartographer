@@ -49,7 +49,6 @@ namespace SC4CartographerUI
         #region Ouput
 
         public string OutputPath;
-        public int OutputDPI = 300;
         public OutFormat OutputFormat = OutFormat.PNG;
 
         #endregion
