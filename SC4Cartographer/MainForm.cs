@@ -29,7 +29,6 @@ namespace SC4CartographerUI
         private Bitmap previewNormalMapBitmap;
         private Bitmap previewZoomedMapBitmap;
         private bool previewZoomed = false;
-        private bool loadedMap = false;
 
         private RichTextBoxLogger logger = null;
 
@@ -38,6 +37,8 @@ namespace SC4CartographerUI
             InitializeComponent();
             //logger = new RichTextBoxLogger(LogTextBox);
         }
+
+        #region Form functionality
 
         public void SetMapCreationParameters(MapCreationParameters parameters)
         {
@@ -316,6 +317,40 @@ namespace SC4CartographerUI
             }
         }
 
+        /// <summary>
+        /// Searches through a folder and returns a random SC4 savegame 
+        /// </summary>
+        /// <returns></returns>
+        private string FindRandomSavegameFileInPath(string path)
+        {
+            Random rand = new Random();
+            List<string> savegames = new List<string>();
+
+            try
+            {
+                foreach (string dir in Directory.GetDirectories(path))
+                {
+                    foreach (string file in Directory.GetFiles(dir))
+                    {
+                        if (file.ToLower().Contains(".sc4")
+                            && !file.Contains("City - New City")
+                            && !file.Contains("Tutorial"))
+                        {
+                            savegames.Add(file);
+                        }
+                    }
+                }
+            }
+            catch (Exception e) { }
+            // TODO: Handle this exception, put in log
+
+            return savegames[rand.Next(savegames.Count)];
+        }
+
+        #endregion
+
+        #region UI Event Callbacks
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             string name = GenerateDefaultMapFilename();
@@ -508,36 +543,6 @@ namespace SC4CartographerUI
             }
         }
 
-        /// <summary>
-        /// Searches through a folder and returns a random SC4 savegame 
-        /// </summary>
-        /// <returns></returns>
-        private string FindRandomSavegameFileInPath(string path)
-        {
-            Random rand = new Random();
-            List<string> savegames = new List<string>();
-
-            try
-            {
-                foreach (string dir in Directory.GetDirectories(path))
-                {
-                    foreach (string file in Directory.GetFiles(dir))
-                    {
-                        if (file.ToLower().Contains(".sc4")
-                            && !file.Contains("City - New City")
-                            && !file.Contains("Tutorial"))
-                        {
-                            savegames.Add(file);
-                        }
-                    }
-                }
-            }
-            catch (Exception e) { }
-            // TODO: Handle this exception, put in log
-
-            return savegames[rand.Next(savegames.Count)];
-        }
-
         private void LogTextBox_TextChanged(object sender, EventArgs e)
         {
             // Set caret position to end of current text
@@ -653,5 +658,7 @@ namespace SC4CartographerUI
         {
             RefreshTreeView();
         }
+
+        #endregion
     }
 }

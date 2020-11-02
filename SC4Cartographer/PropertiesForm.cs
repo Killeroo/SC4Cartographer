@@ -102,6 +102,8 @@ namespace SC4CartographerUI
             }
         }
 
+        #region UI Event Callbacks
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -366,5 +368,7 @@ namespace SC4CartographerUI
                     OutputPathTextbox.Text = folderDialog.SelectedPath;
             }
         }
+
+        #endregion
     }
 }
