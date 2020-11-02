@@ -13,14 +13,15 @@ namespace SC4CartographerUI
 {
     class MapRenderer
     {
+        // Create a map from MapCreationParameters
         public static Bitmap CreateMapBitmap(MapCreationParameters parameters)
         {
             int gridSizeX = (int) parameters.SaveFile.GetRegionViewSubfile().CitySizeX;
             int gridSizeY = (int) parameters.SaveFile.GetRegionViewSubfile().CitySizeY;
 
             Bitmap bmp = new Bitmap(
-                gridSizeX * (parameters.GridSegmentSize + 1),
-                gridSizeY * (parameters.GridSegmentSize + 1));
+                gridSizeX * parameters.GridSegmentSize + 1,
+                gridSizeY * parameters.GridSegmentSize + 1);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
