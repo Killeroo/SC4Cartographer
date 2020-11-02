@@ -46,6 +46,22 @@ namespace SC4CartographerUI
     {
         public SC4SaveFile SaveFile;
 
+        public MapCreationParameters() { }
+        public MapCreationParameters(MapCreationParameters parameters)
+        {
+            SaveFile = parameters.SaveFile;
+            OutputPath = parameters.OutputPath;
+            OutputFormat = parameters.OutputFormat;
+            ShowGridLines = parameters.ShowGridLines;
+            ShowZoneOutlines = parameters.ShowZoneOutlines;
+            SegmentPaddingX = parameters.SegmentPaddingX;
+            SegmentPaddingY = parameters.SegmentPaddingY;
+            SegmentOffsetX = parameters.SegmentOffsetX;
+            SegmentOffsetY = parameters.SegmentOffsetY;
+            GridSegmentSize = parameters.GridSegmentSize;
+            ColorDictionary = parameters.ColorDictionary;
+        }
+
         #region Ouput
 
         public string OutputPath;
@@ -57,11 +73,11 @@ namespace SC4CartographerUI
 
         public bool ShowGridLines = false;
         public bool ShowZoneOutlines = false;
-        public int GridSegmentSize = 10;
-        public int SegmentPaddingX = 4;
-        public int SegmentPaddingY = 4;
-        public int SegmentOffsetX = 2;
-        public int SegmentOffsetY = 2;
+        public int GridSegmentSize = 5;//10;
+        public int SegmentPaddingX = 2;//4;
+        public int SegmentPaddingY = 2;//4;
+        public int SegmentOffsetX = 1;//2;
+        public int SegmentOffsetY = 1;//2;
 
         #endregion
 

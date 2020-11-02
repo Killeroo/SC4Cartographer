@@ -51,21 +51,21 @@ namespace SC4CartographerUI
         public void GenerateMapPreview()
         {
             // Generate normal preview image
-            MapCreationParameters normalMapPreviewParameters = mapCreationParameters;
-            normalMapPreviewParameters.GridSegmentSize = 5;// 4;
-            normalMapPreviewParameters.SegmentPaddingX = 2;
-            normalMapPreviewParameters.SegmentPaddingY = 2;
-            normalMapPreviewParameters.SegmentOffsetX = 1;
-            normalMapPreviewParameters.SegmentOffsetY = 1;
+            MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(mapCreationParameters);
+            //normalMapPreviewParameters.GridSegmentSize = 5;// 4;
+            //normalMapPreviewParameters.SegmentPaddingX = 2;
+            //normalMapPreviewParameters.SegmentPaddingY = 2;
+            //normalMapPreviewParameters.SegmentOffsetX = 1;
+            //normalMapPreviewParameters.SegmentOffsetY = 1;
             previewNormalMapBitmap = MapRenderer.CreateMapBitmap(normalMapPreviewParameters);
 
             // Generate zoomed preview image
-            MapCreationParameters zoomedMapPreviewParameters = mapCreationParameters;
+            MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(mapCreationParameters);
             zoomedMapPreviewParameters.GridSegmentSize = 10;
-            zoomedMapPreviewParameters.SegmentPaddingX = 4;
-            zoomedMapPreviewParameters.SegmentPaddingY = 4;
-            zoomedMapPreviewParameters.SegmentOffsetX = 2;
-            zoomedMapPreviewParameters.SegmentOffsetY = 2;
+            //zoomedMapPreviewParameters.SegmentPaddingX = 4;
+            //zoomedMapPreviewParameters.SegmentPaddingY = 4;
+            //zoomedMapPreviewParameters.SegmentOffsetX = 2;
+            //zoomedMapPreviewParameters.SegmentOffsetY = 2;
             previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(zoomedMapPreviewParameters);
 
             // If small map, change the picture box to center the image 

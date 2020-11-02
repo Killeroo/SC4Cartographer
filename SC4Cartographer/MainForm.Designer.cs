@@ -62,6 +62,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(204, 26);
             this.groupBox1.Name = "groupBox1";
@@ -72,7 +76,11 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.OpenTextLabel);
             this.panel1.Controls.Add(this.MapPictureBox);
             this.panel1.Location = new System.Drawing.Point(6, 20);
@@ -103,6 +111,7 @@
             // 
             // SaveButton
             // 
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveButton.Enabled = false;
             this.SaveButton.Location = new System.Drawing.Point(751, 717);
             this.SaveButton.Name = "SaveButton";
@@ -114,6 +123,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox6.Controls.Add(this.FilterNewCitiesCheckbox);
             this.groupBox6.Controls.Add(this.FileBrowserButton);
             this.groupBox6.Controls.Add(this.SavePathTextbox);
@@ -127,6 +138,7 @@
             // 
             // FilterNewCitiesCheckbox
             // 
+            this.FilterNewCitiesCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.FilterNewCitiesCheckbox.AutoSize = true;
             this.FilterNewCitiesCheckbox.Checked = true;
             this.FilterNewCitiesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -140,6 +152,7 @@
             // 
             // FileBrowserButton
             // 
+            this.FileBrowserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FileBrowserButton.Location = new System.Drawing.Point(155, 20);
             this.FileBrowserButton.Name = "FileBrowserButton";
             this.FileBrowserButton.Size = new System.Drawing.Size(25, 20);
@@ -150,6 +163,8 @@
             // 
             // SavePathTextbox
             // 
+            this.SavePathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SavePathTextbox.Location = new System.Drawing.Point(7, 20);
             this.SavePathTextbox.Name = "SavePathTextbox";
             this.SavePathTextbox.Size = new System.Drawing.Size(142, 20);
@@ -158,6 +173,9 @@
             // 
             // FileTreeView
             // 
+            this.FileTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FileTreeView.ImageIndex = 0;
             this.FileTreeView.ImageList = this.FileTreeViewImageList;
             this.FileTreeView.Location = new System.Drawing.Point(7, 46);
@@ -276,6 +294,7 @@
             // 
             // AppearanceButton
             // 
+            this.AppearanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AppearanceButton.Enabled = false;
             this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
             this.AppearanceButton.Name = "AppearanceButton";
@@ -289,17 +308,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(887, 747);
             this.Controls.Add(this.AppearanceButton);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "SC4Cartographer";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
