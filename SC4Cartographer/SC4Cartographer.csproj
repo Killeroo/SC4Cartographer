@@ -124,6 +124,7 @@
     <Compile Include="..\SC4Parser\SC4Parser\Types\TypeGroupInstance.cs">
       <Link>SC4Parser\Types\TypeGroupInstance.cs</Link>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +136,12 @@
     </Compile>
     <Compile Include="MapCreatedForm.Designer.cs">
       <DependentUpon>MapCreatedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapErrorForm.Designer.cs">
+      <DependentUpon>MapErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MapParameters.cs" />
     <Compile Include="MapRenderer.cs" />
@@ -155,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MapCreatedForm.resx">
       <DependentUpon>MapCreatedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapErrorForm.resx">
+      <DependentUpon>MapErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropertiesForm.resx">
       <DependentUpon>PropertiesForm.cs</DependentUpon>

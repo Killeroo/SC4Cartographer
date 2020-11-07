@@ -30,8 +30,8 @@
         {
             this.MapCreatedLabel = new System.Windows.Forms.Label();
             this.OKButton = new System.Windows.Forms.Button();
-            this.OpenFolderButton = new System.Windows.Forms.Button();
             this.PathLabel = new System.Windows.Forms.Label();
+            this.OpenFolderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MapCreatedLabel
@@ -53,6 +53,15 @@
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
+            // PathLabel
+            // 
+            this.PathLabel.AutoSize = true;
+            this.PathLabel.Location = new System.Drawing.Point(64, 22);
+            this.PathLabel.Name = "PathLabel";
+            this.PathLabel.Size = new System.Drawing.Size(35, 13);
+            this.PathLabel.TabIndex = 3;
+            this.PathLabel.Text = "label1";
+            // 
             // OpenFolderButton
             // 
             this.OpenFolderButton.Location = new System.Drawing.Point(243, 46);
@@ -62,15 +71,6 @@
             this.OpenFolderButton.Text = "Open folder in explorer";
             this.OpenFolderButton.UseVisualStyleBackColor = true;
             this.OpenFolderButton.Click += new System.EventHandler(this.OpenFolderButton_Click);
-            // 
-            // PathLabel
-            // 
-            this.PathLabel.AutoSize = true;
-            this.PathLabel.Location = new System.Drawing.Point(64, 22);
-            this.PathLabel.Name = "PathLabel";
-            this.PathLabel.Size = new System.Drawing.Size(35, 13);
-            this.PathLabel.TabIndex = 3;
-            this.PathLabel.Text = "label1";
             // 
             // MapCreatedForm
             // 
@@ -96,7 +96,7 @@
 
         private System.Windows.Forms.Label MapCreatedLabel;
         private System.Windows.Forms.Button OKButton;
-        private System.Windows.Forms.Button OpenFolderButton;
         private System.Windows.Forms.Label PathLabel;
+        private System.Windows.Forms.Button OpenFolderButton;
     }
 }

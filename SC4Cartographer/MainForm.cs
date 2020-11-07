@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 using SC4Parser.DataStructures;
 using SC4Parser.Files;
@@ -109,38 +110,55 @@ namespace SC4CartographerUI
         /// <param name="path"></param>
         public void LoadSaveGame(string path)
         {
-            if (CheckSaveCanLoad(path))
+            // Load the save file
+            try
             {
-                EnableSaveButtons();
-
-                // Set window title
-                this.Text = "[BETA] SC4Cartographer - '" + Path.GetFileName(path) + "'";
-
-                // Load the save file
-                try
-                {
-                    mapCreationParameters.SaveFile = new SC4SaveFile(path);
-                }
-                catch (DBPFParsingException e)
-                {
-
-                }
-
-                // Generate and set map preview images
-                GenerateMapPreview();
-
-                // Call garbage collector to cleanup anything left over from last load
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
+                mapCreationParameters.SaveFile = new SC4SaveFile(path);
             }
-            else
+            catch (DBPFParsingException e)
             {
+                var errorForm = new MapErrorForm(
+                    "Error loading save game",
+                    $"Could not load save game @ {path}",
+                    e,
+                    true);
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
 
-                MessageBox.Show($"Could not create map for {path}. File doesn't have a file containing zone data.", 
-                    "Could not load save game", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
+                return;
             }
+
+            // see if lots subfile exists
+            try
+            {
+                mapCreationParameters.SaveFile.GetLotSubfile();
+            }
+            catch (SubfileNotFoundException e)
+            {
+                var errorForm = new MapErrorForm(
+                    "Error loading save game",
+                    $"Could not create map for {path}. Could not load zone data or it does not exist.",
+                    e,
+                    true);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
+                
+
+            // Generate and set map preview images
+            GenerateMapPreview();
+
+            // Set window title
+            this.Text = "[BETA] SC4Cartographer - '" + Path.GetFileName(path) + "'";
+                
+            EnableSaveButtons();
+
+            // Call garbage collector to cleanup anything left over from last load
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         public string GenerateDefaultMapFilename()

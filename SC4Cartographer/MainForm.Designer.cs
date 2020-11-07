@@ -53,6 +53,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppearanceButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -304,12 +305,22 @@
             this.AppearanceButton.UseVisualStyleBackColor = true;
             this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(444, 712);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(887, 747);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.AppearanceButton);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.SaveButton);
@@ -359,6 +370,7 @@
         private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Label OpenTextLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 
