@@ -129,6 +129,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = GridBackgroundTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -142,6 +143,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = GridLinesTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
@@ -155,6 +157,7 @@ namespace SC4CartographerUI
             colorDialog = new ColorDialog();
             colorDialog.Color = BuildingsTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)

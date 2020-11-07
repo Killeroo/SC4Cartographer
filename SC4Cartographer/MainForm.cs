@@ -286,6 +286,7 @@ namespace SC4CartographerUI
             saveAsToolStripMenuItem.Enabled = true;
             AppearanceButton.Enabled = true;
             SaveButton.Enabled = true;
+            mapAppearanceToolStripMenuItem.Enabled = true;
 
             OpenTextLabel.Visible = false;
         }
@@ -704,9 +705,6 @@ namespace SC4CartographerUI
         {
             RefreshTreeView();
         }
-
-        #endregion
-
         private void mapAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var propertiesForm = new PropertiesForm(mapCreationParameters, this);
@@ -723,8 +721,18 @@ namespace SC4CartographerUI
             string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
             version = version.Replace(' ', '+');
 
-            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---%0A" + version;
+            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---------%0A" + version;
             System.Diagnostics.Process.Start(issueLink);
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mapCreatedForm = new AboutBox();
+            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+            mapCreatedForm.ShowDialog();
+        }
+
+        #endregion
+
     }
 }

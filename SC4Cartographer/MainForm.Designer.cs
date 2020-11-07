@@ -51,13 +51,13 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AppearanceButton = new System.Windows.Forms.Button();
+            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapAppearanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mapAppearanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AppearanceButton = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -215,7 +215,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem1,
-            this.editToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -292,29 +291,27 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // editToolStripMenuItem
+            // editToolStripMenuItem1
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.editToolStripMenuItem.Text = "About";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.editToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mapAppearanceToolStripMenuItem});
+            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem1.Text = "Edit";
             // 
-            // AppearanceButton
+            // mapAppearanceToolStripMenuItem
             // 
-            this.AppearanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AppearanceButton.Enabled = false;
-            this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
-            this.AppearanceButton.Name = "AppearanceButton";
-            this.AppearanceButton.Size = new System.Drawing.Size(124, 23);
-            this.AppearanceButton.TabIndex = 9;
-            this.AppearanceButton.Text = "Appearance";
-            this.AppearanceButton.UseVisualStyleBackColor = true;
-            this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
+            this.mapAppearanceToolStripMenuItem.Enabled = false;
+            this.mapAppearanceToolStripMenuItem.Name = "mapAppearanceToolStripMenuItem";
+            this.mapAppearanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mapAppearanceToolStripMenuItem.Text = "Map Properties";
+            this.mapAppearanceToolStripMenuItem.Click += new System.EventHandler(this.mapAppearanceToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reportABugToolStripMenuItem,
+            this.toolStripSeparator2,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -332,21 +329,24 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // editToolStripMenuItem1
+            // AppearanceButton
             // 
-            this.editToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mapAppearanceToolStripMenuItem});
-            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem1.Text = "Edit";
+            this.AppearanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AppearanceButton.Enabled = false;
+            this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
+            this.AppearanceButton.Name = "AppearanceButton";
+            this.AppearanceButton.Size = new System.Drawing.Size(124, 23);
+            this.AppearanceButton.TabIndex = 9;
+            this.AppearanceButton.Text = "Appearance";
+            this.AppearanceButton.UseVisualStyleBackColor = true;
+            this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
             // 
-            // mapAppearanceToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.mapAppearanceToolStripMenuItem.Name = "mapAppearanceToolStripMenuItem";
-            this.mapAppearanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.mapAppearanceToolStripMenuItem.Text = "Map Appearance";
-            this.mapAppearanceToolStripMenuItem.Click += new System.EventHandler(this.mapAppearanceToolStripMenuItem_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // MainForm
             // 
@@ -393,7 +393,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Button AppearanceButton;
         private System.Windows.Forms.ImageList FileTreeViewImageList;
         private System.Windows.Forms.Panel panel1;
@@ -408,6 +407,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

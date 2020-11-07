@@ -8,6 +8,9 @@ namespace SC4CartographerUI
 {
     public partial class MapErrorForm : Form
     {
+        private string ExceptionText = "";
+        private string ExceptionStackTrace = "";
+
         public MapErrorForm(string title, string message, Exception exception, bool showInnerException)
         {
             InitializeComponent();
@@ -20,8 +23,8 @@ namespace SC4CartographerUI
                 exceptionText += $" -> {exception.InnerException.GetType().ToString()}: {exception.InnerException.Message}";
             }
 
-            Line2Label.Text = exceptionText;
-            Line3Label.Text = exception.StackTrace;
+            ExceptionText = exceptionText;
+            ExceptionStackTrace = exception.StackTrace;
 
             ErrorMessageTextbox.Text += exceptionText + Environment.NewLine;
             ErrorMessageTextbox.Text += exception.StackTrace;
@@ -44,15 +47,12 @@ namespace SC4CartographerUI
 
         private void CopyErrorButton_Click(object sender, EventArgs e)
         {
-            //System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            //System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
-            //string version = fvi.ProductVersion;
-
+            // Copy nice error details along with version info to clipboard
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
             DateTime buildInfo = Assembly.GetExecutingAssembly().GetLinkerTime();
             string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
 
-            string errorDetails = string.Format("{0} (build time: {3})\n{1}\n{2}", version, Line2Label.Text, Line3Label.Text, buildInfo.ToString());
+            string errorDetails = string.Format("{0} (build time: {3})\n{1}\n{2}", version, ExceptionText, ExceptionStackTrace, buildInfo.ToString());
             Clipboard.SetText(errorDetails);
 
 

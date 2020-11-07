@@ -36,7 +36,7 @@
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(418, 89);
+            this.OKButton.Location = new System.Drawing.Point(653, 89);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 2;
@@ -46,7 +46,7 @@
             // 
             // CopyErrorButton
             // 
-            this.CopyErrorButton.Location = new System.Drawing.Point(271, 89);
+            this.CopyErrorButton.Location = new System.Drawing.Point(515, 89);
             this.CopyErrorButton.Name = "CopyErrorButton";
             this.CopyErrorButton.Size = new System.Drawing.Size(132, 23);
             this.CopyErrorButton.TabIndex = 6;
@@ -76,7 +76,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 124);
+            this.ClientSize = new System.Drawing.Size(740, 121);
             this.Controls.Add(this.ErrorMessageTextbox);
             this.Controls.Add(this.Line3Label);
             this.Controls.Add(this.CopyErrorButton);
