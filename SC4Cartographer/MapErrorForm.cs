@@ -12,7 +12,7 @@ namespace SC4CartographerUI
         {
             InitializeComponent();
             Text = title;
-            Line1Label.Text = message;
+            ErrorMessageTextbox.Text = message + Environment.NewLine;
 
             string exceptionText = $"[{exception.GetType().ToString()}: {exception.Message}]";
             if (showInnerException)
@@ -22,6 +22,9 @@ namespace SC4CartographerUI
 
             Line2Label.Text = exceptionText;
             Line3Label.Text = exception.StackTrace;
+
+            ErrorMessageTextbox.Text += exceptionText + Environment.NewLine;
+            ErrorMessageTextbox.Text += exception.StackTrace;
         }
 
         private void MapErrorForm_OnLoad(object sender, EventArgs e)
@@ -46,10 +49,10 @@ namespace SC4CartographerUI
             //string version = fvi.ProductVersion;
 
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
-            //DateTime buildInfo = Assembly.GetExecutingAssembly().GetLinkerTime();
+            DateTime buildInfo = Assembly.GetExecutingAssembly().GetLinkerTime();
             string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
 
-            string errorDetails = string.Format("{0}\n{1}\n{2}", version, Line2Label.Text, Line3Label.Text);
+            string errorDetails = string.Format("{0} (build time: {3})\n{1}\n{2}", version, Line2Label.Text, Line3Label.Text, buildInfo.ToString());
             Clipboard.SetText(errorDetails);
 
 

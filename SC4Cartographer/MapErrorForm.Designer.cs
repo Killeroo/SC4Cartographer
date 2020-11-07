@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.OKButton = new System.Windows.Forms.Button();
-            this.Line2Label = new System.Windows.Forms.Label();
-            this.Line1Label = new System.Windows.Forms.Label();
             this.CopyErrorButton = new System.Windows.Forms.Button();
             this.Line3Label = new System.Windows.Forms.Label();
+            this.ErrorMessageTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // OKButton
@@ -44,24 +43,6 @@
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
-            // 
-            // Line2Label
-            // 
-            this.Line2Label.AutoSize = true;
-            this.Line2Label.Location = new System.Drawing.Point(64, 22);
-            this.Line2Label.Name = "Line2Label";
-            this.Line2Label.Size = new System.Drawing.Size(35, 13);
-            this.Line2Label.TabIndex = 5;
-            this.Line2Label.Text = "label1";
-            // 
-            // Line1Label
-            // 
-            this.Line1Label.AutoSize = true;
-            this.Line1Label.Location = new System.Drawing.Point(64, 9);
-            this.Line1Label.Name = "Line1Label";
-            this.Line1Label.Size = new System.Drawing.Size(35, 13);
-            this.Line1Label.TabIndex = 4;
-            this.Line1Label.Text = "label1";
             // 
             // CopyErrorButton
             // 
@@ -81,15 +62,24 @@
             this.Line3Label.Size = new System.Drawing.Size(0, 13);
             this.Line3Label.TabIndex = 7;
             // 
+            // ErrorMessageTextbox
+            // 
+            this.ErrorMessageTextbox.Location = new System.Drawing.Point(67, 9);
+            this.ErrorMessageTextbox.Multiline = true;
+            this.ErrorMessageTextbox.Name = "ErrorMessageTextbox";
+            this.ErrorMessageTextbox.ReadOnly = true;
+            this.ErrorMessageTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ErrorMessageTextbox.Size = new System.Drawing.Size(661, 74);
+            this.ErrorMessageTextbox.TabIndex = 8;
+            // 
             // MapErrorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 124);
+            this.Controls.Add(this.ErrorMessageTextbox);
             this.Controls.Add(this.Line3Label);
             this.Controls.Add(this.CopyErrorButton);
-            this.Controls.Add(this.Line2Label);
-            this.Controls.Add(this.Line1Label);
             this.Controls.Add(this.OKButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MapErrorForm";
@@ -104,9 +94,8 @@
         #endregion
 
         private System.Windows.Forms.Button OKButton;
-        private System.Windows.Forms.Label Line2Label;
-        private System.Windows.Forms.Label Line1Label;
         private System.Windows.Forms.Button CopyErrorButton;
         private System.Windows.Forms.Label Line3Label;
+        private System.Windows.Forms.TextBox ErrorMessageTextbox;
     }
 }

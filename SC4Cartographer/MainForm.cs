@@ -119,7 +119,7 @@ namespace SC4CartographerUI
             {
                 var errorForm = new MapErrorForm(
                     "Error loading save game",
-                    $"Could not load save game @ {path}",
+                    $"Could not load save game '{Path.GetFileName(path)}'.",
                     e,
                     true);
                 errorForm.StartPosition = FormStartPosition.CenterParent;
@@ -137,7 +137,7 @@ namespace SC4CartographerUI
             {
                 var errorForm = new MapErrorForm(
                     "Error loading save game",
-                    $"Could not create map for {path}. Could not load zone data or it does not exist.",
+                    $"Could not create map for '{Path.GetFileName(path)}'. Could not load zone data or it does not exist.",
                     e,
                     true);
 
@@ -147,9 +147,25 @@ namespace SC4CartographerUI
                 return;
             }
                 
+            try
+            {
+                // Generate and set map preview images
+                GenerateMapPreview();
+            }
+            catch (SubfileNotFoundException e)
+            {
+                var errorForm = new MapErrorForm(
+                    "Error creating preview",
+                    $"Could not create preview map for '{Path.GetFileName(path)}'.",
+                    e,
+                    true);
 
-            // Generate and set map preview images
-            GenerateMapPreview();
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
+
 
             // Set window title
             this.Text = "[BETA] SC4Cartographer - '" + Path.GetFileName(path) + "'";
@@ -229,10 +245,14 @@ namespace SC4CartographerUI
             }
             catch (Exception e)
             {
-                MessageBox.Show("Could not save map", 
-                    $"Could not save map '{currentFilename}'. Exception [{e.GetType().ToString()}]: {e.Message}, ({e.InnerException.GetType().ToString()} - {e.InnerException.InnerException.Message}) ", 
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                var errorForm = new MapErrorForm(
+                    "Error saving map",
+                    $"There was an error while trying to save a map for '{path}'.",
+                    e,
+                    true);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
             }
 
             // Cleanup any stuff after saving (these bitmaps can take up a fair amount of memory)
