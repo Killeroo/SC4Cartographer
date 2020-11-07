@@ -38,6 +38,11 @@ namespace SC4CartographerUI
             Logger.AddLogOutput(this);
         }
 
+        public void EnableChannel(LogLevel level)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Log(LogLevel level, string format, params object[] args)
         {
             string message = args.Length == 0 ? format : string.Format(format, args);

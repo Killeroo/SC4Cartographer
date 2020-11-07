@@ -56,6 +56,75 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Constants.cs">
+      <Link>SC4Parser\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Exceptions.cs">
+      <Link>SC4Parser\Exceptions.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Utils.cs">
+      <Link>SC4Parser\Utils.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Compression\QFS.cs">
+      <Link>SC4Parser\QFS\QFS.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\Building.cs">
+      <Link>SC4Parser\DataStructures\Building.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\DatabaseDirectoryResource.cs">
+      <Link>SC4Parser\DataStructures\DatabaseDirectoryResource.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\DatabasePackedFileHeader.cs">
+      <Link>SC4Parser\DataStructures\DatabasePackedFileHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\IndexEntry.cs">
+      <Link>SC4Parser\DataStructures\IndexEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\Lot.cs">
+      <Link>SC4Parser\DataStructures\Lot.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\SaveGameProperty.cs">
+      <Link>SC4Parser\DataStructures\SaveGameProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
+      <Link>SC4Parser\Files\DatabaseDirectoryFile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Files\DatabasePackedFile.cs">
+      <Link>SC4Parser\Files\DatabasePackedFile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Files\SC4SaveFile.cs">
+      <Link>SC4Parser\Files\SC4SaveFile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Logging\ConsoleLogger.cs">
+      <Link>SC4Parser\Logging\ConsoleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Logging\FileLogger.cs">
+      <Link>SC4Parser\Logging\FileLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Logging\ILogger.cs">
+      <Link>SC4Parser\Logging\ILogger.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Logging\Logger.cs">
+      <Link>SC4Parser\Logging\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Logging\LogLevels.cs">
+      <Link>SC4Parser\Logging\LogLevels.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\BuildingSubFile.cs">
+      <Link>SC4Parser\Subfiles\BuildingSubFile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\LotSubFile.cs">
+      <Link>SC4Parser\Subfiles\LotSubFile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\RegionViewSubfile.cs">
+      <Link>SC4Parser\Subfiles\RegionViewSubfile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\TerrainMapSubfile.cs">
+      <Link>SC4Parser\Subfiles\TerrainMapSubfile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Types\TypeGroupInstance.cs">
+      <Link>SC4Parser\Types\TypeGroupInstance.cs</Link>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,11 +182,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SC4Parser\SC4Parser\SC4Parser.csproj">
-      <Project>{06eb8cff-d61c-4b37-990c-1b2fa1b70048}</Project>
-      <Name>SC4Parser</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
