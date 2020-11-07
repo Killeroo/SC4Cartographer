@@ -14,6 +14,7 @@ using SC4Parser.DataStructures;
 using SC4Parser.Files;
 using SC4Parser.Types;
 using SC4Parser.Subfiles;
+using SC4Parser;
 
 namespace SC4CartographerUI
 {
@@ -116,7 +117,14 @@ namespace SC4CartographerUI
                 this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
 
                 // Load the save file
-                mapCreationParameters.SaveFile = new SC4SaveFile(path);
+                try
+                {
+                    mapCreationParameters.SaveFile = new SC4SaveFile(path);
+                }
+                catch (DBPFParsingException e)
+                {
+
+                }
 
                 // Generate and set map preview images
                 GenerateMapPreview();
