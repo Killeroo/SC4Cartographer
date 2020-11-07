@@ -706,5 +706,25 @@ namespace SC4CartographerUI
         }
 
         #endregion
+
+        private void mapAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var propertiesForm = new PropertiesForm(mapCreationParameters, this);
+            propertiesForm.StartPosition = FormStartPosition.CenterParent;
+            propertiesForm.ShowDialog();
+
+            // Generate map again
+            LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
+        }
+
+        private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Version v = Assembly.GetExecutingAssembly().GetName().Version;
+            string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
+            version = version.Replace(' ', '+');
+
+            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---%0A" + version;
+            System.Diagnostics.Process.Start(issueLink);
+        }
     }
 }
