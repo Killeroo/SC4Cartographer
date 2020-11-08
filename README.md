@@ -12,17 +12,17 @@ The latest stable release can be downloaded [here](https://github.com/Killeroo/S
 
 Here are some map images that have been created using SC4Cartographer
 
-![alt text](Samples\Screenshots\Interpol)
-![alt text](Samples\Screenshots\Kensington)
-![alt text](Samples\Screenshots\Luxuria)
-![alt text](Samples\Screenshots\Mia)
-![alt text](Samples\Screenshots\Panem)
+![alt text](Samples/Screenshots/Interpol.png)
+![alt text](Samples/Screenshots/Kensington.png)
+![alt text](Samples/Screenshots/Luxuria.png)
+![alt text](Samples/Screenshots/Mia.png)
+![alt text](Samples/Screenshots/Panem.png)
 
 # Screenshots
 
-![alt text](Samples\Screenshots\screenshot1)
-![alt text](Samples\Screenshots\screenshot2)
-![alt text](Samples\Screenshots\screenshot3)
+![alt text](Samples/Screenshots/screenshot1.png)
+![alt text](Samples/Screenshots/screenshot2.png)
+![alt text](Samples/Screenshots/screenshot3.png)
 
 # Building & Developing
 
