@@ -1,9 +1,11 @@
 # SC4Cartographer
 [![](https://img.shields.io/badge/stable%20version-1.0.0-brightgreen.svg)](https://github.com/Killeroo/SC4Cartographer/releases) 
 
-Generate maps for your SimCity4 cities! Creates maps using the zone data from cities.
+Generate maps for your SimCity4 cities!
 
 ![alt text](Images/Screenshots/screenshot_main.png)
+
+Maps are created using a city's zone information.
 
 # Downloads
 The latest stable release can be downloaded [here](https://github.com/Killeroo/SC4Cartographer/releases/latest)
