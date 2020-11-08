@@ -16,6 +16,7 @@ using SC4Parser.Files;
 using SC4Parser.Types;
 using SC4Parser.Subfiles;
 using SC4Parser;
+using SC4Parser.Logging;
 
 namespace SC4CartographerUI
 {
@@ -33,11 +34,13 @@ namespace SC4CartographerUI
         private bool previewZoomed = false;
 
         private RichTextBoxLogger logger = null;
+        private FileLogger fileLogger = null;
 
         public MainForm()
         {
             InitializeComponent();
             //logger = new RichTextBoxLogger(LogTextBox);
+            fileLogger = new FileLogger();
         }
 
         #region Form functionality
@@ -738,5 +741,11 @@ namespace SC4CartographerUI
 
         #endregion
 
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            var mapCreatedForm = new LogForm(fileLogger.logPath, fileLogger.Created);
+            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+            mapCreatedForm.ShowDialog();
+        }
     }
 }

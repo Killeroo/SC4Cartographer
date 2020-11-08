@@ -53,7 +53,16 @@ namespace SC4CartographerUI
             string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
 
             string errorDetails = string.Format("{0} (build time: {3})\n{1}\n{2}", version, ExceptionText, ExceptionStackTrace, buildInfo.ToString());
-            Clipboard.SetText(errorDetails);
+            
+            try
+            {
+                Clipboard.SetText(errorDetails);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Could not copy message to clipboard", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
 
         }

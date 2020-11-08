@@ -46,11 +46,11 @@
             // 
             // CopyErrorButton
             // 
-            this.CopyErrorButton.Location = new System.Drawing.Point(515, 89);
+            this.CopyErrorButton.Location = new System.Drawing.Point(510, 89);
             this.CopyErrorButton.Name = "CopyErrorButton";
-            this.CopyErrorButton.Size = new System.Drawing.Size(132, 23);
+            this.CopyErrorButton.Size = new System.Drawing.Size(137, 23);
             this.CopyErrorButton.TabIndex = 6;
-            this.CopyErrorButton.Text = "Copy details to clipboard";
+            this.CopyErrorButton.Text = "Copy Details to Clipboard";
             this.CopyErrorButton.UseVisualStyleBackColor = true;
             this.CopyErrorButton.Click += new System.EventHandler(this.CopyErrorButton_Click);
             // 

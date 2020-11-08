@@ -7,7 +7,7 @@
     <ProjectGuid>{7DC4EA4D-6F84-44C6-9985-EF38CDA84E48}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SC4CartographerUI</RootNamespace>
-    <AssemblyName>SC4CartographerUI [BETA]</AssemblyName>
+    <AssemblyName>SC4CartographerUI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -147,6 +147,12 @@
       <Link>SC4Parser\Types\TypeGroupInstance.cs</Link>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     <Compile Include="RichTextBoxLogger.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
