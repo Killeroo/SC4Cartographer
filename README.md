@@ -3,7 +3,7 @@
 
 Generate maps for your SimCity4 cities! Creates maps using the zone data from cities.
 
-![alt text](Samples\Screenshots\screenshot_main)
+![alt text](Images/Screenshots/screenshot_main.png)
 
 # Downloads
 The latest stable release can be downloaded [here](https://github.com/Killeroo/SC4Cartographer/releases/latest)
@@ -12,17 +12,17 @@ The latest stable release can be downloaded [here](https://github.com/Killeroo/S
 
 Here are some map images that have been created using SC4Cartographer
 
-![alt text](Samples/Screenshots/Interpol.png)
-![alt text](Samples/Screenshots/Kensington.png)
-![alt text](Samples/Screenshots/Luxuria.png)
-![alt text](Samples/Screenshots/Mia.png)
-![alt text](Samples/Screenshots/Panem.png)
+![alt text](Images/Mia.png)
+![alt text](Images/Kensington.png)
+![alt text](Images/Luxuria.png)
+![alt text](Images/Panem.png)
+![alt text](Images/Interpol.png)
 
 # Screenshots
 
-![alt text](Samples/Screenshots/screenshot1.png)
-![alt text](Samples/Screenshots/screenshot2.png)
-![alt text](Samples/Screenshots/screenshot3.png)
+![alt text](Images/Screenshots/screenshot1.png)
+![alt text](Images/Screenshots/screenshot2.png)
+![alt text](Images/Screenshots/screenshot3.png)
 
 # Building & Developing
 
