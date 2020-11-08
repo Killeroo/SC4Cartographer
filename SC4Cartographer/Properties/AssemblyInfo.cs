@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("[BETA] SC4Cartographer")]
+[assembly: AssemblyTitle("SC4Cartographer")]
 [assembly: AssemblyDescription("Create and save maps from SimCity 4 save games")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matthew Carney [matthewcarney64@gmail.com]")]

@@ -168,7 +168,7 @@ namespace SC4CartographerUI
 
 
             // Set window title
-            this.Text = "[BETA] SC4Cartographer - '" + Path.GetFileName(path) + "'";
+            this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
                 
             EnableSaveButtons();
 
