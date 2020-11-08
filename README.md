@@ -1,12 +1,40 @@
 # SC4Cartographer
 [![](https://img.shields.io/badge/stable%20version-1.0.0-brightgreen.svg)](https://github.com/Killeroo/SC4Cartographer/releases) 
 
-Generate maps for your SimCity4 cities
+Generate maps for your SimCity4 cities! Creates maps using the zone data from cities.
 
-![alt text](https://user-images.githubusercontent.com/9999745/98466438-6284a200-21c7-11eb-8294-22e71d67bf33.png)
+![alt text](Samples\Screenshots\screenshot_main)
 
 # Downloads
 The latest stable release can be downloaded [here](https://github.com/Killeroo/SC4Cartographer/releases/latest)
+
+# Example Maps
+
+Here are some map images that have been created using SC4Cartographer
+
+![alt text](Samples\Screenshots\Interpol)
+![alt text](Samples\Screenshots\Kensington)
+![alt text](Samples\Screenshots\Luxuria)
+![alt text](Samples\Screenshots\Mia)
+![alt text](Samples\Screenshots\Panem)
+
+# Screenshots
+
+![alt text](Samples\Screenshots\screenshot1)
+![alt text](Samples\Screenshots\screenshot2)
+![alt text](Samples\Screenshots\screenshot3)
+
+# Building & Developing
+
+First thing you want to do is make sure you have .NET Framework installed (you probably will), then you will need to pull down the repository and it's submodules:
+```
+git clone --recurse-submodules https://github.com/Killeroo/SC4Cartographer.git
+```
+Now if you open up SC4Cartographer.sln in Visual Studio 2017 community or higher you are good to go!
+
+If you want to modify any of the [UI code](https://github.com/Killeroo/SC4Cartographer/blob/716bedd7d1c1ac253b502ddce1208dee76670605/SC4Cartographer/MainForm.cs#L22) or [map generation](https://github.com/Killeroo/SC4Cartographer/blob/716bedd7d1c1ac253b502ddce1208dee76670605/SC4Cartographer/MapRenderer.cs#L17) code you can find it in the SC4Cartographer project (it will be a bit messy).
+
+SC4Cartographer uses another library I made called SC4Parser for parsing and loading data from SimCity 4 savegames, so if you want to use or modify any of that functionality you can find it [here](https://github.com/Killeroo/SC4Parser).
 
 # License
 
@@ -33,7 +61,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-# Screenshots
-
-# Example
