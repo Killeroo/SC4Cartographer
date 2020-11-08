@@ -371,7 +371,40 @@ namespace SC4CartographerUI
                     OutputPathTextbox.Text = folderDialog.SelectedPath;
             }
         }
+        private void RestoreDefaultsButton_Click(object sender, EventArgs e)
+        {
+            MapCreationParameters pristineParameters = new MapCreationParameters();
+
+            parameters.ColorDictionary[MapColorObject.Background] = pristineParameters.ColorDictionary[MapColorObject.Background];
+            parameters.ColorDictionary[MapColorObject.GridLines] = pristineParameters.ColorDictionary[MapColorObject.GridLines];
+            parameters.ColorDictionary[MapColorObject.PloppedBuilding] = pristineParameters.ColorDictionary[MapColorObject.PloppedBuilding];
+            parameters.ColorDictionary[MapColorObject.ZoneOutline] = pristineParameters.ColorDictionary[MapColorObject.ZoneOutline];
+            parameters.ColorDictionary[MapColorObject.Military] = pristineParameters.ColorDictionary[MapColorObject.Military];
+            parameters.ColorDictionary[MapColorObject.Airport] = pristineParameters.ColorDictionary[MapColorObject.Airport];
+            parameters.ColorDictionary[MapColorObject.Seaport] = pristineParameters.ColorDictionary[MapColorObject.Seaport];
+            parameters.ColorDictionary[MapColorObject.Spaceport] = pristineParameters.ColorDictionary[MapColorObject.Spaceport];
+            parameters.ColorDictionary[MapColorObject.ResidentialLow] = pristineParameters.ColorDictionary[MapColorObject.ResidentialLow];
+            parameters.ColorDictionary[MapColorObject.ResidentialMid] = pristineParameters.ColorDictionary[MapColorObject.ResidentialMid];
+            parameters.ColorDictionary[MapColorObject.ResidentialHigh] = pristineParameters.ColorDictionary[MapColorObject.ResidentialHigh];
+            parameters.ColorDictionary[MapColorObject.CommercialLow] = pristineParameters.ColorDictionary[MapColorObject.CommercialLow];
+            parameters.ColorDictionary[MapColorObject.CommercialMid] = pristineParameters.ColorDictionary[MapColorObject.CommercialMid];
+            parameters.ColorDictionary[MapColorObject.CommercialHigh] = pristineParameters.ColorDictionary[MapColorObject.CommercialHigh];
+            parameters.ColorDictionary[MapColorObject.IndustrialLow] = pristineParameters.ColorDictionary[MapColorObject.IndustrialLow];
+            parameters.ColorDictionary[MapColorObject.IndustrialMid] = pristineParameters.ColorDictionary[MapColorObject.IndustrialMid];
+            parameters.ColorDictionary[MapColorObject.IndustrialHigh] = pristineParameters.ColorDictionary[MapColorObject.IndustrialHigh];
+
+            parameters.GridSegmentSize = pristineParameters.GridSegmentSize;
+            parameters.SegmentPaddingX = pristineParameters.SegmentPaddingX;
+            parameters.SegmentPaddingY = pristineParameters.SegmentPaddingY;
+            parameters.SegmentOffsetX = pristineParameters.SegmentOffsetX;
+            parameters.SegmentOffsetY = pristineParameters.SegmentOffsetY;
+            parameters.ShowGridLines = pristineParameters.ShowGridLines;
+            parameters.ShowZoneOutlines = pristineParameters.ShowZoneOutlines;
+
+            SetUIValuesUsingParameters();
+        }
 
         #endregion
+
     }
 }

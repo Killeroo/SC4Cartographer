@@ -99,6 +99,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
+            this.RestoreDefaultsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
@@ -840,12 +841,23 @@
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
+            // RestoreDefaultsButton
+            // 
+            this.RestoreDefaultsButton.Location = new System.Drawing.Point(12, 464);
+            this.RestoreDefaultsButton.Name = "RestoreDefaultsButton";
+            this.RestoreDefaultsButton.Size = new System.Drawing.Size(100, 23);
+            this.RestoreDefaultsButton.TabIndex = 5;
+            this.RestoreDefaultsButton.Text = "Restore Defaults";
+            this.RestoreDefaultsButton.UseVisualStyleBackColor = true;
+            this.RestoreDefaultsButton.Click += new System.EventHandler(this.RestoreDefaultsButton_Click);
+            // 
             // PropertiesForm
             // 
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 495);
+            this.Controls.Add(this.RestoreDefaultsButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox3);
@@ -944,5 +956,6 @@
         private System.Windows.Forms.Button ZoneOutlinesEditButton;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox ZoneOutlinesTextbox;
+        private System.Windows.Forms.Button RestoreDefaultsButton;
     }
 }
