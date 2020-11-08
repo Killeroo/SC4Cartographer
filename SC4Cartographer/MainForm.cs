@@ -723,8 +723,9 @@ namespace SC4CartographerUI
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
             string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
             version = version.Replace(' ', '+');
+            string parserVersion = "SC4Parser+v1.0.0.0";
 
-            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---------%0A" + version;
+            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---------%0A" + version + "%0A" + parserVersion;
             System.Diagnostics.Process.Start(issueLink);
         }
 
@@ -743,7 +744,7 @@ namespace SC4CartographerUI
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            var mapCreatedForm = new LogForm(fileLogger.logPath, fileLogger.Created);
+            var mapCreatedForm = new LogForm(fileLogger.LogPath, fileLogger.Created);
             mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
             mapCreatedForm.ShowDialog();
         }

@@ -51,8 +51,14 @@ namespace SC4CartographerUI
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
             DateTime buildInfo = Assembly.GetExecutingAssembly().GetLinkerTime();
             string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
+            string parserVersion = "SC4Parser v1.0.0.0";
 
-            string errorDetails = string.Format("{0} (build time: {3})\n{1}\n{2}", version, ExceptionText, ExceptionStackTrace, buildInfo.ToString());
+            string errorDetails = string.Format("{0} (build time: {3})\n{4}\n{1}\n{2}", 
+                version, 
+                ExceptionText, 
+                ExceptionStackTrace, 
+                buildInfo.ToString(),
+                parserVersion);
             
             try
             {

@@ -53,14 +53,14 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mapAppearanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AppearanceButton = new System.Windows.Forms.Button();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.AppearanceButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -310,18 +310,6 @@
             this.mapAppearanceToolStripMenuItem.Text = "Map Properties";
             this.mapAppearanceToolStripMenuItem.Click += new System.EventHandler(this.mapAppearanceToolStripMenuItem_Click);
             // 
-            // AppearanceButton
-            // 
-            this.AppearanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AppearanceButton.Enabled = false;
-            this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
-            this.AppearanceButton.Name = "AppearanceButton";
-            this.AppearanceButton.Size = new System.Drawing.Size(124, 23);
-            this.AppearanceButton.TabIndex = 9;
-            this.AppearanceButton.Text = "Appearance";
-            this.AppearanceButton.UseVisualStyleBackColor = true;
-            this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -340,12 +328,26 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "Project Webpage";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.projectWebpageToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem4.Text = "Report an issue";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.reportABugToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Text = "Show Log...";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // toolStripSeparator3
             // 
@@ -357,18 +359,19 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem5.Text = "About";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem6
+            // AppearanceButton
             // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem6.Text = "Show Log...";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.AppearanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AppearanceButton.Enabled = false;
+            this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
+            this.AppearanceButton.Name = "AppearanceButton";
+            this.AppearanceButton.Size = new System.Drawing.Size(124, 23);
+            this.AppearanceButton.TabIndex = 9;
+            this.AppearanceButton.Text = "Appearance";
+            this.AppearanceButton.UseVisualStyleBackColor = true;
+            this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
             // 
             // MainForm
             // 

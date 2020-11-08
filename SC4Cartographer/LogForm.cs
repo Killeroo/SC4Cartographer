@@ -38,8 +38,9 @@ namespace SC4CartographerUI
             {
                 Version v = Assembly.GetExecutingAssembly().GetName().Version;
                 string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
+                string parserVersion = "SC4Parser v1.0.0.0";
 
-                LogOutputTextbox.Text = version + Environment.NewLine + File.ReadAllText(logPath);
+                LogOutputTextbox.Text = version + Environment.NewLine + parserVersion + Environment.NewLine + File.ReadAllText(logPath);
                 LogOutputTextbox.SelectionStart = LogOutputTextbox.Text.Length;
                 LogOutputTextbox.ScrollToCaret();
             }
