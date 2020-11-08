@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapCreatedForm));
             this.MapCreatedLabel = new System.Windows.Forms.Label();
             this.OKButton = new System.Windows.Forms.Button();
             this.PathLabel = new System.Windows.Forms.Label();
@@ -82,6 +83,7 @@
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.MapCreatedLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MapCreatedForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

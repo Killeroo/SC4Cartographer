@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropertiesForm));
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.ShowZoneOutlinesCheckbox = new System.Windows.Forms.CheckBox();
             this.SegmentOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.SegmentPaddingNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -100,7 +102,6 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
             this.RestoreDefaultsButton = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
@@ -130,6 +131,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Grid";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(354, 87);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(83, 13);
+            this.label21.TabIndex = 14;
+            this.label21.Text = "*Values in pixels";
             // 
             // ShowZoneOutlinesCheckbox
             // 
@@ -853,16 +864,6 @@
             this.RestoreDefaultsButton.UseVisualStyleBackColor = true;
             this.RestoreDefaultsButton.Click += new System.EventHandler(this.RestoreDefaultsButton_Click);
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(354, 87);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(83, 13);
-            this.label21.TabIndex = 14;
-            this.label21.Text = "*Values in pixels";
-            // 
             // PropertiesForm
             // 
             this.AcceptButton = this.OkButton;
@@ -876,6 +877,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PropertiesForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ShowInTaskbar = false;

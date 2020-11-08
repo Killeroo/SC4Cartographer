@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogForm));
             this.LogOutputTextbox = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
             this.CopyToClipboardButton = new System.Windows.Forms.Button();
@@ -72,8 +73,9 @@
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.LogOutputTextbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogForm";
-            this.Text = "Log output";
+            this.Text = "Log Output";
             this.Load += new System.EventHandler(this.LogForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
