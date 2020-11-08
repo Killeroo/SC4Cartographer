@@ -100,6 +100,7 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
             this.RestoreDefaultsButton = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
@@ -114,6 +115,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.ShowZoneOutlinesCheckbox);
             this.groupBox1.Controls.Add(this.SegmentOffsetNumericUpDown);
             this.groupBox1.Controls.Add(this.SegmentPaddingNumericUpDown);
@@ -180,27 +182,27 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(6, 71);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(80, 13);
+            this.label15.Size = new System.Drawing.Size(84, 13);
             this.label15.TabIndex = 3;
-            this.label15.Text = "Segment Offset";
+            this.label15.Text = "Segment Offset*";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(6, 47);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 13);
+            this.label14.Size = new System.Drawing.Size(95, 13);
             this.label14.TabIndex = 2;
-            this.label14.Text = "Segment Padding";
+            this.label14.Text = "Segment Padding*";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 21);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(94, 13);
+            this.label13.Size = new System.Drawing.Size(98, 13);
             this.label13.TabIndex = 1;
-            this.label13.Text = "Grid Segment Size";
+            this.label13.Text = "Grid Segment Size*";
             // 
             // ShowGridLinesCheckbox
             // 
@@ -851,6 +853,16 @@
             this.RestoreDefaultsButton.UseVisualStyleBackColor = true;
             this.RestoreDefaultsButton.Click += new System.EventHandler(this.RestoreDefaultsButton_Click);
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(354, 87);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(83, 13);
+            this.label21.TabIndex = 14;
+            this.label21.Text = "*Values in pixels";
+            // 
             // PropertiesForm
             // 
             this.AcceptButton = this.OkButton;
@@ -957,5 +969,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox ZoneOutlinesTextbox;
         private System.Windows.Forms.Button RestoreDefaultsButton;
+        private System.Windows.Forms.Label label21;
     }
 }
