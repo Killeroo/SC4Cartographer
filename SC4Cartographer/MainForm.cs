@@ -731,6 +731,10 @@ namespace SC4CartographerUI
             mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
             mapCreatedForm.ShowDialog();
         }
+        private void projectWebpageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/killeroo/SC4Cartographer");
+        }
 
         #endregion
 

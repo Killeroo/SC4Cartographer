@@ -55,9 +55,10 @@
             this.mapAppearanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppearanceButton = new System.Windows.Forms.Button();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.projectWebpageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -310,6 +311,7 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectWebpageToolStripMenuItem,
             this.reportABugToolStripMenuItem,
             this.toolStripSeparator2,
             this.aboutToolStripMenuItem});
@@ -323,6 +325,11 @@
             this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reportABugToolStripMenuItem.Text = "Report an issue";
             this.reportABugToolStripMenuItem.Click += new System.EventHandler(this.reportABugToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
@@ -343,10 +350,12 @@
             this.AppearanceButton.UseVisualStyleBackColor = true;
             this.AppearanceButton.Click += new System.EventHandler(this.PropertiesButton_Click);
             // 
-            // toolStripSeparator2
+            // projectWebpageToolStripMenuItem
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.projectWebpageToolStripMenuItem.Name = "projectWebpageToolStripMenuItem";
+            this.projectWebpageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.projectWebpageToolStripMenuItem.Text = "Project Webpage";
+            this.projectWebpageToolStripMenuItem.Click += new System.EventHandler(this.projectWebpageToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -408,6 +417,7 @@
         private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem projectWebpageToolStripMenuItem;
     }
 }
 
