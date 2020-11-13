@@ -113,10 +113,12 @@ namespace SC4CartographerUI
         /// <param name="path"></param>
         public void LoadSaveGame(string path)
         {
+            SC4SaveFile save = null;
+
             // Load the save file
             try
             {
-                mapCreationParameters.SaveFile = new SC4SaveFile(path);
+                save = new SC4SaveFile(path);
             }
             catch (DBPFParsingException e)
             {
@@ -134,7 +136,7 @@ namespace SC4CartographerUI
             // see if lots subfile exists
             try
             {
-                mapCreationParameters.SaveFile.GetLotSubfile();
+                save.GetLotSubfile();
             }
             catch (SubfileNotFoundException e)
             {
@@ -149,7 +151,10 @@ namespace SC4CartographerUI
 
                 return;
             }
-                
+
+            // Save seems to load alright, copy it over to out map creation parameters
+            mapCreationParameters.SaveFile = save;
+
             try
             {
                 // Generate and set map preview images
@@ -739,14 +744,14 @@ namespace SC4CartographerUI
         {
             System.Diagnostics.Process.Start(@"https://github.com/killeroo/SC4Cartographer");
         }
-
-        #endregion
-
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
             var mapCreatedForm = new LogForm(fileLogger.LogPath, fileLogger.Created);
             mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
             mapCreatedForm.ShowDialog();
         }
+
+        #endregion
+
     }
 }
