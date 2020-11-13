@@ -7,7 +7,7 @@
     <ProjectGuid>{7DC4EA4D-6F84-44C6-9985-EF38CDA84E48}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SC4CartographerUI</RootNamespace>
-    <AssemblyName>SC4CartographerUI</AssemblyName>
+    <AssemblyName>SC4Cartographer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -208,6 +208,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
