@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SC4CartographerUI
 {
@@ -101,5 +102,12 @@ namespace SC4CartographerUI
             }
         }
         #endregion
+
+        private void ProjectWebpageLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProjectWebpageLinkLabel.LinkVisited = true;
+
+            Process.Start("https://github.com/Killeroo/SC4Cartographer/");
+        }
     }
 }
