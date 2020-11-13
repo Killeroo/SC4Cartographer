@@ -32,6 +32,7 @@
             this.LogOutputTextbox = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
             this.CopyToClipboardButton = new System.Windows.Forms.Button();
+            this.OpenLogDirectoryButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LogOutputTextbox
@@ -64,11 +65,22 @@
             this.CopyToClipboardButton.UseVisualStyleBackColor = true;
             this.CopyToClipboardButton.Click += new System.EventHandler(this.CopyToClipboardButton_Click);
             // 
+            // OpenLogDirectoryButton
+            // 
+            this.OpenLogDirectoryButton.Location = new System.Drawing.Point(480, 425);
+            this.OpenLogDirectoryButton.Name = "OpenLogDirectoryButton";
+            this.OpenLogDirectoryButton.Size = new System.Drawing.Size(114, 23);
+            this.OpenLogDirectoryButton.TabIndex = 3;
+            this.OpenLogDirectoryButton.Text = "Open Log Directory";
+            this.OpenLogDirectoryButton.UseVisualStyleBackColor = true;
+            this.OpenLogDirectoryButton.Click += new System.EventHandler(this.OpenLogDirectoryButton_Click);
+            // 
             // LogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 454);
+            this.Controls.Add(this.OpenLogDirectoryButton);
             this.Controls.Add(this.CopyToClipboardButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.LogOutputTextbox);
@@ -87,5 +99,6 @@
         private System.Windows.Forms.TextBox LogOutputTextbox;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button CopyToClipboardButton;
+        private System.Windows.Forms.Button OpenLogDirectoryButton;
     }
 }

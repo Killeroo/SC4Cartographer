@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace SC4CartographerUI
 {
@@ -30,6 +31,8 @@ namespace SC4CartographerUI
             if (logStarted == false)
             {
                 LogOutputTextbox.Text = "Log could not be created.";
+                CopyToClipboardButton.Enabled = false;
+                OpenLogDirectoryButton.Enabled = false;
                 return;
             }
 
@@ -66,6 +69,11 @@ namespace SC4CartographerUI
                 MessageBox.Show(ex.Message, "Could not copy message to clipboard", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void OpenLogDirectoryButton_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", Path.GetDirectoryName(logPath));
         }
     }
 }
