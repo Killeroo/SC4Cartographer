@@ -47,6 +47,7 @@
             // 
             // OkButton
             // 
+            this.OkButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.OkButton.Location = new System.Drawing.Point(713, 425);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
@@ -77,8 +78,10 @@
             // 
             // LogForm
             // 
+            this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.OkButton;
             this.ClientSize = new System.Drawing.Size(800, 454);
             this.Controls.Add(this.OpenLogDirectoryButton);
             this.Controls.Add(this.CopyToClipboardButton);

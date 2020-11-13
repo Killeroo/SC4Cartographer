@@ -74,14 +74,17 @@
             // 
             // MapErrorForm
             // 
+            this.AcceptButton = this.OKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.OKButton;
             this.ClientSize = new System.Drawing.Size(740, 121);
             this.Controls.Add(this.ErrorMessageTextbox);
             this.Controls.Add(this.Line3Label);
             this.Controls.Add(this.CopyErrorButton);
             this.Controls.Add(this.OKButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Name = "MapErrorForm";
             this.Text = "Error";
             this.Load += new System.EventHandler(this.MapErrorForm_OnLoad);
