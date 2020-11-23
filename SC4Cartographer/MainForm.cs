@@ -48,6 +48,8 @@ namespace SC4CartographerUI
         public void SetMapCreationParameters(MapCreationParameters parameters)
         {
             mapCreationParameters = parameters;
+
+            LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
         }
 
         /// <summary>
@@ -611,10 +613,10 @@ namespace SC4CartographerUI
         {
             var propertiesForm = new PropertiesForm(mapCreationParameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
-            propertiesForm.ShowDialog();
+            propertiesForm.Show();
 
             // Generate map again
-            LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
+            //LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
         }
 
         /// <summary>
