@@ -180,7 +180,7 @@
             // 
             this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(122, 17);
             this.GridSegmentSizeNumericUpDown.Maximum = new decimal(new int[] {
-            1000,
+            60,
             0,
             0,
             0});
