@@ -53,6 +53,10 @@ namespace SC4CartographerUI
 
         #region Form functionality
 
+        /// <summary>
+        /// Sets map creation parameters and refreshes preview
+        /// </summary>
+        /// <param name="parameters"></param>
         public void SetMapCreationParameters(MapCreationParameters parameters)
         {
             map.Parameters = parameters;

@@ -219,6 +219,7 @@ namespace SC4CartographerUI
             {
                 ResidentialZoneHighTextbox.BackColor = colorDialog.Color;
 
+                // Refresh map on main form
                 parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -396,9 +397,6 @@ namespace SC4CartographerUI
             
             SetUIValuesUsingParameters(pristineParameters);
         }
-
-        #endregion
-
         private void PropertiesForm_OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // If the changes haven't been confirmed (using the OK button) then revert them to what they originally were
@@ -407,5 +405,8 @@ namespace SC4CartographerUI
                 SetUIValuesUsingParameters(originalParameters);
             }
         }
+
+        #endregion
+
     }
 }
