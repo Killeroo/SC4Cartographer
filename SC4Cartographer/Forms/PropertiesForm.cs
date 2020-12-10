@@ -468,14 +468,12 @@ namespace SC4CartographerUI
 
         private void ShowGridLinesCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (ShowGridLinesCheckbox.Checked)
-                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+            parentForm.SetMapCreationParameters(GetParametersFromUIValues());
         }
 
         private void ShowZoneOutlinesCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (ShowZoneOutlinesCheckbox.Checked)
-                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+            parentForm.SetMapCreationParameters(GetParametersFromUIValues());
         }
 
         private void PropertiesForm_OnFormClosing(object sender, FormClosingEventArgs e)
