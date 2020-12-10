@@ -22,25 +22,25 @@ namespace SC4CartographerUI
 {
     public partial class MainForm : Form
     {
+        struct Map
+        {
+            public SC4SaveFile Save;
+            public MapCreationParameters Parameters;
+        }
+
         string RootSimCitySavePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
             "Documents", 
             "SimCity 4", 
             "Regions");
 
+        private Map map = new Map();
         private Bitmap previewNormalMapBitmap;
         private Bitmap previewZoomedMapBitmap;
         private bool previewZoomed = false;
 
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
-
-        struct Map
-        {
-            public SC4SaveFile Save;
-            public MapCreationParameters Parameters;
-        }
-        Map map = new Map();
 
         public MainForm()
         {
@@ -67,20 +67,11 @@ namespace SC4CartographerUI
         {
             // Generate normal preview image
             MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
-            //normalMapPreviewParameters.GridSegmentSize = 5;// 4;
-            //normalMapPreviewParameters.SegmentPaddingX = 2;
-            //normalMapPreviewParameters.SegmentPaddingY = 2;
-            //normalMapPreviewParameters.SegmentOffsetX = 1;
-            //normalMapPreviewParameters.SegmentOffsetY = 1;
             previewNormalMapBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
 
             // Generate zoomed preview image
             MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
             zoomedMapPreviewParameters.GridSegmentSize = 10;
-            //zoomedMapPreviewParameters.SegmentPaddingX = 4;
-            //zoomedMapPreviewParameters.SegmentPaddingY = 4;
-            //zoomedMapPreviewParameters.SegmentOffsetX = 2;
-            //zoomedMapPreviewParameters.SegmentOffsetY = 2;
             previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
 
             // If small map, change the picture box to center the image 

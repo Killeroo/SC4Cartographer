@@ -12,19 +12,20 @@ namespace SC4CartographerUI
 {
     public partial class PropertiesForm : Form
     {
-        private MapCreationParameters modifiedParameters = new MapCreationParameters();
         private MapCreationParameters originalParameters = new MapCreationParameters();
         private MainForm parentForm;
         private bool confirmedChanged = false;
-
 
         public PropertiesForm(MapCreationParameters p, MainForm main)
         {
             InitializeComponent();
 
-            modifiedParameters = new MapCreationParameters(p);
+            // Save original parameters to revert to
             originalParameters = new MapCreationParameters(p);
+
+            // Save form to send parameters to
             parentForm = main;
+
             SetUIValuesUsingParameters(p);
         }
 
@@ -55,7 +56,7 @@ namespace SC4CartographerUI
             ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
 
             OutputPathTextbox.Text = parameters.OutputPath;
-            if (modifiedParameters.OutputFormat == OutFormat.PNG)
+            if (parameters.OutputFormat == OutFormat.PNG)
             {
                 PNGRadioButton.Checked = true;
                 JPEGRadioButton.Checked = false;
