@@ -28,7 +28,6 @@ namespace SC4CartographerUI
             "SimCity 4", 
             "Regions");
 
-        private MapCreationParameters mapCreationParameters = new MapCreationParameters();
         private Bitmap previewNormalMapBitmap;
         private Bitmap previewZoomedMapBitmap;
         private bool previewZoomed = false;
@@ -36,20 +35,29 @@ namespace SC4CartographerUI
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
 
+        struct Map
+        {
+            public SC4SaveFile Save;
+            public MapCreationParameters Parameters;
+        }
+        Map map = new Map();
+
         public MainForm()
         {
             InitializeComponent();
             //logger = new RichTextBoxLogger(LogTextBox);
             fileLogger = new FileLogger();
+
+            map.Parameters = new MapCreationParameters();
         }
 
         #region Form functionality
 
         public void SetMapCreationParameters(MapCreationParameters parameters)
         {
-            mapCreationParameters = parameters;
+            map.Parameters = parameters;
 
-            LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
+            LoadSaveGame(map.Save.FilePath);
         }
 
         /// <summary>
@@ -58,26 +66,26 @@ namespace SC4CartographerUI
         public void GenerateMapPreview()
         {
             // Generate normal preview image
-            MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(mapCreationParameters);
+            MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
             //normalMapPreviewParameters.GridSegmentSize = 5;// 4;
             //normalMapPreviewParameters.SegmentPaddingX = 2;
             //normalMapPreviewParameters.SegmentPaddingY = 2;
             //normalMapPreviewParameters.SegmentOffsetX = 1;
             //normalMapPreviewParameters.SegmentOffsetY = 1;
-            previewNormalMapBitmap = MapRenderer.CreateMapBitmap(normalMapPreviewParameters);
+            previewNormalMapBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
 
             // Generate zoomed preview image
-            MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(mapCreationParameters);
+            MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
             zoomedMapPreviewParameters.GridSegmentSize = 10;
             //zoomedMapPreviewParameters.SegmentPaddingX = 4;
             //zoomedMapPreviewParameters.SegmentPaddingY = 4;
             //zoomedMapPreviewParameters.SegmentOffsetX = 2;
             //zoomedMapPreviewParameters.SegmentOffsetY = 2;
-            previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(zoomedMapPreviewParameters);
+            previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
 
             // If small map, change the picture box to center the image 
             // (we need to switch this back for other maps so the scrollbars appear)
-            if (mapCreationParameters.SaveFile.GetRegionViewSubfile().CitySizeX == 64)
+            if (map.Save.GetRegionViewSubfile().CitySizeX == 64)
             {
                 MapPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             }
@@ -155,7 +163,7 @@ namespace SC4CartographerUI
             }
 
             // Save seems to load alright, copy it over to out map creation parameters
-            mapCreationParameters.SaveFile = save;
+            map.Save = save;
 
             try
             {
@@ -189,7 +197,7 @@ namespace SC4CartographerUI
 
         public string GenerateDefaultMapFilename()
         {
-            string savefile = Path.GetFileNameWithoutExtension(mapCreationParameters.SaveFile.FilePath);
+            string savefile = Path.GetFileNameWithoutExtension(map.Save.FilePath);
             savefile = savefile.Replace("City - ", "");
             return savefile;
         }
@@ -203,7 +211,7 @@ namespace SC4CartographerUI
 
             // Get current extension
             string extension = "";
-            switch (mapCreationParameters.OutputFormat)
+            switch (map.Parameters.OutputFormat)
             {
                 case OutFormat.PNG:
                     extension = ".png";
@@ -234,10 +242,10 @@ namespace SC4CartographerUI
             {
                 // Get the bitmap (this time we actually generate it from what the user inputted
                 // not what we needed when we were generating the preview)
-                Bitmap outBitmap = MapRenderer.CreateMapBitmap(mapCreationParameters);
+                Bitmap outBitmap = MapRenderer.CreateMapBitmap(map.Save, map.Parameters);
 
                 // Actually save out the image
-                switch (mapCreationParameters.OutputFormat)
+                switch (map.Parameters.OutputFormat)
                 {
                     case OutFormat.PNG:
                         outBitmap.Save(currentFilename, ImageFormat.Png);
@@ -411,7 +419,7 @@ namespace SC4CartographerUI
         private void SaveButton_Click(object sender, EventArgs e)
         {
             string name = GenerateDefaultMapFilename();
-            SaveMap(mapCreationParameters.OutputPath, name);
+            SaveMap(map.Parameters.OutputPath, name);
         }
 
         /// <summary>
@@ -448,7 +456,7 @@ namespace SC4CartographerUI
             }
 
             // Set current path as output path
-            mapCreationParameters.OutputPath = Directory.GetCurrentDirectory();
+            map.Parameters.OutputPath = Directory.GetCurrentDirectory();
 
         }
 
@@ -611,7 +619,7 @@ namespace SC4CartographerUI
 
         private void PropertiesButton_Click(object sender, EventArgs e)
         {
-            var propertiesForm = new PropertiesForm(mapCreationParameters, this);
+            var propertiesForm = new PropertiesForm(map.Parameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
             propertiesForm.Show();
 
@@ -653,7 +661,7 @@ namespace SC4CartographerUI
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string name = GenerateDefaultMapFilename();
-            SaveMap(mapCreationParameters.OutputPath, name);
+            SaveMap(map.Parameters.OutputPath, name);
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -717,12 +725,12 @@ namespace SC4CartographerUI
         }
         private void mapAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var propertiesForm = new PropertiesForm(mapCreationParameters, this);
+            var propertiesForm = new PropertiesForm(map.Parameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
             propertiesForm.ShowDialog();
 
             // Generate map again
-            LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
+            LoadSaveGame(map.Save.FilePath);
         }
 
         private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)

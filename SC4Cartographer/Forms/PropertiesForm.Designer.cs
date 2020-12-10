@@ -884,6 +884,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Map Properties";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PropertiesForm_OnFormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PropertiesForm_OnKeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

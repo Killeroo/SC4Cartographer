@@ -8,16 +8,17 @@ using System.Drawing.Imaging;
 using System.IO;
 
 using SC4Parser;
+using SC4Parser.Files;
 
 namespace SC4CartographerUI
 {
     class MapRenderer
     {
         // Create a map from MapCreationParameters
-        public static Bitmap CreateMapBitmap(MapCreationParameters parameters)
+        public static Bitmap CreateMapBitmap(SC4SaveFile save, MapCreationParameters parameters)
         {
-            int gridSizeX = (int) parameters.SaveFile.GetRegionViewSubfile().CitySizeX;
-            int gridSizeY = (int) parameters.SaveFile.GetRegionViewSubfile().CitySizeY;
+            int gridSizeX = (int) save.GetRegionViewSubfile().CitySizeX;
+            int gridSizeY = (int) save.GetRegionViewSubfile().CitySizeY;
 
             Bitmap bmp = new Bitmap(
                 gridSizeX * parameters.GridSegmentSize + 1,
@@ -31,7 +32,7 @@ namespace SC4CartographerUI
                 gridLinesPen.Width = 1;
                 zoneOutlinePen.Width = 1;
                     
-                foreach (var lot in parameters.SaveFile.GetLotSubfile().Lots)
+                foreach (var lot in save.GetLotSubfile().Lots)
                 {
                     Rectangle rect = new Rectangle();
 

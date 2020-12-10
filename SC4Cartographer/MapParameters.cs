@@ -44,12 +44,9 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
-        public SC4SaveFile SaveFile;
-
         public MapCreationParameters() { }
         public MapCreationParameters(MapCreationParameters parameters)
         {
-            SaveFile = parameters.SaveFile;
             OutputPath = parameters.OutputPath;
             OutputFormat = parameters.OutputFormat;
             ShowGridLines = parameters.ShowGridLines;

@@ -15,45 +15,46 @@ namespace SC4CartographerUI
         private MapCreationParameters modifiedParameters = new MapCreationParameters();
         private MapCreationParameters originalParameters = new MapCreationParameters();
         private MainForm parentForm;
+        private bool confirmedChanged = false;
 
 
         public PropertiesForm(MapCreationParameters p, MainForm main)
         {
             InitializeComponent();
 
-            modifiedParameters = p;
+            modifiedParameters = new MapCreationParameters(p);
             originalParameters = new MapCreationParameters(p);
             parentForm = main;
-            SetUIValuesUsingParameters();
+            SetUIValuesUsingParameters(p);
         }
 
-        private void SetUIValuesUsingParameters()
+        private void SetUIValuesUsingParameters(MapCreationParameters parameters)
         {
-            GridBackgroundTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.Background];
-            GridLinesTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.GridLines];
-            BuildingsTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.PloppedBuilding];
-            ZoneOutlinesTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.ZoneOutline];
-            MilitaryTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.Military];
-            AirportsTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.Airport];
-            SeaportTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.Seaport];
-            SpaceportTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.Spaceport];
-            ResidentialZoneLowTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.ResidentialLow];
-            ResidentialZoneMidTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.ResidentialMid];
-            ResidentialZoneHighTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.ResidentialHigh];
-            CommercialZoneLowTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.CommercialLow];
-            CommercialZoneMidTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.CommercialMid];
-            CommercialZoneHighTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.CommercialHigh];
-            IndustrialZoneLowTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.IndustrialLow];
-            IndustrialZoneMidTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.IndustrialMid];
-            IndustrialZoneHighTextbox.BackColor = modifiedParameters.ColorDictionary[MapColorObject.IndustrialHigh];
+            GridBackgroundTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Background];
+            GridLinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.GridLines];
+            BuildingsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+            ZoneOutlinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ZoneOutline];
+            MilitaryTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Military];
+            AirportsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Airport];
+            SeaportTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Seaport];
+            SpaceportTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Spaceport];
+            ResidentialZoneLowTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ResidentialLow];
+            ResidentialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ResidentialMid];
+            ResidentialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ResidentialHigh];
+            CommercialZoneLowTextbox.BackColor = parameters.ColorDictionary[MapColorObject.CommercialLow];
+            CommercialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.CommercialMid];
+            CommercialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.CommercialHigh];
+            IndustrialZoneLowTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialLow];
+            IndustrialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialMid];
+            IndustrialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
 
-            GridSegmentSizeNumericUpDown.Value = modifiedParameters.GridSegmentSize;
-            SegmentPaddingNumericUpDown.Value = modifiedParameters.SegmentPaddingX;
-            SegmentOffsetNumericUpDown.Value = modifiedParameters.SegmentOffsetX;
-            ShowGridLinesCheckbox.Checked = modifiedParameters.ShowGridLines;
-            ShowZoneOutlinesCheckbox.Checked = modifiedParameters.ShowZoneOutlines;
+            GridSegmentSizeNumericUpDown.Value = parameters.GridSegmentSize;
+            SegmentPaddingNumericUpDown.Value = parameters.SegmentPaddingX;
+            SegmentOffsetNumericUpDown.Value = parameters.SegmentOffsetX;
+            ShowGridLinesCheckbox.Checked = parameters.ShowGridLines;
+            ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
 
-            OutputPathTextbox.Text = modifiedParameters.OutputPath;
+            OutputPathTextbox.Text = parameters.OutputPath;
             if (modifiedParameters.OutputFormat == OutFormat.PNG)
             {
                 PNGRadioButton.Checked = true;
@@ -66,59 +67,64 @@ namespace SC4CartographerUI
             }
 
         }
-        private void GetParametersFromUIValues()
+        private MapCreationParameters GetParametersFromUIValues()
         {
-            modifiedParameters.ColorDictionary[MapColorObject.Background] = GridBackgroundTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.GridLines] = GridLinesTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.PloppedBuilding] = BuildingsTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.ZoneOutline] = ZoneOutlinesTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.Military] = MilitaryTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.Airport] = AirportsTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.Seaport] = SeaportTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.Spaceport] = SpaceportTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialLow] = ResidentialZoneLowTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialMid] = ResidentialZoneMidTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialHigh] = ResidentialZoneHighTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.CommercialLow] = CommercialZoneLowTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.CommercialMid] = CommercialZoneMidTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.CommercialHigh] = CommercialZoneHighTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.IndustrialLow] = IndustrialZoneLowTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.IndustrialMid] = IndustrialZoneMidTextbox.BackColor;
-            modifiedParameters.ColorDictionary[MapColorObject.IndustrialHigh] = IndustrialZoneHighTextbox.BackColor;
+            MapCreationParameters parameters = new MapCreationParameters();
 
-            modifiedParameters.GridSegmentSize = (int) GridSegmentSizeNumericUpDown.Value;
-            modifiedParameters.SegmentPaddingX = (int)SegmentPaddingNumericUpDown.Value;
-            modifiedParameters.SegmentPaddingY = (int)SegmentPaddingNumericUpDown.Value;
-            modifiedParameters.SegmentOffsetX = (int)SegmentOffsetNumericUpDown.Value;
-            modifiedParameters.SegmentOffsetY = (int)SegmentOffsetNumericUpDown.Value;
-            modifiedParameters.ShowGridLines = ShowGridLinesCheckbox.Checked;
-            modifiedParameters.ShowZoneOutlines = ShowZoneOutlinesCheckbox.Checked;
-
-            modifiedParameters.OutputPath = OutputPathTextbox.Text;
+            parameters.ColorDictionary[MapColorObject.Background] = GridBackgroundTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.GridLines] = GridLinesTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.PloppedBuilding] = BuildingsTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.ZoneOutline] = ZoneOutlinesTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Military] = MilitaryTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Airport] = AirportsTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Seaport] = SeaportTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Spaceport] = SpaceportTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.ResidentialLow] = ResidentialZoneLowTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.ResidentialMid] = ResidentialZoneMidTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.ResidentialHigh] = ResidentialZoneHighTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.CommercialLow] = CommercialZoneLowTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.CommercialMid] = CommercialZoneMidTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.CommercialHigh] = CommercialZoneHighTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.IndustrialLow] = IndustrialZoneLowTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.IndustrialMid] = IndustrialZoneMidTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.IndustrialHigh] = IndustrialZoneHighTextbox.BackColor;
+            
+            parameters.GridSegmentSize = (int) GridSegmentSizeNumericUpDown.Value;
+            parameters.SegmentPaddingX = (int)SegmentPaddingNumericUpDown.Value;
+            parameters.SegmentPaddingY = (int)SegmentPaddingNumericUpDown.Value;
+            parameters.SegmentOffsetX = (int)SegmentOffsetNumericUpDown.Value;
+            parameters.SegmentOffsetY = (int)SegmentOffsetNumericUpDown.Value;
+            parameters.ShowGridLines = ShowGridLinesCheckbox.Checked;
+            parameters.ShowZoneOutlines = ShowZoneOutlinesCheckbox.Checked;
+            
+            parameters.OutputPath = OutputPathTextbox.Text;
             if (PNGRadioButton.Checked)
             {
-                modifiedParameters.OutputFormat = OutFormat.PNG;
+                parameters.OutputFormat = OutFormat.PNG;
             }
             else
             {
-                modifiedParameters.OutputFormat = OutFormat.JPEG;
+                parameters.OutputFormat = OutFormat.JPEG;
             }
+
+            return parameters;
         }
 
         #region UI Event Callbacks
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialHigh] = Color.Pink;
-            //modifiedParameters = originalParameters;
-            parentForm.SetMapCreationParameters(originalParameters);
             Close();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            GetParametersFromUIValues();
-            parentForm.SetMapCreationParameters(modifiedParameters);
+            MapCreationParameters p = GetParametersFromUIValues();
+            parentForm.SetMapCreationParameters(p);
+
+            // This makes sure that we don't reverse the changes when the form closes
+            confirmedChanged = true;
+
             Close();
         }
 
@@ -212,8 +218,7 @@ namespace SC4CartographerUI
             {
                 ResidentialZoneHighTextbox.BackColor = colorDialog.Color;
 
-                GetParametersFromUIValues();
-                parentForm.SetMapCreationParameters(modifiedParameters);
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -382,38 +387,24 @@ namespace SC4CartographerUI
         }
         private void RestoreDefaultsButton_Click(object sender, EventArgs e)
         {
+            MapCreationParameters currentParameters = GetParametersFromUIValues();
             MapCreationParameters pristineParameters = new MapCreationParameters();
 
-            modifiedParameters.ColorDictionary[MapColorObject.Background] = pristineParameters.ColorDictionary[MapColorObject.Background];
-            modifiedParameters.ColorDictionary[MapColorObject.GridLines] = pristineParameters.ColorDictionary[MapColorObject.GridLines];
-            modifiedParameters.ColorDictionary[MapColorObject.PloppedBuilding] = pristineParameters.ColorDictionary[MapColorObject.PloppedBuilding];
-            modifiedParameters.ColorDictionary[MapColorObject.ZoneOutline] = pristineParameters.ColorDictionary[MapColorObject.ZoneOutline];
-            modifiedParameters.ColorDictionary[MapColorObject.Military] = pristineParameters.ColorDictionary[MapColorObject.Military];
-            modifiedParameters.ColorDictionary[MapColorObject.Airport] = pristineParameters.ColorDictionary[MapColorObject.Airport];
-            modifiedParameters.ColorDictionary[MapColorObject.Seaport] = pristineParameters.ColorDictionary[MapColorObject.Seaport];
-            modifiedParameters.ColorDictionary[MapColorObject.Spaceport] = pristineParameters.ColorDictionary[MapColorObject.Spaceport];
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialLow] = pristineParameters.ColorDictionary[MapColorObject.ResidentialLow];
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialMid] = pristineParameters.ColorDictionary[MapColorObject.ResidentialMid];
-            modifiedParameters.ColorDictionary[MapColorObject.ResidentialHigh] = pristineParameters.ColorDictionary[MapColorObject.ResidentialHigh];
-            modifiedParameters.ColorDictionary[MapColorObject.CommercialLow] = pristineParameters.ColorDictionary[MapColorObject.CommercialLow];
-            modifiedParameters.ColorDictionary[MapColorObject.CommercialMid] = pristineParameters.ColorDictionary[MapColorObject.CommercialMid];
-            modifiedParameters.ColorDictionary[MapColorObject.CommercialHigh] = pristineParameters.ColorDictionary[MapColorObject.CommercialHigh];
-            modifiedParameters.ColorDictionary[MapColorObject.IndustrialLow] = pristineParameters.ColorDictionary[MapColorObject.IndustrialLow];
-            modifiedParameters.ColorDictionary[MapColorObject.IndustrialMid] = pristineParameters.ColorDictionary[MapColorObject.IndustrialMid];
-            modifiedParameters.ColorDictionary[MapColorObject.IndustrialHigh] = pristineParameters.ColorDictionary[MapColorObject.IndustrialHigh];
-
-            modifiedParameters.GridSegmentSize = pristineParameters.GridSegmentSize;
-            modifiedParameters.SegmentPaddingX = pristineParameters.SegmentPaddingX;
-            modifiedParameters.SegmentPaddingY = pristineParameters.SegmentPaddingY;
-            modifiedParameters.SegmentOffsetX = pristineParameters.SegmentOffsetX;
-            modifiedParameters.SegmentOffsetY = pristineParameters.SegmentOffsetY;
-            modifiedParameters.ShowGridLines = pristineParameters.ShowGridLines;
-            modifiedParameters.ShowZoneOutlines = pristineParameters.ShowZoneOutlines;
-
-            SetUIValuesUsingParameters();
+            // Copy over the output path
+            pristineParameters.OutputPath = currentParameters.OutputPath;
+            
+            SetUIValuesUsingParameters(pristineParameters);
         }
 
         #endregion
 
+        private void PropertiesForm_OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // If the changes haven't been confirmed (using the OK button) then revert them to what they originally were
+            if (confirmedChanged == false)
+            {
+                SetUIValuesUsingParameters(originalParameters);
+            }
+        }
     }
 }
