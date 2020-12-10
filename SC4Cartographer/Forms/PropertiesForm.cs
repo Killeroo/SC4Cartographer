@@ -19,6 +19,11 @@ namespace SC4CartographerUI
         public PropertiesForm(MapCreationParameters p, MainForm main)
         {
             InitializeComponent();
+            
+            SetUIValuesUsingParameters(p);
+
+            // Register UI events _after_ setting up the ui values to avoid firing off a load of callbacks
+            RegisterEvents();
 
             // Save original parameters to revert to
             originalParameters = new MapCreationParameters(p);
@@ -26,7 +31,6 @@ namespace SC4CartographerUI
             // Save form to send parameters to
             parentForm = main;
 
-            SetUIValuesUsingParameters(p);
         }
 
         private void SetUIValuesUsingParameters(MapCreationParameters parameters)
@@ -148,6 +152,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 GridBackgroundTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -162,6 +169,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 GridLinesTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -176,6 +186,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 BuildingsTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -190,6 +203,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 ResidentialZoneLowTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -204,6 +220,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 ResidentialZoneMidTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -235,6 +254,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 CommercialZoneLowTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -249,6 +271,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 CommercialZoneMidTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -263,6 +288,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 CommercialZoneHighTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -277,6 +305,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 IndustrialZoneLowTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -291,6 +322,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 IndustrialZoneMidTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -305,6 +339,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 IndustrialZoneHighTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -319,6 +356,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 ZoneOutlinesTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -333,6 +373,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 MilitaryTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -347,6 +390,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 AirportsTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -361,6 +407,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 SeaportTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -375,6 +424,9 @@ namespace SC4CartographerUI
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 SeaportTextbox.BackColor = colorDialog.Color;
+
+                // Refresh map on main form
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
             }
         }
 
@@ -396,13 +448,42 @@ namespace SC4CartographerUI
             pristineParameters.OutputPath = currentParameters.OutputPath;
             
             SetUIValuesUsingParameters(pristineParameters);
+            parentForm.SetMapCreationParameters(pristineParameters);
         }
+        private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            // Refresh map on main form
+            parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+        }
+
+        private void SegmentPaddingNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+        }
+
+        private void SegmentOffsetNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+        }
+
+        private void ShowGridLinesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShowGridLinesCheckbox.Checked)
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+        }
+
+        private void ShowZoneOutlinesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShowZoneOutlinesCheckbox.Checked)
+                parentForm.SetMapCreationParameters(GetParametersFromUIValues());
+        }
+
         private void PropertiesForm_OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // If the changes haven't been confirmed (using the OK button) then revert them to what they originally were
             if (confirmedChanged == false)
             {
-                SetUIValuesUsingParameters(originalParameters);
+                parentForm.SetMapCreationParameters(originalParameters);
             }
         }
 

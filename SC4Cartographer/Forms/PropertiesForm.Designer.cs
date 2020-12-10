@@ -293,7 +293,6 @@
             this.SpaceportEditButton.TabIndex = 56;
             this.SpaceportEditButton.Text = "Edit";
             this.SpaceportEditButton.UseVisualStyleBackColor = true;
-            this.SpaceportEditButton.Click += new System.EventHandler(this.SpaceportEditButton_Click);
             // 
             // label23
             // 
@@ -321,7 +320,6 @@
             this.SeaportsEditButton.TabIndex = 53;
             this.SeaportsEditButton.Text = "Edit";
             this.SeaportsEditButton.UseVisualStyleBackColor = true;
-            this.SeaportsEditButton.Click += new System.EventHandler(this.SeaportsEditButton_Click);
             // 
             // label19
             // 
@@ -349,7 +347,6 @@
             this.AirportsEditButton.TabIndex = 50;
             this.AirportsEditButton.Text = "Edit";
             this.AirportsEditButton.UseVisualStyleBackColor = true;
-            this.AirportsEditButton.Click += new System.EventHandler(this.AirportsEditButton_Click);
             // 
             // label18
             // 
@@ -377,7 +374,6 @@
             this.MilitaryEditButton.TabIndex = 47;
             this.MilitaryEditButton.Text = "Edit";
             this.MilitaryEditButton.UseVisualStyleBackColor = true;
-            this.MilitaryEditButton.Click += new System.EventHandler(this.MilitaryEditButton_Click);
             // 
             // label17
             // 
@@ -405,7 +401,6 @@
             this.ZoneOutlinesEditButton.TabIndex = 44;
             this.ZoneOutlinesEditButton.Text = "Edit";
             this.ZoneOutlinesEditButton.UseVisualStyleBackColor = true;
-            this.ZoneOutlinesEditButton.Click += new System.EventHandler(this.ZoneOutlinesEditButton_Click);
             // 
             // label16
             // 
@@ -433,7 +428,6 @@
             this.IndustrialZoneLowEditButton.TabIndex = 41;
             this.IndustrialZoneLowEditButton.Text = "Edit";
             this.IndustrialZoneLowEditButton.UseVisualStyleBackColor = true;
-            this.IndustrialZoneLowEditButton.Click += new System.EventHandler(this.IndustrialZoneLowEditButton_Click);
             // 
             // IndustrialZoneMidEditButton
             // 
@@ -443,7 +437,6 @@
             this.IndustrialZoneMidEditButton.TabIndex = 40;
             this.IndustrialZoneMidEditButton.Text = "Edit";
             this.IndustrialZoneMidEditButton.UseVisualStyleBackColor = true;
-            this.IndustrialZoneMidEditButton.Click += new System.EventHandler(this.IndustrialZoneMidEditButton_Click);
             // 
             // IndustrialZoneHighEditButton
             // 
@@ -453,7 +446,6 @@
             this.IndustrialZoneHighEditButton.TabIndex = 39;
             this.IndustrialZoneHighEditButton.Text = "Edit";
             this.IndustrialZoneHighEditButton.UseVisualStyleBackColor = true;
-            this.IndustrialZoneHighEditButton.Click += new System.EventHandler(this.IndustrialZoneHighEditButton_Click);
             // 
             // CommercialZoneHighEditButton
             // 
@@ -463,7 +455,6 @@
             this.CommercialZoneHighEditButton.TabIndex = 26;
             this.CommercialZoneHighEditButton.Text = "Edit";
             this.CommercialZoneHighEditButton.UseVisualStyleBackColor = true;
-            this.CommercialZoneHighEditButton.Click += new System.EventHandler(this.CommercialZoneHighEditButton_Click);
             // 
             // CommercialZoneMidEditButton
             // 
@@ -473,7 +464,6 @@
             this.CommercialZoneMidEditButton.TabIndex = 28;
             this.CommercialZoneMidEditButton.Text = "Edit";
             this.CommercialZoneMidEditButton.UseVisualStyleBackColor = true;
-            this.CommercialZoneMidEditButton.Click += new System.EventHandler(this.CommercialZoneMidEditButton_Click);
             // 
             // IndustrialZoneMidTextbox
             // 
@@ -492,7 +482,6 @@
             this.CommercialZoneLowEditButton.TabIndex = 27;
             this.CommercialZoneLowEditButton.Text = "Edit";
             this.CommercialZoneLowEditButton.UseVisualStyleBackColor = true;
-            this.CommercialZoneLowEditButton.Click += new System.EventHandler(this.CommercialZoneLowEditButton_Click);
             // 
             // IndustrialZoneHighTextbox
             // 
@@ -547,7 +536,6 @@
             this.GridLinesEditTextbox.TabIndex = 32;
             this.GridLinesEditTextbox.Text = "Edit";
             this.GridLinesEditTextbox.UseVisualStyleBackColor = true;
-            this.GridLinesEditTextbox.Click += new System.EventHandler(this.GridLinesEditTextbox_Click);
             // 
             // BuildingsEditButton
             // 
@@ -557,7 +545,6 @@
             this.BuildingsEditButton.TabIndex = 31;
             this.BuildingsEditButton.Text = "Edit";
             this.BuildingsEditButton.UseVisualStyleBackColor = true;
-            this.BuildingsEditButton.Click += new System.EventHandler(this.BuildingsEditButton_Click);
             // 
             // ResidentialZoneLowEditButton
             // 
@@ -567,7 +554,6 @@
             this.ResidentialZoneLowEditButton.TabIndex = 30;
             this.ResidentialZoneLowEditButton.Text = "Edit";
             this.ResidentialZoneLowEditButton.UseVisualStyleBackColor = true;
-            this.ResidentialZoneLowEditButton.Click += new System.EventHandler(this.ResidentialZoneLowEditButton_Click);
             // 
             // ResidentialZoneHighEditButton
             // 
@@ -577,7 +563,6 @@
             this.ResidentialZoneHighEditButton.TabIndex = 29;
             this.ResidentialZoneHighEditButton.Text = "Edit";
             this.ResidentialZoneHighEditButton.UseVisualStyleBackColor = true;
-            this.ResidentialZoneHighEditButton.Click += new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
             // 
             // ResidentialZoneMidEditButton
             // 
@@ -587,7 +572,6 @@
             this.ResidentialZoneMidEditButton.TabIndex = 25;
             this.ResidentialZoneMidEditButton.Text = "Edit";
             this.ResidentialZoneMidEditButton.UseVisualStyleBackColor = true;
-            this.ResidentialZoneMidEditButton.Click += new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
             // 
             // GridBackgroundEditButton
             // 
@@ -597,7 +581,6 @@
             this.GridBackgroundEditButton.TabIndex = 1;
             this.GridBackgroundEditButton.Text = "Edit";
             this.GridBackgroundEditButton.UseVisualStyleBackColor = true;
-            this.GridBackgroundEditButton.Click += new System.EventHandler(this.GridBackgroundEditButton_Click);
             // 
             // label12
             // 
@@ -884,8 +867,6 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Map Properties";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PropertiesForm_OnFormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PropertiesForm_OnKeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).EndInit();
@@ -897,6 +878,38 @@
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        /// <summary>
+        /// We seperated out registering events from their components creation so we can set the UI values without having 
+        /// their callbacks fire
+        /// </summary>
+        private void RegisterEvents()
+        {
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PropertiesForm_OnFormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PropertiesForm_OnKeyDown);
+            this.ShowZoneOutlinesCheckbox.CheckedChanged += new System.EventHandler(this.ShowZoneOutlinesCheckbox_CheckedChanged);
+            this.SegmentOffsetNumericUpDown.ValueChanged += new System.EventHandler(this.SegmentOffsetNumericUpDown_ValueChanged);
+            this.SegmentPaddingNumericUpDown.ValueChanged += new System.EventHandler(this.SegmentPaddingNumericUpDown_ValueChanged);
+            this.GridSegmentSizeNumericUpDown.ValueChanged += new System.EventHandler(this.GridSegmentSizeNumericUpDown_ValueChanged);
+            this.ShowGridLinesCheckbox.CheckedChanged += new System.EventHandler(this.ShowGridLinesCheckbox_CheckedChanged);
+            this.SpaceportEditButton.Click += new System.EventHandler(this.SpaceportEditButton_Click);
+            this.SeaportsEditButton.Click += new System.EventHandler(this.SeaportsEditButton_Click);
+            this.AirportsEditButton.Click += new System.EventHandler(this.AirportsEditButton_Click);
+            this.MilitaryEditButton.Click += new System.EventHandler(this.MilitaryEditButton_Click);
+            this.ZoneOutlinesEditButton.Click += new System.EventHandler(this.ZoneOutlinesEditButton_Click);
+            this.IndustrialZoneLowEditButton.Click += new System.EventHandler(this.IndustrialZoneLowEditButton_Click);
+            this.IndustrialZoneMidEditButton.Click += new System.EventHandler(this.IndustrialZoneMidEditButton_Click);
+            this.IndustrialZoneHighEditButton.Click += new System.EventHandler(this.IndustrialZoneHighEditButton_Click);
+            this.CommercialZoneHighEditButton.Click += new System.EventHandler(this.CommercialZoneHighEditButton_Click);
+            this.CommercialZoneMidEditButton.Click += new System.EventHandler(this.CommercialZoneMidEditButton_Click);
+            this.CommercialZoneLowEditButton.Click += new System.EventHandler(this.CommercialZoneLowEditButton_Click);
+            this.GridLinesEditTextbox.Click += new System.EventHandler(this.GridLinesEditTextbox_Click);
+            this.BuildingsEditButton.Click += new System.EventHandler(this.BuildingsEditButton_Click);
+            this.ResidentialZoneLowEditButton.Click += new System.EventHandler(this.ResidentialZoneLowEditButton_Click);
+            this.ResidentialZoneHighEditButton.Click += new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
+            this.ResidentialZoneMidEditButton.Click += new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
+            this.GridBackgroundEditButton.Click += new System.EventHandler(this.GridBackgroundEditButton_Click);
         }
 
         #endregion
