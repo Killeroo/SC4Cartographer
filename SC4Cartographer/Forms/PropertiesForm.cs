@@ -109,8 +109,8 @@ namespace SC4CartographerUI
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            //modifiedParameters.ColorDictionary[MapColorObject.ResidentialHigh] = Color.Pink;
-            modifiedParameters = originalParameters;
+            modifiedParameters.ColorDictionary[MapColorObject.ResidentialHigh] = Color.Pink;
+            //modifiedParameters = originalParameters;
             parentForm.SetMapCreationParameters(originalParameters);
             Close();
         }
