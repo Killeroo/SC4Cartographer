@@ -80,7 +80,9 @@ namespace SC4CartographerUI
 
             // If small map, change the picture box to center the image 
             // (we need to switch this back for other maps so the scrollbars appear)
-            if (map.Save.GetRegionViewSubfile().CitySizeX == 64)
+            // don't pick this mode if the grid segment size is bigger than 10
+            if (map.Save.GetRegionViewSubfile().CitySizeX == 64
+                && map.Parameters.GridSegmentSize < 10) 
             {
                 MapPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             }
@@ -279,6 +281,12 @@ namespace SC4CartographerUI
         public void TogglePreviewImage()
         {
             previewZoomed = !previewZoomed;
+
+            // Don't show preview image if the grid size is already bigger than the zoomed in size
+            if (map.Parameters.GridSegmentSize > 10)
+            {
+                return;
+            }
 
             if (previewZoomed)
             {
