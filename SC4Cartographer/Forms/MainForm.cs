@@ -61,7 +61,8 @@ namespace SC4CartographerUI
         {
             map.Parameters = parameters;
 
-            LoadSaveGame(map.Save.FilePath);
+            GenerateMapPreview();
+            //LoadSaveGame(map.Save.FilePath);
         }
 
         /// <summary>
