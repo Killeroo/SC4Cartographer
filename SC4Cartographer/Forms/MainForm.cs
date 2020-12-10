@@ -57,7 +57,7 @@ namespace SC4CartographerUI
         /// Sets map creation parameters and refreshes preview
         /// </summary>
         /// <param name="parameters"></param>
-        public void SetMapCreationParameters(MapCreationParameters parameters)
+        public void SetAndUpdateMapCreationParameters(MapCreationParameters parameters)
         {
             map.Parameters = parameters;
 
