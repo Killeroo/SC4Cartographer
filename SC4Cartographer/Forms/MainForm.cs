@@ -616,7 +616,7 @@ namespace SC4CartographerUI
         {
             var propertiesForm = new PropertiesForm(map.Parameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
-            propertiesForm.Show();
+            propertiesForm.Show(this);
 
             // Generate map again
             //LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
@@ -722,10 +722,10 @@ namespace SC4CartographerUI
         {
             var propertiesForm = new PropertiesForm(map.Parameters, this);
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
-            propertiesForm.ShowDialog();
+            propertiesForm.Show(this);
 
             // Generate map again
-            LoadSaveGame(map.Save.FilePath);
+            //LoadSaveGame(map.Save.FilePath);
         }
 
         private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
