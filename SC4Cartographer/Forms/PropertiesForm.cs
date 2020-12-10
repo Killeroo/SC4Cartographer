@@ -153,7 +153,6 @@ namespace SC4CartographerUI
             {
                 GridBackgroundTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -170,7 +169,6 @@ namespace SC4CartographerUI
             {
                 GridLinesTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -187,7 +185,6 @@ namespace SC4CartographerUI
             {
                 BuildingsTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -204,7 +201,6 @@ namespace SC4CartographerUI
             {
                 ResidentialZoneLowTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -221,7 +217,6 @@ namespace SC4CartographerUI
             {
                 ResidentialZoneMidTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -238,7 +233,6 @@ namespace SC4CartographerUI
             {
                 ResidentialZoneHighTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -255,7 +249,6 @@ namespace SC4CartographerUI
             {
                 CommercialZoneLowTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -272,7 +265,6 @@ namespace SC4CartographerUI
             {
                 CommercialZoneMidTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -289,7 +281,6 @@ namespace SC4CartographerUI
             {
                 CommercialZoneHighTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -306,7 +297,6 @@ namespace SC4CartographerUI
             {
                 IndustrialZoneLowTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -323,7 +313,6 @@ namespace SC4CartographerUI
             {
                 IndustrialZoneMidTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -340,7 +329,6 @@ namespace SC4CartographerUI
             {
                 IndustrialZoneHighTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -357,7 +345,6 @@ namespace SC4CartographerUI
             {
                 ZoneOutlinesTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -374,7 +361,6 @@ namespace SC4CartographerUI
             {
                 MilitaryTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -391,7 +377,6 @@ namespace SC4CartographerUI
             {
                 AirportsTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -408,7 +393,6 @@ namespace SC4CartographerUI
             {
                 SeaportTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -425,7 +409,6 @@ namespace SC4CartographerUI
             {
                 SeaportTextbox.BackColor = colorDialog.Color;
 
-                // Refresh map on main form
                 parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
             }
         }
@@ -452,7 +435,6 @@ namespace SC4CartographerUI
         }
         private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            // Refresh map on main form
             parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
         }
 
