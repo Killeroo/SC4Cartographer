@@ -20,13 +20,53 @@ namespace SC4CartographerUI
             int gridSizeX = (int) save.GetRegionViewSubfile().CitySizeX;
             int gridSizeY = (int) save.GetRegionViewSubfile().CitySizeY;
 
+            float[][] heightMap = save.GetTerrainMapSubfile().Map;
             Bitmap bmp = new Bitmap(
                 gridSizeX * parameters.GridSegmentSize + 1,
                 gridSizeY * parameters.GridSegmentSize + 1);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
+                float max = 0; //2500 max value
+                float min = 1000; // 20 min
+                for (int x = 0; x < gridSizeX; x++)
+                {
+                    for (int y = 0; y < gridSizeY; y++)
+                    {
+                        Rectangle rect = new Rectangle();
+                        rect = new Rectangle(
+                                (parameters.GridSegmentSize * x),
+                                (parameters.GridSegmentSize * y),
+                                (parameters.GridSegmentSize),
+                                (parameters.GridSegmentSize));
+
+                        float height = heightMap[y][x];
+                        Color c;
+                        if (height < 225)
+                        {
+                            c = Color.LightBlue;
+                        }
+                        else
+                        {
+                            float height_max = 2500;
+                            float height_min = 0;
+                            float color_max = 255;
+                            float color_min = 0;
+                            float color = (height - height_min) / (height_max - height_min) * (color_max - color_min) + color_min;
+
+                            c = Color.FromArgb((int)color, (int)color, (int)color);
+                        }
+
+                        if (height < min)
+                            min = height;
+                        if (height > max)
+                            max = height;
+                        
+                        g.FillRectangle(new SolidBrush(c), rect);
+                    }
+                }
+
+                //g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
                 Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
                 Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
                 gridLinesPen.Width = 1;
