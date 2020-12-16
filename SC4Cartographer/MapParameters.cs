@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.IO;
 
 using System.Drawing;
-
-using SC4Parser.DataStructures;
-using SC4Parser.Files;
-using System.Windows.Forms.VisualStyles;
 
 namespace SC4CartographerUI
 {
@@ -102,6 +97,83 @@ namespace SC4CartographerUI
         };
 
         #endregion
+
+        public void SaveToFile(string path)
+        {
+            List<string> properties = new List<string>();
+
+            // Get the properties as a list of strings
+            properties.Add("Version:1;");
+            properties.Add($"ShowGridLines:{(ShowGridLines ? "true" : "false")};");
+            properties.Add($"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};");
+            properties.Add($"GridSegmentSize:{GridSegmentSize};");
+            properties.Add($"SegmentPaddingX:{SegmentPaddingX};");
+            properties.Add($"SegmentPaddingY:{SegmentPaddingY};");
+            properties.Add($"SegmentOffsetX:{SegmentOffsetX};");
+            properties.Add($"SegmentOffsetY:{SegmentOffsetY};");
+            properties.Add($"Color@Background:{ColorDictionary[MapColorObject.Background].R},{ColorDictionary[MapColorObject.Background].G},{ColorDictionary[MapColorObject.Background].B};");
+            properties.Add($"Color@GridLines:{ColorDictionary[MapColorObject.GridLines].R},{ColorDictionary[MapColorObject.GridLines].G},{ColorDictionary[MapColorObject.GridLines].B};");
+            properties.Add($"Color@ZoneOutline:{ColorDictionary[MapColorObject.ZoneOutline].R},{ColorDictionary[MapColorObject.ZoneOutline].G},{ColorDictionary[MapColorObject.ZoneOutline].B};");
+            properties.Add($"Color@PloppedBuilding:{ColorDictionary[MapColorObject.PloppedBuilding].R},{ColorDictionary[MapColorObject.PloppedBuilding].G},{ColorDictionary[MapColorObject.PloppedBuilding].B};");
+            properties.Add($"Color@Military:{ColorDictionary[MapColorObject.Military].R},{ColorDictionary[MapColorObject.Military].G},{ColorDictionary[MapColorObject.Military].B};");
+            properties.Add($"Color@Airport:{ColorDictionary[MapColorObject.Airport].R},{ColorDictionary[MapColorObject.Airport].G},{ColorDictionary[MapColorObject.Airport].B};");
+            properties.Add($"Color@Seaport:{ColorDictionary[MapColorObject.Seaport].R},{ColorDictionary[MapColorObject.Seaport].G},{ColorDictionary[MapColorObject.Seaport].B};");
+            properties.Add($"Color@Spaceport:{ColorDictionary[MapColorObject.Spaceport].R},{ColorDictionary[MapColorObject.Spaceport].G},{ColorDictionary[MapColorObject.Spaceport].B};");
+            properties.Add($"Color@ResidentialHigh:{ColorDictionary[MapColorObject.ResidentialHigh].R},{ColorDictionary[MapColorObject.ResidentialHigh].G},{ColorDictionary[MapColorObject.ResidentialHigh].B};");
+            properties.Add($"Color@ResidentialMid:{ColorDictionary[MapColorObject.ResidentialMid].R},{ColorDictionary[MapColorObject.ResidentialMid].G},{ColorDictionary[MapColorObject.ResidentialMid].B};");
+            properties.Add($"Color@ResidentialLow:{ColorDictionary[MapColorObject.ResidentialLow].R},{ColorDictionary[MapColorObject.ResidentialLow].G},{ColorDictionary[MapColorObject.ResidentialLow].B};");
+            properties.Add($"Color@CommercialHigh:{ColorDictionary[MapColorObject.CommercialHigh].R},{ColorDictionary[MapColorObject.CommercialHigh].G},{ColorDictionary[MapColorObject.CommercialHigh].B};");
+            properties.Add($"Color@CommercialMid:{ColorDictionary[MapColorObject.CommercialMid].R},{ColorDictionary[MapColorObject.CommercialMid].G},{ColorDictionary[MapColorObject.CommercialMid].B};");
+            properties.Add($"Color@CommercialLow:{ColorDictionary[MapColorObject.CommercialLow].R},{ColorDictionary[MapColorObject.CommercialLow].G},{ColorDictionary[MapColorObject.CommercialLow].B};");
+            properties.Add($"Color@IndustrialHigh:{ColorDictionary[MapColorObject.IndustrialHigh].R},{ColorDictionary[MapColorObject.IndustrialHigh].G},{ColorDictionary[MapColorObject.IndustrialHigh].B};");
+            properties.Add($"Color@IndustrialMid:{ColorDictionary[MapColorObject.IndustrialMid].R},{ColorDictionary[MapColorObject.IndustrialMid].G},{ColorDictionary[MapColorObject.IndustrialMid].B};");
+            properties.Add($"Color@IndustrialLow:{ColorDictionary[MapColorObject.IndustrialLow].R},{ColorDictionary[MapColorObject.IndustrialLow].G},{ColorDictionary[MapColorObject.IndustrialLow].B};");
+
+            // Write each properties to a line in a file
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (string property in properties)
+                {
+                    writer.WriteLine(property);
+                }
+            }
+        }
+
+        public void LoadFromFile(string path)
+        {
+            List<string> properties = new List<string>();
+
+            string data = "";
+            using (StreamReader reader = new StreamReader(path))
+            {
+                if ()
+            }
+
+            properties = data.Split(';').ToList();
+
+            int version = 0;
+            foreach (string property in properties)
+            {
+                if (property.ToLower().Contains("version"))
+                    version = int.Parse(property.Replace(";", "").Split(':').Last());
+            }
+
+            if (version == 0)
+            {
+                // Could not find version
+            }
+
+            if (version > 1)
+            {
+                // too high a version
+            }
+
+
+
+
+
+
+        }
 
     }
 }
