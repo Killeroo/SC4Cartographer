@@ -49,6 +49,8 @@ namespace SC4CartographerUI
             fileLogger = new FileLogger();
 
             map.Parameters = new MapCreationParameters();
+            map.Parameters.SaveToFile("test.txt");
+            map.Parameters.LoadFromFile("test.txt");
         }
 
         #region Form functionality
@@ -452,7 +454,7 @@ namespace SC4CartographerUI
                 }
 
                 // Found a good save, load it
-                LoadSaveGame(path);
+                LoadSaveGame(path);// @"C:\Users\mcarney\Documents\SimCity 4\Regions\London\City - Kensington.sc4");
             }
             else
             {

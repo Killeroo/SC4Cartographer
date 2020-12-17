@@ -141,32 +141,32 @@ namespace SC4CartographerUI
 
         public void LoadFromFile(string path)
         {
-            List<string> properties = new List<string>();
+            Dictionary<string, string> properties = new Dictionary<string, string>();
 
-            string data = "";
+            string line = "";
             using (StreamReader reader = new StreamReader(path))
             {
-                if ()
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Split the line via ':'
+                    string[] lineData = line.Replace(";", "").Split(':');
+
+                    // Add line info to properties dictionary
+                    // (first part is the property name, second part is property value)
+                    properties.Add(lineData.First().ToLower(), lineData.Last().ToLower());
+                }
             }
+            
 
-            properties = data.Split(';').ToList();
-
-            int version = 0;
-            foreach (string property in properties)
-            {
-                if (property.ToLower().Contains("version"))
-                    version = int.Parse(property.Replace(";", "").Split(':').Last());
-            }
-
-            if (version == 0)
+            if (properties["version"] == "")
             {
                 // Could not find version
             }
 
-            if (version > 1)
-            {
-                // too high a version
-            }
+            //if (version > 1)
+            //{
+            //    // too high a version
+            //}
 
 
 
