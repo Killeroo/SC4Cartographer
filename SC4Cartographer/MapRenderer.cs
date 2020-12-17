@@ -53,19 +53,19 @@ namespace SC4CartographerUI
                         {
                             c = Color.FromArgb(61, 102, 180);
                         }
-                        else if (height <= 225)
+                        else if (height <= 240)
                         {
-                            float red = Map(height, 200, 225, 61, 94);
-                            float green = Map(height, 200, 225, 102, 129);
-                            float blue = Map(height, 200, 225, 180, 170);
+                            float red = Map(height, 200, 240, 61, 94);
+                            float green = Map(height, 200, 240, 102, 129);
+                            float blue = Map(height, 200, 240, 180, 170);
 
                             c = Color.FromArgb((int)red, (int)green, (int)blue);
                         }
                         else if (height <= 275)
                         {
-                            float red = Map(height, 225, 275, 140, 79);//115);
-                            float green = Map(height, 225, 275, 142, 118);//148);
-                            float blue = Map(height, 225, 275, 131, 48);//118);
+                            float red = Map(height, 240, 275, 140, 79);//115);
+                            float green = Map(height, 240, 275, 142, 118);//148);
+                            float blue = Map(height, 240, 275, 131, 48);//118);
 
                             c = Color.FromArgb((int)red, (int)green, (int)blue);
                         }
