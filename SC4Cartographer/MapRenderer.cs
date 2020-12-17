@@ -14,6 +14,11 @@ namespace SC4CartographerUI
 {
     class MapRenderer
     {
+        public static float Map(float value, float valueMin, float valueMax, float outMin, float outMax)
+        {
+            return (value - valueMin) / (valueMax - valueMin) * (outMax - outMin) + outMin;
+        }
+
         // Create a map from MapCreationParameters
         public static Bitmap CreateMapBitmap(SC4SaveFile save, MapCreationParameters parameters)
         {
@@ -42,9 +47,43 @@ namespace SC4CartographerUI
 
                         float height = heightMap[y][x];
                         Color c;
-                        if (height < 225)
+
+
+                        if (height < 200)
                         {
-                            c = Color.LightBlue;
+                            c = Color.FromArgb(61, 102, 180);
+                        }
+                        else if (height <= 225)
+                        {
+                            float red = Map(height, 200, 225, 61, 94);
+                            float green = Map(height, 200, 225, 102, 129);
+                            float blue = Map(height, 200, 225, 180, 170);
+
+                            c = Color.FromArgb((int)red, (int)green, (int)blue);
+                        }
+                        else if (height <= 275)
+                        {
+                            float red = Map(height, 225, 275, 140, 79);//115);
+                            float green = Map(height, 225, 275, 142, 118);//148);
+                            float blue = Map(height, 225, 275, 131, 48);//118);
+
+                            c = Color.FromArgb((int)red, (int)green, (int)blue);
+                        }
+                        else if (height <= 350)
+                        {
+                            float red = Map(height, 275, 350, 79, 107);
+                            float green = Map(height, 275, 350, 118, 157);
+                            float blue = Map(height, 275, 350, 48, 130);
+
+                            c = Color.FromArgb((int)red, (int)green, (int)blue);
+                        }
+                        else if (height <= 500)
+                        {
+                            float red = Map(height, 350, 500, 107, 149);
+                            float green = Map(height, 350, 500, 157, 137);
+                            float blue = Map(height, 350, 500, 130, 104);
+
+                            c = Color.FromArgb((int)red, (int)green, (int)blue);
                         }
                         else
                         {
