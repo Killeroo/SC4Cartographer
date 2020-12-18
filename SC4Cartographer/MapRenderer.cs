@@ -34,6 +34,10 @@ namespace SC4CartographerUI
             {
                 float max = 0; //2500 max value
                 float min = 1000; // 20 min
+
+                Color deepWaterColor = Color.FromArgb(61, 102, 180);
+                Color shallowWaterColor = Color.FromArgb(94, 129, 170);
+
                 for (int x = 0; x < gridSizeX; x++)
                 {
                     for (int y = 0; y < gridSizeY; y++)
@@ -48,16 +52,15 @@ namespace SC4CartographerUI
                         float height = heightMap[y][x];
                         Color c;
 
-
                         if (height < 200)
                         {
-                            c = Color.FromArgb(61, 102, 180);
+                            c = deepWaterColor;
                         }
                         else if (height <= 240)
                         {
-                            float red = Map(height, 200, 240, 61, 94);
-                            float green = Map(height, 200, 240, 102, 129);
-                            float blue = Map(height, 200, 240, 180, 170);
+                            float red = Map(height, 200, 240, deepWaterColor.R, shallowWaterColor.R);
+                            float green = Map(height, 200, 240, deepWaterColor.G, shallowWaterColor.G);
+                            float blue = Map(height, 200, 240, deepWaterColor.B, shallowWaterColor.B);
 
                             c = Color.FromArgb((int)red, (int)green, (int)blue);
                         }
@@ -95,11 +98,6 @@ namespace SC4CartographerUI
 
                             c = Color.FromArgb((int)color, (int)color, (int)color);
                         }
-
-                        if (height < min)
-                            min = height;
-                        if (height > max)
-                            max = height;
                         
                         g.FillRectangle(new SolidBrush(c), rect);
                     }
