@@ -141,6 +141,9 @@ namespace SC4CartographerUI
 
         public void LoadFromFile(string path)
         {
+            MapCreationParameters mapCreationParameters = new MapCreationParameters(this);
+            Dictionary<MapColorObject, Color> colors = ColorDictionary;
+
             Dictionary<string, string> properties = new Dictionary<string, string>();
 
             string line = "";
@@ -151,9 +154,12 @@ namespace SC4CartographerUI
                     // Split the line via ':'
                     string[] lineData = line.Replace(";", "").Split(':');
 
+                    string propertyKey = lineData.First().ToLower();
+                    string propertyValue = lineData.Last().ToLower();
+
                     // Add line info to properties dictionary
                     // (first part is the property name, second part is property value)
-                    properties.Add(lineData.First().ToLower(), lineData.Last().ToLower());
+                    properties.Add(propertyKey, propertyValue);
                 }
             }
             
@@ -163,16 +169,118 @@ namespace SC4CartographerUI
                 // Could not find version
             }
 
-            //if (version > 1)
-            //{
-            //    // too high a version
-            //}
+            if (int.Parse(properties["version"]) > 1)
+            {
+                // too high a version
+            }
 
+            foreach (var property in properties)
+            {
+                if (property.Key.Contains("colors@"))
+                {
+                    string colorKey = property.Key.Split('@').Last();
+                    string[] colorValues = property.Key.Split(',');
+                    int r = int.Parse(colorValues[0]);
+                    int g = int.Parse(colorValues[1]);
+                    int b = int.Parse(colorValues[2]);
+                    switch (colorKey)
+                    {
+                        case "Background":
+                            colors[MapColorObject.Background] = Color.FromArgb(r, g, b);
+                            break;
+                        case "GridLines":
+                            colors[MapColorObject.GridLines] = Color.FromArgb(r, g, b);
+                            break;
+                        case "ZoneOutline":
+                            colors[MapColorObject.ZoneOutline] = Color.FromArgb(r, g, b);
+                            break;
+                        case "PloppedBuilding":
+                            colors[MapColorObject.PloppedBuilding] = Color.FromArgb(r, g, b);
+                            break;
+                        case "Military":
+                            colors[MapColorObject.Military] = Color.FromArgb(r, g, b);
+                            break;
+                        case "Airport":
+                            colors[MapColorObject.Airport] = Color.FromArgb(r, g, b);
+                            break;
+                        case "Seaport":
+                            colors[MapColorObject.Seaport] = Color.FromArgb(r, g, b);
+                            break;
+                        case "Spaceport":
+                            colors[MapColorObject.Spaceport] = Color.FromArgb(r, g, b);
+                            break;
+                        case "ResidentialHigh":
+                            colors[MapColorObject.ResidentialHigh] = Color.FromArgb(r, g, b);
+                            break;
+                        case "ResidentialMid":
+                            colors[MapColorObject.ResidentialMid] = Color.FromArgb(r, g, b);
+                            break;
+                        case "ResidentialLow":
+                            colors[MapColorObject.ResidentialLow] = Color.FromArgb(r, g, b);
+                            break;
+                        case "CommercialHigh":
+                            colors[MapColorObject.CommercialHigh] = Color.FromArgb(r, g, b);
+                            break;
+                        case "CommercialMid":
+                            colors[MapColorObject.CommercialMid] = Color.FromArgb(r, g, b);
+                            break;
+                        case "CommercialLow":
+                            colors[MapColorObject.CommercialLow] = Color.FromArgb(r, g, b);
+                            break;
+                        case "IndustrialHigh":
+                            colors[MapColorObject.IndustrialHigh] = Color.FromArgb(r, g, b);
+                            break;
+                        case "IndustrialMid":
+                            colors[MapColorObject.IndustrialMid] = Color.FromArgb(r, g, b);
+                            break;
+                        case "IndustrialLow":
+                            colors[MapColorObject.IndustrialLow] = Color.FromArgb(r, g, b);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (property.Key)
+                    {
+                        case "ShowGridLines":
+                            if (property.Value == "true")
+                                mapCreationParameters.ShowGridLines = true;
+                            else
+                                mapCreationParameters.ShowGridLines = false;
+                            break;
+                        case "ShowZoneOutlines":
+                            if (property.Value == "true")
+                                mapCreationParameters.ShowZoneOutlines = true;
+                            else
+                                mapCreationParameters.ShowZoneOutlines = false;
+                            break;
+                        case "GridSegmentSize":
+                            mapCreationParameters.GridSegmentSize = int.Parse(property.Value);
+                            break;
+                        case "SegmentPaddingX":
+                            mapCreationParameters.SegmentPaddingX = int.Parse(property.Value);
+                            break;
+                        case "SegmentPaddingY":
+                            mapCreationParameters.SegmentPaddingY = int.Parse(property.Value);
+                            break;
+                        case "SegmentOffsetX":
+                            mapCreationParameters.SegmentOffsetX = int.Parse(property.Value);
+                            break;
+                        case "SegmentOffsetY":
+                            mapCreationParameters.SegmentOffsetY = int.Parse(property.Value);
+                            break;
+                    }
+                }
+            }
 
-
-
-
-
+            this.ColorDictionary = colors;
+            this.ShowGridLines = mapCreationParameters.ShowGridLines;
+            this.ShowZoneOutlines = mapCreationParameters.ShowZoneOutlines;
+            this.GridSegmentSize = mapCreationParameters.GridSegmentSize;
+            this.SegmentPaddingX = mapCreationParameters.SegmentPaddingX;
+            this.SegmentPaddingY = mapCreationParameters.SegmentPaddingY;
+            this.SegmentOffsetX = mapCreationParameters.SegmentOffsetX;
+            this.SegmentOffsetY = mapCreationParameters.SegmentOffsetY;
         }
 
     }
