@@ -79,6 +79,8 @@ namespace SC4CartographerUI
             // Generate zoomed preview image
             MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
             zoomedMapPreviewParameters.GridSegmentSize = 10;
+            zoomedMapPreviewParameters.SegmentPaddingX = 4;
+            zoomedMapPreviewParameters.SegmentPaddingY = 4;
             previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
 
             // If small map, change the picture box to center the image 
@@ -767,7 +769,25 @@ namespace SC4CartographerUI
             mapCreatedForm.ShowDialog();
         }
 
-        #endregion
+        private void UpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateInfo info = new UpdateInfo();
 
+            if (info.NewVersionAvailable)
+            {
+                var updateFormat = new UpdateForm(info, true);
+                updateFormat.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "You are using the most recent version of SC4Cartographer",
+                    "Up to date",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Asterisk);
+            }
+        }
+
+        #endregion
     }
 }
