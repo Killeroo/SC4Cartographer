@@ -6,12 +6,12 @@ using System.IO;
 
 namespace SC4CartographerUI
 {
-    public partial class MapErrorForm : Form
+    public partial class ErrorForm : Form
     {
         private string ExceptionText = "";
         private string ExceptionStackTrace = "";
 
-        public MapErrorForm(string title, string message, Exception exception, bool showInnerException)
+        public ErrorForm(string title, string message, Exception exception, bool showInnerException)
         {
             InitializeComponent();
             Text = title;
@@ -30,12 +30,12 @@ namespace SC4CartographerUI
             ErrorMessageTextbox.Text += exception.StackTrace;
         }
 
-        private void MapErrorForm_OnLoad(object sender, EventArgs e)
+        private void ErrorForm_OnLoad(object sender, EventArgs e)
         {
 
         }
 
-        private void MapErrorForm_OnPaint(object sender, PaintEventArgs e)
+        private void ErrorForm_OnPaint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawIcon(SystemIcons.Error, 16, 16);
         }

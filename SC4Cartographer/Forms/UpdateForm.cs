@@ -15,13 +15,13 @@ namespace SC4CartographerUI
     {
         UpdateInfo Update;
 
-        public UpdateForm(UpdateInfo update, bool CameFromMenuStrip = false)
+        public UpdateForm(UpdateInfo update)
         {
             InitializeComponent();
 
             // Populate form with update info
             Update = update;
-            UpdateLabel.Text = "Do you want to download " + update.Version.ToString() + "?";
+            UpdateLabel.Text = "Do you want to download v" + update.Version.ToString() + "?";
             ChangelogTextBox.Text = string.Format("{0} changelog {1}{2}{3}{4}",
                 update.Version.ToString(),
                 Environment.NewLine,
@@ -29,12 +29,18 @@ namespace SC4CartographerUI
                 Environment.NewLine,
                 update.Description);
 
-            // Disable the 'Don't show this again' checkbox if the user checks for an update
-            if (CameFromMenuStrip)
+            if (Properties.Settings.Default.FirstTimeUpdatePrompt)
             {
-                DoNotShowAgainCheckbox.Visible = false;
+                // Enable the option to automatically turn off auto updates 
+                // by default on first update prompt (auto updates here are a bit annoying)
+                DoNotShowAgainCheckbox.Checked = true;
+                Properties.Settings.Default.FirstTimeUpdatePrompt = false;
+                Properties.Settings.Default.Save();
             }
-
+            else
+            {
+                DoNotShowAgainCheckbox.Checked = Properties.Settings.Default.IgnoreUpdatePrompts;
+            }
         }
 
         private void UpdateForm_OnPaint(object sender, PaintEventArgs e)
@@ -52,7 +58,7 @@ namespace SC4CartographerUI
         private void YesButton_Click(object sender, EventArgs e)
         {
             Process.Start(Update.BrowserDownloadLink);
-            
+
             Close();
         }
 
@@ -63,7 +69,13 @@ namespace SC4CartographerUI
 
         private void DoNotShowAgainCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.IgnoreUpdates = DoNotShowAgainCheckbox.Checked;
+            Properties.Settings.Default.IgnoreUpdatePrompts = DoNotShowAgainCheckbox.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void UpdateForm_OnClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.IgnoreUpdatePrompts = DoNotShowAgainCheckbox.Checked;
             Properties.Settings.Default.Save();
         }
     }

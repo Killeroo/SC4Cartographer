@@ -18,9 +18,9 @@ namespace SC4CartographerUI
         public string BrowserDownloadLink = "";
         public string ReleasePageLink = "";
 
-        public UpdateInfo()
+        public UpdateInfo(string githubResponse)
         {
-            GetVersionInfo();
+            ExtractUpdateInfo(githubResponse);
         }
 
         public bool IsNewVersionAvailable()
@@ -28,72 +28,68 @@ namespace SC4CartographerUI
             return NewVersionAvailable;
         }
 
-        private void GetVersionInfo()
+        private void ExtractUpdateInfo(string response)
         {
-            using (var webClient = new System.Net.WebClient())
+            string jsonResult = response;
+
+            // Extract version from returned json
+            Regex regex = new Regex(@"""(tag_name)"":""((\\""|[^""])*)""");
+            Match result = regex.Match(jsonResult);
+            if (result.Success)
             {
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072; // TLS 1.2
-                webClient.Headers["User-Agent"] = "SC4Cartographer (version_check)"; // Need to specif a valid user agent for github api: https://stackoverflow.com/a/39912696
+                string matchString = result.Value;
+                Version theirVersion = new Version(matchString.Split(':')[1].Replace("\"", string.Empty).Replace("v", string.Empty));
+                Version ourVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-                try
+                // Compare the most recent release against the current version
+                if (theirVersion > ourVersion)
                 {
-                    // Fetch latest release info from github api
-                    string jsonResult = webClient.DownloadString(
-                        $"http://api.github.com/repos/killeroo/sc4cartographer/releases/latest");
-
-                    // Extract version from returned json
-                    Regex regex = new Regex(@"""(tag_name)"":""((\\""|[^""])*)""");
-                    Match result = regex.Match(jsonResult);
-                    if (result.Success)
-                    {
-                        string matchString = result.Value;
-                        Version theirVersion = new Version(matchString.Split(':')[1].Replace("\"", string.Empty).Replace("v", string.Empty));
-                        Version ourVersion = Assembly.GetExecutingAssembly().GetName().Version;
-
-                        if (theirVersion > ourVersion)
-                        {
-                            NewVersionAvailable = true;
-                        }
-
-                        Version = theirVersion;
-
-                        // Extract some more info about the release
-                        Match releaseBodyMatch = new Regex(@"""(body)"":""((\\""|[^""])*)""").Match(jsonResult);
-                        if (releaseBodyMatch.Success)
-                        {
-                            Description = releaseBodyMatch.Value.Split(':').Last().Replace("\"", "");
-                        }
-
-                        Match releaseDownloadLinkMatch = new Regex(@"""(browser_download_url)"":""((\\""|[^""])*)""").Match(jsonResult);
-                        if (releaseDownloadLinkMatch.Success)
-                        {
-                            // The 'https' at the start is a little hack because the split command on the json kind of messes up
-                            // urls
-                            BrowserDownloadLink = @"https:" + (releaseDownloadLinkMatch.Value.Split(':').Last().Replace("\"", ""));
-                        }
-
-                        Match updatePageLinkMatch = new Regex(@"""(html_url)"":""((\\""|[^""])*)""").Match(jsonResult);
-                        if (updatePageLinkMatch.Success)
-                        {
-                            ReleasePageLink = @"https:" + (updatePageLinkMatch.Value.Split(':').Last().Replace("\"", ""));
-                        }
-
-                        Match updateTagMatch = new Regex(@"""(tag_name)"":""((\\""|[^""])*)""").Match(jsonResult);
-                        if (updateTagMatch.Success)
-                        {
-                            Tag = updateTagMatch.Value.Split(':').Last().Replace("\"", "");
-                        }
-
-                        Match updateNameMatch = new Regex(@"""(name)"":""((\\""|[^""])*)""").Match(jsonResult);
-                        if (updateNameMatch.Success)
-                        {
-                            Name = updateNameMatch.Value.Split(':').Last().Replace("\"", "");
-                        }
-                    }
-
+                    NewVersionAvailable = true;
                 }
-                catch (Exception) { } // We just want to blanket catch any exception and silently continue
+                Version = theirVersion;
+            }
 
+            // Extract some more info about the release
+            Match releaseBodyMatch = new Regex(@"""(body)"":""((\\""|[^""])*)""").Match(jsonResult);
+            if (releaseBodyMatch.Success)
+            {
+                Description = releaseBodyMatch.Value.Split(':').Last().Replace("\"", "");
+            }
+
+            Match releaseDownloadLinkMatch = new Regex(@"""(browser_download_url)"":""((\\""|[^""])*)""").Match(jsonResult);
+            if (releaseDownloadLinkMatch.Success)
+            {
+                // The 'https' at the start is a little hack because the split command on the json kind of messes up
+                // urls
+                BrowserDownloadLink = @"https:" + (releaseDownloadLinkMatch.Value.Split(':').Last().Replace("\"", ""));
+            }
+            else
+            {
+                // Backup link in case anything fails
+                // Will always direct to the latest release
+                BrowserDownloadLink = @"https://github.com/Killeroo/SC4Cartographer/releases/latest";
+            }
+
+            Match updatePageLinkMatch = new Regex(@"""(html_url)"":""((\\""|[^""])*)""").Match(jsonResult);
+            if (updatePageLinkMatch.Success)
+            {
+                ReleasePageLink = @"https:" + (updatePageLinkMatch.Value.Split(':').Last().Replace("\"", ""));
+            }
+            else
+            {
+                ReleasePageLink = @"https://github.com/Killeroo/SC4Cartographer/releases/latest";
+            }
+
+            Match updateTagMatch = new Regex(@"""(tag_nasadsme)"":""((\\""|[^""])*)""").Match(jsonResult);
+            if (updateTagMatch.Success)
+            {
+                Tag = updateTagMatch.Value.Split(':').Last().Replace("\"", "");
+            }
+
+            Match updateNameMatch = new Regex(@"""(name)"":""((\\""|[^""])*)""").Match(jsonResult);
+            if (updateNameMatch.Success)
+            {
+                Name = updateNameMatch.Value.Split(':').Last().Replace("\"", "");
             }
 
         }

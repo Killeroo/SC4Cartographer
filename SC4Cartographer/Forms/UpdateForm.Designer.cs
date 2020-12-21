@@ -43,17 +43,17 @@
             this.DoNotShowAgainCheckbox.AutoSize = true;
             this.DoNotShowAgainCheckbox.Checked = true;
             this.DoNotShowAgainCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.DoNotShowAgainCheckbox.Location = new System.Drawing.Point(38, 166);
+            this.DoNotShowAgainCheckbox.Location = new System.Drawing.Point(38, 176);
             this.DoNotShowAgainCheckbox.Name = "DoNotShowAgainCheckbox";
-            this.DoNotShowAgainCheckbox.Size = new System.Drawing.Size(127, 17);
+            this.DoNotShowAgainCheckbox.Size = new System.Drawing.Size(204, 17);
             this.DoNotShowAgainCheckbox.TabIndex = 0;
-            this.DoNotShowAgainCheckbox.Text = "Don\'t show this again";
+            this.DoNotShowAgainCheckbox.Text = "Don\'t automatically check for updates";
             this.DoNotShowAgainCheckbox.UseVisualStyleBackColor = true;
             this.DoNotShowAgainCheckbox.CheckedChanged += new System.EventHandler(this.DoNotShowAgainCheckbox_CheckedChanged);
             // 
             // YesButton
             // 
-            this.YesButton.Location = new System.Drawing.Point(110, 189);
+            this.YesButton.Location = new System.Drawing.Point(110, 199);
             this.YesButton.Name = "YesButton";
             this.YesButton.Size = new System.Drawing.Size(75, 23);
             this.YesButton.TabIndex = 1;
@@ -63,7 +63,8 @@
             // 
             // NoButton
             // 
-            this.NoButton.Location = new System.Drawing.Point(191, 189);
+            this.NoButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.NoButton.Location = new System.Drawing.Point(191, 199);
             this.NoButton.Name = "NoButton";
             this.NoButton.Size = new System.Drawing.Size(75, 23);
             this.NoButton.TabIndex = 2;
@@ -78,7 +79,7 @@
             this.ChangelogTextBox.Name = "ChangelogTextBox";
             this.ChangelogTextBox.ReadOnly = true;
             this.ChangelogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ChangelogTextBox.Size = new System.Drawing.Size(228, 76);
+            this.ChangelogTextBox.Size = new System.Drawing.Size(228, 97);
             this.ChangelogTextBox.TabIndex = 3;
             this.ChangelogTextBox.Text = "Changelog";
             // 
@@ -103,7 +104,7 @@
             // UpdatePageLinkLabel
             // 
             this.UpdatePageLinkLabel.AutoSize = true;
-            this.UpdatePageLinkLabel.Location = new System.Drawing.Point(35, 139);
+            this.UpdatePageLinkLabel.Location = new System.Drawing.Point(35, 155);
             this.UpdatePageLinkLabel.Name = "UpdatePageLinkLabel";
             this.UpdatePageLinkLabel.Size = new System.Drawing.Size(120, 13);
             this.UpdatePageLinkLabel.TabIndex = 6;
@@ -116,7 +117,8 @@
             this.AcceptButton = this.YesButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 224);
+            this.CancelButton = this.NoButton;
+            this.ClientSize = new System.Drawing.Size(278, 231);
             this.Controls.Add(this.UpdatePageLinkLabel);
             this.Controls.Add(this.UpdateLabel);
             this.Controls.Add(this.label1);
@@ -126,11 +128,13 @@
             this.Controls.Add(this.DoNotShowAgainCheckbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UpdateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SC4Cartographer Update Available";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UpdateForm_OnClosed);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UpdateForm_OnPaint);
             this.ResumeLayout(false);
             this.PerformLayout();

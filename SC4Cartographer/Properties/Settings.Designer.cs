@@ -26,12 +26,24 @@ namespace SC4CartographerUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IgnoreUpdates {
+        public bool IgnoreUpdatePrompts {
             get {
-                return ((bool)(this["IgnoreUpdates"]));
+                return ((bool)(this["IgnoreUpdatePrompts"]));
             }
             set {
-                this["IgnoreUpdates"] = value;
+                this["IgnoreUpdatePrompts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FirstTimeUpdatePrompt {
+            get {
+                return ((bool)(this["FirstTimeUpdatePrompt"]));
+            }
+            set {
+                this["FirstTimeUpdatePrompt"] = value;
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace SC4CartographerUI
 {
-    partial class MapErrorForm
+    partial class ErrorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -87,8 +87,8 @@
             this.KeyPreview = true;
             this.Name = "MapErrorForm";
             this.Text = "Error";
-            this.Load += new System.EventHandler(this.MapErrorForm_OnLoad);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MapErrorForm_OnPaint);
+            this.Load += new System.EventHandler(this.ErrorForm_OnLoad);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ErrorForm_OnPaint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Net;
 
 using SC4Parser.DataStructures;
 using SC4Parser.Files;
@@ -134,7 +135,7 @@ namespace SC4CartographerUI
             }
             catch (DBPFParsingException e)
             {
-                var errorForm = new MapErrorForm(
+                var errorForm = new ErrorForm(
                     "Error loading save game",
                     $"Could not load save game '{Path.GetFileName(path)}'.",
                     e,
@@ -152,7 +153,7 @@ namespace SC4CartographerUI
             }
             catch (SubfileNotFoundException e)
             {
-                var errorForm = new MapErrorForm(
+                var errorForm = new ErrorForm(
                     "Error loading save game",
                     $"Could not create map for '{Path.GetFileName(path)}'. Could not load zone data or it does not exist.",
                     e,
@@ -174,7 +175,7 @@ namespace SC4CartographerUI
             }
             catch (SubfileNotFoundException e)
             {
-                var errorForm = new MapErrorForm(
+                var errorForm = new ErrorForm(
                     "Error creating preview",
                     $"Could not create preview map for '{Path.GetFileName(path)}'.",
                     e,
@@ -265,7 +266,7 @@ namespace SC4CartographerUI
             }
             catch (Exception e)
             {
-                var errorForm = new MapErrorForm(
+                var errorForm = new ErrorForm(
                     "Error saving map",
                     $"There was an error while trying to save a map for '{path}'.",
                     e,
@@ -420,6 +421,32 @@ namespace SC4CartographerUI
             return savegames[rand.Next(savegames.Count)];
         }
 
+        private void OnUpdateChecked(object sender, DownloadStringCompletedEventArgs e)
+        {
+            // If we encounter an error then silently continue
+            if (e.Error != null)
+            {
+                return;
+            }
+
+            UpdateInfo info = null;
+            try
+            {
+                info = new UpdateInfo(e.Result);
+            }
+            catch (Exception) 
+            {
+                // Again this parser _might_ fail so we want to silently continue for an auto update
+                // (oh well)
+            }
+
+            if (info.NewVersionAvailable)
+            {
+                var updateFormat = new UpdateForm(info);
+                updateFormat.ShowDialog();
+            }
+        }
+
         #endregion
 
         #region UI Event Callbacks
@@ -466,6 +493,12 @@ namespace SC4CartographerUI
             // Set current path as output path
             map.Parameters.OutputPath = Directory.GetCurrentDirectory();
 
+
+            // Check for update on startup
+            if (Properties.Settings.Default.IgnoreUpdatePrompts == false)
+            {
+                UpdateChecker.GetLatestReleaseInfoAsync(OnUpdateChecked);
+            }
         }
 
         /// <summary>
@@ -731,6 +764,7 @@ namespace SC4CartographerUI
         {
             RefreshTreeView();
         }
+
         private void mapAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var propertiesForm = new PropertiesForm(map.Parameters, this);
@@ -758,10 +792,12 @@ namespace SC4CartographerUI
             mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
             mapCreatedForm.ShowDialog();
         }
+       
         private void projectWebpageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://github.com/killeroo/SC4Cartographer");
         }
+       
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
             var mapCreatedForm = new LogForm(fileLogger.LogPath, fileLogger.Created);
@@ -771,11 +807,29 @@ namespace SC4CartographerUI
 
         private void UpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdateInfo info = new UpdateInfo();
+            UpdateInfo info = null;
+
+            try
+            {
+                // Try and fetch latest release info from github
+                info = UpdateChecker.GetLatestReleaseInfo();
+            }
+            catch (Exception ex)
+            {
+                var errorForm = new ErrorForm(
+                    "Error fetching SC4Cartographer update info",
+                    $"Could not get current release information from github.",
+                    ex, 
+                    false);
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
 
             if (info.NewVersionAvailable)
             {
-                var updateFormat = new UpdateForm(info, true);
+                var updateFormat = new UpdateForm(info);
                 updateFormat.ShowDialog();
             }
             else
@@ -787,6 +841,7 @@ namespace SC4CartographerUI
                     MessageBoxIcon.Asterisk);
             }
         }
+        
 
         #endregion
     }
