@@ -438,6 +438,7 @@ namespace SC4CartographerUI
             {
                 // Again this parser _might_ fail so we want to silently continue for an auto update
                 // (oh well)
+                return;
             }
 
             if (info.NewVersionAvailable)
@@ -483,7 +484,7 @@ namespace SC4CartographerUI
                 }
 
                 // Found a good save, load it
-                LoadSaveGame(path);// @"C:\Users\mcarney\Documents\SimCity 4\Regions\London\City - Kensington.sc4");
+                LoadSaveGame(path);// @"C:\Projects\SC4Cartographer_new\TerrainMapReference.sc4");
             }
             else
             {
