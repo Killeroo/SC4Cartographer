@@ -1,6 +1,6 @@
 ﻿namespace SC4CartographerUI
 {
-    partial class MapCreatedForm
+    partial class SuccessForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapCreatedForm));
-            this.MapCreatedLabel = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuccessForm));
+            this.MainTextLabel = new System.Windows.Forms.Label();
             this.OKButton = new System.Windows.Forms.Button();
-            this.PathLabel = new System.Windows.Forms.Label();
+            this.ExtraTextLabel = new System.Windows.Forms.Label();
             this.OpenFolderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MapCreatedLabel
             // 
-            this.MapCreatedLabel.AutoSize = true;
-            this.MapCreatedLabel.Location = new System.Drawing.Point(64, 9);
-            this.MapCreatedLabel.Name = "MapCreatedLabel";
-            this.MapCreatedLabel.Size = new System.Drawing.Size(35, 13);
-            this.MapCreatedLabel.TabIndex = 0;
-            this.MapCreatedLabel.Text = "label1";
+            this.MainTextLabel.AutoSize = true;
+            this.MainTextLabel.Location = new System.Drawing.Point(64, 9);
+            this.MainTextLabel.Name = "MapCreatedLabel";
+            this.MainTextLabel.Size = new System.Drawing.Size(35, 13);
+            this.MainTextLabel.TabIndex = 0;
+            this.MainTextLabel.Text = "label1";
             // 
             // OKButton
             // 
@@ -57,12 +57,12 @@
             // 
             // PathLabel
             // 
-            this.PathLabel.AutoSize = true;
-            this.PathLabel.Location = new System.Drawing.Point(64, 22);
-            this.PathLabel.Name = "PathLabel";
-            this.PathLabel.Size = new System.Drawing.Size(35, 13);
-            this.PathLabel.TabIndex = 3;
-            this.PathLabel.Text = "label1";
+            this.ExtraTextLabel.AutoSize = true;
+            this.ExtraTextLabel.Location = new System.Drawing.Point(64, 22);
+            this.ExtraTextLabel.Name = "PathLabel";
+            this.ExtraTextLabel.Size = new System.Drawing.Size(35, 13);
+            this.ExtraTextLabel.TabIndex = 3;
+            this.ExtraTextLabel.Text = "label1";
             // 
             // OpenFolderButton
             // 
@@ -81,10 +81,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.OKButton;
             this.ClientSize = new System.Drawing.Size(462, 75);
-            this.Controls.Add(this.PathLabel);
+            this.Controls.Add(this.ExtraTextLabel);
             this.Controls.Add(this.OpenFolderButton);
             this.Controls.Add(this.OKButton);
-            this.Controls.Add(this.MapCreatedLabel);
+            this.Controls.Add(this.MainTextLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -92,7 +92,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Map Saved";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MapCreatedForm_Paint);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SuccessForm_OnPaint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,9 +100,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label MapCreatedLabel;
+        private System.Windows.Forms.Label MainTextLabel;
         private System.Windows.Forms.Button OKButton;
-        private System.Windows.Forms.Label PathLabel;
+        private System.Windows.Forms.Label ExtraTextLabel;
         private System.Windows.Forms.Button OpenFolderButton;
     }
 }

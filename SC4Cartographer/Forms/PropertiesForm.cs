@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SC4CartographerUI
@@ -464,6 +458,53 @@ namespace SC4CartographerUI
             if (confirmedChanged == false)
             {
                 parentForm.SetAndUpdateMapCreationParameters(originalParameters);
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            parentForm.SaveMapParametersWithDialog();
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+            {
+                fileDialog.Title = "Load SC4Cartographer map properties";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.RestoreDirectory = true;
+                fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    try
+                    {
+                        MapCreationParameters loadedParameters = new MapCreationParameters();
+                        MapCreationParameters currentParameters = GetParametersFromUIValues();
+
+                        loadedParameters.LoadFromFile(fileDialog.FileName);
+                        
+                        // Copy over the output path
+                        loadedParameters.OutputPath = currentParameters.OutputPath;
+
+                        // Set loaded parameters up on the form
+                        SetUIValuesUsingParameters(loadedParameters);
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorForm form = new ErrorForm(
+                            "Could not load map properties",
+                            $"An error occured while trying to load map properties from file ({fileDialog.FileName})",
+                            ex,
+                            false);
+
+                        form.StartPosition = FormStartPosition.CenterParent;
+                        form.ShowDialog();
+
+                        return;
+                    }
+                }
             }
         }
 

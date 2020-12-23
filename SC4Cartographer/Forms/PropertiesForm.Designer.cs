@@ -102,6 +102,8 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
             this.RestoreDefaultsButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.LoadButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
@@ -839,7 +841,7 @@
             // 
             // RestoreDefaultsButton
             // 
-            this.RestoreDefaultsButton.Location = new System.Drawing.Point(12, 464);
+            this.RestoreDefaultsButton.Location = new System.Drawing.Point(126, 464);
             this.RestoreDefaultsButton.Name = "RestoreDefaultsButton";
             this.RestoreDefaultsButton.Size = new System.Drawing.Size(100, 23);
             this.RestoreDefaultsButton.TabIndex = 5;
@@ -847,12 +849,34 @@
             this.RestoreDefaultsButton.UseVisualStyleBackColor = true;
             this.RestoreDefaultsButton.Click += new System.EventHandler(this.RestoreDefaultsButton_Click);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(12, 464);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(49, 23);
+            this.SaveButton.TabIndex = 6;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // LoadButton
+            // 
+            this.LoadButton.Location = new System.Drawing.Point(67, 464);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(53, 23);
+            this.LoadButton.TabIndex = 7;
+            this.LoadButton.Text = "Load";
+            this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            // 
             // PropertiesForm
             // 
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 495);
+            this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.RestoreDefaultsButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
@@ -866,8 +890,7 @@
             this.Name = "PropertiesForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Map Properties";
-            this.TopMost = true;
+            this.Text = "Map Appearance";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).EndInit();
@@ -988,5 +1011,7 @@
         private System.Windows.Forms.TextBox ZoneOutlinesTextbox;
         private System.Windows.Forms.Button RestoreDefaultsButton;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button LoadButton;
     }
 }

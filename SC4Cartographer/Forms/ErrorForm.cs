@@ -15,7 +15,8 @@ namespace SC4CartographerUI
         {
             InitializeComponent();
             Text = title;
-            ErrorMessageTextbox.Text = message + Environment.NewLine;
+            MainErrorLabel.Text = message;
+            //ErrorMessageTextbox.Text = message + Environment.NewLine;
 
             string exceptionText = $"[{exception.GetType().ToString()}: {exception.Message}]";
             if (showInnerException)

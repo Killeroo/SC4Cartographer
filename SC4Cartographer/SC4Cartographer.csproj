@@ -165,11 +165,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MapCreatedForm.cs">
+    <Compile Include="Forms\SuccessForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MapCreatedForm.Designer.cs">
-      <DependentUpon>MapCreatedForm.cs</DependentUpon>
+    <Compile Include="Forms\SuccessForm.Designer.cs">
+      <DependentUpon>SuccessForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ErrorForm.cs">
       <SubType>Form</SubType>
@@ -199,8 +199,8 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MapCreatedForm.resx">
-      <DependentUpon>MapCreatedForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SuccessForm.resx">
+      <DependentUpon>SuccessForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>

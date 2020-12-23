@@ -39,6 +39,8 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
+        public static int VERSION = 1;
+
         public MapCreationParameters() { }
         public MapCreationParameters(MapCreationParameters parameters)
         {
@@ -103,7 +105,7 @@ namespace SC4CartographerUI
             List<string> properties = new List<string>();
 
             // Get the properties as a list of strings
-            properties.Add("Version:1;");
+            properties.Add($"Version:{VERSION};");
             properties.Add($"ShowGridLines:{(ShowGridLines ? "true" : "false")};");
             properties.Add($"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};");
             properties.Add($"GridSegmentSize:{GridSegmentSize};");
@@ -166,74 +168,75 @@ namespace SC4CartographerUI
 
             if (properties["version"] == "")
             {
-                // Could not find version
+                throw new Exception($"Could not find version of properties file. Can't parse file.");
             }
 
-            if (int.Parse(properties["version"]) > 1)
+            if (int.Parse(properties["version"]) > VERSION)
             {
-                // too high a version
+                throw new Exception($"Properties file version too high. Can only parse version {VERSION} or lower, version {properties["version"]} found in file");
             }
 
+            // Loop through each property 
             foreach (var property in properties)
             {
-                if (property.Key.Contains("colors@"))
+                if (property.Key.Contains("color@"))
                 {
                     string colorKey = property.Key.Split('@').Last();
-                    string[] colorValues = property.Key.Split(',');
+                    string[] colorValues = property.Value.Split(',');
                     int r = int.Parse(colorValues[0]);
                     int g = int.Parse(colorValues[1]);
                     int b = int.Parse(colorValues[2]);
                     switch (colorKey)
                     {
-                        case "Background":
+                        case "background":
                             colors[MapColorObject.Background] = Color.FromArgb(r, g, b);
                             break;
-                        case "GridLines":
+                        case "gridlines":
                             colors[MapColorObject.GridLines] = Color.FromArgb(r, g, b);
                             break;
-                        case "ZoneOutline":
+                        case "zoneoutline":
                             colors[MapColorObject.ZoneOutline] = Color.FromArgb(r, g, b);
                             break;
-                        case "PloppedBuilding":
+                        case "ploppedbuilding":
                             colors[MapColorObject.PloppedBuilding] = Color.FromArgb(r, g, b);
                             break;
-                        case "Military":
+                        case "military":
                             colors[MapColorObject.Military] = Color.FromArgb(r, g, b);
                             break;
-                        case "Airport":
+                        case "airport":
                             colors[MapColorObject.Airport] = Color.FromArgb(r, g, b);
                             break;
-                        case "Seaport":
+                        case "seaport":
                             colors[MapColorObject.Seaport] = Color.FromArgb(r, g, b);
                             break;
-                        case "Spaceport":
+                        case "spaceport":
                             colors[MapColorObject.Spaceport] = Color.FromArgb(r, g, b);
                             break;
-                        case "ResidentialHigh":
+                        case "residentialhigh":
                             colors[MapColorObject.ResidentialHigh] = Color.FromArgb(r, g, b);
                             break;
-                        case "ResidentialMid":
+                        case "residentialmid":
                             colors[MapColorObject.ResidentialMid] = Color.FromArgb(r, g, b);
                             break;
-                        case "ResidentialLow":
+                        case "residentiallow":
                             colors[MapColorObject.ResidentialLow] = Color.FromArgb(r, g, b);
                             break;
-                        case "CommercialHigh":
+                        case "commercialhigh":
                             colors[MapColorObject.CommercialHigh] = Color.FromArgb(r, g, b);
                             break;
-                        case "CommercialMid":
+                        case "commercialmid":
                             colors[MapColorObject.CommercialMid] = Color.FromArgb(r, g, b);
                             break;
-                        case "CommercialLow":
+                        case "commerciallow":
                             colors[MapColorObject.CommercialLow] = Color.FromArgb(r, g, b);
                             break;
-                        case "IndustrialHigh":
+                        case "industrialhigh":
                             colors[MapColorObject.IndustrialHigh] = Color.FromArgb(r, g, b);
                             break;
-                        case "IndustrialMid":
+                        case "industrialmid":
                             colors[MapColorObject.IndustrialMid] = Color.FromArgb(r, g, b);
                             break;
-                        case "IndustrialLow":
+                        case "industriallow":
                             colors[MapColorObject.IndustrialLow] = Color.FromArgb(r, g, b);
                             break;
                     }
@@ -242,37 +245,38 @@ namespace SC4CartographerUI
                 {
                     switch (property.Key)
                     {
-                        case "ShowGridLines":
+                        case "showgridlines":
                             if (property.Value == "true")
                                 mapCreationParameters.ShowGridLines = true;
                             else
                                 mapCreationParameters.ShowGridLines = false;
                             break;
-                        case "ShowZoneOutlines":
+                        case "showzoneoutlines":
                             if (property.Value == "true")
                                 mapCreationParameters.ShowZoneOutlines = true;
                             else
                                 mapCreationParameters.ShowZoneOutlines = false;
                             break;
-                        case "GridSegmentSize":
+                        case "gridsegmentsize":
                             mapCreationParameters.GridSegmentSize = int.Parse(property.Value);
                             break;
-                        case "SegmentPaddingX":
+                        case "segmentpaddingx":
                             mapCreationParameters.SegmentPaddingX = int.Parse(property.Value);
                             break;
-                        case "SegmentPaddingY":
+                        case "segmentpaddingy":
                             mapCreationParameters.SegmentPaddingY = int.Parse(property.Value);
                             break;
-                        case "SegmentOffsetX":
+                        case "segmentoffsetx":
                             mapCreationParameters.SegmentOffsetX = int.Parse(property.Value);
                             break;
-                        case "SegmentOffsetY":
+                        case "segmentoffsety":
                             mapCreationParameters.SegmentOffsetY = int.Parse(property.Value);
                             break;
                     }
                 }
             }
 
+            // Now everything has been loaded safely, apply them to our current map properties object
             this.ColorDictionary = colors;
             this.ShowGridLines = mapCreationParameters.ShowGridLines;
             this.ShowZoneOutlines = mapCreationParameters.ShowZoneOutlines;

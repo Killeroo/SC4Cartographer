@@ -40,18 +40,26 @@ namespace SC4CartographerUI
         private Bitmap previewZoomedMapBitmap;
         private bool previewZoomed = false;
 
+        private PropertiesForm propertiesForm = null;
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
 
         public MainForm()
         {
             InitializeComponent();
+
+            //propertiesForm = new PropertiesForm(map.Parameters, this);
+
             //logger = new RichTextBoxLogger(LogTextBox);
             fileLogger = new FileLogger();
 
             map.Parameters = new MapCreationParameters();
-            map.Parameters.SaveToFile("test.txt");
-            map.Parameters.LoadFromFile("test.txt");
+        }
+        public MainForm(string path) : this()
+        {
+            // Try and load parameters from path if they have been given to program
+            // (this is called when an associated file [.sc4cart] is used to call program)
+            LoadMapParameters(path);
         }
 
         #region Form functionality
@@ -77,12 +85,25 @@ namespace SC4CartographerUI
             MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
             previewNormalMapBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
 
-            // Generate zoomed preview image
-            MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
-            zoomedMapPreviewParameters.GridSegmentSize = 10;
-            zoomedMapPreviewParameters.SegmentPaddingX = 4;
-            zoomedMapPreviewParameters.SegmentPaddingY = 4;
-            previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
+            // Don't bother rendering a zoomed in map if the segment size is bigger than 10 pixels (zoomed in map size)
+            // We perform the same check in TogglePreviewImage()
+            if (map.Parameters.GridSegmentSize <= 10)
+            {
+                // Generate zoomed preview image
+                MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
+                zoomedMapPreviewParameters.GridSegmentSize = 10;
+                zoomedMapPreviewParameters.SegmentPaddingX = 4;
+                zoomedMapPreviewParameters.SegmentPaddingY = 4;
+                previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
+
+                // Change cursor to show we can zoom in
+                MapPictureBox.Cursor = Cursors.Cross;
+            }
+            else
+            {
+                // Reset the cursor to whatever the user is currently using
+                MapPictureBox.Cursor = Cursors.Default;
+            }
 
             // If small map, change the picture box to center the image 
             // (we need to switch this back for other maps so the scrollbars appear)
@@ -259,7 +280,12 @@ namespace SC4CartographerUI
                 }
 
                 // Show form when successfully created
-                var mapCreatedForm = new MapCreatedForm(Path.GetDirectoryName(currentFilename), Path.GetFileName(currentFilename));
+                var mapCreatedForm = new SuccessForm(
+                    "Map Saved",
+                    $"Map '{Path.GetFileName(currentFilename)}' has been successfully saved to",
+                    Path.GetDirectoryName(currentFilename),
+                    currentFilename);
+
                 mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
                 mapCreatedForm.ShowDialog();
 
@@ -279,6 +305,111 @@ namespace SC4CartographerUI
             // Cleanup any stuff after saving (these bitmaps can take up a fair amount of memory)
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        public void SaveMapParametersWithDialog()
+        {
+            // Create default properties name
+            // TODO: Modify this and clean
+            // (Yeah this is hacky AGAIN, sue me.)
+            string currentFilename = Path.Combine(Directory.GetCurrentDirectory(), "map_appearance.sc4cart");
+            bool goodFilename = false;
+            int counter = 0;
+            while (goodFilename == false)
+            {
+                if (File.Exists(currentFilename))
+                {
+                    counter++;
+                    currentFilename = Path.Combine(Directory.GetCurrentDirectory(), $"map_appearance({counter}).sc4cart");
+                }
+                else
+                {
+                    goodFilename = true;
+                }
+            }
+
+            using (SaveFileDialog fileDialog = new SaveFileDialog())
+            {
+                fileDialog.Title = "Save SC4Cartographer map properties";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.FileName = Path.GetFileName(currentFilename);
+                fileDialog.RestoreDirectory = true;
+                //fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    SaveMapParameters(fileDialog.FileName);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Common function called when saving map parameters/properties/appearance to a file
+        /// </summary>
+        /// <param name="path"></param>
+        public void SaveMapParameters(string path)
+        {
+            try
+            {
+                map.Parameters.SaveToFile(path);
+
+                var successForm = new SuccessForm(
+                    "Map appearance saved",
+                    $"Map appearance file '{Path.GetFileName(path)}' has been successfully saved to",
+                    Path.GetDirectoryName(path),
+                    path);
+
+                successForm.StartPosition = FormStartPosition.CenterParent;
+                successForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorForm form = new ErrorForm(
+                    "Could not save map properties",
+                    $"An error occured while trying to save map properties file ({path})",
+                    ex,
+                    false);
+
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Common function called when loading map parameters/properties/appearance from file
+        /// </summary>
+        /// <param name="path"></param>
+        public void LoadMapParameters(string path)
+        {
+            try
+            {
+                // Try and load parameters from a file
+                map.Parameters.LoadFromFile(path);
+
+                // Close and reopen the properties form if it is open at the time of loading
+                // properties from file
+                if (propertiesForm?.Visible == true)
+                {
+                    propertiesForm.Close();
+
+                    propertiesForm = new PropertiesForm(map.Parameters, this);
+                    propertiesForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorForm form = new ErrorForm(
+                    "Could not load map properties",
+                    $"An error occured while trying to load map properties from file ({path})",
+                    ex,
+                    false);
+
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.ShowDialog();
+
+                return;
+            }
         }
 
         /// <summary>
@@ -421,6 +552,12 @@ namespace SC4CartographerUI
             return savegames[rand.Next(savegames.Count)];
         }
 
+        /// <summary>
+        /// Callback called when check for update (call to github to fetch info about latest release)
+        /// has been performed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnUpdateChecked(object sender, DownloadStringCompletedEventArgs e)
         {
             // If we encounter an error then silently continue
@@ -661,9 +798,18 @@ namespace SC4CartographerUI
 
         private void PropertiesButton_Click(object sender, EventArgs e)
         {
-            var propertiesForm = new PropertiesForm(map.Parameters, this);
+            propertiesForm = new PropertiesForm(map.Parameters, this);
+
             propertiesForm.StartPosition = FormStartPosition.CenterParent;
-            propertiesForm.Show(this);
+
+            if (Helper.IsFormOpen(typeof(PropertiesForm)))
+            {
+                propertiesForm.BringToFront();
+            }
+            else
+            {
+                propertiesForm.Show(this);
+            }
 
             // Generate map again
             //LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
@@ -732,12 +878,12 @@ namespace SC4CartographerUI
         {
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
-                fileDialog.Title = "Load Simcity 4 save game";
+                fileDialog.Title = "Load SimCity 4 save game";
                 fileDialog.InitialDirectory = SavePathTextbox.Text;
                 fileDialog.RestoreDirectory = true;
                 fileDialog.CheckFileExists = true;
                 fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "Simcity 4 save files (*.sc4)|*.sc4";
+                fileDialog.Filter = "Simcity 4 save file (*.sc4)|*.sc4";
                 if (fileDialog.ShowDialog(this) == DialogResult.OK)
                     LoadSaveGame(fileDialog.FileName);
             }
@@ -835,15 +981,42 @@ namespace SC4CartographerUI
             }
             else
             {
-                MessageBox.Show(
-                    "You are using the most recent version of SC4Cartographer",
+
+                var successForm = new SuccessForm(
                     "Up to date",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Asterisk);
+                    "You are using the most recent version of SC4Cartographer.", 
+                    "");
+
+                successForm.StartPosition = FormStartPosition.CenterParent;
+                successForm.ShowDialog();
             }
         }
-        
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            SaveMapParametersWithDialog();
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+            {
+                fileDialog.Title = "Load SC4Cartographer map properties";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.RestoreDirectory = true;
+                fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    // Load new parameters and regenerate preview
+                    LoadMapParameters(fileDialog.FileName);
+                    GenerateMapPreview();
+                }
+            }
+        }
 
         #endregion
+
     }
 }

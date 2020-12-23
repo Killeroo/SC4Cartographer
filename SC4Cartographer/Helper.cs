@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SC4CartographerUI
 {
@@ -40,6 +41,27 @@ namespace SC4CartographerUI
             var localTime = TimeZoneInfo.ConvertTimeFromUtc(linkTimeUtc, tz);
 
             return localTime;
+        }
+
+
+        /// <summary>
+        /// Checks if a form of a given type is already open in application
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static bool IsFormOpen(Type form)
+        {
+            FormCollection openForms = Application.OpenForms;
+
+            foreach (var f in openForms)
+            {
+                if (f.GetType() == form)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

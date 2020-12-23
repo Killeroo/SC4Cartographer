@@ -12,11 +12,21 @@ namespace SC4CartographerUI
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            if (args.Length == 0)
+            {
+                // run normally with default parameters
+                Application.Run(new MainForm());
+            }
+            else
+            {
+                // Try and run program with properties file specified
+                Application.Run(new MainForm(args[0]));
+            }
         }
     }
 }
