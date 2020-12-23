@@ -121,6 +121,8 @@ namespace SC4CartographerUI
             // Set image, reset zoom
             MapPictureBox.Image = previewNormalMapBitmap;
             previewZoomed = false;
+
+            toolStripStatusLabel1.Text = $"size={previewNormalMapBitmap.Width.ToString()} x {previewNormalMapBitmap.Height.ToString()}px";
         }
 
         /// <summary>
@@ -788,8 +790,16 @@ namespace SC4CartographerUI
         private void PropertiesButton_Click(object sender, EventArgs e)
         {
             propertiesForm = new PropertiesForm(map.Parameters, this);
-
-            propertiesForm.StartPosition = FormStartPosition.CenterParent;
+            if (this.Location.X + this.Size.Width + 5 > Screen.AllScreens[0].Bounds.Width)
+            {
+                propertiesForm.Location = new Point(0, 0);
+                propertiesForm.StartPosition = FormStartPosition.CenterParent;
+            }
+            else
+            {
+                propertiesForm.Location = new Point(this.Location.X + this.Size.Width + 5, this.Location.Y);
+                propertiesForm.StartPosition = FormStartPosition.Manual;
+            }
 
             if (Helper.IsFormOpen(typeof(PropertiesForm)))
             {
@@ -1007,5 +1017,19 @@ namespace SC4CartographerUI
 
         #endregion
 
+        private void MapPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            toolStripStatusLabel2.Text = $"{e.X} , {e.Y}";
+        }
+
+        private void MapPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolStripStatusLabel2.Text = $"{e.X}, {e.Y}px";
+        }
+
+        private void MapPictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "";
+        }
     }
 }
