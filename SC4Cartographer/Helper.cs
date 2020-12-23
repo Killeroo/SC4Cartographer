@@ -63,5 +63,40 @@ namespace SC4CartographerUI
 
             return false;
         }
+
+        /// <summary>
+        /// Generates a filename for a given path, if the a file does not already exist at the filepath
+        /// then that path is used. If one does exist then a number is added at the end of the file name ('testfile(1)')
+        /// and incremented until a path that doesn't already exist is found
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public static string GenerateFilename(string filepath)
+        {
+            string filename = Path.GetFileNameWithoutExtension(filepath);
+            string extension = Path.GetExtension(filepath);
+            string directory = Path.GetDirectoryName(filepath);
+
+            string currentFilePath = filepath;
+            bool goodFilename = false;
+            int counter = 0;
+
+            // Loop through possible names till we find one that doesn't already exist
+            while (goodFilename == false)
+            {
+
+                if (File.Exists(currentFilePath))
+                {
+                    counter++;
+                    currentFilePath = Path.Combine(directory, $"{filename}({counter}){extension}");
+                }
+                else
+                {
+                    goodFilename = true;
+                }
+            }
+
+            return currentFilePath;
+        }
     }
 }

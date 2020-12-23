@@ -245,22 +245,8 @@ namespace SC4CartographerUI
                     break;
             }
 
-            // Yeah this is hacky, sue me.
             string currentFilename = filePath + extension;
-            bool goodFilename = false;
-            int counter = 0;
-            while (goodFilename == false)
-            {
-                if (File.Exists(currentFilename))
-                {
-                    counter++;
-                    currentFilename = filePath + $"({counter})" + extension;
-                }
-                else
-                {
-                    goodFilename = true;
-                }
-            }
+            currentFilename = Helper.GenerateFilename(currentFilename);
 
             try
             {
@@ -309,30 +295,15 @@ namespace SC4CartographerUI
 
         public void SaveMapParametersWithDialog()
         {
-            // Create default properties name
-            // TODO: Modify this and clean
-            // (Yeah this is hacky AGAIN, sue me.)
-            string currentFilename = Path.Combine(Directory.GetCurrentDirectory(), "map_appearance.sc4cart");
-            bool goodFilename = false;
-            int counter = 0;
-            while (goodFilename == false)
-            {
-                if (File.Exists(currentFilename))
-                {
-                    counter++;
-                    currentFilename = Path.Combine(Directory.GetCurrentDirectory(), $"map_appearance({counter}).sc4cart");
-                }
-                else
-                {
-                    goodFilename = true;
-                }
-            }
+            // Create generic name at current directory
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "map_appearance.sc4cart");
+            filePath = Helper.GenerateFilename(filePath);
 
             using (SaveFileDialog fileDialog = new SaveFileDialog())
             {
                 fileDialog.Title = "Save SC4Cartographer map properties";
                 fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.FileName = Path.GetFileName(currentFilename);
+                fileDialog.FileName = Path.GetFileName(filePath);
                 fileDialog.RestoreDirectory = true;
                 //fileDialog.CheckFileExists = true;
                 fileDialog.CheckPathExists = true;
