@@ -457,8 +457,14 @@ namespace SC4CartographerUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "DirectoryLister", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    ErrorForm form = new ErrorForm(
+                        "Directory tree error",
+                        "An error occured while trying to populate save game file tree.",
+                        ex,
+                        false);
+
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    form.ShowDialog();
                 }
                 finally
                 {
@@ -647,8 +653,14 @@ namespace SC4CartographerUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "DirectoryLister", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    ErrorForm form = new ErrorForm(
+                        "Directory tree error",
+                        "An error occured while trying to populate save game file tree.",
+                        ex,
+                        false);
+
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    form.ShowDialog();
                 }
                 finally
                 {
@@ -720,8 +732,14 @@ namespace SC4CartographerUI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "DirectoryLister", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                            ErrorForm form = new ErrorForm(
+                                "Directory tree error",
+                                "An error occured while trying to populate save game file tree.",
+                                ex,
+                                false);
+
+                            form.StartPosition = FormStartPosition.CenterParent;
+                            form.ShowDialog();
                         }
                         finally
                         {
