@@ -1,0 +1,25 @@
+tasks
+- Update 
+ + final test on laptop
+  
+
+- TerrainMap
+ + Add layers, colours and height to appearance form
+ + use interpol pic as reference
+ + perfect
+
+
+tweaks:
+--------
+ctrl s ctrl o
+Add comments
+Cleanup
+Test (on laptop)
+overflow of long paths in error dialog
+
+
+
+later
+region view
+transport map
+move appearance to right column
