@@ -18,6 +18,7 @@ using SC4Parser.Types;
 using SC4Parser.Subfiles;
 using SC4Parser;
 using SC4Parser.Logging;
+using System.Diagnostics;
 
 namespace SC4CartographerUI
 {
@@ -43,6 +44,7 @@ namespace SC4CartographerUI
         private PropertiesForm propertiesForm = null;
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
+
 
         public MainForm()
         {
@@ -105,24 +107,15 @@ namespace SC4CartographerUI
                 MapPictureBox.Cursor = Cursors.Default;
             }
 
-            // If small map, change the picture box to center the image 
-            // (we need to switch this back for other maps so the scrollbars appear)
-            // don't pick this mode if the grid segment size is bigger than 10
-            if (map.Save.GetRegionViewSubfile().CitySizeX == 64
-                && map.Parameters.GridSegmentSize < 10) 
-            {
-                MapPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
-            }
-            else
-            {
-                MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            }
-
             // Set image, reset zoom
-            MapPictureBox.Image = previewNormalMapBitmap;
+            MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
             previewZoomed = false;
 
-            toolStripStatusLabel1.Text = $"size={previewNormalMapBitmap.Width.ToString()} x {previewNormalMapBitmap.Height.ToString()}px";
+            // Setup toolstrip details
+            Process proc = Process.GetCurrentProcess();
+            MemoryUsedToolStripStatusLabel.Text = $"Mem used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
+            MapSizeToolStripStatusLabel.Text = $"Size: {previewNormalMapBitmap.Width.ToString()} x {previewNormalMapBitmap.Height.ToString()}px";
         }
 
         /// <summary>
@@ -400,11 +393,11 @@ namespace SC4CartographerUI
 
             if (previewZoomed)
             {
-                MapPictureBox.Image = previewZoomedMapBitmap;
+                CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
             }
             else
             {
-                MapPictureBox.Image = previewNormalMapBitmap;
+                CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
             }
         }
 
@@ -562,6 +555,20 @@ namespace SC4CartographerUI
                 var updateFormat = new UpdateForm(info);
                 updateFormat.ShowDialog();
             }
+        }
+
+        /// <summary>
+        /// Center bitmap inside picture box (amazing)
+        /// Source: https://stackoverflow.com/a/9383029
+        /// </summary>
+        /// <param name="picBox"></param>
+        /// <param name="picImage"></param>
+        private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
+        {
+            picBox.Image = picImage;
+            picBox.Location = new Point((picBox.Parent.ClientSize.Width / 2) - (picImage.Width / 2),
+                                        (picBox.Parent.ClientSize.Height / 2) - (picImage.Height / 2));
+            picBox.Refresh();
         }
 
         #endregion
@@ -1015,21 +1022,28 @@ namespace SC4CartographerUI
             }
         }
 
-        #endregion
-
-        private void MapPictureBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            toolStripStatusLabel2.Text = $"{e.X} , {e.Y}";
-        }
-
         private void MapPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            toolStripStatusLabel2.Text = $"{e.X}, {e.Y}px";
+            MousePositionToolStripStatusLabel.Text = $"{e.X}, {e.Y}px";
         }
 
         private void MapPictureBox_MouseLeave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "";
+            MousePositionToolStripStatusLabel.Text = "";
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (previewZoomed)
+            {
+                CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
+            }
+            else
+            {
+                CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
+            }
+        }
+
+        #endregion
     }
 }

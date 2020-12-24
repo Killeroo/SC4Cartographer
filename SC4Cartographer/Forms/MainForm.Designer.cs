@@ -67,8 +67,9 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.AppearanceButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MousePositionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MapSizeToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MemoryUsedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -86,7 +87,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(204, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(671, 685);
+            this.groupBox1.Size = new System.Drawing.Size(671, 682);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
@@ -102,7 +103,7 @@
             this.panel1.Controls.Add(this.MapPictureBox);
             this.panel1.Location = new System.Drawing.Point(6, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(659, 659);
+            this.panel1.Size = new System.Drawing.Size(659, 656);
             this.panel1.TabIndex = 2;
             // 
             // OpenTextLabel
@@ -118,22 +119,21 @@
             // MapPictureBox
             // 
             this.MapPictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.MapPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.MapPictureBox.Location = new System.Drawing.Point(0, 0);
             this.MapPictureBox.Name = "MapPictureBox";
-            this.MapPictureBox.Size = new System.Drawing.Size(653, 653);
-            this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.MapPictureBox.Size = new System.Drawing.Size(653, 651);
+            this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.MapPictureBox.TabIndex = 2;
             this.MapPictureBox.TabStop = false;
             this.MapPictureBox.Click += new System.EventHandler(this.MapPictureBox_Clicked);
             this.MapPictureBox.MouseLeave += new System.EventHandler(this.MapPictureBox_MouseLeave);
             this.MapPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseMove);
-            this.MapPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseUp);
             // 
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveButton.Enabled = false;
-            this.SaveButton.Location = new System.Drawing.Point(751, 717);
+            this.SaveButton.Location = new System.Drawing.Point(751, 714);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(124, 23);
             this.SaveButton.TabIndex = 0;
@@ -151,7 +151,7 @@
             this.groupBox6.Controls.Add(this.FileTreeView);
             this.groupBox6.Location = new System.Drawing.Point(12, 26);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(186, 685);
+            this.groupBox6.Size = new System.Drawing.Size(186, 715);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Save games";
@@ -162,7 +162,7 @@
             this.FilterNewCitiesCheckbox.AutoSize = true;
             this.FilterNewCitiesCheckbox.Checked = true;
             this.FilterNewCitiesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FilterNewCitiesCheckbox.Location = new System.Drawing.Point(7, 662);
+            this.FilterNewCitiesCheckbox.Location = new System.Drawing.Point(7, 692);
             this.FilterNewCitiesCheckbox.Name = "FilterNewCitiesCheckbox";
             this.FilterNewCitiesCheckbox.Size = new System.Drawing.Size(144, 17);
             this.FilterNewCitiesCheckbox.TabIndex = 4;
@@ -201,7 +201,7 @@
             this.FileTreeView.Location = new System.Drawing.Point(7, 46);
             this.FileTreeView.Name = "FileTreeView";
             this.FileTreeView.SelectedImageIndex = 0;
-            this.FileTreeView.Size = new System.Drawing.Size(174, 610);
+            this.FileTreeView.Size = new System.Drawing.Size(174, 640);
             this.FileTreeView.TabIndex = 0;
             this.FileTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.FileTreeView_BeforeExpand);
             this.FileTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.FileTreeView_OnNodeMouseDoubleClick);
@@ -413,7 +413,7 @@
             // 
             this.AppearanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AppearanceButton.Enabled = false;
-            this.AppearanceButton.Location = new System.Drawing.Point(621, 717);
+            this.AppearanceButton.Location = new System.Drawing.Point(621, 714);
             this.AppearanceButton.Name = "AppearanceButton";
             this.AppearanceButton.Size = new System.Drawing.Size(124, 23);
             this.AppearanceButton.TabIndex = 9;
@@ -424,40 +424,44 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 723);
+            this.MousePositionToolStripStatusLabel,
+            this.MapSizeToolStripStatusLabel,
+            this.MemoryUsedToolStripStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 744);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(887, 24);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // MousePositionToolStripStatusLabel
             // 
-            this.toolStripStatusLabel1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Padding = new System.Windows.Forms.Padding(100, 0, 0, 0);
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(222, 19);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MousePositionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.MousePositionToolStripStatusLabel.Name = "MousePositionToolStripStatusLabel";
+            this.MousePositionToolStripStatusLabel.Size = new System.Drawing.Size(0, 19);
+            this.MousePositionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolStripStatusLabel2
+            // MapSizeToolStripStatusLabel
             // 
-            this.toolStripStatusLabel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Padding = new System.Windows.Forms.Padding(100, 0, 0, 0);
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(222, 19);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MapSizeToolStripStatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.MapSizeToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.MapSizeToolStripStatusLabel.Name = "MapSizeToolStripStatusLabel";
+            this.MapSizeToolStripStatusLabel.Padding = new System.Windows.Forms.Padding(25, 0, 25, 0);
+            this.MapSizeToolStripStatusLabel.Size = new System.Drawing.Size(118, 19);
+            this.MapSizeToolStripStatusLabel.Text = "Size: 0x0px";
+            this.MapSizeToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // MemoryUsedToolStripStatusLabel
+            // 
+            this.MemoryUsedToolStripStatusLabel.Name = "MemoryUsedToolStripStatusLabel";
+            this.MemoryUsedToolStripStatusLabel.Size = new System.Drawing.Size(117, 19);
+            this.MemoryUsedToolStripStatusLabel.Text = "Memory Usage: 0mb";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(887, 747);
+            this.ClientSize = new System.Drawing.Size(887, 768);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.AppearanceButton);
             this.Controls.Add(this.groupBox6);
@@ -470,6 +474,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "SC4Cartographer";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -524,8 +529,9 @@
         private System.Windows.Forms.ToolStripMenuItem UpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel MapSizeToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel MousePositionToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel MemoryUsedToolStripStatusLabel;
     }
 }
 
