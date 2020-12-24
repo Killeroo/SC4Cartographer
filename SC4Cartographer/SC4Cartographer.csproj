@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Data\map.ico</ApplicationIcon>
+    <ApplicationIcon>SC4Cartographer\Data\map.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -71,10 +71,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AboutBox.cs">
+    <Compile Include="SC4Cartographer\Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutBox.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Constants.cs">
@@ -146,69 +146,69 @@
     <Compile Include="..\SC4Parser\SC4Parser\Types\TypeGroupInstance.cs">
       <Link>SC4Parser\Types\TypeGroupInstance.cs</Link>
     </Compile>
-    <Compile Include="Forms\UpdateForm.cs">
+    <Compile Include="SC4Cartographer\Forms\UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UpdateForm.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
-    <Compile Include="Forms\LogForm.cs">
+    <Compile Include="SC4Cartographer\Helper.cs" />
+    <Compile Include="SC4Cartographer\Forms\LogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LogForm.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="SC4Cartographer\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SuccessForm.cs">
+    <Compile Include="SC4Cartographer\Forms\SuccessForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SuccessForm.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\SuccessForm.Designer.cs">
       <DependentUpon>SuccessForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ErrorForm.cs">
+    <Compile Include="SC4Cartographer\Forms\ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ErrorForm.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapParameters.cs" />
-    <Compile Include="MapRenderer.cs" />
+    <Compile Include="SC4Cartographer\MapParameters.cs" />
+    <Compile Include="SC4Cartographer\MapRenderer.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Forms\PropertiesForm.cs">
+    <Compile Include="SC4Cartographer\Forms\PropertiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PropertiesForm.Designer.cs">
+    <Compile Include="SC4Cartographer\Forms\PropertiesForm.Designer.cs">
       <DependentUpon>PropertiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Components\RichTextBoxLogger.cs" />
-    <Compile Include="UpdateChecker.cs" />
-    <Compile Include="UpdateInfo.cs" />
-    <EmbeddedResource Include="Forms\AboutBox.resx">
+    <Compile Include="SC4Cartographer\Components\RichTextBoxLogger.cs" />
+    <Compile Include="SC4Cartographer\UpdateChecker.cs" />
+    <Compile Include="SC4Cartographer\UpdateInfo.cs" />
+    <EmbeddedResource Include="SC4Cartographer\Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LogForm.resx">
+    <EmbeddedResource Include="SC4Cartographer\Forms\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
+    <EmbeddedResource Include="SC4Cartographer\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SuccessForm.resx">
+    <EmbeddedResource Include="SC4Cartographer\Forms\SuccessForm.resx">
       <DependentUpon>SuccessForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ErrorForm.resx">
+    <EmbeddedResource Include="SC4Cartographer\Forms\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PropertiesForm.resx">
+    <EmbeddedResource Include="SC4Cartographer\Forms\PropertiesForm.resx">
       <DependentUpon>PropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UpdateForm.resx">
+    <EmbeddedResource Include="SC4Cartographer\Forms\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -235,7 +235,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\map.ico" />
+    <Content Include="SC4Cartographer\Data\map.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
