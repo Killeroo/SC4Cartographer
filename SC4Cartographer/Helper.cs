@@ -98,5 +98,10 @@ namespace SC4CartographerUI
 
             return currentFilePath;
         }
+
+        public static double ConvertBytesToMegabytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f;
+        }
     }
 }
