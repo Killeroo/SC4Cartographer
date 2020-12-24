@@ -9,14 +9,14 @@ namespace SC4CartographerUI
 {
     public class UpdateInfo
     {
-        public bool NewVersionAvailable = false;
+        public bool NewVersionAvailable { get; private set; } = false;
 
-        public Version Version = null;
-        public string Tag = "";
-        public string Name = "";
-        public string Description = "";
-        public string BrowserDownloadLink = "";
-        public string ReleasePageLink = "";
+        public Version Version { get; private set; } = null;
+        public string Tag { get; private set; } = "";
+        public string Name { get; private set; } = "";
+        public string Description { get; private set; } = "";
+        public string BrowserDownloadLink { get; private set; } = "";
+        public string ReleasePageLink { get; private set; } = "";
 
         public UpdateInfo(string githubResponse)
         {
