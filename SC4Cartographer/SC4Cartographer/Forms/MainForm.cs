@@ -797,17 +797,35 @@ namespace SC4CartographerUI
         private void PropertiesButton_Click(object sender, EventArgs e)
         {
             propertiesForm = new PropertiesForm(map.Parameters, this);
-            if (this.Location.X + this.Size.Width + 5 > Screen.AllScreens[0].Bounds.Width)
+
+            Rectangle formArea = new Rectangle(
+                                    this.Left,
+                                    this.Top,
+                                    this.Width,
+                                    this.Height);
+
+            foreach (Screen screen in Screen.AllScreens)
             {
-                propertiesForm.Location = new Point(0, 0);
-                propertiesForm.StartPosition = FormStartPosition.CenterParent;
-            }
-            else
-            {
-                propertiesForm.Location = new Point(this.Location.X + this.Size.Width + 5, this.Location.Y);
-                propertiesForm.StartPosition = FormStartPosition.Manual;
+                if (screen.WorkingArea.Contains(formArea))
+                {
+                    // Work out how much space we have between the form and the edge of the screen
+                    int space = (formArea.Left + formArea.Width) - (screen.WorkingArea.Left + screen.WorkingArea.Width);
+                    if (Math.Abs(space) < 480)
+                    {
+                        // If there is not enough space then put the form in the middle of the parent
+                        propertiesForm.Location = new Point(this.Location.X + (this.Width/2) - 240, this.Location.Y + 20);
+                        propertiesForm.StartPosition = FormStartPosition.Manual;
+                    }
+                    else
+                    {
+                        // Else display the form by the side of the main form
+                        propertiesForm.Location = new Point(this.Location.X + this.Size.Width + 5, this.Location.Y);
+                        propertiesForm.StartPosition = FormStartPosition.Manual;
+                    }
+                }
             }
 
+            // Bring form to front if it already exists
             if (Helper.IsFormOpen(typeof(PropertiesForm)))
             {
                 propertiesForm.BringToFront();
