@@ -45,6 +45,11 @@ namespace SC4CartographerUI
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
 
+        // Locally cached data from our currently loaded save game
+        // Used when getting pixel data from map
+        // (saves excessive logging calls that happen when using map.Save directly)
+        private float[][] terrainData = null;
+        private List<Lot> zoneData = null;
 
         public MainForm()
         {
@@ -53,7 +58,7 @@ namespace SC4CartographerUI
             //propertiesForm = new PropertiesForm(map.Parameters, this);
 
             //logger = new RichTextBoxLogger(LogTextBox);
-            fileLogger = new FileLogger();
+            //fileLogger = new FileLogger();
 
             map.Parameters = new MapCreationParameters();
         }
@@ -114,7 +119,7 @@ namespace SC4CartographerUI
 
             // Setup toolstrip details
             Process proc = Process.GetCurrentProcess();
-            MemoryUsedToolStripStatusLabel.Text = $"Mem used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
+            MemoryUsedToolStripStatusLabel.Text = $"Memory used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
             MapSizeToolStripStatusLabel.Text = $"Size: {previewNormalMapBitmap.Width.ToString()} x {previewNormalMapBitmap.Height.ToString()}px";
         }
 
@@ -203,6 +208,9 @@ namespace SC4CartographerUI
                 return;
             }
 
+            // Cache some save data for map pixel lookup
+            terrainData = save.GetTerrainMapSubfile().Map;
+            zoneData = save.GetLotSubfile().Lots;
 
             // Set window title
             this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
@@ -565,10 +573,70 @@ namespace SC4CartographerUI
         /// <param name="picImage"></param>
         private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
         {
-            picBox.Image = picImage;
+            // Set image
+            MapPictureBox.Image = picImage;
+
+            // Center scroll bars
+            panel1.AutoScrollPosition =
+                new Point
+                {
+                    X = (MapPictureBox.Width - panel1.Width) / 2,
+                    Y = (MapPictureBox.Height - panel1.Height) / 2
+                };
+
+            // Center image in picturebox
             picBox.Location = new Point((picBox.Parent.ClientSize.Width / 2) - (picImage.Width / 2),
                                         (picBox.Parent.ClientSize.Height / 2) - (picImage.Height / 2));
             picBox.Refresh();
+        }
+
+        /// <summary>
+        /// Gets information for a specific pixel on the map. Returned as a string
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        private string GetMapPixelInfo(int x, int y)
+        {
+            string result = "";
+
+            int cityX = 0;
+            int cityY = 0;
+
+            if (previewZoomed)
+            {
+                cityX = x / 10;
+                cityY = y / 10;
+            }
+            else
+            {
+                // Work out coordinates on map
+                cityX = x / map.Parameters.GridSegmentSize;
+                cityY = y / map.Parameters.GridSegmentSize;
+            }
+
+            result = $"Mouse: {x}, {y}px (tile: {cityX}x, {cityY}z) ";
+            result += $" (height: {terrainData[cityY][cityX]})";
+
+            // See if there is any zone data on that segment
+            foreach (Lot lot in zoneData)
+            {
+                for (int lotZ = lot.MinTileZ; lotZ <= lot.MaxTileZ; lotZ++)
+                {
+                    if (lotZ == cityY)
+                    {
+                        for (int lotX = lot.MinTileX; lotX <= lot.MaxTileX; lotX++)
+                        {
+                            if (lotX == cityX)
+                            {
+                                result += $" (zone: {SC4Parser.Constants.LOT_ZONE_TYPE_STRINGS[lot.ZoneType]} [{SC4Parser.Constants.LOT_ZONE_WEALTH_STRINGS[lot.ZoneWealth]}])";
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
 
         #endregion
@@ -607,7 +675,7 @@ namespace SC4CartographerUI
                 }
 
                 // Found a good save, load it
-                LoadSaveGame(path);// @"C:\Projects\SC4Cartographer_new\TerrainMapReference.sc4");
+                LoadSaveGame(path);
             }
             else
             {
@@ -1042,7 +1110,7 @@ namespace SC4CartographerUI
 
         private void MapPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            MousePositionToolStripStatusLabel.Text = $"{e.X}, {e.Y}px";
+            MousePositionToolStripStatusLabel.Text = GetMapPixelInfo(e.X, e.Y);
         }
 
         private void MapPictureBox_MouseLeave(object sender, EventArgs e)

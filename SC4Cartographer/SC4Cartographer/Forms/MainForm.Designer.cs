@@ -424,9 +424,9 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MousePositionToolStripStatusLabel,
             this.MapSizeToolStripStatusLabel,
-            this.MemoryUsedToolStripStatusLabel});
+            this.MemoryUsedToolStripStatusLabel,
+            this.MousePositionToolStripStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 744);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(887, 24);
@@ -437,7 +437,8 @@
             // 
             this.MousePositionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.MousePositionToolStripStatusLabel.Name = "MousePositionToolStripStatusLabel";
-            this.MousePositionToolStripStatusLabel.Size = new System.Drawing.Size(0, 19);
+            this.MousePositionToolStripStatusLabel.Size = new System.Drawing.Size(26, 19);
+            this.MousePositionToolStripStatusLabel.Text = "test";
             this.MousePositionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MapSizeToolStripStatusLabel
@@ -445,15 +446,16 @@
             this.MapSizeToolStripStatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.MapSizeToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.MapSizeToolStripStatusLabel.Name = "MapSizeToolStripStatusLabel";
-            this.MapSizeToolStripStatusLabel.Padding = new System.Windows.Forms.Padding(25, 0, 25, 0);
-            this.MapSizeToolStripStatusLabel.Size = new System.Drawing.Size(118, 19);
+            this.MapSizeToolStripStatusLabel.Size = new System.Drawing.Size(68, 19);
             this.MapSizeToolStripStatusLabel.Text = "Size: 0x0px";
             this.MapSizeToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MemoryUsedToolStripStatusLabel
             // 
+            this.MemoryUsedToolStripStatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.MemoryUsedToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.MemoryUsedToolStripStatusLabel.Name = "MemoryUsedToolStripStatusLabel";
-            this.MemoryUsedToolStripStatusLabel.Size = new System.Drawing.Size(117, 19);
+            this.MemoryUsedToolStripStatusLabel.Size = new System.Drawing.Size(121, 19);
             this.MemoryUsedToolStripStatusLabel.Text = "Memory Usage: 0mb";
             // 
             // MainForm
