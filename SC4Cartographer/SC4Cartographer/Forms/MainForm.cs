@@ -616,7 +616,12 @@ namespace SC4CartographerUI
             }
 
             result = $"Mouse: {x}, {y}px (tile: {cityX}x, {cityY}z) ";
-            result += $" (height: {terrainData[cityY][cityX]})";
+
+            try
+            {
+                result += $" (height: {terrainData[cityY][cityX]})";
+            }
+            catch (IndexOutOfRangeException) { } // Silently continue when we accidently get a range outside of the terrain map bounds 
 
             // See if there is any zone data on that segment
             foreach (Lot lot in zoneData)
