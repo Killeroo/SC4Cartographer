@@ -7,6 +7,27 @@ using System.Drawing;
 
 namespace SC4CartographerUI
 {
+    public enum MapObject
+    {
+        TerrainMap,
+        GridLines,
+        ZoneOutline,
+        PloppedBuildingZone,
+        MilitaryZone,
+        AirportZone,
+        SeaportZone,
+        SpaceportZone,
+        ResidentialHighZone,
+        ResidentialMidZone,
+        ResidentialLowZone,
+        CommercialHighZone,
+        CommercialMidZone,
+        CommercialLowZone,
+        IndustrialHighZone,
+        IndustrialMidZone,
+        IndustrialLowZone
+    }
+
     public enum MapColorObject
     {
         Background,
@@ -72,6 +93,26 @@ namespace SC4CartographerUI
         public int SegmentPaddingY = 2;//4;
         public int SegmentOffsetX = 1;//2;
         public int SegmentOffsetY = 1;//2;
+
+        public List<MapObject> VisibleMapObjects = new List<MapObject>()
+        {
+            MapObject.TerrainMap,
+            MapObject.PloppedBuildingZone,
+            MapObject.MilitaryZone,
+            MapObject.AirportZone,
+            MapObject.SeaportZone,
+            MapObject.SpaceportZone,
+            MapObject.ResidentialHighZone,
+            MapObject.ResidentialMidZone,
+            MapObject.ResidentialLowZone,
+            MapObject.CommercialHighZone,
+            MapObject.CommercialMidZone,
+            MapObject.CommercialLowZone,
+            MapObject.IndustrialHighZone,
+            MapObject.IndustrialMidZone,
+            MapObject.IndustrialLowZone
+        };
+
 
         #endregion
 
