@@ -75,6 +75,7 @@ namespace SC4CartographerUI
             SegmentOffsetY = parameters.SegmentOffsetY;
             GridSegmentSize = parameters.GridSegmentSize;
             ColorDictionary = parameters.ColorDictionary;
+            VisibleMapObjects = parameters.VisibleMapObjects;
         }
 
         #region Ouput
@@ -91,8 +92,8 @@ namespace SC4CartographerUI
         public int GridSegmentSize = 5;//10;
         public int SegmentPaddingX = 2;//4;
         public int SegmentPaddingY = 2;//4;
-        public int SegmentOffsetX = 1;//2;
-        public int SegmentOffsetY = 1;//2;
+        public int SegmentOffsetX = 0;//2;
+        public int SegmentOffsetY = 0;//2;
 
         public List<MapObject> VisibleMapObjects = new List<MapObject>()
         {
@@ -154,6 +155,7 @@ namespace SC4CartographerUI
             properties.Add($"SegmentPaddingY:{SegmentPaddingY};");
             properties.Add($"SegmentOffsetX:{SegmentOffsetX};");
             properties.Add($"SegmentOffsetY:{SegmentOffsetY};");
+            properties.Add($"VisibleObjects:{string.Join(",", VisibleMapObjects)};");
             properties.Add($"Color@Background:{ColorDictionary[MapColorObject.Background].R},{ColorDictionary[MapColorObject.Background].G},{ColorDictionary[MapColorObject.Background].B};");
             properties.Add($"Color@GridLines:{ColorDictionary[MapColorObject.GridLines].R},{ColorDictionary[MapColorObject.GridLines].G},{ColorDictionary[MapColorObject.GridLines].B};");
             properties.Add($"Color@ZoneOutline:{ColorDictionary[MapColorObject.ZoneOutline].R},{ColorDictionary[MapColorObject.ZoneOutline].G},{ColorDictionary[MapColorObject.ZoneOutline].B};");
@@ -198,7 +200,7 @@ namespace SC4CartographerUI
                     string[] lineData = line.Replace(";", "").Split(':');
 
                     string propertyKey = lineData.First().ToLower();
-                    string propertyValue = lineData.Last().ToLower();
+                    string propertyValue = lineData.Last();//.ToLower();
 
                     // Add line info to properties dictionary
                     // (first part is the property name, second part is property value)
@@ -220,6 +222,7 @@ namespace SC4CartographerUI
             // Loop through each property 
             foreach (var property in properties)
             {
+                // Sort and assign colours seperately
                 if (property.Key.Contains("color@"))
                 {
                     string colorKey = property.Key.Split('@').Last();
@@ -284,6 +287,7 @@ namespace SC4CartographerUI
                 }
                 else
                 {
+                    // Sort all other properties
                     switch (property.Key)
                     {
                         case "showgridlines":
@@ -313,6 +317,14 @@ namespace SC4CartographerUI
                         case "segmentoffsety":
                             mapCreationParameters.SegmentOffsetY = int.Parse(property.Value);
                             break;
+                        case "visibleobjects":
+                            mapCreationParameters.VisibleMapObjects = new List<MapObject>();
+
+                            foreach (string mapObject in property.Value.Split(','))
+                            {
+                                mapCreationParameters.VisibleMapObjects.Add((MapObject)Enum.Parse(typeof(MapObject), mapObject));
+                            }
+                            break;
                     }
                 }
             }
@@ -326,6 +338,7 @@ namespace SC4CartographerUI
             this.SegmentPaddingY = mapCreationParameters.SegmentPaddingY;
             this.SegmentOffsetX = mapCreationParameters.SegmentOffsetX;
             this.SegmentOffsetY = mapCreationParameters.SegmentOffsetY;
+            this.VisibleMapObjects = mapCreationParameters.VisibleMapObjects;
         }
 
     }
