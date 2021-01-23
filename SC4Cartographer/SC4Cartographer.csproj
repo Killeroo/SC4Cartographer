@@ -180,12 +180,6 @@
     <Compile Include="SC4Cartographer\MapParameters.cs" />
     <Compile Include="SC4Cartographer\MapRenderer.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="SC4Cartographer\Forms\PropertiesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SC4Cartographer\Forms\PropertiesForm.Designer.cs">
-      <DependentUpon>PropertiesForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SC4Cartographer\Components\RichTextBoxLogger.cs" />
     <Compile Include="SC4Cartographer\UpdateChecker.cs" />
@@ -204,9 +198,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SC4Cartographer\Forms\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SC4Cartographer\Forms\PropertiesForm.resx">
-      <DependentUpon>PropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SC4Cartographer\Forms\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
