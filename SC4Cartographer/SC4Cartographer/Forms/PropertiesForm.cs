@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace SC4CartographerUI
 {
@@ -13,7 +14,7 @@ namespace SC4CartographerUI
         public PropertiesForm(MapCreationParameters p, MainForm main)
         {
             InitializeComponent();
-            
+
             SetUIValuesUsingParameters(p);
 
             // Register UI events _after_ setting up the ui values to avoid firing off a load of callbacks
@@ -65,6 +66,11 @@ namespace SC4CartographerUI
                 JPEGRadioButton.Checked = true;
             }
 
+            VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
+            PopulateLayersTreeView(VisibleObjectsTreeView.Nodes, parameters.VisibleMapObjects);
+            VisibleObjectsTreeView.ExpandAll();
+            VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
+
         }
         private MapCreationParameters GetParametersFromUIValues()
         {
@@ -106,7 +112,199 @@ namespace SC4CartographerUI
                 parameters.OutputFormat = OutFormat.JPEG;
             }
 
+            parameters.VisibleMapObjects = ParseLayersTreeView(VisibleObjectsTreeView.Nodes);
+
             return parameters;
+        }
+
+        public void PopulateLayersTreeView(TreeNodeCollection nodes, List<MapObject> objects)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Nodes.Count != 0)
+                {
+                    PopulateLayersTreeView(node.Nodes, objects);
+                }
+                else
+                {
+                    switch (node.Tag)
+                    {
+                        case "ResidentialLowZone":
+                            if (objects.Contains(MapObject.ResidentialLowZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "ResidentialMidZone":
+                            if (objects.Contains(MapObject.ResidentialMidZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "ResidentialHighZone":
+                            if (objects.Contains(MapObject.ResidentialHighZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "CommercialLowZone":
+                            if (objects.Contains(MapObject.CommercialLowZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "CommercialMidZone":
+                            if (objects.Contains(MapObject.CommercialMidZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "CommercialHighZone":
+                            if (objects.Contains(MapObject.CommercialHighZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "IndustrialHighZone":
+                            if (objects.Contains(MapObject.IndustrialHighZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "IndustrialMidZone":
+                            if (objects.Contains(MapObject.IndustrialMidZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "IndustrialLowZone":
+                            if (objects.Contains(MapObject.IndustrialLowZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "PloppedBuildingZone":
+                            if (objects.Contains(MapObject.PloppedBuildingZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "MilitaryZone":
+                            if (objects.Contains(MapObject.MilitaryZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "AirportZone":
+                            if (objects.Contains(MapObject.AirportZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "SeaportZone":
+                            if (objects.Contains(MapObject.SeaportZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "SpaceportZone":
+                            if (objects.Contains(MapObject.SpaceportZone))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "TerrainMap":
+                            if (objects.Contains(MapObject.TerrainMap))
+                            {
+                                node.Checked = true;
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        public List<MapObject> ParseLayersTreeView(TreeNodeCollection nodes)
+        {
+            List<MapObject> objects = new List<MapObject>();
+
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Nodes.Count != 0)
+                {
+                    objects.AddRange(ParseLayersTreeView(node.Nodes));
+                }
+                else
+                {
+                    if (node.Checked)
+                    {
+                        switch (node.Tag)
+                        {
+                            case "ResidentialLowZone":
+                                objects.Add(MapObject.ResidentialLowZone);
+                                break;
+                            case "ResidentialMidZone":
+                                objects.Add(MapObject.ResidentialMidZone);
+                                break;
+                            case "ResidentialHighZone":
+                                objects.Add(MapObject.ResidentialHighZone);
+                                break;
+                            case "CommercialLowZone":
+                                objects.Add(MapObject.CommercialLowZone);
+                                break;
+                            case "CommercialMidZone":
+                                objects.Add(MapObject.CommercialMidZone);
+                                break;
+                            case "CommercialHighZone":
+                                objects.Add(MapObject.CommercialHighZone);
+                                break;
+                            case "IndustrialHighZone":
+                                objects.Add(MapObject.IndustrialHighZone);
+                                break;
+                            case "IndustrialMidZone":
+                                objects.Add(MapObject.IndustrialMidZone);
+                                break;
+                            case "IndustrialLowZone":
+                                objects.Add(MapObject.IndustrialLowZone);
+                                break;
+                            case "PloppedBuildingZone":
+                                objects.Add(MapObject.PloppedBuildingZone);
+                                break;
+                            case "MilitaryZone":
+                                objects.Add(MapObject.MilitaryZone);
+                                break;
+                            case "AirportZone":
+                                objects.Add(MapObject.AirportZone);
+                                break;
+                            case "SeaportZone":
+                                objects.Add(MapObject.SeaportZone);
+                                break;
+                            case "SpaceportZone":
+                                objects.Add(MapObject.SpaceportZone);
+                                break;
+                            case "TerrainMap":
+                                objects.Add(MapObject.TerrainMap);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            return objects;
         }
 
         #region UI Event Callbacks
@@ -510,5 +708,75 @@ namespace SC4CartographerUI
 
         #endregion
 
+        private void VisibleObjectsTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Parent != null)
+            {
+                VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
+                if (AreSiblingsChecked(e.Node.Parent.Nodes))
+                {
+                    CheckParent(e.Node.Parent, true);
+                }
+                else
+                {
+                    CheckParent(e.Node.Parent, false);
+                }
+                VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
+            }
+            if (e.Node.Nodes.Count != 0)
+            {
+                VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
+                CheckAllNodes(e.Node.Nodes, e.Node.Checked);
+                VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
+            }
+
+            parentForm.SetAndUpdateMapCreationParameters(GetParametersFromUIValues());
+        }
+
+        private void CheckParent(TreeNode parent, bool check)
+        {
+            if (parent == null)
+                return;
+
+            parent.Checked = check;
+        }
+
+        private void CheckAllNodes(TreeNodeCollection nodes, bool check)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                node.Checked = check;
+                
+                if (node.Nodes.Count != 0)
+                {
+                    CheckAllNodes(node.Nodes, check);
+                }
+            }
+        }
+
+        private void CheckAllParents(TreeNode parent, bool check)
+        {
+            parent.Checked = check;
+
+            if (parent.Parent != null)
+            {
+                CheckAllParents(parent.Parent, check);
+            }
+        }
+
+        private bool AreSiblingsChecked(TreeNodeCollection nodes)
+        {
+            bool isChecked = false;
+
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked)
+                {
+                    isChecked = true;
+                }
+            }
+
+            return isChecked;
+        }
     }
 }

@@ -28,32 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Terrain");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
             treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
             treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
             treeNode10,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode8,
+            treeNode11,
             treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Terrain");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Plopped Building");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Military");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Airports");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Seaport");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Spaceport");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode9,
+            treeNode13,
+            treeNode19});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropertiesForm));
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -131,7 +143,7 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.VisibleObjectsTreeView = new System.Windows.Forms.TreeView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -165,6 +177,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
@@ -181,6 +194,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // colorDialog
@@ -892,7 +906,7 @@
             // CancelButton
             // 
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(377, 736);
+            this.CancelButton.Location = new System.Drawing.Point(377, 753);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 3;
@@ -902,7 +916,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(298, 736);
+            this.OkButton.Location = new System.Drawing.Point(296, 753);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 4;
@@ -912,9 +926,9 @@
             // 
             // RestoreDefaultsButton
             // 
-            this.RestoreDefaultsButton.Location = new System.Drawing.Point(126, 736);
+            this.RestoreDefaultsButton.Location = new System.Drawing.Point(150, 18);
             this.RestoreDefaultsButton.Name = "RestoreDefaultsButton";
-            this.RestoreDefaultsButton.Size = new System.Drawing.Size(100, 23);
+            this.RestoreDefaultsButton.Size = new System.Drawing.Size(96, 23);
             this.RestoreDefaultsButton.TabIndex = 5;
             this.RestoreDefaultsButton.Text = "Restore Defaults";
             this.RestoreDefaultsButton.UseVisualStyleBackColor = true;
@@ -922,9 +936,9 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(12, 736);
+            this.SaveButton.Location = new System.Drawing.Point(9, 18);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(49, 23);
+            this.SaveButton.Size = new System.Drawing.Size(60, 23);
             this.SaveButton.TabIndex = 6;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -932,9 +946,9 @@
             // 
             // LoadButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(67, 736);
+            this.LoadButton.Location = new System.Drawing.Point(75, 18);
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(53, 23);
+            this.LoadButton.Size = new System.Drawing.Size(69, 23);
             this.LoadButton.TabIndex = 7;
             this.LoadButton.Text = "Load";
             this.LoadButton.UseVisualStyleBackColor = true;
@@ -942,7 +956,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.treeView1);
+            this.groupBox4.Controls.Add(this.VisibleObjectsTreeView);
             this.groupBox4.Location = new System.Drawing.Point(12, 8);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(440, 148);
@@ -950,58 +964,77 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Layers";
             // 
-            // treeView1
+            // VisibleObjectsTreeView
             // 
-            this.treeView1.CheckBoxes = true;
-            this.treeView1.Location = new System.Drawing.Point(9, 19);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "ResidentialLowDensity";
-            treeNode1.Tag = "ResidentialLowZone";
-            treeNode1.Text = "Low Density";
-            treeNode2.Name = "ResidentialMediumDensity";
-            treeNode2.Tag = "ResidentialMediumZone";
-            treeNode2.Text = "Medium Density";
-            treeNode3.Name = "ResidentialHighDensity";
-            treeNode3.Tag = "ResidentialHighZone";
-            treeNode3.Text = "High Density";
-            treeNode4.Name = "ResidentialRootNode";
-            treeNode4.Tag = "Residential";
-            treeNode4.Text = "Residential";
-            treeNode5.Name = "CommercialLowDensity";
-            treeNode5.Tag = "CommercialLowZone";
-            treeNode5.Text = "Low Density";
-            treeNode6.Name = "CommercialMediumDensity";
-            treeNode6.Tag = "CommercialMediumZone";
-            treeNode6.Text = "Medium Density";
-            treeNode7.Name = "CommercialHighDensity";
-            treeNode7.Tag = "CommercialHighZone";
-            treeNode7.Text = "High Density";
-            treeNode8.Name = "CommercialRootNode";
-            treeNode8.Tag = "Commercial";
-            treeNode8.Text = "Commercial";
-            treeNode9.Name = "IndustrialLowDensity";
-            treeNode9.Tag = "IndustrialLowZone";
-            treeNode9.Text = "Low Density";
-            treeNode10.Name = "IndustrialMediumDensity";
-            treeNode10.Tag = "IndustrialMediumZone";
-            treeNode10.Text = "Medium Density";
-            treeNode11.Name = "IndustrialHighDensity";
-            treeNode11.Tag = "IndustrialHighZone";
-            treeNode11.Text = "High Density";
-            treeNode12.Name = "IndustrialRootNode";
-            treeNode12.Tag = "Industrial";
-            treeNode12.Text = "Industrial";
-            treeNode13.Name = "Node0";
-            treeNode13.Tag = "Zones";
-            treeNode13.Text = "Zones";
-            treeNode14.Name = "Node1";
-            treeNode14.Tag = "TerrainMap";
-            treeNode14.Text = "Terrain";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14});
-            this.treeView1.Size = new System.Drawing.Size(425, 123);
-            this.treeView1.TabIndex = 0;
+            this.VisibleObjectsTreeView.CheckBoxes = true;
+            this.VisibleObjectsTreeView.Location = new System.Drawing.Point(9, 19);
+            this.VisibleObjectsTreeView.Name = "VisibleObjectsTreeView";
+            treeNode1.Name = "Node1";
+            treeNode1.Tag = "TerrainMap";
+            treeNode1.Text = "Terrain";
+            treeNode2.Name = "ResidentialLowDensity";
+            treeNode2.Tag = "ResidentialLowZone";
+            treeNode2.Text = "Low Density";
+            treeNode3.Name = "ResidentialMediumDensity";
+            treeNode3.Tag = "ResidentialMidZone";
+            treeNode3.Text = "Medium Density";
+            treeNode4.Name = "ResidentialHighDensity";
+            treeNode4.Tag = "ResidentialHighZone";
+            treeNode4.Text = "High Density";
+            treeNode5.Name = "ResidentialRootNode";
+            treeNode5.Tag = "Residential";
+            treeNode5.Text = "Residential";
+            treeNode6.Name = "CommercialLowDensity";
+            treeNode6.Tag = "CommercialLowZone";
+            treeNode6.Text = "Low Density";
+            treeNode7.Name = "CommercialMediumDensity";
+            treeNode7.Tag = "CommercialMidZone";
+            treeNode7.Text = "Medium Density";
+            treeNode8.Name = "CommercialHighDensity";
+            treeNode8.Tag = "CommercialHighZone";
+            treeNode8.Text = "High Density";
+            treeNode9.Name = "CommercialRootNode";
+            treeNode9.Tag = "Commercial";
+            treeNode9.Text = "Commercial";
+            treeNode10.Name = "IndustrialLowDensity";
+            treeNode10.Tag = "IndustrialLowZone";
+            treeNode10.Text = "Low Density";
+            treeNode11.Name = "IndustrialMediumDensity";
+            treeNode11.Tag = "IndustrialMidZone";
+            treeNode11.Text = "Medium Density";
+            treeNode12.Name = "IndustrialHighDensity";
+            treeNode12.Tag = "IndustrialHighZone";
+            treeNode12.Text = "High Density";
+            treeNode13.Name = "IndustrialRootNode";
+            treeNode13.Tag = "Industrial";
+            treeNode13.Text = "Industrial";
+            treeNode14.Name = "PloppedBuildingZone";
+            treeNode14.Tag = "PloppedBuildingZone";
+            treeNode14.Text = "Plopped Building";
+            treeNode15.Name = "MilitaryZone";
+            treeNode15.Tag = "MilitaryZone";
+            treeNode15.Text = "Military";
+            treeNode16.Name = "AirportsZone";
+            treeNode16.Tag = "AirportZone";
+            treeNode16.Text = "Airports";
+            treeNode17.Name = "SeaportZones";
+            treeNode17.Tag = "SeaportZone";
+            treeNode17.Text = "Seaport";
+            treeNode18.Name = "SpaceportZone";
+            treeNode18.Tag = "SpaceportZone";
+            treeNode18.Text = "Spaceport";
+            treeNode19.Name = "Other";
+            treeNode19.Tag = "Other";
+            treeNode19.Text = "Other";
+            treeNode20.Name = "Node0";
+            treeNode20.Tag = "Zones";
+            treeNode20.Text = "Zones";
+            this.VisibleObjectsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode20});
+            this.VisibleObjectsTreeView.Size = new System.Drawing.Size(425, 123);
+            this.VisibleObjectsTreeView.TabIndex = 0;
+            this.VisibleObjectsTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.VisibleObjectsTreeView_AfterCheck);
             // 
             // groupBox5
             // 
@@ -1356,17 +1389,27 @@
             this.numericUpDown1.Size = new System.Drawing.Size(67, 20);
             this.numericUpDown1.TabIndex = 11;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.LoadButton);
+            this.groupBox6.Controls.Add(this.RestoreDefaultsButton);
+            this.groupBox6.Controls.Add(this.SaveButton);
+            this.groupBox6.Location = new System.Drawing.Point(12, 735);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(259, 52);
+            this.groupBox6.TabIndex = 10;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Properties";
+            // 
             // PropertiesForm
             // 
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 768);
+            this.ClientSize = new System.Drawing.Size(464, 797);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.LoadButton);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.RestoreDefaultsButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox3);
@@ -1379,7 +1422,7 @@
             this.Name = "PropertiesForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Map Appearance";
+            this.Text = "Map Properties";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).EndInit();
@@ -1400,6 +1443,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1514,7 +1558,7 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView VisibleObjectsTreeView;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
@@ -1548,5 +1592,6 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.NumericUpDown numericUpDown6;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }
