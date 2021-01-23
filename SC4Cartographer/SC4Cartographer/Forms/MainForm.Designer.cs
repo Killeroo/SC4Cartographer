@@ -67,9 +67,9 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.AppearanceButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.MousePositionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapSizeToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MemoryUsedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MousePositionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -340,7 +340,7 @@
             // 
             this.mapAppearanceToolStripMenuItem.Enabled = false;
             this.mapAppearanceToolStripMenuItem.Name = "mapAppearanceToolStripMenuItem";
-            this.mapAppearanceToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.mapAppearanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mapAppearanceToolStripMenuItem.Text = "Map Appearance";
             this.mapAppearanceToolStripMenuItem.Click += new System.EventHandler(this.mapAppearanceToolStripMenuItem_Click);
             // 
@@ -433,14 +433,6 @@
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // MousePositionToolStripStatusLabel
-            // 
-            this.MousePositionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.MousePositionToolStripStatusLabel.Name = "MousePositionToolStripStatusLabel";
-            this.MousePositionToolStripStatusLabel.Size = new System.Drawing.Size(26, 19);
-            this.MousePositionToolStripStatusLabel.Text = "test";
-            this.MousePositionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // MapSizeToolStripStatusLabel
             // 
             this.MapSizeToolStripStatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
@@ -457,6 +449,14 @@
             this.MemoryUsedToolStripStatusLabel.Name = "MemoryUsedToolStripStatusLabel";
             this.MemoryUsedToolStripStatusLabel.Size = new System.Drawing.Size(121, 19);
             this.MemoryUsedToolStripStatusLabel.Text = "Memory Usage: 0mb";
+            // 
+            // MousePositionToolStripStatusLabel
+            // 
+            this.MousePositionToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.MousePositionToolStripStatusLabel.Name = "MousePositionToolStripStatusLabel";
+            this.MousePositionToolStripStatusLabel.Size = new System.Drawing.Size(12, 19);
+            this.MousePositionToolStripStatusLabel.Text = "-";
+            this.MousePositionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 

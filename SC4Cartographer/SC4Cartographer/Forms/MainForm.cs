@@ -58,9 +58,13 @@ namespace SC4CartographerUI
             //propertiesForm = new PropertiesForm(map.Parameters, this);
 
             //logger = new RichTextBoxLogger(LogTextBox);
-            //fileLogger = new FileLogger();
+            fileLogger = new FileLogger();
 
             map.Parameters = new MapCreationParameters();
+
+            //map.Parameters.VisibleMapObjects = new List<MapObject>() { MapObject.AirportZone, MapObject.MilitaryZone };
+            //map.Parameters.SaveToFile("test.sc4cart");
+            //map.Parameters.LoadFromFile("test.sc4cart");
         }
         public MainForm(string path) : this()
         {
@@ -80,7 +84,13 @@ namespace SC4CartographerUI
             map.Parameters = parameters;
 
             GenerateMapPreview();
-            //LoadSaveGame(map.Save.FilePath);
+
+            // Call garbage collector to cleanup anything left over from generating new preview
+            // gets a bit spammy sometimes.... man modern constructs like GC have made me weak
+            // and this is almost certainly not a good move
+            // but.....
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         /// <summary>
@@ -644,6 +654,48 @@ namespace SC4CartographerUI
             return result;
         }
 
+        private void ShowPropertiesWindow()
+        {
+            propertiesForm = new PropertiesForm(map.Parameters, this);
+
+            Rectangle formArea = new Rectangle(
+                                    this.Left,
+                                    this.Top,
+                                    this.Width,
+                                    this.Height);
+
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                if (screen.WorkingArea.Contains(formArea))
+                {
+                    // Work out how much space we have between the form and the edge of the screen
+                    int space = (formArea.Left + formArea.Width) - (screen.WorkingArea.Left + screen.WorkingArea.Width);
+                    if (Math.Abs(space) < 480)
+                    {
+                        // If there is not enough space then put the form in the middle of the parent
+                        propertiesForm.Location = new Point(this.Location.X + (this.Width / 2) - 240, this.Location.Y + 20);
+                        propertiesForm.StartPosition = FormStartPosition.Manual;
+                    }
+                    else
+                    {
+                        // Else display the form by the side of the main form
+                        propertiesForm.Location = new Point(this.Location.X + this.Size.Width + 5, this.Location.Y);
+                        propertiesForm.StartPosition = FormStartPosition.Manual;
+                    }
+                }
+            }
+
+            // Bring form to front if it already exists
+            if (Helper.IsFormOpen(typeof(PropertiesForm)))
+            {
+                propertiesForm.BringToFront();
+            }
+            else
+            {
+                propertiesForm.Show(this);
+            }
+        }
+
         #endregion
 
         #region UI Event Callbacks
@@ -869,44 +921,7 @@ namespace SC4CartographerUI
 
         private void PropertiesButton_Click(object sender, EventArgs e)
         {
-            propertiesForm = new PropertiesForm(map.Parameters, this);
-
-            Rectangle formArea = new Rectangle(
-                                    this.Left,
-                                    this.Top,
-                                    this.Width,
-                                    this.Height);
-
-            foreach (Screen screen in Screen.AllScreens)
-            {
-                if (screen.WorkingArea.Contains(formArea))
-                {
-                    // Work out how much space we have between the form and the edge of the screen
-                    int space = (formArea.Left + formArea.Width) - (screen.WorkingArea.Left + screen.WorkingArea.Width);
-                    if (Math.Abs(space) < 480)
-                    {
-                        // If there is not enough space then put the form in the middle of the parent
-                        propertiesForm.Location = new Point(this.Location.X + (this.Width/2) - 240, this.Location.Y + 20);
-                        propertiesForm.StartPosition = FormStartPosition.Manual;
-                    }
-                    else
-                    {
-                        // Else display the form by the side of the main form
-                        propertiesForm.Location = new Point(this.Location.X + this.Size.Width + 5, this.Location.Y);
-                        propertiesForm.StartPosition = FormStartPosition.Manual;
-                    }
-                }
-            }
-
-            // Bring form to front if it already exists
-            if (Helper.IsFormOpen(typeof(PropertiesForm)))
-            {
-                propertiesForm.BringToFront();
-            }
-            else
-            {
-                propertiesForm.Show(this);
-            }
+            ShowPropertiesWindow();
 
             // Generate map again
             //LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
@@ -1011,9 +1026,7 @@ namespace SC4CartographerUI
 
         private void mapAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var propertiesForm = new PropertiesForm(map.Parameters, this);
-            propertiesForm.StartPosition = FormStartPosition.CenterParent;
-            propertiesForm.Show(this);
+            ShowPropertiesWindow();
 
             // Generate map again
             //LoadSaveGame(map.Save.FilePath);
