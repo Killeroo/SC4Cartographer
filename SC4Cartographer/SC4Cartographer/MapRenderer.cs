@@ -9,6 +9,7 @@ using System.IO;
 
 using SC4Parser;
 using SC4Parser.Files;
+using SC4Parser.DataStructures;
 
 namespace SC4CartographerUI
 {
@@ -17,6 +18,14 @@ namespace SC4CartographerUI
         public static float Map(float value, float valueMin, float valueMax, float outMin, float outMax)
         {
             return (value - valueMin) / (valueMax - valueMin) * (outMax - outMin) + outMin;
+        }
+        public static Color MapColor(float value, float valueMin, float valueMax, Color colorMin, Color colorMax)
+        {
+            float red = Map(value, valueMin, valueMax, colorMin.R, colorMax.R);
+            float green = Map(value, valueMin, valueMax, colorMin.G, colorMax.G);
+            float blue = Map(value, valueMin, valueMax, colorMin.B, colorMax.B);
+
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
 
         // Create a map from MapCreationParameters
@@ -32,255 +41,460 @@ namespace SC4CartographerUI
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                float max = 0; //2500 max value
-                float min = 1000; // 20 min
+                Color deepWaterColor = Color.FromArgb(61, 102, 180);
+                Color shallowWaterColor1 = Color.FromArgb(65, 108, 182);
+                Color shallowWaterColor2 = Color.FromArgb(90, 126, 172);
+                Color shallowWaterColor3 = Color.FromArgb(112, 136, 156);
+                Color sandColor1 = Color.FromArgb(161, 147, 111);
+                Color grassColor1 = Color.FromArgb(123, 136, 81);
+                Color grassColor2 = Color.FromArgb(120, 133, 79);
+                Color grassColor3 = Color.FromArgb(100, 125, 64);
+                Color grassColor4 = Color.FromArgb(79, 118, 48);
+                Color grassColor5 = Color.FromArgb(81, 120, 63);
+                Color hillColor1 = Color.FromArgb(93, 135, 112);
+                Color hillColor2 = Color.FromArgb(86, 130, 96);
+                Color hillColor3 = Color.FromArgb(92, 130, 108);
+                Color hillColor4 = Color.FromArgb(94, 129, 105);
+                Color hillColor5 = Color.FromArgb(94, 124, 100);
+                Color mountainColor1 = Color.FromArgb(115, 113, 83);
+                Color mountainColor2 = Color.FromArgb(121, 108, 77);
+                Color mountainColor3 = Color.FromArgb(124, 111, 82);
+                Color mountainColor4 = Color.FromArgb(131, 120, 93);
+                Color mountainColor5 = Color.FromArgb(136, 125, 100);
+                Color mountainColor6 = Color.FromArgb(162, 156, 141);
+                Color mountainColor7 = Color.FromArgb(181, 179, 171);
+                Color mountainColor8 = Color.FromArgb(200, 200, 200);
 
-                Color minWaterColor = Color.FromArgb(61, 102, 180);
-                Color maxWaterColor = Color.FromArgb(94, 129, 170);
-                Color minSandColor = Color.FromArgb(136, 136, 119);
-                Color maxSandColor = Color.FromArgb(187, 170, 136);
-                Color minGrassColor = Color.FromArgb(102, 136, 68);
-                Color maxGrassColor = Color.FromArgb(68, 102, 51);
-                Color minHillColor = Color.FromArgb(51, 81, 51);
-                Color maxHillColor = Color.FromArgb(119, 136, 102);
+                int deepWaterHeight = 220;
+                //int shallowWater1Height = // Basically anything between 220 and 230
+                int shallowWater2Height = 230;
+                int shallowWater3Height = 237;
+                int sand1Height = 254;
+                int grass1Height = 261;
+                int grass2Height = 264;
+                int grass3Height = 268;
+                int grass4Height = 272;
+                int grass5Height = 275;
+                int hill1Height = 297;
+                int hill2Height = 289;
+                int hill3Height = 305;
+                int hill4Height = 307;
+                int hill5Height = 315;
+                int mountain1Height = 355;
+                int mountain2Height = 372;
+                int mountain3Height = 401;
+                int mountain4Height = 481;
+                int mountain5Height = 526;
+                int mountain6Height = 807;
+                int mountain7Height = 1011;
+                int mountain8Height = 1600;
 
-                int deepWaterHeight = 200;
-                int waterMaxHeight = 237;
-                int sandMinHeight = 240;
-                int sandMaxHeight = 246;//255;// 260;
-                int grassMinHeight = 270;
-                int grassMaxHeight = 290;
-                int hillMinHeight = 310;
-                int hillMaxHeight = 310;
-
-                for (int x = 0; x < gridSizeX; x++)
+                // Render terrain map
+                // this can almost certainly done better but yeah...
+                // Did you know I spent 6 months writing this tool and the parser? :/
+                if (parameters.VisibleMapObjects.Contains(MapObject.TerrainMap))
                 {
-                    for (int y = 0; y < gridSizeY; y++)
+                    for (int x = 0; x < gridSizeX; x++)
                     {
-                        Rectangle rect = new Rectangle();
-                        rect = new Rectangle(
-                                (parameters.GridSegmentSize * x),
-                                (parameters.GridSegmentSize * y),
-                                (parameters.GridSegmentSize),
-                                (parameters.GridSegmentSize));
-
-                        float height = heightMap[y][x];
-                        Color c;
-
-                        if (height < deepWaterHeight)
+                        for (int y = 0; y < gridSizeY; y++)
                         {
-                            c = minWaterColor;
+                            // one grid segment has one height value, so we colour that grid segment
+                            Rectangle rect = new Rectangle();
+                            rect = new Rectangle(
+                                    (parameters.GridSegmentSize * x),
+                                    (parameters.GridSegmentSize * y),
+                                    (parameters.GridSegmentSize),
+                                    (parameters.GridSegmentSize));
+
+                            float height = heightMap[y][x];
+                            Color c;
+
+                            // Determine colour 
+                            // (this is the part that can be done better btws
+                            if (height < deepWaterHeight)
+                            {
+                                c = deepWaterColor;
+                            }
+                            else if (height <= shallowWater2Height)
+                            {
+                                c = MapColor(height, deepWaterHeight, shallowWater2Height, shallowWaterColor1, shallowWaterColor2);
+                            }
+                            else if (height <= shallowWater3Height)
+                            {
+                                c = MapColor(height, shallowWater2Height, shallowWater3Height, shallowWaterColor2, shallowWaterColor3);
+                            }
+                            else if (height <= sand1Height)
+                            {
+                                c = MapColor(height, shallowWater3Height, sand1Height, shallowWaterColor3, sandColor1);
+                            }
+                            else if (height <= grass1Height)
+                            {
+                                c = MapColor(height, sand1Height, grass1Height, sandColor1, grassColor1);
+                            }
+                            else if (height <= grass2Height)
+                            {
+                                c = MapColor(height, grass1Height, grass2Height, grassColor1, grassColor2);
+                            }
+                            else if (height <= grass3Height)
+                            {
+                                c = MapColor(height, grass2Height, grass3Height, grassColor2, grassColor3);
+                            }
+                            else if (height <= grass4Height)
+                            {
+                                c = MapColor(height, grass3Height, grass4Height, grassColor3, grassColor4);
+                            }
+                            else if (height <= grass5Height)
+                            {
+                                c = MapColor(height, grass4Height, grass5Height, grassColor4, grassColor5);
+                            }
+                            else if (height <= hill1Height)
+                            {
+                                c = MapColor(height, grass5Height, hill1Height, grassColor5, hillColor1);
+                            }
+                            else if (height <= hill2Height)
+                            {
+                                c = MapColor(height, hill1Height, hill2Height, hillColor1, hillColor2);
+                            }
+                            else if (height <= hill3Height)
+                            {
+                                c = MapColor(height, hill2Height, hill3Height, hillColor2, hillColor3);
+                            }
+                            else if (height <= hill4Height)
+                            {
+                                c = MapColor(height, hill3Height, hill4Height, hillColor3, hillColor4);
+                            }
+                            else if (height <= hill5Height)
+                            {
+                                c = MapColor(height, hill4Height, hill5Height, hillColor4, hillColor5);
+                            }
+                            else if (height <= mountain1Height)
+                            {
+                                c = MapColor(height, hill5Height, mountain1Height, hillColor5, mountainColor1);
+                            }
+                            else if (height <= mountain2Height)
+                            {
+                                c = MapColor(height, mountain1Height, mountain2Height, mountainColor1, mountainColor2);
+                            }
+                            else if (height <= mountain3Height)
+                            {
+                                c = MapColor(height, mountain2Height, mountain3Height, mountainColor2, mountainColor3);
+                            }
+                            else if (height <= mountain4Height)
+                            {
+                                c = MapColor(height, mountain3Height, mountain4Height, mountainColor3, mountainColor4);
+                            }
+                            else if (height <= mountain5Height)
+                            {
+                                c = MapColor(height, mountain4Height, mountain5Height, mountainColor4, mountainColor5);
+                            }
+                            else if (height <= mountain6Height)
+                            {
+                                c = MapColor(height, mountain5Height, mountain6Height, mountainColor5, mountainColor6);
+                            }
+                            else if (height <= mountain7Height)
+                            {
+                                c = MapColor(height, mountain6Height, mountain7Height, mountainColor6, mountainColor7);
+                            }
+                            else if (height <= mountain8Height)
+                            {
+                                c = MapColor(height, mountain7Height, mountain8Height, mountainColor7, mountainColor8);
+                            }
+                            else
+                            {
+                                c = mountainColor8;
+                            }
+
+                            g.FillRectangle(new SolidBrush(c), rect);
                         }
-                        else if (height <= waterMaxHeight)
-                        {
-                            float red = Map(height, deepWaterHeight, waterMaxHeight, minWaterColor.R, maxWaterColor.R);
-                            float green = Map(height, deepWaterHeight, waterMaxHeight, minWaterColor.G, maxWaterColor.G);
-                            float blue = Map(height, deepWaterHeight, waterMaxHeight, minWaterColor.B, maxWaterColor.B);
+                    }
+                }
+                else
+                {
+                    // if not rendering terrain map, render the background color
+                    g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
+                }
 
-                            c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        }
-                        else if (height <= sandMinHeight)
-                        {
-                            float red = Map(height, waterMaxHeight, sandMinHeight, maxWaterColor.R, minSandColor.R);
-                            float green = Map(height, waterMaxHeight, sandMinHeight, maxWaterColor.G, minSandColor.G);
-                            float blue = Map(height, waterMaxHeight, sandMinHeight, maxWaterColor.B, minSandColor.B);
+                Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
+                Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
+                gridLinesPen.Width = 1;
+                zoneOutlinePen.Width = 1;
 
-                            c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        }
-                        else if (height <= sandMaxHeight)
-                        {
-                            float red = Map(height, sandMinHeight, sandMaxHeight, minSandColor.R, maxSandColor.R);
-                            float green = Map(height, sandMinHeight, sandMaxHeight, minSandColor.G, maxSandColor.G);
-                            float blue = Map(height, sandMinHeight, sandMaxHeight, minSandColor.B, maxSandColor.B);
+                foreach (var lot in save.GetLotSubfile().Lots)
+                {
+                    Rectangle rect = new Rectangle();
 
-                            c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        }
-                        else if (height <= grassMinHeight)
-                        {
-                            float red = Map(height, sandMaxHeight, grassMinHeight, maxSandColor.R, minGrassColor.R);
-                            float green = Map(height, sandMaxHeight, grassMinHeight, maxSandColor.G, minGrassColor.G);
-                            float blue = Map(height, sandMaxHeight, grassMinHeight, maxSandColor.B, minGrassColor.B);
+                    // Get colour of zone (and check if it should be displayed)
+                    Color c = new Color();
+                    switch (lot.ZoneType)
+                    {
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_LOW:
+                            {
+                                // Check the zone is in the list of visible map objects
+                                if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialLowZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.ResidentialLow];
+                                }
+                                else
+                                {
+                                    // if not skip it
+                                    continue;
+                                }
 
-                            c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        }
-                        else if (height <= grassMaxHeight)
-                        {
-                            float red = Map(height, grassMinHeight, grassMaxHeight, minGrassColor.R, minHillColor.R);
-                            float green = Map(height, grassMinHeight, grassMaxHeight, minGrassColor.G, minHillColor.G);
-                            float blue = Map(height, grassMinHeight, grassMaxHeight, minGrassColor.B, minHillColor.B);
+                                break;
+                            }
 
-                            c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        }
-                        //else if (height <= hillMinHeight)
-                        //{
-                        //    float red = Map(height, grassMaxHeight, hillMinHeight, maxGrassColor.R, minHillColor.R);
-                        //    float green = Map(height, grassMaxHeight, hillMinHeight, maxGrassColor.G, minHillColor.G);
-                        //    float blue = Map(height, grassMaxHeight, hillMinHeight, maxGrassColor.B, minHillColor.B);
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_MEDIUM:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialMidZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.ResidentialMid];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                        //    c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        //}
-                        //else if (height <= hillMaxHeight)
-                        //{
-                        //    float red = Map(height, hillMinHeight, hillMaxHeight, minHillColor.R, maxHillColor.R);
-                        //    float green = Map(height, hillMinHeight, hillMaxHeight, minHillColor.G, maxHillColor.G);
-                        //    float blue = Map(height, hillMinHeight, hillMaxHeight, minHillColor.B, maxHillColor.B);
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_HIGH:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialHighZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.ResidentialHigh];
+                                }
+                                else
+                                { 
+                                    continue;                               
+                                }
 
-                        //    c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        //}
-                        //else if (height <= 500)
-                        //{
-                        //    float red = Map(height, 350, 500, 107, 149);
-                        //    float green = Map(height, 350, 500, 157, 137);
-                        //    float blue = Map(height, 350, 500, 130, 104);
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_LOW:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.CommercialLowZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.CommercialLow];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                        //    c = Color.FromArgb((int)red, (int)green, (int)blue);
-                        //}
-                        else
-                        {
-                            float height_max = 2500;
-                            float height_min = 0;
-                            float color_max = 255;
-                            float color_min = 0;
-                            float color = (height - height_min) / (height_max - height_min) * (color_max - color_min) + color_min;
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_MEDIUM:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.CommercialMidZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.CommercialMid];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                            c = Color.FromArgb((int)color, (int)color, (int)color);
-                        }
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_HIGH:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.CommercialHighZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.CommercialHigh];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                        //float height_max = 500;//2500;
-                        //float height_min = 0;
-                        //float color_max = 255;
-                        //float color_min = 0;
-                        //float color = (height - height_min) / (height_max - height_min) * (color_max - color_min) + color_min;
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_LOW:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialLowZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.IndustrialLow];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                        //c = Color.FromArgb((int)color, (int)color, (int)color);
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_MEDIUM:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialMidZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.IndustrialMid];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                        g.FillRectangle(new SolidBrush(c), rect);
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_HIGH:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialHighZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_MILITARY:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.MilitaryZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.Military];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_AIRPORT:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.AirportZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.Airport];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_SEAPORT:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.SeaportZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.Seaport];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_SPACEPORT:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.SpaceportZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.Spaceport];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.PloppedBuildingZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING_ALT:
+                            {
+                                if (parameters.VisibleMapObjects.Contains(MapObject.PloppedBuildingZone))
+                                {
+                                    c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                                break;
+                            }
+                        default:
+                            c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                            break;
+                    }
+
+                    // Get the actual dimensions of the zone
+                    switch (lot.Orientation)
+                    {
+                        case Constants.ORIENTATION_NORTH:
+                        case Constants.ORIENTATION_SOUTH:
+                            rect = new Rectangle(
+                                parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
+                                parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                (parameters.GridSegmentSize * lot.SizeX) - parameters.SegmentPaddingX,
+                                (parameters.GridSegmentSize * lot.SizeZ) - parameters.SegmentPaddingY);
+                            break;
+
+                        case Constants.ORIENTATION_WEST:
+                        case Constants.ORIENTATION_EAST:
+                            rect = new Rectangle(
+                                parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
+                                parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                (parameters.GridSegmentSize * lot.SizeZ) - parameters.SegmentPaddingX,
+                                (parameters.GridSegmentSize * lot.SizeX) - parameters.SegmentPaddingY);
+
+
+                            break;
+
+                    }
+
+                    // Draw the zone on the bitmap
+                    g.FillRectangle(new SolidBrush(c), rect);
+
+                    // draw an outline if that option is enabled
+                    if (parameters.ShowZoneOutlines)
+                    {
+                        g.DrawRectangle(zoneOutlinePen, rect);
                     }
                 }
 
-                //g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
-
-                //    Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
-                //    Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
-                //    gridLinesPen.Width = 1;
-                //    zoneOutlinePen.Width = 1;
-
-                //    foreach (var lot in save.GetLotSubfile().Lots)
+                //foreach (NetworkTile tile in save.GetNetworkSubfile1().Tiles)
+                //{
+                //    if (tile.MaxSizeX > 0  && tile.MaxSizeZ > 0)
                 //    {
-                //        Rectangle rect = new Rectangle();
+                //        Rectangle rect = new Rectangle(
+                //            parameters.GridSegmentSize * (int) (Math.Truncate(tile.MinSizeX / 16)),
+                //            parameters.GridSegmentSize * (int) (Math.Truncate(tile.MinSizeZ / 16)),
+                //            parameters.GridSegmentSize * (int) (Math.Truncate((tile.MaxSizeX - tile.MinSizeX) / 16)),
+                //            parameters.GridSegmentSize * (int) (Math.Truncate((tile.MaxSizeZ - tile.MinSizeZ) / 16))
+                //        );
 
-                //        Color c = new Color();
-                //        switch (lot.ZoneType)
-                //        {
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_LOW:
-                //                c = parameters.ColorDictionary[MapColorObject.ResidentialLow];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_MEDIUM:
-                //                c = parameters.ColorDictionary[MapColorObject.ResidentialMid];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_HIGH:
-                //                c = parameters.ColorDictionary[MapColorObject.ResidentialHigh];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_LOW:
-                //                c = parameters.ColorDictionary[MapColorObject.CommercialLow];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_MEDIUM:
-                //                c = parameters.ColorDictionary[MapColorObject.CommercialMid];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_HIGH:
-                //                c = parameters.ColorDictionary[MapColorObject.CommercialHigh];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_LOW:
-                //                c = parameters.ColorDictionary[MapColorObject.IndustrialLow];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_MEDIUM:
-                //                c = parameters.ColorDictionary[MapColorObject.IndustrialMid];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_HIGH:
-                //                c = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_MILITARY:
-                //                c = parameters.ColorDictionary[MapColorObject.Military];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_AIRPORT:
-                //                c = parameters.ColorDictionary[MapColorObject.Airport];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_SEAPORT:
-                //                c = parameters.ColorDictionary[MapColorObject.Seaport];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_SPACEPORT:
-                //                c = parameters.ColorDictionary[MapColorObject.Spaceport];
-                //                break;
-
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING:
-                //                c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
-                //                break;
-                //            case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING_ALT:
-                //                c = parameters.ColorDictionary[MapColorObject.Military];
-                //                break;
-                //            default:
-                //                c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
-                //                break;
-                //        }
-
-                //        switch (lot.Orientation)
-                //        {
-                //            case Constants.ORIENTATION_NORTH:
-                //            case Constants.ORIENTATION_SOUTH:
-                //                rect = new Rectangle(
-                //                    (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
-                //                    (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
-                //                    (parameters.GridSegmentSize * lot.SizeX) - parameters.SegmentPaddingX,
-                //                    (parameters.GridSegmentSize * lot.SizeZ) - parameters.SegmentPaddingY);
-                //                break;
-
-                //            case Constants.ORIENTATION_WEST:
-                //            case Constants.ORIENTATION_EAST:
-                //                rect = new Rectangle(
-                //                    (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
-                //                    (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
-                //                    (parameters.GridSegmentSize * lot.SizeZ) - parameters.SegmentPaddingX,
-                //                    (parameters.GridSegmentSize * lot.SizeX) - parameters.SegmentPaddingY);
-
-
-                //                break;
-
-                //        }
-
-                //        g.FillRectangle(new SolidBrush(c), rect);
-
-                //        if (parameters.ShowZoneOutlines)
-                //        {
-                //            g.DrawRectangle(zoneOutlinePen, rect);
-                //        }
+                //        g.FillRectangle(new SolidBrush(Color.White), rect);
                 //    }
+                //}
 
-                //    if (parameters.ShowGridLines)
-                //    {
-                //        for (int y = 0; y < gridSizeY; ++y)
-                //        {
-                //            g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
-                //        }
+                // Render grid lines
+                if (parameters.ShowGridLines)
+                {
+                    for (int y = 0; y < gridSizeY; ++y)
+                    {
+                        g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
+                    }
 
-                //        for (int x = 0; x < gridSizeX; ++x)
-                //        {
-                //            g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize);
-                //        }
-                //    }
-
+                    for (int x = 0; x < gridSizeX; ++x)
+                    {
+                        g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize);
+                    }
                 }
+
+            }
 
             return bmp;
                 
