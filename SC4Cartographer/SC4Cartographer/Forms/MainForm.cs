@@ -1097,10 +1097,44 @@ namespace SC4CartographerUI
             }
         }
 
+        private void MainForm_ResizeBegin(object sender, EventArgs e)
+        {
+            ShowAppearanceTabUI(false);
+        }
+
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            ShowAppearanceTabUI(true);
+        }
+
         #endregion
 
 
         #region Appearance Group Functionality
+
+        private void ShowAppearanceTabUI(bool show)
+        {
+            VisibleObjectsTreeView.Visible = show;
+            ColorsTabControl.Visible = show;
+            GridSegmentSizeLabel.Visible = show;
+            SegmentOffsetLabel.Visible = show;
+            SegmentPaddingLabel.Visible = show;
+            OutputFormatLabel.Visible = show;
+            OutputPathLabel.Visible = show;
+            PixelLabel1.Visible = show;
+            PixelLabel2.Visible = show;
+            PixelLabel3.Visible = show;
+            GridSegmentSizeNumericUpDown.Visible = show;
+            SegmentOffsetNumericUpDown.Visible = show;
+            SegmentPaddingNumericUpDown.Visible = show;
+            SegmentOffsetLabel.Visible = show;
+            ShowGridLinesCheckbox.Visible = show;
+            ShowZoneOutlinesCheckbox.Visible = show;
+            PNGRadioButton.Visible = show;
+            JPEGRadioButton.Visible = show;
+            OutputPathTextbox.Visible = show;
+            EditOutputPathButton.Visible = show;
+        }
 
         /// <summary>
         /// We seperated out registering events from their components creation so we can set the UI values without having 
@@ -1130,10 +1164,81 @@ namespace SC4CartographerUI
             this.ResidentialZoneHighEditButton.Click += new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
             this.ResidentialZoneMidEditButton.Click += new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
             this.GridBackgroundEditButton.Click += new System.EventHandler(this.GridBackgroundEditButton_Click);
+
+            this.TerrainLayer1CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer1CheckBox_CheckedChanged);
+            this.TerrainLayer2CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer2CheckBox_CheckedChanged);
+            this.TerrainLayer3CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer3CheckBox_CheckedChanged);
+            this.TerrainLayer4CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer4CheckBox_CheckedChanged);
+            this.TerrainLayer5CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer5CheckBox_CheckedChanged);
+            this.TerrainLayer6CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer6CheckBox_CheckedChanged);
+            this.TerrainLayer7CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer7CheckBox_CheckedChanged);
+            this.TerrainLayer8CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer8CheckBox_CheckedChanged);
+            this.TerrainLayer9CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer9CheckBox_CheckedChanged);
+            this.TerrainLayer10CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer10CheckBox_CheckedChanged);
+            this.TerrainLayer11CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer11CheckBox_CheckedChanged);
+            this.TerrainLayer12CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer12CheckBox_CheckedChanged);
+            this.TerrainLayer13CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer13CheckBox_CheckedChanged);
+            this.TerrainLayer14CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer14CheckBox_CheckedChanged);
+            this.TerrainLayer15CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer15CheckBox_CheckedChanged);
+            this.TerrainLayer16CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer16CheckBox_CheckedChanged);
+            this.TerrainLayer17CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer17CheckBox_CheckedChanged);
+            this.TerrainLayer18CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer18CheckBox_CheckedChanged);
+            this.TerrainLayer19CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer19CheckBox_CheckedChanged);
+            this.TerrainLayer20CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer20CheckBox_CheckedChanged);
+            this.TerrainLayer21CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer21CheckBox_CheckedChanged);
+            this.TerrainLayer22CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer22CheckBox_CheckedChanged);
+            this.TerrainLayer23CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer23CheckBox_CheckedChanged);
+            this.TerrainLayer1NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer1NumericUpDown_ValueChanged);
+            this.TerrainLayer2NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer2NumericUpDown_ValueChanged);
+            this.TerrainLayer3NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer3NumericUpDown_ValueChanged);
+            this.TerrainLayer4NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer4NumericUpDown_ValueChanged);
+            this.TerrainLayer5NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer5NumericUpDown_ValueChanged);
+            this.TerrainLayer6NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer6NumericUpDown_ValueChanged);
+            this.TerrainLayer7NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer7NumericUpDown_ValueChanged);
+            this.TerrainLayer8NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer8NumericUpDown_ValueChanged);
+            this.TerrainLayer9NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer9NumericUpDown_ValueChanged);
+            this.TerrainLayer10NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer10NumericUpDown_ValueChanged);
+            this.TerrainLayer11NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer11NumericUpDown_ValueChanged);
+            this.TerrainLayer12NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer12NumericUpDown_ValueChanged);
+            this.TerrainLayer13NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer13NumericUpDown_ValueChanged);
+            this.TerrainLayer14NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer14NumericUpDown_ValueChanged);
+            this.TerrainLayer15NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer15NumericUpDown_ValueChanged);
+            this.TerrainLayer16NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer16NumericUpDown_ValueChanged);
+            this.TerrainLayer17NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer17NumericUpDown_ValueChanged);
+            this.TerrainLayer18NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer18NumericUpDown_ValueChanged);
+            this.TerrainLayer19NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer19NumericUpDown_ValueChanged);
+            this.TerrainLayer20NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer20NumericUpDown_ValueChanged);
+            this.TerrainLayer21NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer21NumericUpDown_ValueChanged);
+            this.TerrainLayer22NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer22NumericUpDown_ValueChanged);
+            this.TerrainLayer23NumericUpDown.ValueChanged += new System.EventHandler(this.TerrainLayer23NumericUpDown_ValueChanged);
+            this.TerrainLayer1Button.Click += new System.EventHandler(this.TerrainLayer1Button_click);
+            this.TerrainLayer2Button.Click += new System.EventHandler(this.TerrainLayer2Button_click);
+            this.TerrainLayer3Button.Click += new System.EventHandler(this.TerrainLayer3Button_click);
+            this.TerrainLayer4Button.Click += new System.EventHandler(this.TerrainLayer4Button_click);
+            this.TerrainLayer5Button.Click += new System.EventHandler(this.TerrainLayer5Button_click);
+            this.TerrainLayer6Button.Click += new System.EventHandler(this.TerrainLayer6Button_click);
+            this.TerrainLayer7Button.Click += new System.EventHandler(this.TerrainLayer7Button_click);
+            this.TerrainLayer8Button.Click += new System.EventHandler(this.TerrainLayer8Button_click);
+            this.TerrainLayer9Button.Click += new System.EventHandler(this.TerrainLayer9Button_click);
+            this.TerrainLayer10Button.Click += new System.EventHandler(this.TerrainLayer10Button_click);
+            this.TerrainLayer11Button.Click += new System.EventHandler(this.TerrainLayer11Button_click);
+            this.TerrainLayer12Button.Click += new System.EventHandler(this.TerrainLayer12Button_click);
+            this.TerrainLayer13Button.Click += new System.EventHandler(this.TerrainLayer13Button_click);
+            this.TerrainLayer14Button.Click += new System.EventHandler(this.TerrainLayer14Button_click);
+            this.TerrainLayer15Button.Click += new System.EventHandler(this.TerrainLayer15Button_click);
+            this.TerrainLayer16Button.Click += new System.EventHandler(this.TerrainLayer16Button_click);
+            this.TerrainLayer17Button.Click += new System.EventHandler(this.TerrainLayer17Button_click);
+            this.TerrainLayer18Button.Click += new System.EventHandler(this.TerrainLayer18Button_click);
+            this.TerrainLayer19Button.Click += new System.EventHandler(this.TerrainLayer19Button_click);
+            this.TerrainLayer20Button.Click += new System.EventHandler(this.TerrainLayer20Button_click);
+            this.TerrainLayer21Button.Click += new System.EventHandler(this.TerrainLayer21Button_click);
+            this.TerrainLayer22Button.Click += new System.EventHandler(this.TerrainLayer22Button_click);
+            this.TerrainLayer23Button.Click += new System.EventHandler(this.TerrainLayer23Button_click);
         }
 
         private void SetAppearanceUIValuesUsingParameters(MapCreationParameters parameters)
         {
+            // Fill zone stuff
             GridBackgroundTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Background];
             GridLinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.GridLines];
             BuildingsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
@@ -1152,12 +1257,247 @@ namespace SC4CartographerUI
             IndustrialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialMid];
             IndustrialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
 
+            // Terrain stuff
+            TerrainLayer1CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer1].enabled;
+            TerrainLayer1AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer1].alias;
+            TerrainLayer1NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer1].height;
+            TerrainLayer1ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer1].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer1].enabled == false)
+            {
+                TerrainLayer1AliasTextBox.Enabled = false;
+                TerrainLayer1NumericUpDown.Enabled = false;
+                TerrainLayer1Button.Enabled = false;
+            }
+            TerrainLayer2CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer2].enabled;
+            TerrainLayer2AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer2].alias;
+            TerrainLayer2NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer2].height;
+            TerrainLayer2ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer2].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer2].enabled == false)
+            {
+                TerrainLayer2AliasTextBox.Enabled = false;
+                TerrainLayer2NumericUpDown.Enabled = false;
+                TerrainLayer2Button.Enabled = false;
+            }
+            TerrainLayer3CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer3].enabled;
+            TerrainLayer3AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer3].alias;
+            TerrainLayer3NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer3].height;
+            TerrainLayer3ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer3].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer3].enabled == false)
+            {
+                TerrainLayer3AliasTextBox.Enabled = false;
+                TerrainLayer3NumericUpDown.Enabled = false;
+                TerrainLayer3Button.Enabled = false;
+            }
+            TerrainLayer4CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer4].enabled;
+            TerrainLayer4AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer4].alias;
+            TerrainLayer4NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer4].height;
+            TerrainLayer4ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer4].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer4].enabled == false)
+            {
+                TerrainLayer4AliasTextBox.Enabled = false;
+                TerrainLayer4NumericUpDown.Enabled = false;
+                TerrainLayer4Button.Enabled = false;
+            }
+            TerrainLayer5CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer5].enabled;
+            TerrainLayer5AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer5].alias;
+            TerrainLayer5NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer5].height;
+            TerrainLayer5ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer5].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer5].enabled == false)
+            {
+                TerrainLayer5AliasTextBox.Enabled = false;
+                TerrainLayer5NumericUpDown.Enabled = false;
+                TerrainLayer5Button.Enabled = false;
+            }
+            TerrainLayer6CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer6].enabled;
+            TerrainLayer6AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer6].alias;
+            TerrainLayer6NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer6].height;
+            TerrainLayer6ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer6].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer6].enabled == false)
+            {
+                TerrainLayer6AliasTextBox.Enabled = false;
+                TerrainLayer6NumericUpDown.Enabled = false;
+                TerrainLayer6Button.Enabled = false;
+            }
+            TerrainLayer7CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer7].enabled;
+            TerrainLayer7AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer7].alias;
+            TerrainLayer7NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer7].height;
+            TerrainLayer7ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer7].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer7].enabled == false)
+            {
+                TerrainLayer7AliasTextBox.Enabled = false;
+                TerrainLayer7NumericUpDown.Enabled = false;
+                TerrainLayer7Button.Enabled = false;
+            }
+            TerrainLayer8CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer8].enabled;
+            TerrainLayer8AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer8].alias;
+            TerrainLayer8NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer8].height;
+            TerrainLayer8ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer8].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer8].enabled == false)
+            {
+                TerrainLayer8AliasTextBox.Enabled = false;
+                TerrainLayer8NumericUpDown.Enabled = false;
+                TerrainLayer8Button.Enabled = false;
+            }
+            TerrainLayer9CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer9].enabled;
+            TerrainLayer9AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer9].alias;
+            TerrainLayer9NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer9].height;
+            TerrainLayer9ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer9].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer9].enabled == false)
+            {
+                TerrainLayer9AliasTextBox.Enabled = false;
+                TerrainLayer9NumericUpDown.Enabled = false;
+                TerrainLayer9Button.Enabled = false;
+            }
+            TerrainLayer10CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer10].enabled;
+            TerrainLayer10AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer10].alias;
+            TerrainLayer10NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer10].height;
+            TerrainLayer10ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer10].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer10].enabled == false)
+            {
+                TerrainLayer10AliasTextBox.Enabled = false;
+                TerrainLayer10NumericUpDown.Enabled = false;
+                TerrainLayer10Button.Enabled = false;
+            }
+            TerrainLayer11CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer11].enabled;
+            TerrainLayer11AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer11].alias;
+            TerrainLayer11NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer11].height;
+            TerrainLayer11ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer11].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer11].enabled == false)
+            {
+                TerrainLayer11AliasTextBox.Enabled = false;
+                TerrainLayer11NumericUpDown.Enabled = false;
+                TerrainLayer11Button.Enabled = false;
+            }
+            TerrainLayer12CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer12].enabled;
+            TerrainLayer12AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer12].alias;
+            TerrainLayer12NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer12].height;
+            TerrainLayer12ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer12].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer12].enabled == false)
+            {
+                TerrainLayer12AliasTextBox.Enabled = false;
+                TerrainLayer12NumericUpDown.Enabled = false;
+                TerrainLayer12Button.Enabled = false;
+            }
+            TerrainLayer13CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer13].enabled;
+            TerrainLayer13AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer13].alias;
+            TerrainLayer13NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer13].height;
+            TerrainLayer13ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer13].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer13].enabled == false)
+            {
+                TerrainLayer13AliasTextBox.Enabled = false;
+                TerrainLayer13NumericUpDown.Enabled = false;
+                TerrainLayer13Button.Enabled = false;
+            }
+            TerrainLayer14CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer14].enabled;
+            TerrainLayer14AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer14].alias;
+            TerrainLayer14NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer14].height;
+            TerrainLayer14ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer14].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer14].enabled == false)
+            {
+                TerrainLayer14AliasTextBox.Enabled = false;
+                TerrainLayer14NumericUpDown.Enabled = false;
+                TerrainLayer14Button.Enabled = false;
+            }
+            TerrainLayer15CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer15].enabled;
+            TerrainLayer15AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer15].alias;
+            TerrainLayer15NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer15].height;
+            TerrainLayer15ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer15].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer15].enabled == false)
+            {
+                TerrainLayer15AliasTextBox.Enabled = false;
+                TerrainLayer15NumericUpDown.Enabled = false;
+                TerrainLayer15Button.Enabled = false;
+            }
+            TerrainLayer16CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer16].enabled;
+            TerrainLayer16AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer16].alias;
+            TerrainLayer16NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer16].height;
+            TerrainLayer16ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer16].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer16].enabled == false)
+            {
+                TerrainLayer16AliasTextBox.Enabled = false;
+                TerrainLayer16NumericUpDown.Enabled = false;
+                TerrainLayer16Button.Enabled = false;
+            }
+            TerrainLayer17CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer17].enabled;
+            TerrainLayer17AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer17].alias;
+            TerrainLayer17NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer17].height;
+            TerrainLayer17ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer17].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer17].enabled == false)
+            {
+                TerrainLayer17AliasTextBox.Enabled = false;
+                TerrainLayer17NumericUpDown.Enabled = false;
+                TerrainLayer17Button.Enabled = false;
+            }
+            TerrainLayer18CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer18].enabled;
+            TerrainLayer18AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer18].alias;
+            TerrainLayer18NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer18].height;
+            TerrainLayer18ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer18].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer18].enabled == false)
+            {
+                TerrainLayer18AliasTextBox.Enabled = false;
+                TerrainLayer18NumericUpDown.Enabled = false;
+                TerrainLayer18Button.Enabled = false;
+            }
+            TerrainLayer19CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer19].enabled;
+            TerrainLayer19AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer19].alias;
+            TerrainLayer19NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer19].height;
+            TerrainLayer19ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer19].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer19].enabled == false)
+            {
+                TerrainLayer19AliasTextBox.Enabled = false;
+                TerrainLayer19NumericUpDown.Enabled = false;
+                TerrainLayer19Button.Enabled = false;
+            }
+            TerrainLayer20CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer20].enabled;
+            TerrainLayer20AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer20].alias;
+            TerrainLayer20NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer20].height;
+            TerrainLayer20ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer20].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer20].enabled == false)
+            {
+                TerrainLayer20AliasTextBox.Enabled = false;
+                TerrainLayer20NumericUpDown.Enabled = false;
+                TerrainLayer20Button.Enabled = false;
+            }
+            TerrainLayer21CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer21].enabled;
+            TerrainLayer21AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer21].alias;
+            TerrainLayer21NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer21].height;
+            TerrainLayer21ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer21].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer21].enabled == false)
+            {
+                TerrainLayer21AliasTextBox.Enabled = false;
+                TerrainLayer21NumericUpDown.Enabled = false;
+                TerrainLayer21Button.Enabled = false;
+            }
+            TerrainLayer22CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer22].enabled;
+            TerrainLayer22AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer22].alias;
+            TerrainLayer22NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer22].height;
+            TerrainLayer22ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer22].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer22].enabled == false)
+            {
+                TerrainLayer22AliasTextBox.Enabled = false;
+                TerrainLayer22NumericUpDown.Enabled = false;
+                TerrainLayer22Button.Enabled = false;
+            }
+            TerrainLayer23CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer23].enabled;
+            TerrainLayer23AliasTextBox.Text = parameters.TerrainDataDictionary[TerrainObject.Layer23].alias;
+            TerrainLayer23NumericUpDown.Value = parameters.TerrainDataDictionary[TerrainObject.Layer23].height;
+            TerrainLayer23ColorTextBox.BackColor = parameters.ColorDictionary[parameters.TerrainDataDictionary[TerrainObject.Layer23].colorObject];
+            if (parameters.TerrainDataDictionary[TerrainObject.Layer23].enabled == false)
+            {
+                TerrainLayer23AliasTextBox.Enabled = false;
+                TerrainLayer23NumericUpDown.Enabled = false;
+                TerrainLayer23Button.Enabled = false;
+            }
+
+
+            // Grid stuff
             GridSegmentSizeNumericUpDown.Value = parameters.GridSegmentSize;
             SegmentPaddingNumericUpDown.Value = parameters.SegmentPaddingX;
             SegmentOffsetNumericUpDown.Value = parameters.SegmentOffsetX;
             ShowGridLinesCheckbox.Checked = parameters.ShowGridLines;
             ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
 
+            // Output stuff
             OutputPathTextbox.Text = parameters.OutputPath;
             if (parameters.OutputFormat == OutFormat.PNG)
             {
@@ -1170,6 +1510,7 @@ namespace SC4CartographerUI
                 JPEGRadioButton.Checked = true;
             }
 
+            // Layers tree
             VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
             PopulateLayersTreeView(VisibleObjectsTreeView.Nodes, parameters.VisibleMapObjects);
             VisibleObjectsTreeView.ExpandAll();
@@ -1197,6 +1538,54 @@ namespace SC4CartographerUI
             parameters.ColorDictionary[MapColorObject.IndustrialLow] = IndustrialZoneLowTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.IndustrialMid] = IndustrialZoneMidTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.IndustrialHigh] = IndustrialZoneHighTextbox.BackColor;
+
+            parameters.ColorDictionary[MapColorObject.TerrainLayer1] = TerrainLayer1ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer2] = TerrainLayer2ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer3] = TerrainLayer3ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer4] = TerrainLayer4ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer5] = TerrainLayer5ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer6] = TerrainLayer6ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer7] = TerrainLayer7ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer8] = TerrainLayer8ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer9] = TerrainLayer9ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer10] = TerrainLayer10ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer11] = TerrainLayer11ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer12] = TerrainLayer12ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer13] = TerrainLayer13ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer14] = TerrainLayer14ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer15] = TerrainLayer15ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer16] = TerrainLayer16ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer17] = TerrainLayer17ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer18] = TerrainLayer18ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer19] = TerrainLayer19ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer20] = TerrainLayer20ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer21] = TerrainLayer21ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer22] = TerrainLayer22ColorTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.TerrainLayer23] = TerrainLayer23ColorTextBox.BackColor;
+
+            parameters.TerrainDataDictionary[TerrainObject.Layer1] = (TerrainLayer1CheckBox.Checked, TerrainLayer1AliasTextBox.Text, MapColorObject.TerrainLayer1, Convert.ToInt32(TerrainLayer1NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer2] = (TerrainLayer2CheckBox.Checked, TerrainLayer2AliasTextBox.Text, MapColorObject.TerrainLayer2, Convert.ToInt32(TerrainLayer2NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer3] = (TerrainLayer3CheckBox.Checked, TerrainLayer3AliasTextBox.Text, MapColorObject.TerrainLayer3, Convert.ToInt32(TerrainLayer3NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer4] = (TerrainLayer4CheckBox.Checked, TerrainLayer4AliasTextBox.Text, MapColorObject.TerrainLayer4, Convert.ToInt32(TerrainLayer4NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer5] = (TerrainLayer5CheckBox.Checked, TerrainLayer5AliasTextBox.Text, MapColorObject.TerrainLayer5, Convert.ToInt32(TerrainLayer5NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer6] = (TerrainLayer6CheckBox.Checked, TerrainLayer6AliasTextBox.Text, MapColorObject.TerrainLayer6, Convert.ToInt32(TerrainLayer6NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer7] = (TerrainLayer7CheckBox.Checked, TerrainLayer7AliasTextBox.Text, MapColorObject.TerrainLayer7, Convert.ToInt32(TerrainLayer7NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer8] = (TerrainLayer8CheckBox.Checked, TerrainLayer8AliasTextBox.Text, MapColorObject.TerrainLayer8, Convert.ToInt32(TerrainLayer8NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer9] = (TerrainLayer9CheckBox.Checked, TerrainLayer9AliasTextBox.Text, MapColorObject.TerrainLayer9, Convert.ToInt32(TerrainLayer9NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer10] = (TerrainLayer10CheckBox.Checked, TerrainLayer10AliasTextBox.Text, MapColorObject.TerrainLayer10, Convert.ToInt32(TerrainLayer10NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer11] = (TerrainLayer11CheckBox.Checked, TerrainLayer11AliasTextBox.Text, MapColorObject.TerrainLayer11, Convert.ToInt32(TerrainLayer11NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer12] = (TerrainLayer12CheckBox.Checked, TerrainLayer12AliasTextBox.Text, MapColorObject.TerrainLayer12, Convert.ToInt32(TerrainLayer12NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer13] = (TerrainLayer13CheckBox.Checked, TerrainLayer13AliasTextBox.Text, MapColorObject.TerrainLayer13, Convert.ToInt32(TerrainLayer13NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer14] = (TerrainLayer14CheckBox.Checked, TerrainLayer14AliasTextBox.Text, MapColorObject.TerrainLayer14, Convert.ToInt32(TerrainLayer14NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer15] = (TerrainLayer15CheckBox.Checked, TerrainLayer15AliasTextBox.Text, MapColorObject.TerrainLayer15, Convert.ToInt32(TerrainLayer15NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer16] = (TerrainLayer16CheckBox.Checked, TerrainLayer16AliasTextBox.Text, MapColorObject.TerrainLayer16, Convert.ToInt32(TerrainLayer16NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer17] = (TerrainLayer17CheckBox.Checked, TerrainLayer17AliasTextBox.Text, MapColorObject.TerrainLayer17, Convert.ToInt32(TerrainLayer17NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer18] = (TerrainLayer18CheckBox.Checked, TerrainLayer18AliasTextBox.Text, MapColorObject.TerrainLayer18, Convert.ToInt32(TerrainLayer18NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer19] = (TerrainLayer19CheckBox.Checked, TerrainLayer19AliasTextBox.Text, MapColorObject.TerrainLayer19, Convert.ToInt32(TerrainLayer19NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer20] = (TerrainLayer20CheckBox.Checked, TerrainLayer20AliasTextBox.Text, MapColorObject.TerrainLayer20, Convert.ToInt32(TerrainLayer20NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer21] = (TerrainLayer21CheckBox.Checked, TerrainLayer21AliasTextBox.Text, MapColorObject.TerrainLayer21, Convert.ToInt32(TerrainLayer21NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer22] = (TerrainLayer22CheckBox.Checked, TerrainLayer22AliasTextBox.Text, MapColorObject.TerrainLayer22, Convert.ToInt32(TerrainLayer22NumericUpDown.Value));
+            parameters.TerrainDataDictionary[TerrainObject.Layer23] = (TerrainLayer23CheckBox.Checked, TerrainLayer23AliasTextBox.Text, MapColorObject.TerrainLayer23, Convert.ToInt32(TerrainLayer23NumericUpDown.Value));
 
             parameters.GridSegmentSize = (int)GridSegmentSizeNumericUpDown.Value;
             parameters.SegmentPaddingX = (int)SegmentPaddingNumericUpDown.Value;
@@ -1755,6 +2144,7 @@ namespace SC4CartographerUI
             SetAppearanceUIValuesUsingParameters(pristineParameters);
             SetAndUpdateMapCreationParameters(pristineParameters);
         }
+
         private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
@@ -1803,6 +2193,693 @@ namespace SC4CartographerUI
             }
 
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer1CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer1AliasTextBox.Enabled = TerrainLayer1CheckBox.Checked;
+            TerrainLayer1NumericUpDown.Enabled = TerrainLayer1CheckBox.Checked;
+            TerrainLayer1Button.Enabled = TerrainLayer1CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer2CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer2AliasTextBox.Enabled = TerrainLayer2CheckBox.Checked;
+            TerrainLayer2NumericUpDown.Enabled = TerrainLayer2CheckBox.Checked;
+            TerrainLayer2Button.Enabled = TerrainLayer2CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer3CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer3AliasTextBox.Enabled = TerrainLayer3CheckBox.Checked;
+            TerrainLayer3NumericUpDown.Enabled = TerrainLayer3CheckBox.Checked;
+            TerrainLayer3Button.Enabled = TerrainLayer3CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer4CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer4AliasTextBox.Enabled = TerrainLayer4CheckBox.Checked;
+            TerrainLayer4NumericUpDown.Enabled = TerrainLayer4CheckBox.Checked;
+            TerrainLayer4Button.Enabled = TerrainLayer4CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer5CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer5AliasTextBox.Enabled = TerrainLayer5CheckBox.Checked;
+            TerrainLayer5NumericUpDown.Enabled = TerrainLayer5CheckBox.Checked;
+            TerrainLayer5Button.Enabled = TerrainLayer5CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer6CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer6AliasTextBox.Enabled = TerrainLayer6CheckBox.Checked;
+            TerrainLayer6NumericUpDown.Enabled = TerrainLayer6CheckBox.Checked;
+            TerrainLayer6Button.Enabled = TerrainLayer6CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer7CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer7AliasTextBox.Enabled = TerrainLayer7CheckBox.Checked;
+            TerrainLayer7NumericUpDown.Enabled = TerrainLayer7CheckBox.Checked;
+            TerrainLayer7Button.Enabled = TerrainLayer7CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer8CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer8AliasTextBox.Enabled = TerrainLayer8CheckBox.Checked;
+            TerrainLayer8NumericUpDown.Enabled = TerrainLayer8CheckBox.Checked;
+            TerrainLayer8Button.Enabled = TerrainLayer8CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer9CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer9AliasTextBox.Enabled = TerrainLayer9CheckBox.Checked;
+            TerrainLayer9NumericUpDown.Enabled = TerrainLayer9CheckBox.Checked;
+            TerrainLayer9Button.Enabled = TerrainLayer9CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer10CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer10AliasTextBox.Enabled = TerrainLayer10CheckBox.Checked;
+            TerrainLayer10NumericUpDown.Enabled = TerrainLayer10CheckBox.Checked;
+            TerrainLayer10Button.Enabled = TerrainLayer10CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer11CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer11AliasTextBox.Enabled = TerrainLayer11CheckBox.Checked;
+            TerrainLayer11NumericUpDown.Enabled = TerrainLayer11CheckBox.Checked;
+            TerrainLayer11Button.Enabled = TerrainLayer11CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer12CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer12AliasTextBox.Enabled = TerrainLayer12CheckBox.Checked;
+            TerrainLayer12NumericUpDown.Enabled = TerrainLayer12CheckBox.Checked;
+            TerrainLayer12Button.Enabled = TerrainLayer12CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer13CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer13AliasTextBox.Enabled = TerrainLayer13CheckBox.Checked;
+            TerrainLayer13NumericUpDown.Enabled = TerrainLayer13CheckBox.Checked;
+            TerrainLayer13Button.Enabled = TerrainLayer13CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer14CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer14AliasTextBox.Enabled = TerrainLayer14CheckBox.Checked;
+            TerrainLayer14NumericUpDown.Enabled = TerrainLayer14CheckBox.Checked;
+            TerrainLayer14Button.Enabled = TerrainLayer14CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer15CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer15AliasTextBox.Enabled = TerrainLayer15CheckBox.Checked;
+            TerrainLayer15NumericUpDown.Enabled = TerrainLayer15CheckBox.Checked;
+            TerrainLayer15Button.Enabled = TerrainLayer15CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer16CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer16AliasTextBox.Enabled = TerrainLayer16CheckBox.Checked;
+            TerrainLayer16NumericUpDown.Enabled = TerrainLayer16CheckBox.Checked;
+            TerrainLayer16Button.Enabled = TerrainLayer16CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer17CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer17AliasTextBox.Enabled = TerrainLayer17CheckBox.Checked;
+            TerrainLayer17NumericUpDown.Enabled = TerrainLayer17CheckBox.Checked;
+            TerrainLayer17Button.Enabled = TerrainLayer17CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer18CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer18AliasTextBox.Enabled = TerrainLayer18CheckBox.Checked;
+            TerrainLayer18NumericUpDown.Enabled = TerrainLayer18CheckBox.Checked;
+            TerrainLayer18Button.Enabled = TerrainLayer18CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer19CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer19AliasTextBox.Enabled = TerrainLayer19CheckBox.Checked;
+            TerrainLayer19NumericUpDown.Enabled = TerrainLayer19CheckBox.Checked;
+            TerrainLayer19Button.Enabled = TerrainLayer19CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer20CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer20AliasTextBox.Enabled = TerrainLayer20CheckBox.Checked;
+            TerrainLayer20NumericUpDown.Enabled = TerrainLayer20CheckBox.Checked;
+            TerrainLayer20Button.Enabled = TerrainLayer20CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer21CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer21AliasTextBox.Enabled = TerrainLayer21CheckBox.Checked;
+            TerrainLayer21NumericUpDown.Enabled = TerrainLayer21CheckBox.Checked;
+            TerrainLayer21Button.Enabled = TerrainLayer21CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer22CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer22AliasTextBox.Enabled = TerrainLayer22CheckBox.Checked;
+            TerrainLayer22NumericUpDown.Enabled = TerrainLayer22CheckBox.Checked;
+            TerrainLayer22Button.Enabled = TerrainLayer22CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer23CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TerrainLayer23AliasTextBox.Enabled = TerrainLayer23CheckBox.Checked;
+            TerrainLayer23NumericUpDown.Enabled = TerrainLayer23CheckBox.Checked;
+            TerrainLayer23Button.Enabled = TerrainLayer23CheckBox.Checked;
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer1NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer2NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer3NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer4NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer5NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer6NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer7NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer8NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+        
+        private void TerrainLayer9NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer10NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer11NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer12NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer13NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer14NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+        private void TerrainLayer15NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+        private void TerrainLayer16NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+        private void TerrainLayer17NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer18NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer19NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer20NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer21NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer22NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer23NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void TerrainLayer1Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer1ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer1ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer2Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer2ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer2ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer3Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer3ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer3ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer4Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer4ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer4ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer5Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer5ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer5ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer6Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer6ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer6ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer7Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer7ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer7ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer8Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer8ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer8ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer9Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer9ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer9ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer10Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer10ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer10ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer11Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer11ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer11ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer12Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer12ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer12ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer13Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer13ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer13ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer14Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer14ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer14ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer15Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer15ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer15ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer16Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer16ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer16ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer17Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer17ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer17ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer18Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer18ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer18ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer19Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer19ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer19ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer20Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer20ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer20ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer21Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer21ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer21ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer22Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer22ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer22ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void TerrainLayer23Button_click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = TerrainLayer23ColorTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TerrainLayer23ColorTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
         }
 
         #endregion

@@ -30,44 +30,44 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Terrain");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23,
-            treeNode24});
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
-            treeNode26,
-            treeNode27,
-            treeNode28});
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
-            treeNode30,
-            treeNode31,
-            treeNode32});
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Plopped Building");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Military");
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Airports");
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Seaport");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Spaceport");
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
-            treeNode34,
-            treeNode35,
-            treeNode36,
-            treeNode37,
-            treeNode38});
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
-            treeNode25,
-            treeNode29,
-            treeNode33,
-            treeNode39});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Terrain");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11,
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Plopped Building");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Military");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Airports");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Seaport");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Spaceport");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode9,
+            treeNode13,
+            treeNode19});
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OpenTextLabel = new System.Windows.Forms.Label();
@@ -106,28 +106,28 @@
             this.MemoryUsedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MousePositionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.AppearanceGroupBox = new System.Windows.Forms.GroupBox();
-            this.label33 = new System.Windows.Forms.Label();
+            this.OutputFormatLabel = new System.Windows.Forms.Label();
             this.JPEGRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.PNGRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.EditOutputPathButton = new System.Windows.Forms.Button();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
+            this.PixelLabel3 = new System.Windows.Forms.Label();
+            this.PixelLabel2 = new System.Windows.Forms.Label();
             this.OutputPathTextbox = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
+            this.OutputPathLabel = new System.Windows.Forms.Label();
+            this.PixelLabel1 = new System.Windows.Forms.Label();
             this.ShowZoneOutlinesCheckbox = new System.Windows.Forms.CheckBox();
             this.SegmentOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.SegmentPaddingNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.GridSegmentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
+            this.SegmentOffsetLabel = new System.Windows.Forms.Label();
+            this.SegmentPaddingLabel = new System.Windows.Forms.Label();
+            this.GridSegmentSizeLabel = new System.Windows.Forms.Label();
             this.ShowGridLinesCheckbox = new System.Windows.Forms.CheckBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ColorsTabControl = new System.Windows.Forms.TabControl();
+            this.ZonesTabPage = new System.Windows.Forms.TabPage();
             this.IndustrialZoneLowEditButton = new System.Windows.Forms.Button();
             this.IndustrialZoneMidEditButton = new System.Windows.Forms.Button();
             this.IndustrialZoneHighEditButton = new System.Windows.Forms.Button();
@@ -179,7 +179,7 @@
             this.BuildingsTextbox = new System.Windows.Forms.TextBox();
             this.GridLinesTextbox = new System.Windows.Forms.TextBox();
             this.GridBackgroundTextbox = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.TransportTabPage = new System.Windows.Forms.TabPage();
             this.button11 = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
             this.textBox14 = new System.Windows.Forms.TextBox();
@@ -204,79 +204,122 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.numericUpDown17 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
-            this.textBox32 = new System.Windows.Forms.TextBox();
-            this.button29 = new System.Windows.Forms.Button();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.button30 = new System.Windows.Forms.Button();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.button31 = new System.Windows.Forms.Button();
-            this.textBox31 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.button26 = new System.Windows.Forms.Button();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.button27 = new System.Windows.Forms.Button();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.button28 = new System.Windows.Forms.Button();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.button23 = new System.Windows.Forms.Button();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.button24 = new System.Windows.Forms.Button();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.button25 = new System.Windows.Forms.Button();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.button20 = new System.Windows.Forms.Button();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.button21 = new System.Windows.Forms.Button();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.button22 = new System.Windows.Forms.Button();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.button19 = new System.Windows.Forms.Button();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button18 = new System.Windows.Forms.Button();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button17 = new System.Windows.Forms.Button();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.TerrainTabPage = new System.Windows.Forms.TabPage();
+            this.TerrainLayer23CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer23AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer23Button = new System.Windows.Forms.Button();
+            this.TerrainLayer23ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer23NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer22CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer22AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer22Button = new System.Windows.Forms.Button();
+            this.TerrainLayer22ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer22NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer21CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer21AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer21Button = new System.Windows.Forms.Button();
+            this.TerrainLayer21ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer21NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer20CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer20AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer20Button = new System.Windows.Forms.Button();
+            this.TerrainLayer20ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer20NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer19CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer19AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer19Button = new System.Windows.Forms.Button();
+            this.TerrainLayer19ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer19NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer18CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer18AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer18Button = new System.Windows.Forms.Button();
+            this.TerrainLayer18ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer18NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer17CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer17AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer17Button = new System.Windows.Forms.Button();
+            this.TerrainLayer17ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer17NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer16CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer16AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer16Button = new System.Windows.Forms.Button();
+            this.TerrainLayer16ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer16NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer15CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer15AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer15Button = new System.Windows.Forms.Button();
+            this.TerrainLayer15ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer15NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer14CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer14AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer14Button = new System.Windows.Forms.Button();
+            this.TerrainLayer14ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer14NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer13CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer13AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer13Button = new System.Windows.Forms.Button();
+            this.TerrainLayer13ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer13NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer12CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer12AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer12Button = new System.Windows.Forms.Button();
+            this.TerrainLayer12ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer12NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer11CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer11AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer11Button = new System.Windows.Forms.Button();
+            this.TerrainLayer11ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer11NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer10CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer10AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer10Button = new System.Windows.Forms.Button();
+            this.TerrainLayer10ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer10NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer9CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer9AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer9Button = new System.Windows.Forms.Button();
+            this.TerrainLayer9ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer9NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer8CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer8AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer8Button = new System.Windows.Forms.Button();
+            this.TerrainLayer8ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer8NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer7CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer7AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer7Button = new System.Windows.Forms.Button();
+            this.TerrainLayer7ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer7NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer6CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer6AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer6Button = new System.Windows.Forms.Button();
+            this.TerrainLayer6ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer6NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer5CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer5AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer5Button = new System.Windows.Forms.Button();
+            this.TerrainLayer5ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer5NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer4CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer4AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer4Button = new System.Windows.Forms.Button();
+            this.TerrainLayer4ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer4NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer3CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer3AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer3Button = new System.Windows.Forms.Button();
+            this.TerrainLayer3ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer3NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer2CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer2AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer2Button = new System.Windows.Forms.Button();
+            this.TerrainLayer2ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer2NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TerrainLayer1CheckBox = new System.Windows.Forms.CheckBox();
+            this.TerrainLayer1AliasTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer1Button = new System.Windows.Forms.Button();
+            this.TerrainLayer1ColorTextBox = new System.Windows.Forms.TextBox();
+            this.TerrainLayer1NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.VisibleObjectsTreeView = new System.Windows.Forms.TreeView();
             this.RestoreDefaultsButton = new System.Windows.Forms.Button();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
@@ -290,28 +333,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridSegmentSizeNumericUpDown)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.ColorsTabControl.SuspendLayout();
+            this.ZonesTabPage.SuspendLayout();
+            this.TransportTabPage.SuspendLayout();
+            this.TerrainTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer23NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer22NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer21NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer20NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer19NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer18NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer17NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer16NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer15NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer14NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer13NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer12NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer11NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer10NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer9NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer8NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer7NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer6NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer5NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer4NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer3NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer2NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer1NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -494,7 +542,7 @@
             this.savegameToolStripMenuItem,
             this.folderToolStripMenuItem});
             this.loadSC4SaveToolStripMenuItem.Name = "loadSC4SaveToolStripMenuItem";
-            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadSC4SaveToolStripMenuItem.Text = "Open..";
             // 
             // savegameToolStripMenuItem
@@ -514,13 +562,13 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(190, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -528,38 +576,38 @@
             // 
             this.saveAsToolStripMenuItem.Enabled = false;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(190, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(193, 22);
-            this.toolStripMenuItem8.Text = "Save Map Appearance";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem8.Text = "Save Appearance";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(193, 22);
-            this.toolStripMenuItem7.Text = "Load Map Appearance";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem7.Text = "Load Appearance";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(190, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -581,50 +629,50 @@
             // UpdatesToolStripMenuItem
             // 
             this.UpdatesToolStripMenuItem.Name = "UpdatesToolStripMenuItem";
-            this.UpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.UpdatesToolStripMenuItem.Text = "Check for Updates";
             this.UpdatesToolStripMenuItem.Click += new System.EventHandler(this.UpdatesToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(168, 6);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(171, 22);
             this.toolStripMenuItem3.Text = "Project Webpage";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.projectWebpageToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(171, 22);
             this.toolStripMenuItem4.Text = "Report an Issue";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.reportABugToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(168, 6);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(171, 22);
             this.toolStripMenuItem6.Text = "Show Log...";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(168, 6);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(171, 22);
             this.toolStripMenuItem5.Text = "About";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -669,27 +717,27 @@
             // 
             this.AppearanceGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AppearanceGroupBox.Controls.Add(this.label33);
+            this.AppearanceGroupBox.Controls.Add(this.OutputFormatLabel);
             this.AppearanceGroupBox.Controls.Add(this.JPEGRadioButton);
             this.AppearanceGroupBox.Controls.Add(this.groupBox5);
             this.AppearanceGroupBox.Controls.Add(this.PNGRadioButton);
             this.AppearanceGroupBox.Controls.Add(this.groupBox4);
             this.AppearanceGroupBox.Controls.Add(this.groupBox3);
             this.AppearanceGroupBox.Controls.Add(this.EditOutputPathButton);
-            this.AppearanceGroupBox.Controls.Add(this.label39);
-            this.AppearanceGroupBox.Controls.Add(this.label38);
+            this.AppearanceGroupBox.Controls.Add(this.PixelLabel3);
+            this.AppearanceGroupBox.Controls.Add(this.PixelLabel2);
             this.AppearanceGroupBox.Controls.Add(this.OutputPathTextbox);
-            this.AppearanceGroupBox.Controls.Add(this.label40);
-            this.AppearanceGroupBox.Controls.Add(this.label37);
+            this.AppearanceGroupBox.Controls.Add(this.OutputPathLabel);
+            this.AppearanceGroupBox.Controls.Add(this.PixelLabel1);
             this.AppearanceGroupBox.Controls.Add(this.ShowZoneOutlinesCheckbox);
             this.AppearanceGroupBox.Controls.Add(this.SegmentOffsetNumericUpDown);
             this.AppearanceGroupBox.Controls.Add(this.SegmentPaddingNumericUpDown);
             this.AppearanceGroupBox.Controls.Add(this.GridSegmentSizeNumericUpDown);
-            this.AppearanceGroupBox.Controls.Add(this.label34);
-            this.AppearanceGroupBox.Controls.Add(this.label35);
-            this.AppearanceGroupBox.Controls.Add(this.label36);
+            this.AppearanceGroupBox.Controls.Add(this.SegmentOffsetLabel);
+            this.AppearanceGroupBox.Controls.Add(this.SegmentPaddingLabel);
+            this.AppearanceGroupBox.Controls.Add(this.GridSegmentSizeLabel);
             this.AppearanceGroupBox.Controls.Add(this.ShowGridLinesCheckbox);
-            this.AppearanceGroupBox.Controls.Add(this.tabControl1);
+            this.AppearanceGroupBox.Controls.Add(this.ColorsTabControl);
             this.AppearanceGroupBox.Controls.Add(this.VisibleObjectsTreeView);
             this.AppearanceGroupBox.Location = new System.Drawing.Point(875, 27);
             this.AppearanceGroupBox.Name = "AppearanceGroupBox";
@@ -698,15 +746,15 @@
             this.AppearanceGroupBox.TabStop = false;
             this.AppearanceGroupBox.Text = "Appearance";
             // 
-            // label33
+            // OutputFormatLabel
             // 
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(13, 666);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(74, 13);
-            this.label33.TabIndex = 69;
-            this.label33.Text = "Output Format";
+            this.OutputFormatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.OutputFormatLabel.AutoSize = true;
+            this.OutputFormatLabel.Location = new System.Drawing.Point(13, 666);
+            this.OutputFormatLabel.Name = "OutputFormatLabel";
+            this.OutputFormatLabel.Size = new System.Drawing.Size(74, 13);
+            this.OutputFormatLabel.TabIndex = 69;
+            this.OutputFormatLabel.Text = "Output Format";
             // 
             // JPEGRadioButton
             // 
@@ -752,7 +800,7 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 653);
+            this.groupBox3.Location = new System.Drawing.Point(6, 653);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(283, 5);
             this.groupBox3.TabIndex = 66;
@@ -768,27 +816,27 @@
             this.EditOutputPathButton.Text = "...";
             this.EditOutputPathButton.UseVisualStyleBackColor = true;
             // 
-            // label39
+            // PixelLabel3
             // 
-            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(173, 626);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(18, 13);
-            this.label39.TabIndex = 60;
-            this.label39.Text = "px";
+            this.PixelLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PixelLabel3.AutoSize = true;
+            this.PixelLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PixelLabel3.Location = new System.Drawing.Point(173, 626);
+            this.PixelLabel3.Name = "PixelLabel3";
+            this.PixelLabel3.Size = new System.Drawing.Size(18, 13);
+            this.PixelLabel3.TabIndex = 60;
+            this.PixelLabel3.Text = "px";
             // 
-            // label38
+            // PixelLabel2
             // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(173, 602);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(18, 13);
-            this.label38.TabIndex = 59;
-            this.label38.Text = "px";
+            this.PixelLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PixelLabel2.AutoSize = true;
+            this.PixelLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PixelLabel2.Location = new System.Drawing.Point(173, 602);
+            this.PixelLabel2.Name = "PixelLabel2";
+            this.PixelLabel2.Size = new System.Drawing.Size(18, 13);
+            this.PixelLabel2.TabIndex = 59;
+            this.PixelLabel2.Text = "px";
             // 
             // OutputPathTextbox
             // 
@@ -798,26 +846,26 @@
             this.OutputPathTextbox.Size = new System.Drawing.Size(155, 20);
             this.OutputPathTextbox.TabIndex = 62;
             // 
-            // label40
+            // OutputPathLabel
             // 
-            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(14, 690);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(64, 13);
-            this.label40.TabIndex = 61;
-            this.label40.Text = "Output Path";
+            this.OutputPathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.OutputPathLabel.AutoSize = true;
+            this.OutputPathLabel.Location = new System.Drawing.Point(14, 690);
+            this.OutputPathLabel.Name = "OutputPathLabel";
+            this.OutputPathLabel.Size = new System.Drawing.Size(64, 13);
+            this.OutputPathLabel.TabIndex = 61;
+            this.OutputPathLabel.Text = "Output Path";
             // 
-            // label37
+            // PixelLabel1
             // 
-            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(173, 578);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(18, 13);
-            this.label37.TabIndex = 58;
-            this.label37.Text = "px";
+            this.PixelLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PixelLabel1.AutoSize = true;
+            this.PixelLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PixelLabel1.Location = new System.Drawing.Point(173, 578);
+            this.PixelLabel1.Name = "PixelLabel1";
+            this.PixelLabel1.Size = new System.Drawing.Size(18, 13);
+            this.PixelLabel1.TabIndex = 58;
+            this.PixelLabel1.Text = "px";
             // 
             // ShowZoneOutlinesCheckbox
             // 
@@ -869,35 +917,35 @@
             this.GridSegmentSizeNumericUpDown.Size = new System.Drawing.Size(49, 20);
             this.GridSegmentSizeNumericUpDown.TabIndex = 53;
             // 
-            // label34
+            // SegmentOffsetLabel
             // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(14, 626);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(80, 13);
-            this.label34.TabIndex = 52;
-            this.label34.Text = "Segment Offset";
+            this.SegmentOffsetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SegmentOffsetLabel.AutoSize = true;
+            this.SegmentOffsetLabel.Location = new System.Drawing.Point(14, 626);
+            this.SegmentOffsetLabel.Name = "SegmentOffsetLabel";
+            this.SegmentOffsetLabel.Size = new System.Drawing.Size(80, 13);
+            this.SegmentOffsetLabel.TabIndex = 52;
+            this.SegmentOffsetLabel.Text = "Segment Offset";
             // 
-            // label35
+            // SegmentPaddingLabel
             // 
-            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(14, 602);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(91, 13);
-            this.label35.TabIndex = 51;
-            this.label35.Text = "Segment Padding";
+            this.SegmentPaddingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SegmentPaddingLabel.AutoSize = true;
+            this.SegmentPaddingLabel.Location = new System.Drawing.Point(14, 602);
+            this.SegmentPaddingLabel.Name = "SegmentPaddingLabel";
+            this.SegmentPaddingLabel.Size = new System.Drawing.Size(91, 13);
+            this.SegmentPaddingLabel.TabIndex = 51;
+            this.SegmentPaddingLabel.Text = "Segment Padding";
             // 
-            // label36
+            // GridSegmentSizeLabel
             // 
-            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(14, 578);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(94, 13);
-            this.label36.TabIndex = 50;
-            this.label36.Text = "Grid Segment Size";
+            this.GridSegmentSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.GridSegmentSizeLabel.AutoSize = true;
+            this.GridSegmentSizeLabel.Location = new System.Drawing.Point(14, 578);
+            this.GridSegmentSizeLabel.Name = "GridSegmentSizeLabel";
+            this.GridSegmentSizeLabel.Size = new System.Drawing.Size(94, 13);
+            this.GridSegmentSizeLabel.TabIndex = 50;
+            this.GridSegmentSizeLabel.Text = "Grid Segment Size";
             // 
             // ShowGridLinesCheckbox
             // 
@@ -910,80 +958,80 @@
             this.ShowGridLinesCheckbox.Text = "Grid Lines";
             this.ShowGridLinesCheckbox.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // ColorsTabControl
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ColorsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(6, 127);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(283, 429);
-            this.tabControl1.TabIndex = 2;
+            this.ColorsTabControl.Controls.Add(this.ZonesTabPage);
+            this.ColorsTabControl.Controls.Add(this.TransportTabPage);
+            this.ColorsTabControl.Controls.Add(this.TerrainTabPage);
+            this.ColorsTabControl.Location = new System.Drawing.Point(6, 127);
+            this.ColorsTabControl.Name = "ColorsTabControl";
+            this.ColorsTabControl.SelectedIndex = 0;
+            this.ColorsTabControl.Size = new System.Drawing.Size(283, 429);
+            this.ColorsTabControl.TabIndex = 2;
             // 
-            // tabPage1
+            // ZonesTabPage
             // 
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.Controls.Add(this.IndustrialZoneLowEditButton);
-            this.tabPage1.Controls.Add(this.IndustrialZoneMidEditButton);
-            this.tabPage1.Controls.Add(this.IndustrialZoneHighEditButton);
-            this.tabPage1.Controls.Add(this.CommercialZoneHighEditButton);
-            this.tabPage1.Controls.Add(this.CommercialZoneMidEditButton);
-            this.tabPage1.Controls.Add(this.IndustrialZoneMidTextbox);
-            this.tabPage1.Controls.Add(this.CommercialZoneLowEditButton);
-            this.tabPage1.Controls.Add(this.IndustrialZoneHighTextbox);
-            this.tabPage1.Controls.Add(this.CommercialZoneMidTextbox);
-            this.tabPage1.Controls.Add(this.CommercialZoneHighTextbox);
-            this.tabPage1.Controls.Add(this.IndustrialZoneLowTextbox);
-            this.tabPage1.Controls.Add(this.CommercialZoneLowTextbox);
-            this.tabPage1.Controls.Add(this.ResidentialZoneLowEditButton);
-            this.tabPage1.Controls.Add(this.ResidentialZoneHighEditButton);
-            this.tabPage1.Controls.Add(this.ResidentialZoneMidEditButton);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.ResidentialZoneHighTextbox);
-            this.tabPage1.Controls.Add(this.ResidentialZoneMidTextbox);
-            this.tabPage1.Controls.Add(this.ResidentialZoneLowTextbox);
-            this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.SpaceportEditButton);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.SpaceportTextbox);
-            this.tabPage1.Controls.Add(this.SeaportsEditButton);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.SeaportTextbox);
-            this.tabPage1.Controls.Add(this.AirportsEditButton);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.AirportsTextbox);
-            this.tabPage1.Controls.Add(this.MilitaryEditButton);
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.MilitaryTextbox);
-            this.tabPage1.Controls.Add(this.ZoneOutlinesEditButton);
-            this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Controls.Add(this.ZoneOutlinesTextbox);
-            this.tabPage1.Controls.Add(this.GridLinesEditTextbox);
-            this.tabPage1.Controls.Add(this.BuildingsEditButton);
-            this.tabPage1.Controls.Add(this.GridBackgroundEditButton);
-            this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.BuildingsTextbox);
-            this.tabPage1.Controls.Add(this.GridLinesTextbox);
-            this.tabPage1.Controls.Add(this.GridBackgroundTextbox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(275, 403);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Zones";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.ZonesTabPage.AutoScroll = true;
+            this.ZonesTabPage.Controls.Add(this.IndustrialZoneLowEditButton);
+            this.ZonesTabPage.Controls.Add(this.IndustrialZoneMidEditButton);
+            this.ZonesTabPage.Controls.Add(this.IndustrialZoneHighEditButton);
+            this.ZonesTabPage.Controls.Add(this.CommercialZoneHighEditButton);
+            this.ZonesTabPage.Controls.Add(this.CommercialZoneMidEditButton);
+            this.ZonesTabPage.Controls.Add(this.IndustrialZoneMidTextbox);
+            this.ZonesTabPage.Controls.Add(this.CommercialZoneLowEditButton);
+            this.ZonesTabPage.Controls.Add(this.IndustrialZoneHighTextbox);
+            this.ZonesTabPage.Controls.Add(this.CommercialZoneMidTextbox);
+            this.ZonesTabPage.Controls.Add(this.CommercialZoneHighTextbox);
+            this.ZonesTabPage.Controls.Add(this.IndustrialZoneLowTextbox);
+            this.ZonesTabPage.Controls.Add(this.CommercialZoneLowTextbox);
+            this.ZonesTabPage.Controls.Add(this.ResidentialZoneLowEditButton);
+            this.ZonesTabPage.Controls.Add(this.ResidentialZoneHighEditButton);
+            this.ZonesTabPage.Controls.Add(this.ResidentialZoneMidEditButton);
+            this.ZonesTabPage.Controls.Add(this.label7);
+            this.ZonesTabPage.Controls.Add(this.label8);
+            this.ZonesTabPage.Controls.Add(this.label9);
+            this.ZonesTabPage.Controls.Add(this.label6);
+            this.ZonesTabPage.Controls.Add(this.label5);
+            this.ZonesTabPage.Controls.Add(this.label4);
+            this.ZonesTabPage.Controls.Add(this.label13);
+            this.ZonesTabPage.Controls.Add(this.label14);
+            this.ZonesTabPage.Controls.Add(this.ResidentialZoneHighTextbox);
+            this.ZonesTabPage.Controls.Add(this.ResidentialZoneMidTextbox);
+            this.ZonesTabPage.Controls.Add(this.ResidentialZoneLowTextbox);
+            this.ZonesTabPage.Controls.Add(this.label15);
+            this.ZonesTabPage.Controls.Add(this.SpaceportEditButton);
+            this.ZonesTabPage.Controls.Add(this.label1);
+            this.ZonesTabPage.Controls.Add(this.SpaceportTextbox);
+            this.ZonesTabPage.Controls.Add(this.SeaportsEditButton);
+            this.ZonesTabPage.Controls.Add(this.label2);
+            this.ZonesTabPage.Controls.Add(this.SeaportTextbox);
+            this.ZonesTabPage.Controls.Add(this.AirportsEditButton);
+            this.ZonesTabPage.Controls.Add(this.label3);
+            this.ZonesTabPage.Controls.Add(this.AirportsTextbox);
+            this.ZonesTabPage.Controls.Add(this.MilitaryEditButton);
+            this.ZonesTabPage.Controls.Add(this.label17);
+            this.ZonesTabPage.Controls.Add(this.MilitaryTextbox);
+            this.ZonesTabPage.Controls.Add(this.ZoneOutlinesEditButton);
+            this.ZonesTabPage.Controls.Add(this.label16);
+            this.ZonesTabPage.Controls.Add(this.ZoneOutlinesTextbox);
+            this.ZonesTabPage.Controls.Add(this.GridLinesEditTextbox);
+            this.ZonesTabPage.Controls.Add(this.BuildingsEditButton);
+            this.ZonesTabPage.Controls.Add(this.GridBackgroundEditButton);
+            this.ZonesTabPage.Controls.Add(this.label12);
+            this.ZonesTabPage.Controls.Add(this.label11);
+            this.ZonesTabPage.Controls.Add(this.label10);
+            this.ZonesTabPage.Controls.Add(this.BuildingsTextbox);
+            this.ZonesTabPage.Controls.Add(this.GridLinesTextbox);
+            this.ZonesTabPage.Controls.Add(this.GridBackgroundTextbox);
+            this.ZonesTabPage.Location = new System.Drawing.Point(4, 22);
+            this.ZonesTabPage.Name = "ZonesTabPage";
+            this.ZonesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ZonesTabPage.Size = new System.Drawing.Size(275, 403);
+            this.ZonesTabPage.TabIndex = 0;
+            this.ZonesTabPage.Text = "Zones";
+            this.ZonesTabPage.UseVisualStyleBackColor = true;
             // 
             // IndustrialZoneLowEditButton
             // 
@@ -1444,40 +1492,40 @@
             this.GridBackgroundTextbox.Size = new System.Drawing.Size(84, 20);
             this.GridBackgroundTextbox.TabIndex = 57;
             // 
-            // tabPage3
+            // TransportTabPage
             // 
-            this.tabPage3.AutoScroll = true;
-            this.tabPage3.Controls.Add(this.button11);
-            this.tabPage3.Controls.Add(this.label47);
-            this.tabPage3.Controls.Add(this.textBox14);
-            this.tabPage3.Controls.Add(this.button10);
-            this.tabPage3.Controls.Add(this.label46);
-            this.tabPage3.Controls.Add(this.textBox13);
-            this.tabPage3.Controls.Add(this.button9);
-            this.tabPage3.Controls.Add(this.label45);
-            this.tabPage3.Controls.Add(this.textBox12);
-            this.tabPage3.Controls.Add(this.button8);
-            this.tabPage3.Controls.Add(this.label44);
-            this.tabPage3.Controls.Add(this.textBox11);
-            this.tabPage3.Controls.Add(this.button7);
-            this.tabPage3.Controls.Add(this.label43);
-            this.tabPage3.Controls.Add(this.textBox10);
-            this.tabPage3.Controls.Add(this.button6);
-            this.tabPage3.Controls.Add(this.label42);
-            this.tabPage3.Controls.Add(this.textBox9);
-            this.tabPage3.Controls.Add(this.button5);
-            this.tabPage3.Controls.Add(this.label41);
-            this.tabPage3.Controls.Add(this.textBox8);
-            this.tabPage3.Controls.Add(this.button4);
-            this.tabPage3.Controls.Add(this.label30);
-            this.tabPage3.Controls.Add(this.textBox7);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(275, 403);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Transport";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.TransportTabPage.AutoScroll = true;
+            this.TransportTabPage.Controls.Add(this.button11);
+            this.TransportTabPage.Controls.Add(this.label47);
+            this.TransportTabPage.Controls.Add(this.textBox14);
+            this.TransportTabPage.Controls.Add(this.button10);
+            this.TransportTabPage.Controls.Add(this.label46);
+            this.TransportTabPage.Controls.Add(this.textBox13);
+            this.TransportTabPage.Controls.Add(this.button9);
+            this.TransportTabPage.Controls.Add(this.label45);
+            this.TransportTabPage.Controls.Add(this.textBox12);
+            this.TransportTabPage.Controls.Add(this.button8);
+            this.TransportTabPage.Controls.Add(this.label44);
+            this.TransportTabPage.Controls.Add(this.textBox11);
+            this.TransportTabPage.Controls.Add(this.button7);
+            this.TransportTabPage.Controls.Add(this.label43);
+            this.TransportTabPage.Controls.Add(this.textBox10);
+            this.TransportTabPage.Controls.Add(this.button6);
+            this.TransportTabPage.Controls.Add(this.label42);
+            this.TransportTabPage.Controls.Add(this.textBox9);
+            this.TransportTabPage.Controls.Add(this.button5);
+            this.TransportTabPage.Controls.Add(this.label41);
+            this.TransportTabPage.Controls.Add(this.textBox8);
+            this.TransportTabPage.Controls.Add(this.button4);
+            this.TransportTabPage.Controls.Add(this.label30);
+            this.TransportTabPage.Controls.Add(this.textBox7);
+            this.TransportTabPage.Location = new System.Drawing.Point(4, 22);
+            this.TransportTabPage.Name = "TransportTabPage";
+            this.TransportTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.TransportTabPage.Size = new System.Drawing.Size(275, 403);
+            this.TransportTabPage.TabIndex = 2;
+            this.TransportTabPage.Text = "Transport";
+            this.TransportTabPage.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
@@ -1695,855 +1743,1511 @@
             this.textBox7.Size = new System.Drawing.Size(84, 20);
             this.textBox7.TabIndex = 62;
             // 
-            // tabPage2
+            // TerrainTabPage
             // 
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.Controls.Add(this.textBox5);
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Controls.Add(this.textBox6);
-            this.tabPage2.Controls.Add(this.numericUpDown18);
-            this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.numericUpDown17);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Controls.Add(this.numericUpDown16);
-            this.tabPage2.Controls.Add(this.textBox32);
-            this.tabPage2.Controls.Add(this.button29);
-            this.tabPage2.Controls.Add(this.textBox29);
-            this.tabPage2.Controls.Add(this.numericUpDown13);
-            this.tabPage2.Controls.Add(this.button30);
-            this.tabPage2.Controls.Add(this.textBox30);
-            this.tabPage2.Controls.Add(this.label31);
-            this.tabPage2.Controls.Add(this.numericUpDown14);
-            this.tabPage2.Controls.Add(this.button31);
-            this.tabPage2.Controls.Add(this.textBox31);
-            this.tabPage2.Controls.Add(this.label32);
-            this.tabPage2.Controls.Add(this.numericUpDown15);
-            this.tabPage2.Controls.Add(this.button26);
-            this.tabPage2.Controls.Add(this.textBox26);
-            this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Controls.Add(this.numericUpDown10);
-            this.tabPage2.Controls.Add(this.button27);
-            this.tabPage2.Controls.Add(this.textBox27);
-            this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.numericUpDown11);
-            this.tabPage2.Controls.Add(this.button28);
-            this.tabPage2.Controls.Add(this.textBox28);
-            this.tabPage2.Controls.Add(this.label29);
-            this.tabPage2.Controls.Add(this.numericUpDown12);
-            this.tabPage2.Controls.Add(this.button23);
-            this.tabPage2.Controls.Add(this.textBox23);
-            this.tabPage2.Controls.Add(this.label23);
-            this.tabPage2.Controls.Add(this.numericUpDown7);
-            this.tabPage2.Controls.Add(this.button24);
-            this.tabPage2.Controls.Add(this.textBox24);
-            this.tabPage2.Controls.Add(this.label25);
-            this.tabPage2.Controls.Add(this.numericUpDown8);
-            this.tabPage2.Controls.Add(this.button25);
-            this.tabPage2.Controls.Add(this.textBox25);
-            this.tabPage2.Controls.Add(this.label26);
-            this.tabPage2.Controls.Add(this.numericUpDown9);
-            this.tabPage2.Controls.Add(this.button20);
-            this.tabPage2.Controls.Add(this.textBox20);
-            this.tabPage2.Controls.Add(this.label20);
-            this.tabPage2.Controls.Add(this.numericUpDown4);
-            this.tabPage2.Controls.Add(this.button21);
-            this.tabPage2.Controls.Add(this.textBox21);
-            this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.numericUpDown5);
-            this.tabPage2.Controls.Add(this.button22);
-            this.tabPage2.Controls.Add(this.textBox22);
-            this.tabPage2.Controls.Add(this.label22);
-            this.tabPage2.Controls.Add(this.numericUpDown6);
-            this.tabPage2.Controls.Add(this.button19);
-            this.tabPage2.Controls.Add(this.textBox19);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.numericUpDown3);
-            this.tabPage2.Controls.Add(this.button18);
-            this.tabPage2.Controls.Add(this.textBox18);
-            this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.numericUpDown2);
-            this.tabPage2.Controls.Add(this.button17);
-            this.tabPage2.Controls.Add(this.textBox17);
-            this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.numericUpDown1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(275, 403);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Terrain";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.TerrainTabPage.AutoScroll = true;
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer23CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer23AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer23Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer23ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer23NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer22CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer22AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer22Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer22ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer22NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer21CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer21AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer21Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer21ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer21NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer20CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer20AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer20Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer20ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer20NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer19CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer19AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer19Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer19ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer19NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer18CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer18AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer18Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer18ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer18NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer17CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer17AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer17Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer17ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer17NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer16CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer16AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer16Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer16ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer16NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer15CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer15AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer15Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer15ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer15NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer14CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer14AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer14Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer14ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer14NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer13CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer13AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer13Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer13ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer13NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer12CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer12AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer12Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer12ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer12NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer11CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer11AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer11Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer11ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer11NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer10CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer10AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer10Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer10ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer10NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer9CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer9AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer9Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer9ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer9NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer8CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer8AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer8Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer8ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer8NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer7CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer7AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer7Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer7ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer7NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer6CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer6AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer6Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer6ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer6NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer5CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer5AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer5Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer5ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer5NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer4CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer4AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer4Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer4ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer4NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer3CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer3AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer3Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer3ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer3NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer2CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer2AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer2Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer2ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer2NumericUpDown);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer1CheckBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer1AliasTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer1Button);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer1ColorTextBox);
+            this.TerrainTabPage.Controls.Add(this.TerrainLayer1NumericUpDown);
+            this.TerrainTabPage.Location = new System.Drawing.Point(4, 22);
+            this.TerrainTabPage.Name = "TerrainTabPage";
+            this.TerrainTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.TerrainTabPage.Size = new System.Drawing.Size(275, 403);
+            this.TerrainTabPage.TabIndex = 1;
+            this.TerrainTabPage.Text = "Terrain";
+            this.TerrainTabPage.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // TerrainLayer23CheckBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(3, 385);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(91, 20);
-            this.textBox5.TabIndex = 99;
-            this.textBox5.Text = "water deep";
+            this.TerrainLayer23CheckBox.AutoSize = true;
+            this.TerrainLayer23CheckBox.Location = new System.Drawing.Point(6, 577);
+            this.TerrainLayer23CheckBox.Name = "TerrainLayer23CheckBox";
+            this.TerrainLayer23CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer23CheckBox.TabIndex = 211;
+            this.TerrainLayer23CheckBox.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // TerrainLayer23AliasTextBox
             // 
-            this.button3.Location = new System.Drawing.Point(236, 385);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(34, 23);
-            this.button3.TabIndex = 98;
-            this.button3.Text = "Edit";
-            this.button3.UseVisualStyleBackColor = true;
+            this.TerrainLayer23AliasTextBox.Location = new System.Drawing.Point(27, 574);
+            this.TerrainLayer23AliasTextBox.Name = "TerrainLayer23AliasTextBox";
+            this.TerrainLayer23AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer23AliasTextBox.TabIndex = 210;
+            this.TerrainLayer23AliasTextBox.Text = "water deep";
             // 
-            // textBox6
+            // TerrainLayer23Button
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox6.Location = new System.Drawing.Point(178, 386);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(52, 20);
-            this.textBox6.TabIndex = 97;
+            this.TerrainLayer23Button.Location = new System.Drawing.Point(220, 572);
+            this.TerrainLayer23Button.Name = "TerrainLayer23Button";
+            this.TerrainLayer23Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer23Button.TabIndex = 209;
+            this.TerrainLayer23Button.Text = "Edit";
+            this.TerrainLayer23Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown18
+            // TerrainLayer23ColorTextBox
             // 
-            this.numericUpDown18.Location = new System.Drawing.Point(105, 386);
-            this.numericUpDown18.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer23ColorTextBox.Enabled = false;
+            this.TerrainLayer23ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer23ColorTextBox.Location = new System.Drawing.Point(162, 574);
+            this.TerrainLayer23ColorTextBox.Name = "TerrainLayer23ColorTextBox";
+            this.TerrainLayer23ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer23ColorTextBox.TabIndex = 208;
+            // 
+            // TerrainLayer23NumericUpDown
+            // 
+            this.TerrainLayer23NumericUpDown.Location = new System.Drawing.Point(105, 574);
+            this.TerrainLayer23NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown18.Name = "numericUpDown18";
-            this.numericUpDown18.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown18.TabIndex = 96;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(3, 362);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(91, 20);
-            this.textBox3.TabIndex = 95;
-            this.textBox3.Text = "water deep";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(236, 362);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(34, 23);
-            this.button2.TabIndex = 94;
-            this.button2.Text = "Edit";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox4.Location = new System.Drawing.Point(178, 363);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(52, 20);
-            this.textBox4.TabIndex = 93;
-            // 
-            // numericUpDown17
-            // 
-            this.numericUpDown17.Location = new System.Drawing.Point(105, 363);
-            this.numericUpDown17.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer23NumericUpDown.Minimum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericUpDown17.Name = "numericUpDown17";
-            this.numericUpDown17.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown17.TabIndex = 92;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(3, 339);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(91, 20);
-            this.textBox1.TabIndex = 91;
-            this.textBox1.Text = "water deep";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(236, 339);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(34, 23);
-            this.button1.TabIndex = 90;
-            this.button1.Text = "Edit";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox2.Location = new System.Drawing.Point(178, 340);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(52, 20);
-            this.textBox2.TabIndex = 89;
-            // 
-            // numericUpDown16
-            // 
-            this.numericUpDown16.Location = new System.Drawing.Point(105, 340);
-            this.numericUpDown16.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer23NumericUpDown.Name = "TerrainLayer23NumericUpDown";
+            this.TerrainLayer23NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer23NumericUpDown.TabIndex = 207;
+            this.TerrainLayer23NumericUpDown.Value = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown16.Name = "numericUpDown16";
-            this.numericUpDown16.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown16.TabIndex = 88;
             // 
-            // textBox32
+            // TerrainLayer22CheckBox
             // 
-            this.textBox32.Location = new System.Drawing.Point(3, 316);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(91, 20);
-            this.textBox32.TabIndex = 87;
-            this.textBox32.Text = "water deep";
+            this.TerrainLayer22CheckBox.AutoSize = true;
+            this.TerrainLayer22CheckBox.Location = new System.Drawing.Point(6, 551);
+            this.TerrainLayer22CheckBox.Name = "TerrainLayer22CheckBox";
+            this.TerrainLayer22CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer22CheckBox.TabIndex = 206;
+            this.TerrainLayer22CheckBox.UseVisualStyleBackColor = true;
             // 
-            // button29
+            // TerrainLayer22AliasTextBox
             // 
-            this.button29.Location = new System.Drawing.Point(236, 316);
-            this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(34, 23);
-            this.button29.TabIndex = 86;
-            this.button29.Text = "Edit";
-            this.button29.UseVisualStyleBackColor = true;
+            this.TerrainLayer22AliasTextBox.Location = new System.Drawing.Point(27, 548);
+            this.TerrainLayer22AliasTextBox.Name = "TerrainLayer22AliasTextBox";
+            this.TerrainLayer22AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer22AliasTextBox.TabIndex = 205;
+            this.TerrainLayer22AliasTextBox.Text = "water deep";
             // 
-            // textBox29
+            // TerrainLayer22Button
             // 
-            this.textBox29.Enabled = false;
-            this.textBox29.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox29.Location = new System.Drawing.Point(178, 317);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(52, 20);
-            this.textBox29.TabIndex = 85;
+            this.TerrainLayer22Button.Location = new System.Drawing.Point(220, 546);
+            this.TerrainLayer22Button.Name = "TerrainLayer22Button";
+            this.TerrainLayer22Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer22Button.TabIndex = 204;
+            this.TerrainLayer22Button.Text = "Edit";
+            this.TerrainLayer22Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown13
+            // TerrainLayer22ColorTextBox
             // 
-            this.numericUpDown13.Location = new System.Drawing.Point(105, 317);
-            this.numericUpDown13.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer22ColorTextBox.Enabled = false;
+            this.TerrainLayer22ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer22ColorTextBox.Location = new System.Drawing.Point(162, 548);
+            this.TerrainLayer22ColorTextBox.Name = "TerrainLayer22ColorTextBox";
+            this.TerrainLayer22ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer22ColorTextBox.TabIndex = 203;
+            // 
+            // TerrainLayer22NumericUpDown
+            // 
+            this.TerrainLayer22NumericUpDown.Location = new System.Drawing.Point(105, 548);
+            this.TerrainLayer22NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown13.TabIndex = 83;
-            // 
-            // button30
-            // 
-            this.button30.Location = new System.Drawing.Point(236, 294);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(34, 23);
-            this.button30.TabIndex = 82;
-            this.button30.Text = "Edit";
-            this.button30.UseVisualStyleBackColor = true;
-            // 
-            // textBox30
-            // 
-            this.textBox30.Enabled = false;
-            this.textBox30.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox30.Location = new System.Drawing.Point(178, 295);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(52, 20);
-            this.textBox30.TabIndex = 81;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(3, 295);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(63, 13);
-            this.label31.TabIndex = 80;
-            this.label31.Text = "Water deep";
-            // 
-            // numericUpDown14
-            // 
-            this.numericUpDown14.Location = new System.Drawing.Point(105, 295);
-            this.numericUpDown14.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer22NumericUpDown.Minimum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown14.TabIndex = 79;
-            // 
-            // button31
-            // 
-            this.button31.Location = new System.Drawing.Point(236, 272);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(34, 23);
-            this.button31.TabIndex = 78;
-            this.button31.Text = "Edit";
-            this.button31.UseVisualStyleBackColor = true;
-            // 
-            // textBox31
-            // 
-            this.textBox31.Enabled = false;
-            this.textBox31.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox31.Location = new System.Drawing.Point(178, 273);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(52, 20);
-            this.textBox31.TabIndex = 77;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 273);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(63, 13);
-            this.label32.TabIndex = 76;
-            this.label32.Text = "Water deep";
-            // 
-            // numericUpDown15
-            // 
-            this.numericUpDown15.Location = new System.Drawing.Point(105, 273);
-            this.numericUpDown15.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer22NumericUpDown.Name = "TerrainLayer22NumericUpDown";
+            this.TerrainLayer22NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer22NumericUpDown.TabIndex = 202;
+            this.TerrainLayer22NumericUpDown.Value = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown15.TabIndex = 75;
             // 
-            // button26
+            // TerrainLayer21CheckBox
             // 
-            this.button26.Location = new System.Drawing.Point(236, 248);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(34, 23);
-            this.button26.TabIndex = 74;
-            this.button26.Text = "Edit";
-            this.button26.UseVisualStyleBackColor = true;
+            this.TerrainLayer21CheckBox.AutoSize = true;
+            this.TerrainLayer21CheckBox.Location = new System.Drawing.Point(6, 525);
+            this.TerrainLayer21CheckBox.Name = "TerrainLayer21CheckBox";
+            this.TerrainLayer21CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer21CheckBox.TabIndex = 201;
+            this.TerrainLayer21CheckBox.UseVisualStyleBackColor = true;
             // 
-            // textBox26
+            // TerrainLayer21AliasTextBox
             // 
-            this.textBox26.Enabled = false;
-            this.textBox26.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox26.Location = new System.Drawing.Point(178, 249);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(52, 20);
-            this.textBox26.TabIndex = 73;
+            this.TerrainLayer21AliasTextBox.Location = new System.Drawing.Point(27, 522);
+            this.TerrainLayer21AliasTextBox.Name = "TerrainLayer21AliasTextBox";
+            this.TerrainLayer21AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer21AliasTextBox.TabIndex = 200;
+            this.TerrainLayer21AliasTextBox.Text = "water deep";
             // 
-            // label27
+            // TerrainLayer21Button
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 249);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(63, 13);
-            this.label27.TabIndex = 72;
-            this.label27.Text = "Water deep";
+            this.TerrainLayer21Button.Location = new System.Drawing.Point(220, 520);
+            this.TerrainLayer21Button.Name = "TerrainLayer21Button";
+            this.TerrainLayer21Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer21Button.TabIndex = 199;
+            this.TerrainLayer21Button.Text = "Edit";
+            this.TerrainLayer21Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown10
+            // TerrainLayer21ColorTextBox
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(105, 249);
-            this.numericUpDown10.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer21ColorTextBox.Enabled = false;
+            this.TerrainLayer21ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer21ColorTextBox.Location = new System.Drawing.Point(162, 522);
+            this.TerrainLayer21ColorTextBox.Name = "TerrainLayer21ColorTextBox";
+            this.TerrainLayer21ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer21ColorTextBox.TabIndex = 198;
+            // 
+            // TerrainLayer21NumericUpDown
+            // 
+            this.TerrainLayer21NumericUpDown.Location = new System.Drawing.Point(105, 522);
+            this.TerrainLayer21NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown10.TabIndex = 71;
-            // 
-            // button27
-            // 
-            this.button27.Location = new System.Drawing.Point(236, 226);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(34, 23);
-            this.button27.TabIndex = 70;
-            this.button27.Text = "Edit";
-            this.button27.UseVisualStyleBackColor = true;
-            // 
-            // textBox27
-            // 
-            this.textBox27.Enabled = false;
-            this.textBox27.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox27.Location = new System.Drawing.Point(178, 227);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(52, 20);
-            this.textBox27.TabIndex = 69;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 227);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(63, 13);
-            this.label28.TabIndex = 68;
-            this.label28.Text = "Water deep";
-            // 
-            // numericUpDown11
-            // 
-            this.numericUpDown11.Location = new System.Drawing.Point(105, 227);
-            this.numericUpDown11.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer21NumericUpDown.Minimum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown11.TabIndex = 67;
-            // 
-            // button28
-            // 
-            this.button28.Location = new System.Drawing.Point(236, 204);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(34, 23);
-            this.button28.TabIndex = 66;
-            this.button28.Text = "Edit";
-            this.button28.UseVisualStyleBackColor = true;
-            // 
-            // textBox28
-            // 
-            this.textBox28.Enabled = false;
-            this.textBox28.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox28.Location = new System.Drawing.Point(178, 205);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(52, 20);
-            this.textBox28.TabIndex = 65;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(3, 205);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(63, 13);
-            this.label29.TabIndex = 64;
-            this.label29.Text = "Water deep";
-            // 
-            // numericUpDown12
-            // 
-            this.numericUpDown12.Location = new System.Drawing.Point(105, 205);
-            this.numericUpDown12.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer21NumericUpDown.Name = "TerrainLayer21NumericUpDown";
+            this.TerrainLayer21NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer21NumericUpDown.TabIndex = 197;
+            this.TerrainLayer21NumericUpDown.Value = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown12.TabIndex = 63;
             // 
-            // button23
+            // TerrainLayer20CheckBox
             // 
-            this.button23.Location = new System.Drawing.Point(236, 181);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(34, 23);
-            this.button23.TabIndex = 62;
-            this.button23.Text = "Edit";
-            this.button23.UseVisualStyleBackColor = true;
+            this.TerrainLayer20CheckBox.AutoSize = true;
+            this.TerrainLayer20CheckBox.Location = new System.Drawing.Point(6, 499);
+            this.TerrainLayer20CheckBox.Name = "TerrainLayer20CheckBox";
+            this.TerrainLayer20CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer20CheckBox.TabIndex = 196;
+            this.TerrainLayer20CheckBox.UseVisualStyleBackColor = true;
             // 
-            // textBox23
+            // TerrainLayer20AliasTextBox
             // 
-            this.textBox23.Enabled = false;
-            this.textBox23.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox23.Location = new System.Drawing.Point(178, 182);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(52, 20);
-            this.textBox23.TabIndex = 61;
+            this.TerrainLayer20AliasTextBox.Location = new System.Drawing.Point(27, 496);
+            this.TerrainLayer20AliasTextBox.Name = "TerrainLayer20AliasTextBox";
+            this.TerrainLayer20AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer20AliasTextBox.TabIndex = 195;
+            this.TerrainLayer20AliasTextBox.Text = "water deep";
             // 
-            // label23
+            // TerrainLayer20Button
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(3, 182);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(63, 13);
-            this.label23.TabIndex = 60;
-            this.label23.Text = "Water deep";
+            this.TerrainLayer20Button.Location = new System.Drawing.Point(220, 494);
+            this.TerrainLayer20Button.Name = "TerrainLayer20Button";
+            this.TerrainLayer20Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer20Button.TabIndex = 194;
+            this.TerrainLayer20Button.Text = "Edit";
+            this.TerrainLayer20Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown7
+            // TerrainLayer20ColorTextBox
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(105, 182);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer20ColorTextBox.Enabled = false;
+            this.TerrainLayer20ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer20ColorTextBox.Location = new System.Drawing.Point(162, 496);
+            this.TerrainLayer20ColorTextBox.Name = "TerrainLayer20ColorTextBox";
+            this.TerrainLayer20ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer20ColorTextBox.TabIndex = 193;
+            // 
+            // TerrainLayer20NumericUpDown
+            // 
+            this.TerrainLayer20NumericUpDown.Location = new System.Drawing.Point(105, 496);
+            this.TerrainLayer20NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown7.TabIndex = 59;
-            // 
-            // button24
-            // 
-            this.button24.Location = new System.Drawing.Point(236, 159);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(34, 23);
-            this.button24.TabIndex = 58;
-            this.button24.Text = "Edit";
-            this.button24.UseVisualStyleBackColor = true;
-            // 
-            // textBox24
-            // 
-            this.textBox24.Enabled = false;
-            this.textBox24.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox24.Location = new System.Drawing.Point(178, 160);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(52, 20);
-            this.textBox24.TabIndex = 57;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(3, 160);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(63, 13);
-            this.label25.TabIndex = 56;
-            this.label25.Text = "Water deep";
-            // 
-            // numericUpDown8
-            // 
-            this.numericUpDown8.Location = new System.Drawing.Point(105, 160);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer20NumericUpDown.Minimum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown8.TabIndex = 55;
-            // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(236, 137);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(34, 23);
-            this.button25.TabIndex = 54;
-            this.button25.Text = "Edit";
-            this.button25.UseVisualStyleBackColor = true;
-            // 
-            // textBox25
-            // 
-            this.textBox25.Enabled = false;
-            this.textBox25.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox25.Location = new System.Drawing.Point(178, 138);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(52, 20);
-            this.textBox25.TabIndex = 53;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(3, 138);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(63, 13);
-            this.label26.TabIndex = 52;
-            this.label26.Text = "Water deep";
-            // 
-            // numericUpDown9
-            // 
-            this.numericUpDown9.Location = new System.Drawing.Point(105, 138);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer20NumericUpDown.Name = "TerrainLayer20NumericUpDown";
+            this.TerrainLayer20NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer20NumericUpDown.TabIndex = 192;
+            this.TerrainLayer20NumericUpDown.Value = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown9.TabIndex = 51;
             // 
-            // button20
+            // TerrainLayer19CheckBox
             // 
-            this.button20.Location = new System.Drawing.Point(236, 113);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(34, 23);
-            this.button20.TabIndex = 50;
-            this.button20.Text = "Edit";
-            this.button20.UseVisualStyleBackColor = true;
+            this.TerrainLayer19CheckBox.AutoSize = true;
+            this.TerrainLayer19CheckBox.Location = new System.Drawing.Point(6, 473);
+            this.TerrainLayer19CheckBox.Name = "TerrainLayer19CheckBox";
+            this.TerrainLayer19CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer19CheckBox.TabIndex = 191;
+            this.TerrainLayer19CheckBox.UseVisualStyleBackColor = true;
             // 
-            // textBox20
+            // TerrainLayer19AliasTextBox
             // 
-            this.textBox20.Enabled = false;
-            this.textBox20.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox20.Location = new System.Drawing.Point(178, 114);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(52, 20);
-            this.textBox20.TabIndex = 49;
+            this.TerrainLayer19AliasTextBox.Location = new System.Drawing.Point(27, 470);
+            this.TerrainLayer19AliasTextBox.Name = "TerrainLayer19AliasTextBox";
+            this.TerrainLayer19AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer19AliasTextBox.TabIndex = 190;
+            this.TerrainLayer19AliasTextBox.Text = "water deep";
             // 
-            // label20
+            // TerrainLayer19Button
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(3, 114);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(63, 13);
-            this.label20.TabIndex = 48;
-            this.label20.Text = "Water deep";
+            this.TerrainLayer19Button.Location = new System.Drawing.Point(220, 468);
+            this.TerrainLayer19Button.Name = "TerrainLayer19Button";
+            this.TerrainLayer19Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer19Button.TabIndex = 189;
+            this.TerrainLayer19Button.Text = "Edit";
+            this.TerrainLayer19Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown4
+            // TerrainLayer19ColorTextBox
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(105, 114);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer19ColorTextBox.Enabled = false;
+            this.TerrainLayer19ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer19ColorTextBox.Location = new System.Drawing.Point(162, 470);
+            this.TerrainLayer19ColorTextBox.Name = "TerrainLayer19ColorTextBox";
+            this.TerrainLayer19ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer19ColorTextBox.TabIndex = 188;
+            // 
+            // TerrainLayer19NumericUpDown
+            // 
+            this.TerrainLayer19NumericUpDown.Location = new System.Drawing.Point(105, 470);
+            this.TerrainLayer19NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown4.TabIndex = 47;
-            // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(236, 91);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(34, 23);
-            this.button21.TabIndex = 46;
-            this.button21.Text = "Edit";
-            this.button21.UseVisualStyleBackColor = true;
-            // 
-            // textBox21
-            // 
-            this.textBox21.Enabled = false;
-            this.textBox21.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox21.Location = new System.Drawing.Point(178, 92);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(52, 20);
-            this.textBox21.TabIndex = 45;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(3, 92);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(63, 13);
-            this.label21.TabIndex = 44;
-            this.label21.Text = "Water deep";
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Location = new System.Drawing.Point(105, 92);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer19NumericUpDown.Minimum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown5.TabIndex = 43;
-            // 
-            // button22
-            // 
-            this.button22.Location = new System.Drawing.Point(236, 69);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(34, 23);
-            this.button22.TabIndex = 42;
-            this.button22.Text = "Edit";
-            this.button22.UseVisualStyleBackColor = true;
-            // 
-            // textBox22
-            // 
-            this.textBox22.Enabled = false;
-            this.textBox22.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox22.Location = new System.Drawing.Point(178, 70);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(52, 20);
-            this.textBox22.TabIndex = 41;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(3, 70);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(63, 13);
-            this.label22.TabIndex = 40;
-            this.label22.Text = "Water deep";
-            // 
-            // numericUpDown6
-            // 
-            this.numericUpDown6.Location = new System.Drawing.Point(105, 70);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer19NumericUpDown.Name = "TerrainLayer19NumericUpDown";
+            this.TerrainLayer19NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer19NumericUpDown.TabIndex = 187;
+            this.TerrainLayer19NumericUpDown.Value = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown6.TabIndex = 39;
             // 
-            // button19
+            // TerrainLayer18CheckBox
             // 
-            this.button19.Location = new System.Drawing.Point(236, 46);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(34, 23);
-            this.button19.TabIndex = 38;
-            this.button19.Text = "Edit";
-            this.button19.UseVisualStyleBackColor = true;
+            this.TerrainLayer18CheckBox.AutoSize = true;
+            this.TerrainLayer18CheckBox.Location = new System.Drawing.Point(6, 447);
+            this.TerrainLayer18CheckBox.Name = "TerrainLayer18CheckBox";
+            this.TerrainLayer18CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer18CheckBox.TabIndex = 186;
+            this.TerrainLayer18CheckBox.UseVisualStyleBackColor = true;
             // 
-            // textBox19
+            // TerrainLayer18AliasTextBox
             // 
-            this.textBox19.Enabled = false;
-            this.textBox19.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox19.Location = new System.Drawing.Point(178, 47);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(52, 20);
-            this.textBox19.TabIndex = 37;
+            this.TerrainLayer18AliasTextBox.Location = new System.Drawing.Point(27, 444);
+            this.TerrainLayer18AliasTextBox.Name = "TerrainLayer18AliasTextBox";
+            this.TerrainLayer18AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer18AliasTextBox.TabIndex = 185;
+            this.TerrainLayer18AliasTextBox.Text = "water deep";
             // 
-            // label19
+            // TerrainLayer18Button
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(3, 47);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(63, 13);
-            this.label19.TabIndex = 36;
-            this.label19.Text = "Water deep";
+            this.TerrainLayer18Button.Location = new System.Drawing.Point(220, 442);
+            this.TerrainLayer18Button.Name = "TerrainLayer18Button";
+            this.TerrainLayer18Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer18Button.TabIndex = 184;
+            this.TerrainLayer18Button.Text = "Edit";
+            this.TerrainLayer18Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown3
+            // TerrainLayer18ColorTextBox
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(105, 47);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer18ColorTextBox.Enabled = false;
+            this.TerrainLayer18ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer18ColorTextBox.Location = new System.Drawing.Point(162, 444);
+            this.TerrainLayer18ColorTextBox.Name = "TerrainLayer18ColorTextBox";
+            this.TerrainLayer18ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer18ColorTextBox.TabIndex = 183;
+            // 
+            // TerrainLayer18NumericUpDown
+            // 
+            this.TerrainLayer18NumericUpDown.Location = new System.Drawing.Point(105, 444);
+            this.TerrainLayer18NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown3.TabIndex = 35;
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(236, 24);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(34, 23);
-            this.button18.TabIndex = 34;
-            this.button18.Text = "Edit";
-            this.button18.UseVisualStyleBackColor = true;
-            // 
-            // textBox18
-            // 
-            this.textBox18.Enabled = false;
-            this.textBox18.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox18.Location = new System.Drawing.Point(178, 25);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(52, 20);
-            this.textBox18.TabIndex = 33;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 25);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 13);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "Mountain 1";
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(105, 25);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer18NumericUpDown.Minimum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown2.TabIndex = 31;
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(236, 2);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(34, 23);
-            this.button17.TabIndex = 30;
-            this.button17.Text = "Edit";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Enabled = false;
-            this.textBox17.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox17.Location = new System.Drawing.Point(178, 3);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(52, 20);
-            this.textBox17.TabIndex = 29;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(3, 3);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(63, 13);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "Water deep";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(105, 3);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            60,
+            this.TerrainLayer18NumericUpDown.Name = "TerrainLayer18NumericUpDown";
+            this.TerrainLayer18NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer18NumericUpDown.TabIndex = 182;
+            this.TerrainLayer18NumericUpDown.Value = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDown1.TabIndex = 27;
+            // 
+            // TerrainLayer17CheckBox
+            // 
+            this.TerrainLayer17CheckBox.AutoSize = true;
+            this.TerrainLayer17CheckBox.Location = new System.Drawing.Point(6, 421);
+            this.TerrainLayer17CheckBox.Name = "TerrainLayer17CheckBox";
+            this.TerrainLayer17CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer17CheckBox.TabIndex = 181;
+            this.TerrainLayer17CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer17AliasTextBox
+            // 
+            this.TerrainLayer17AliasTextBox.Location = new System.Drawing.Point(27, 418);
+            this.TerrainLayer17AliasTextBox.Name = "TerrainLayer17AliasTextBox";
+            this.TerrainLayer17AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer17AliasTextBox.TabIndex = 180;
+            this.TerrainLayer17AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer17Button
+            // 
+            this.TerrainLayer17Button.Location = new System.Drawing.Point(220, 416);
+            this.TerrainLayer17Button.Name = "TerrainLayer17Button";
+            this.TerrainLayer17Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer17Button.TabIndex = 179;
+            this.TerrainLayer17Button.Text = "Edit";
+            this.TerrainLayer17Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer17ColorTextBox
+            // 
+            this.TerrainLayer17ColorTextBox.Enabled = false;
+            this.TerrainLayer17ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer17ColorTextBox.Location = new System.Drawing.Point(162, 418);
+            this.TerrainLayer17ColorTextBox.Name = "TerrainLayer17ColorTextBox";
+            this.TerrainLayer17ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer17ColorTextBox.TabIndex = 178;
+            // 
+            // TerrainLayer17NumericUpDown
+            // 
+            this.TerrainLayer17NumericUpDown.Location = new System.Drawing.Point(105, 418);
+            this.TerrainLayer17NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer17NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer17NumericUpDown.Name = "TerrainLayer17NumericUpDown";
+            this.TerrainLayer17NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer17NumericUpDown.TabIndex = 177;
+            this.TerrainLayer17NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer16CheckBox
+            // 
+            this.TerrainLayer16CheckBox.AutoSize = true;
+            this.TerrainLayer16CheckBox.Location = new System.Drawing.Point(6, 395);
+            this.TerrainLayer16CheckBox.Name = "TerrainLayer16CheckBox";
+            this.TerrainLayer16CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer16CheckBox.TabIndex = 176;
+            this.TerrainLayer16CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer16AliasTextBox
+            // 
+            this.TerrainLayer16AliasTextBox.Location = new System.Drawing.Point(27, 392);
+            this.TerrainLayer16AliasTextBox.Name = "TerrainLayer16AliasTextBox";
+            this.TerrainLayer16AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer16AliasTextBox.TabIndex = 175;
+            this.TerrainLayer16AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer16Button
+            // 
+            this.TerrainLayer16Button.Location = new System.Drawing.Point(220, 390);
+            this.TerrainLayer16Button.Name = "TerrainLayer16Button";
+            this.TerrainLayer16Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer16Button.TabIndex = 174;
+            this.TerrainLayer16Button.Text = "Edit";
+            this.TerrainLayer16Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer16ColorTextBox
+            // 
+            this.TerrainLayer16ColorTextBox.Enabled = false;
+            this.TerrainLayer16ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer16ColorTextBox.Location = new System.Drawing.Point(162, 392);
+            this.TerrainLayer16ColorTextBox.Name = "TerrainLayer16ColorTextBox";
+            this.TerrainLayer16ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer16ColorTextBox.TabIndex = 173;
+            // 
+            // TerrainLayer16NumericUpDown
+            // 
+            this.TerrainLayer16NumericUpDown.Location = new System.Drawing.Point(105, 392);
+            this.TerrainLayer16NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer16NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer16NumericUpDown.Name = "TerrainLayer16NumericUpDown";
+            this.TerrainLayer16NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer16NumericUpDown.TabIndex = 172;
+            this.TerrainLayer16NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer15CheckBox
+            // 
+            this.TerrainLayer15CheckBox.AutoSize = true;
+            this.TerrainLayer15CheckBox.Location = new System.Drawing.Point(6, 369);
+            this.TerrainLayer15CheckBox.Name = "TerrainLayer15CheckBox";
+            this.TerrainLayer15CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer15CheckBox.TabIndex = 171;
+            this.TerrainLayer15CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer15AliasTextBox
+            // 
+            this.TerrainLayer15AliasTextBox.Location = new System.Drawing.Point(27, 366);
+            this.TerrainLayer15AliasTextBox.Name = "TerrainLayer15AliasTextBox";
+            this.TerrainLayer15AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer15AliasTextBox.TabIndex = 170;
+            this.TerrainLayer15AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer15Button
+            // 
+            this.TerrainLayer15Button.Location = new System.Drawing.Point(220, 364);
+            this.TerrainLayer15Button.Name = "TerrainLayer15Button";
+            this.TerrainLayer15Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer15Button.TabIndex = 169;
+            this.TerrainLayer15Button.Text = "Edit";
+            this.TerrainLayer15Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer15ColorTextBox
+            // 
+            this.TerrainLayer15ColorTextBox.Enabled = false;
+            this.TerrainLayer15ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer15ColorTextBox.Location = new System.Drawing.Point(162, 366);
+            this.TerrainLayer15ColorTextBox.Name = "TerrainLayer15ColorTextBox";
+            this.TerrainLayer15ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer15ColorTextBox.TabIndex = 168;
+            // 
+            // TerrainLayer15NumericUpDown
+            // 
+            this.TerrainLayer15NumericUpDown.Location = new System.Drawing.Point(105, 366);
+            this.TerrainLayer15NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer15NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer15NumericUpDown.Name = "TerrainLayer15NumericUpDown";
+            this.TerrainLayer15NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer15NumericUpDown.TabIndex = 167;
+            this.TerrainLayer15NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer14CheckBox
+            // 
+            this.TerrainLayer14CheckBox.AutoSize = true;
+            this.TerrainLayer14CheckBox.Location = new System.Drawing.Point(6, 343);
+            this.TerrainLayer14CheckBox.Name = "TerrainLayer14CheckBox";
+            this.TerrainLayer14CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer14CheckBox.TabIndex = 166;
+            this.TerrainLayer14CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer14AliasTextBox
+            // 
+            this.TerrainLayer14AliasTextBox.Location = new System.Drawing.Point(27, 340);
+            this.TerrainLayer14AliasTextBox.Name = "TerrainLayer14AliasTextBox";
+            this.TerrainLayer14AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer14AliasTextBox.TabIndex = 165;
+            this.TerrainLayer14AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer14Button
+            // 
+            this.TerrainLayer14Button.Location = new System.Drawing.Point(220, 338);
+            this.TerrainLayer14Button.Name = "TerrainLayer14Button";
+            this.TerrainLayer14Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer14Button.TabIndex = 164;
+            this.TerrainLayer14Button.Text = "Edit";
+            this.TerrainLayer14Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer14ColorTextBox
+            // 
+            this.TerrainLayer14ColorTextBox.Enabled = false;
+            this.TerrainLayer14ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer14ColorTextBox.Location = new System.Drawing.Point(162, 340);
+            this.TerrainLayer14ColorTextBox.Name = "TerrainLayer14ColorTextBox";
+            this.TerrainLayer14ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer14ColorTextBox.TabIndex = 163;
+            // 
+            // TerrainLayer14NumericUpDown
+            // 
+            this.TerrainLayer14NumericUpDown.Location = new System.Drawing.Point(105, 340);
+            this.TerrainLayer14NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer14NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer14NumericUpDown.Name = "TerrainLayer14NumericUpDown";
+            this.TerrainLayer14NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer14NumericUpDown.TabIndex = 162;
+            this.TerrainLayer14NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer13CheckBox
+            // 
+            this.TerrainLayer13CheckBox.AutoSize = true;
+            this.TerrainLayer13CheckBox.Location = new System.Drawing.Point(6, 317);
+            this.TerrainLayer13CheckBox.Name = "TerrainLayer13CheckBox";
+            this.TerrainLayer13CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer13CheckBox.TabIndex = 161;
+            this.TerrainLayer13CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer13AliasTextBox
+            // 
+            this.TerrainLayer13AliasTextBox.Location = new System.Drawing.Point(27, 314);
+            this.TerrainLayer13AliasTextBox.Name = "TerrainLayer13AliasTextBox";
+            this.TerrainLayer13AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer13AliasTextBox.TabIndex = 160;
+            this.TerrainLayer13AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer13Button
+            // 
+            this.TerrainLayer13Button.Location = new System.Drawing.Point(220, 312);
+            this.TerrainLayer13Button.Name = "TerrainLayer13Button";
+            this.TerrainLayer13Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer13Button.TabIndex = 159;
+            this.TerrainLayer13Button.Text = "Edit";
+            this.TerrainLayer13Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer13ColorTextBox
+            // 
+            this.TerrainLayer13ColorTextBox.Enabled = false;
+            this.TerrainLayer13ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer13ColorTextBox.Location = new System.Drawing.Point(162, 314);
+            this.TerrainLayer13ColorTextBox.Name = "TerrainLayer13ColorTextBox";
+            this.TerrainLayer13ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer13ColorTextBox.TabIndex = 158;
+            // 
+            // TerrainLayer13NumericUpDown
+            // 
+            this.TerrainLayer13NumericUpDown.Location = new System.Drawing.Point(105, 314);
+            this.TerrainLayer13NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer13NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer13NumericUpDown.Name = "TerrainLayer13NumericUpDown";
+            this.TerrainLayer13NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer13NumericUpDown.TabIndex = 157;
+            this.TerrainLayer13NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer12CheckBox
+            // 
+            this.TerrainLayer12CheckBox.AutoSize = true;
+            this.TerrainLayer12CheckBox.Location = new System.Drawing.Point(6, 291);
+            this.TerrainLayer12CheckBox.Name = "TerrainLayer12CheckBox";
+            this.TerrainLayer12CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer12CheckBox.TabIndex = 156;
+            this.TerrainLayer12CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer12AliasTextBox
+            // 
+            this.TerrainLayer12AliasTextBox.Location = new System.Drawing.Point(27, 288);
+            this.TerrainLayer12AliasTextBox.Name = "TerrainLayer12AliasTextBox";
+            this.TerrainLayer12AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer12AliasTextBox.TabIndex = 155;
+            this.TerrainLayer12AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer12Button
+            // 
+            this.TerrainLayer12Button.Location = new System.Drawing.Point(220, 286);
+            this.TerrainLayer12Button.Name = "TerrainLayer12Button";
+            this.TerrainLayer12Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer12Button.TabIndex = 154;
+            this.TerrainLayer12Button.Text = "Edit";
+            this.TerrainLayer12Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer12ColorTextBox
+            // 
+            this.TerrainLayer12ColorTextBox.Enabled = false;
+            this.TerrainLayer12ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer12ColorTextBox.Location = new System.Drawing.Point(162, 288);
+            this.TerrainLayer12ColorTextBox.Name = "TerrainLayer12ColorTextBox";
+            this.TerrainLayer12ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer12ColorTextBox.TabIndex = 153;
+            // 
+            // TerrainLayer12NumericUpDown
+            // 
+            this.TerrainLayer12NumericUpDown.Location = new System.Drawing.Point(105, 288);
+            this.TerrainLayer12NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer12NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer12NumericUpDown.Name = "TerrainLayer12NumericUpDown";
+            this.TerrainLayer12NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer12NumericUpDown.TabIndex = 152;
+            this.TerrainLayer12NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer11CheckBox
+            // 
+            this.TerrainLayer11CheckBox.AutoSize = true;
+            this.TerrainLayer11CheckBox.Location = new System.Drawing.Point(6, 265);
+            this.TerrainLayer11CheckBox.Name = "TerrainLayer11CheckBox";
+            this.TerrainLayer11CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer11CheckBox.TabIndex = 151;
+            this.TerrainLayer11CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer11AliasTextBox
+            // 
+            this.TerrainLayer11AliasTextBox.Location = new System.Drawing.Point(27, 262);
+            this.TerrainLayer11AliasTextBox.Name = "TerrainLayer11AliasTextBox";
+            this.TerrainLayer11AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer11AliasTextBox.TabIndex = 150;
+            this.TerrainLayer11AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer11Button
+            // 
+            this.TerrainLayer11Button.Location = new System.Drawing.Point(220, 260);
+            this.TerrainLayer11Button.Name = "TerrainLayer11Button";
+            this.TerrainLayer11Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer11Button.TabIndex = 149;
+            this.TerrainLayer11Button.Text = "Edit";
+            this.TerrainLayer11Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer11ColorTextBox
+            // 
+            this.TerrainLayer11ColorTextBox.Enabled = false;
+            this.TerrainLayer11ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer11ColorTextBox.Location = new System.Drawing.Point(162, 262);
+            this.TerrainLayer11ColorTextBox.Name = "TerrainLayer11ColorTextBox";
+            this.TerrainLayer11ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer11ColorTextBox.TabIndex = 148;
+            // 
+            // TerrainLayer11NumericUpDown
+            // 
+            this.TerrainLayer11NumericUpDown.Location = new System.Drawing.Point(105, 262);
+            this.TerrainLayer11NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer11NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer11NumericUpDown.Name = "TerrainLayer11NumericUpDown";
+            this.TerrainLayer11NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer11NumericUpDown.TabIndex = 147;
+            this.TerrainLayer11NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer10CheckBox
+            // 
+            this.TerrainLayer10CheckBox.AutoSize = true;
+            this.TerrainLayer10CheckBox.Location = new System.Drawing.Point(6, 239);
+            this.TerrainLayer10CheckBox.Name = "TerrainLayer10CheckBox";
+            this.TerrainLayer10CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer10CheckBox.TabIndex = 146;
+            this.TerrainLayer10CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer10AliasTextBox
+            // 
+            this.TerrainLayer10AliasTextBox.Location = new System.Drawing.Point(27, 236);
+            this.TerrainLayer10AliasTextBox.Name = "TerrainLayer10AliasTextBox";
+            this.TerrainLayer10AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer10AliasTextBox.TabIndex = 145;
+            this.TerrainLayer10AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer10Button
+            // 
+            this.TerrainLayer10Button.Location = new System.Drawing.Point(220, 234);
+            this.TerrainLayer10Button.Name = "TerrainLayer10Button";
+            this.TerrainLayer10Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer10Button.TabIndex = 144;
+            this.TerrainLayer10Button.Text = "Edit";
+            this.TerrainLayer10Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer10ColorTextBox
+            // 
+            this.TerrainLayer10ColorTextBox.Enabled = false;
+            this.TerrainLayer10ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer10ColorTextBox.Location = new System.Drawing.Point(162, 236);
+            this.TerrainLayer10ColorTextBox.Name = "TerrainLayer10ColorTextBox";
+            this.TerrainLayer10ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer10ColorTextBox.TabIndex = 143;
+            // 
+            // TerrainLayer10NumericUpDown
+            // 
+            this.TerrainLayer10NumericUpDown.Location = new System.Drawing.Point(105, 236);
+            this.TerrainLayer10NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer10NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer10NumericUpDown.Name = "TerrainLayer10NumericUpDown";
+            this.TerrainLayer10NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer10NumericUpDown.TabIndex = 142;
+            this.TerrainLayer10NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer9CheckBox
+            // 
+            this.TerrainLayer9CheckBox.AutoSize = true;
+            this.TerrainLayer9CheckBox.Location = new System.Drawing.Point(6, 213);
+            this.TerrainLayer9CheckBox.Name = "TerrainLayer9CheckBox";
+            this.TerrainLayer9CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer9CheckBox.TabIndex = 141;
+            this.TerrainLayer9CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer9AliasTextBox
+            // 
+            this.TerrainLayer9AliasTextBox.Location = new System.Drawing.Point(27, 210);
+            this.TerrainLayer9AliasTextBox.Name = "TerrainLayer9AliasTextBox";
+            this.TerrainLayer9AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer9AliasTextBox.TabIndex = 140;
+            this.TerrainLayer9AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer9Button
+            // 
+            this.TerrainLayer9Button.Location = new System.Drawing.Point(220, 208);
+            this.TerrainLayer9Button.Name = "TerrainLayer9Button";
+            this.TerrainLayer9Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer9Button.TabIndex = 139;
+            this.TerrainLayer9Button.Text = "Edit";
+            this.TerrainLayer9Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer9ColorTextBox
+            // 
+            this.TerrainLayer9ColorTextBox.Enabled = false;
+            this.TerrainLayer9ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer9ColorTextBox.Location = new System.Drawing.Point(162, 210);
+            this.TerrainLayer9ColorTextBox.Name = "TerrainLayer9ColorTextBox";
+            this.TerrainLayer9ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer9ColorTextBox.TabIndex = 138;
+            // 
+            // TerrainLayer9NumericUpDown
+            // 
+            this.TerrainLayer9NumericUpDown.Location = new System.Drawing.Point(105, 210);
+            this.TerrainLayer9NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer9NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer9NumericUpDown.Name = "TerrainLayer9NumericUpDown";
+            this.TerrainLayer9NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer9NumericUpDown.TabIndex = 137;
+            this.TerrainLayer9NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer8CheckBox
+            // 
+            this.TerrainLayer8CheckBox.AutoSize = true;
+            this.TerrainLayer8CheckBox.Location = new System.Drawing.Point(6, 187);
+            this.TerrainLayer8CheckBox.Name = "TerrainLayer8CheckBox";
+            this.TerrainLayer8CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer8CheckBox.TabIndex = 136;
+            this.TerrainLayer8CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer8AliasTextBox
+            // 
+            this.TerrainLayer8AliasTextBox.Location = new System.Drawing.Point(27, 184);
+            this.TerrainLayer8AliasTextBox.Name = "TerrainLayer8AliasTextBox";
+            this.TerrainLayer8AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer8AliasTextBox.TabIndex = 135;
+            this.TerrainLayer8AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer8Button
+            // 
+            this.TerrainLayer8Button.Location = new System.Drawing.Point(220, 182);
+            this.TerrainLayer8Button.Name = "TerrainLayer8Button";
+            this.TerrainLayer8Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer8Button.TabIndex = 134;
+            this.TerrainLayer8Button.Text = "Edit";
+            this.TerrainLayer8Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer8ColorTextBox
+            // 
+            this.TerrainLayer8ColorTextBox.Enabled = false;
+            this.TerrainLayer8ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer8ColorTextBox.Location = new System.Drawing.Point(162, 184);
+            this.TerrainLayer8ColorTextBox.Name = "TerrainLayer8ColorTextBox";
+            this.TerrainLayer8ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer8ColorTextBox.TabIndex = 133;
+            // 
+            // TerrainLayer8NumericUpDown
+            // 
+            this.TerrainLayer8NumericUpDown.Location = new System.Drawing.Point(105, 184);
+            this.TerrainLayer8NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer8NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer8NumericUpDown.Name = "TerrainLayer8NumericUpDown";
+            this.TerrainLayer8NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer8NumericUpDown.TabIndex = 132;
+            this.TerrainLayer8NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer7CheckBox
+            // 
+            this.TerrainLayer7CheckBox.AutoSize = true;
+            this.TerrainLayer7CheckBox.Location = new System.Drawing.Point(6, 161);
+            this.TerrainLayer7CheckBox.Name = "TerrainLayer7CheckBox";
+            this.TerrainLayer7CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer7CheckBox.TabIndex = 131;
+            this.TerrainLayer7CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer7AliasTextBox
+            // 
+            this.TerrainLayer7AliasTextBox.Location = new System.Drawing.Point(27, 158);
+            this.TerrainLayer7AliasTextBox.Name = "TerrainLayer7AliasTextBox";
+            this.TerrainLayer7AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer7AliasTextBox.TabIndex = 130;
+            this.TerrainLayer7AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer7Button
+            // 
+            this.TerrainLayer7Button.Location = new System.Drawing.Point(220, 156);
+            this.TerrainLayer7Button.Name = "TerrainLayer7Button";
+            this.TerrainLayer7Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer7Button.TabIndex = 129;
+            this.TerrainLayer7Button.Text = "Edit";
+            this.TerrainLayer7Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer7ColorTextBox
+            // 
+            this.TerrainLayer7ColorTextBox.Enabled = false;
+            this.TerrainLayer7ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer7ColorTextBox.Location = new System.Drawing.Point(162, 158);
+            this.TerrainLayer7ColorTextBox.Name = "TerrainLayer7ColorTextBox";
+            this.TerrainLayer7ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer7ColorTextBox.TabIndex = 128;
+            // 
+            // TerrainLayer7NumericUpDown
+            // 
+            this.TerrainLayer7NumericUpDown.Location = new System.Drawing.Point(105, 158);
+            this.TerrainLayer7NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer7NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer7NumericUpDown.Name = "TerrainLayer7NumericUpDown";
+            this.TerrainLayer7NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer7NumericUpDown.TabIndex = 127;
+            this.TerrainLayer7NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer6CheckBox
+            // 
+            this.TerrainLayer6CheckBox.AutoSize = true;
+            this.TerrainLayer6CheckBox.Location = new System.Drawing.Point(6, 135);
+            this.TerrainLayer6CheckBox.Name = "TerrainLayer6CheckBox";
+            this.TerrainLayer6CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer6CheckBox.TabIndex = 126;
+            this.TerrainLayer6CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer6AliasTextBox
+            // 
+            this.TerrainLayer6AliasTextBox.Location = new System.Drawing.Point(27, 132);
+            this.TerrainLayer6AliasTextBox.Name = "TerrainLayer6AliasTextBox";
+            this.TerrainLayer6AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer6AliasTextBox.TabIndex = 125;
+            this.TerrainLayer6AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer6Button
+            // 
+            this.TerrainLayer6Button.Location = new System.Drawing.Point(220, 130);
+            this.TerrainLayer6Button.Name = "TerrainLayer6Button";
+            this.TerrainLayer6Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer6Button.TabIndex = 124;
+            this.TerrainLayer6Button.Text = "Edit";
+            this.TerrainLayer6Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer6ColorTextBox
+            // 
+            this.TerrainLayer6ColorTextBox.Enabled = false;
+            this.TerrainLayer6ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer6ColorTextBox.Location = new System.Drawing.Point(162, 132);
+            this.TerrainLayer6ColorTextBox.Name = "TerrainLayer6ColorTextBox";
+            this.TerrainLayer6ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer6ColorTextBox.TabIndex = 123;
+            // 
+            // TerrainLayer6NumericUpDown
+            // 
+            this.TerrainLayer6NumericUpDown.Location = new System.Drawing.Point(105, 132);
+            this.TerrainLayer6NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer6NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer6NumericUpDown.Name = "TerrainLayer6NumericUpDown";
+            this.TerrainLayer6NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer6NumericUpDown.TabIndex = 122;
+            this.TerrainLayer6NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer5CheckBox
+            // 
+            this.TerrainLayer5CheckBox.AutoSize = true;
+            this.TerrainLayer5CheckBox.Location = new System.Drawing.Point(6, 109);
+            this.TerrainLayer5CheckBox.Name = "TerrainLayer5CheckBox";
+            this.TerrainLayer5CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer5CheckBox.TabIndex = 121;
+            this.TerrainLayer5CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer5AliasTextBox
+            // 
+            this.TerrainLayer5AliasTextBox.Location = new System.Drawing.Point(27, 106);
+            this.TerrainLayer5AliasTextBox.Name = "TerrainLayer5AliasTextBox";
+            this.TerrainLayer5AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer5AliasTextBox.TabIndex = 120;
+            this.TerrainLayer5AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer5Button
+            // 
+            this.TerrainLayer5Button.Location = new System.Drawing.Point(220, 104);
+            this.TerrainLayer5Button.Name = "TerrainLayer5Button";
+            this.TerrainLayer5Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer5Button.TabIndex = 119;
+            this.TerrainLayer5Button.Text = "Edit";
+            this.TerrainLayer5Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer5ColorTextBox
+            // 
+            this.TerrainLayer5ColorTextBox.Enabled = false;
+            this.TerrainLayer5ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer5ColorTextBox.Location = new System.Drawing.Point(162, 106);
+            this.TerrainLayer5ColorTextBox.Name = "TerrainLayer5ColorTextBox";
+            this.TerrainLayer5ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer5ColorTextBox.TabIndex = 118;
+            // 
+            // TerrainLayer5NumericUpDown
+            // 
+            this.TerrainLayer5NumericUpDown.Location = new System.Drawing.Point(105, 106);
+            this.TerrainLayer5NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer5NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer5NumericUpDown.Name = "TerrainLayer5NumericUpDown";
+            this.TerrainLayer5NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer5NumericUpDown.TabIndex = 117;
+            this.TerrainLayer5NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer4CheckBox
+            // 
+            this.TerrainLayer4CheckBox.AutoSize = true;
+            this.TerrainLayer4CheckBox.Location = new System.Drawing.Point(6, 83);
+            this.TerrainLayer4CheckBox.Name = "TerrainLayer4CheckBox";
+            this.TerrainLayer4CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer4CheckBox.TabIndex = 116;
+            this.TerrainLayer4CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer4AliasTextBox
+            // 
+            this.TerrainLayer4AliasTextBox.Location = new System.Drawing.Point(27, 80);
+            this.TerrainLayer4AliasTextBox.Name = "TerrainLayer4AliasTextBox";
+            this.TerrainLayer4AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer4AliasTextBox.TabIndex = 115;
+            this.TerrainLayer4AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer4Button
+            // 
+            this.TerrainLayer4Button.Location = new System.Drawing.Point(220, 78);
+            this.TerrainLayer4Button.Name = "TerrainLayer4Button";
+            this.TerrainLayer4Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer4Button.TabIndex = 114;
+            this.TerrainLayer4Button.Text = "Edit";
+            this.TerrainLayer4Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer4ColorTextBox
+            // 
+            this.TerrainLayer4ColorTextBox.Enabled = false;
+            this.TerrainLayer4ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer4ColorTextBox.Location = new System.Drawing.Point(162, 80);
+            this.TerrainLayer4ColorTextBox.Name = "TerrainLayer4ColorTextBox";
+            this.TerrainLayer4ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer4ColorTextBox.TabIndex = 113;
+            // 
+            // TerrainLayer4NumericUpDown
+            // 
+            this.TerrainLayer4NumericUpDown.Location = new System.Drawing.Point(105, 80);
+            this.TerrainLayer4NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer4NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer4NumericUpDown.Name = "TerrainLayer4NumericUpDown";
+            this.TerrainLayer4NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer4NumericUpDown.TabIndex = 112;
+            this.TerrainLayer4NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer3CheckBox
+            // 
+            this.TerrainLayer3CheckBox.AutoSize = true;
+            this.TerrainLayer3CheckBox.Location = new System.Drawing.Point(6, 57);
+            this.TerrainLayer3CheckBox.Name = "TerrainLayer3CheckBox";
+            this.TerrainLayer3CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer3CheckBox.TabIndex = 111;
+            this.TerrainLayer3CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer3AliasTextBox
+            // 
+            this.TerrainLayer3AliasTextBox.Location = new System.Drawing.Point(27, 54);
+            this.TerrainLayer3AliasTextBox.Name = "TerrainLayer3AliasTextBox";
+            this.TerrainLayer3AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer3AliasTextBox.TabIndex = 110;
+            this.TerrainLayer3AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer3Button
+            // 
+            this.TerrainLayer3Button.Location = new System.Drawing.Point(220, 52);
+            this.TerrainLayer3Button.Name = "TerrainLayer3Button";
+            this.TerrainLayer3Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer3Button.TabIndex = 109;
+            this.TerrainLayer3Button.Text = "Edit";
+            this.TerrainLayer3Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer3ColorTextBox
+            // 
+            this.TerrainLayer3ColorTextBox.Enabled = false;
+            this.TerrainLayer3ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer3ColorTextBox.Location = new System.Drawing.Point(162, 54);
+            this.TerrainLayer3ColorTextBox.Name = "TerrainLayer3ColorTextBox";
+            this.TerrainLayer3ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer3ColorTextBox.TabIndex = 108;
+            // 
+            // TerrainLayer3NumericUpDown
+            // 
+            this.TerrainLayer3NumericUpDown.Location = new System.Drawing.Point(105, 54);
+            this.TerrainLayer3NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer3NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer3NumericUpDown.Name = "TerrainLayer3NumericUpDown";
+            this.TerrainLayer3NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer3NumericUpDown.TabIndex = 107;
+            this.TerrainLayer3NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer2CheckBox
+            // 
+            this.TerrainLayer2CheckBox.AutoSize = true;
+            this.TerrainLayer2CheckBox.Location = new System.Drawing.Point(6, 31);
+            this.TerrainLayer2CheckBox.Name = "TerrainLayer2CheckBox";
+            this.TerrainLayer2CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer2CheckBox.TabIndex = 106;
+            this.TerrainLayer2CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer2AliasTextBox
+            // 
+            this.TerrainLayer2AliasTextBox.Location = new System.Drawing.Point(27, 28);
+            this.TerrainLayer2AliasTextBox.Name = "TerrainLayer2AliasTextBox";
+            this.TerrainLayer2AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer2AliasTextBox.TabIndex = 105;
+            this.TerrainLayer2AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer2Button
+            // 
+            this.TerrainLayer2Button.Location = new System.Drawing.Point(220, 26);
+            this.TerrainLayer2Button.Name = "TerrainLayer2Button";
+            this.TerrainLayer2Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer2Button.TabIndex = 104;
+            this.TerrainLayer2Button.Text = "Edit";
+            this.TerrainLayer2Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer2ColorTextBox
+            // 
+            this.TerrainLayer2ColorTextBox.Enabled = false;
+            this.TerrainLayer2ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer2ColorTextBox.Location = new System.Drawing.Point(162, 28);
+            this.TerrainLayer2ColorTextBox.Name = "TerrainLayer2ColorTextBox";
+            this.TerrainLayer2ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer2ColorTextBox.TabIndex = 103;
+            // 
+            // TerrainLayer2NumericUpDown
+            // 
+            this.TerrainLayer2NumericUpDown.Location = new System.Drawing.Point(105, 28);
+            this.TerrainLayer2NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer2NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer2NumericUpDown.Name = "TerrainLayer2NumericUpDown";
+            this.TerrainLayer2NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer2NumericUpDown.TabIndex = 102;
+            this.TerrainLayer2NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            // 
+            // TerrainLayer1CheckBox
+            // 
+            this.TerrainLayer1CheckBox.AutoSize = true;
+            this.TerrainLayer1CheckBox.Location = new System.Drawing.Point(6, 5);
+            this.TerrainLayer1CheckBox.Name = "TerrainLayer1CheckBox";
+            this.TerrainLayer1CheckBox.Size = new System.Drawing.Size(15, 14);
+            this.TerrainLayer1CheckBox.TabIndex = 101;
+            this.TerrainLayer1CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer1AliasTextBox
+            // 
+            this.TerrainLayer1AliasTextBox.Location = new System.Drawing.Point(27, 2);
+            this.TerrainLayer1AliasTextBox.Name = "TerrainLayer1AliasTextBox";
+            this.TerrainLayer1AliasTextBox.Size = new System.Drawing.Size(72, 20);
+            this.TerrainLayer1AliasTextBox.TabIndex = 100;
+            this.TerrainLayer1AliasTextBox.Text = "water deep";
+            // 
+            // TerrainLayer1Button
+            // 
+            this.TerrainLayer1Button.Location = new System.Drawing.Point(220, 0);
+            this.TerrainLayer1Button.Name = "TerrainLayer1Button";
+            this.TerrainLayer1Button.Size = new System.Drawing.Size(34, 23);
+            this.TerrainLayer1Button.TabIndex = 30;
+            this.TerrainLayer1Button.Text = "Edit";
+            this.TerrainLayer1Button.UseVisualStyleBackColor = true;
+            // 
+            // TerrainLayer1ColorTextBox
+            // 
+            this.TerrainLayer1ColorTextBox.Enabled = false;
+            this.TerrainLayer1ColorTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.TerrainLayer1ColorTextBox.Location = new System.Drawing.Point(162, 2);
+            this.TerrainLayer1ColorTextBox.Name = "TerrainLayer1ColorTextBox";
+            this.TerrainLayer1ColorTextBox.Size = new System.Drawing.Size(52, 20);
+            this.TerrainLayer1ColorTextBox.TabIndex = 29;
+            // 
+            // TerrainLayer1NumericUpDown
+            // 
+            this.TerrainLayer1NumericUpDown.Location = new System.Drawing.Point(105, 2);
+            this.TerrainLayer1NumericUpDown.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.TerrainLayer1NumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.TerrainLayer1NumericUpDown.Name = "TerrainLayer1NumericUpDown";
+            this.TerrainLayer1NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.TerrainLayer1NumericUpDown.TabIndex = 27;
+            this.TerrainLayer1NumericUpDown.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
             // 
             // VisibleObjectsTreeView
             // 
             this.VisibleObjectsTreeView.CheckBoxes = true;
             this.VisibleObjectsTreeView.Location = new System.Drawing.Point(6, 19);
             this.VisibleObjectsTreeView.Name = "VisibleObjectsTreeView";
-            treeNode21.Name = "Node1";
-            treeNode21.Tag = "TerrainMap";
-            treeNode21.Text = "Terrain";
-            treeNode22.Name = "ResidentialLowDensity";
-            treeNode22.Tag = "ResidentialLowZone";
-            treeNode22.Text = "Low Density";
-            treeNode23.Name = "ResidentialMediumDensity";
-            treeNode23.Tag = "ResidentialMidZone";
-            treeNode23.Text = "Medium Density";
-            treeNode24.Name = "ResidentialHighDensity";
-            treeNode24.Tag = "ResidentialHighZone";
-            treeNode24.Text = "High Density";
-            treeNode25.Name = "ResidentialRootNode";
-            treeNode25.Tag = "Residential";
-            treeNode25.Text = "Residential";
-            treeNode26.Name = "CommercialLowDensity";
-            treeNode26.Tag = "CommercialLowZone";
-            treeNode26.Text = "Low Density";
-            treeNode27.Name = "CommercialMediumDensity";
-            treeNode27.Tag = "CommercialMidZone";
-            treeNode27.Text = "Medium Density";
-            treeNode28.Name = "CommercialHighDensity";
-            treeNode28.Tag = "CommercialHighZone";
-            treeNode28.Text = "High Density";
-            treeNode29.Name = "CommercialRootNode";
-            treeNode29.Tag = "Commercial";
-            treeNode29.Text = "Commercial";
-            treeNode30.Name = "IndustrialLowDensity";
-            treeNode30.Tag = "IndustrialLowZone";
-            treeNode30.Text = "Low Density";
-            treeNode31.Name = "IndustrialMediumDensity";
-            treeNode31.Tag = "IndustrialMidZone";
-            treeNode31.Text = "Medium Density";
-            treeNode32.Name = "IndustrialHighDensity";
-            treeNode32.Tag = "IndustrialHighZone";
-            treeNode32.Text = "High Density";
-            treeNode33.Name = "IndustrialRootNode";
-            treeNode33.Tag = "Industrial";
-            treeNode33.Text = "Industrial";
-            treeNode34.Name = "PloppedBuildingZone";
-            treeNode34.Tag = "PloppedBuildingZone";
-            treeNode34.Text = "Plopped Building";
-            treeNode35.Name = "MilitaryZone";
-            treeNode35.Tag = "MilitaryZone";
-            treeNode35.Text = "Military";
-            treeNode36.Name = "AirportsZone";
-            treeNode36.Tag = "AirportZone";
-            treeNode36.Text = "Airports";
-            treeNode37.Name = "SeaportZones";
-            treeNode37.Tag = "SeaportZone";
-            treeNode37.Text = "Seaport";
-            treeNode38.Name = "SpaceportZone";
-            treeNode38.Tag = "SpaceportZone";
-            treeNode38.Text = "Spaceport";
-            treeNode39.Name = "Other";
-            treeNode39.Tag = "Other";
-            treeNode39.Text = "Other";
-            treeNode40.Name = "Node0";
-            treeNode40.Tag = "Zones";
-            treeNode40.Text = "Zones";
+            treeNode1.Name = "Node1";
+            treeNode1.Tag = "TerrainMap";
+            treeNode1.Text = "Terrain";
+            treeNode2.Name = "ResidentialLowDensity";
+            treeNode2.Tag = "ResidentialLowZone";
+            treeNode2.Text = "Low Density";
+            treeNode3.Name = "ResidentialMediumDensity";
+            treeNode3.Tag = "ResidentialMidZone";
+            treeNode3.Text = "Medium Density";
+            treeNode4.Name = "ResidentialHighDensity";
+            treeNode4.Tag = "ResidentialHighZone";
+            treeNode4.Text = "High Density";
+            treeNode5.Name = "ResidentialRootNode";
+            treeNode5.Tag = "Residential";
+            treeNode5.Text = "Residential";
+            treeNode6.Name = "CommercialLowDensity";
+            treeNode6.Tag = "CommercialLowZone";
+            treeNode6.Text = "Low Density";
+            treeNode7.Name = "CommercialMediumDensity";
+            treeNode7.Tag = "CommercialMidZone";
+            treeNode7.Text = "Medium Density";
+            treeNode8.Name = "CommercialHighDensity";
+            treeNode8.Tag = "CommercialHighZone";
+            treeNode8.Text = "High Density";
+            treeNode9.Name = "CommercialRootNode";
+            treeNode9.Tag = "Commercial";
+            treeNode9.Text = "Commercial";
+            treeNode10.Name = "IndustrialLowDensity";
+            treeNode10.Tag = "IndustrialLowZone";
+            treeNode10.Text = "Low Density";
+            treeNode11.Name = "IndustrialMediumDensity";
+            treeNode11.Tag = "IndustrialMidZone";
+            treeNode11.Text = "Medium Density";
+            treeNode12.Name = "IndustrialHighDensity";
+            treeNode12.Tag = "IndustrialHighZone";
+            treeNode12.Text = "High Density";
+            treeNode13.Name = "IndustrialRootNode";
+            treeNode13.Tag = "Industrial";
+            treeNode13.Text = "Industrial";
+            treeNode14.Name = "PloppedBuildingZone";
+            treeNode14.Tag = "PloppedBuildingZone";
+            treeNode14.Text = "Plopped Building";
+            treeNode15.Name = "MilitaryZone";
+            treeNode15.Tag = "MilitaryZone";
+            treeNode15.Text = "Military";
+            treeNode16.Name = "AirportsZone";
+            treeNode16.Tag = "AirportZone";
+            treeNode16.Text = "Airports";
+            treeNode17.Name = "SeaportZones";
+            treeNode17.Tag = "SeaportZone";
+            treeNode17.Text = "Seaport";
+            treeNode18.Name = "SpaceportZone";
+            treeNode18.Tag = "SpaceportZone";
+            treeNode18.Text = "Spaceport";
+            treeNode19.Name = "Other";
+            treeNode19.Tag = "Other";
+            treeNode19.Text = "Other";
+            treeNode20.Name = "Node0";
+            treeNode20.Tag = "Zones";
+            treeNode20.Text = "Zones";
             this.VisibleObjectsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode40});
+            treeNode1,
+            treeNode20});
             this.VisibleObjectsTreeView.Size = new System.Drawing.Size(283, 91);
             this.VisibleObjectsTreeView.TabIndex = 1;
             this.VisibleObjectsTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.VisibleObjectsTreeView_AfterCheck);
@@ -2577,6 +3281,8 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "SC4Cartographer";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.ResizeBegin += new System.EventHandler(this.MainForm_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.MainForm_ResizeEnd);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -2593,31 +3299,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.SegmentOffsetNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SegmentPaddingNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridSegmentSizeNumericUpDown)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.ColorsTabControl.ResumeLayout(false);
+            this.ZonesTabPage.ResumeLayout(false);
+            this.ZonesTabPage.PerformLayout();
+            this.TransportTabPage.ResumeLayout(false);
+            this.TransportTabPage.PerformLayout();
+            this.TerrainTabPage.ResumeLayout(false);
+            this.TerrainTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer23NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer22NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer21NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer20NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer19NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer18NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer17NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer16NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer15NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer14NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer13NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer12NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer11NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer10NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer9NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer8NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer7NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer6NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer5NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer4NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer3NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer2NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TerrainLayer1NumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2664,84 +3375,27 @@
         private System.Windows.Forms.ToolStripStatusLabel MemoryUsedToolStripStatusLabel;
         private System.Windows.Forms.GroupBox AppearanceGroupBox;
         private System.Windows.Forms.TreeView VisibleObjectsTreeView;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button29;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.TextBox textBox30;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.NumericUpDown numericUpDown14;
-        private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.TextBox textBox31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.NumericUpDown numericUpDown15;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
-        private System.Windows.Forms.Button button27;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
-        private System.Windows.Forms.Button button28;
-        private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.NumericUpDown numericUpDown12;
-        private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.Button button24;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.TabControl ColorsTabControl;
+        private System.Windows.Forms.TabPage ZonesTabPage;
+        private System.Windows.Forms.TabPage TerrainTabPage;
+        private System.Windows.Forms.TabPage TransportTabPage;
+        private System.Windows.Forms.Button TerrainLayer1Button;
+        private System.Windows.Forms.TextBox TerrainLayer1ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer1NumericUpDown;
         private System.Windows.Forms.Button RestoreDefaultsButton;
         private System.Windows.Forms.Button EditOutputPathButton;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label PixelLabel3;
+        private System.Windows.Forms.Label PixelLabel2;
         private System.Windows.Forms.TextBox OutputPathTextbox;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label OutputPathLabel;
+        private System.Windows.Forms.Label PixelLabel1;
         private System.Windows.Forms.CheckBox ShowZoneOutlinesCheckbox;
         private System.Windows.Forms.NumericUpDown SegmentOffsetNumericUpDown;
         private System.Windows.Forms.NumericUpDown SegmentPaddingNumericUpDown;
         private System.Windows.Forms.NumericUpDown GridSegmentSizeNumericUpDown;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label SegmentOffsetLabel;
+        private System.Windows.Forms.Label SegmentPaddingLabel;
+        private System.Windows.Forms.Label GridSegmentSizeLabel;
         private System.Windows.Forms.CheckBox ShowGridLinesCheckbox;
         private System.Windows.Forms.Button SpaceportEditButton;
         private System.Windows.Forms.Label label1;
@@ -2795,18 +3449,6 @@
         private System.Windows.Forms.TextBox ResidentialZoneLowTextbox;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.NumericUpDown numericUpDown18;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.NumericUpDown numericUpDown17;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown16;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox textBox14;
@@ -2836,7 +3478,119 @@
         private System.Windows.Forms.RadioButton PNGRadioButton;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label OutputFormatLabel;
+        private System.Windows.Forms.CheckBox TerrainLayer1CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer1AliasTextBox;
+        private System.Windows.Forms.CheckBox TerrainLayer23CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer23AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer23Button;
+        private System.Windows.Forms.TextBox TerrainLayer23ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer23NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer22CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer22AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer22Button;
+        private System.Windows.Forms.TextBox TerrainLayer22ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer22NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer21CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer21AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer21Button;
+        private System.Windows.Forms.TextBox TerrainLayer21ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer21NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer20CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer20AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer20Button;
+        private System.Windows.Forms.TextBox TerrainLayer20ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer20NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer19CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer19AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer19Button;
+        private System.Windows.Forms.TextBox TerrainLayer19ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer19NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer18CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer18AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer18Button;
+        private System.Windows.Forms.TextBox TerrainLayer18ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer18NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer17CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer17AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer17Button;
+        private System.Windows.Forms.TextBox TerrainLayer17ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer17NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer16CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer16AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer16Button;
+        private System.Windows.Forms.TextBox TerrainLayer16ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer16NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer15CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer15AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer15Button;
+        private System.Windows.Forms.TextBox TerrainLayer15ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer15NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer14CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer14AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer14Button;
+        private System.Windows.Forms.TextBox TerrainLayer14ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer14NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer13CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer13AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer13Button;
+        private System.Windows.Forms.TextBox TerrainLayer13ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer13NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer12CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer12AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer12Button;
+        private System.Windows.Forms.TextBox TerrainLayer12ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer12NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer11CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer11AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer11Button;
+        private System.Windows.Forms.TextBox TerrainLayer11ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer11NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer10CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer10AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer10Button;
+        private System.Windows.Forms.TextBox TerrainLayer10ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer10NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer9CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer9AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer9Button;
+        private System.Windows.Forms.TextBox TerrainLayer9ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer9NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer8CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer8AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer8Button;
+        private System.Windows.Forms.TextBox TerrainLayer8ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer8NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer7CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer7AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer7Button;
+        private System.Windows.Forms.TextBox TerrainLayer7ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer7NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer6CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer6AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer6Button;
+        private System.Windows.Forms.TextBox TerrainLayer6ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer6NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer5CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer5AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer5Button;
+        private System.Windows.Forms.TextBox TerrainLayer5ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer5NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer4CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer4AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer4Button;
+        private System.Windows.Forms.TextBox TerrainLayer4ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer4NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer3CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer3AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer3Button;
+        private System.Windows.Forms.TextBox TerrainLayer3ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer3NumericUpDown;
+        private System.Windows.Forms.CheckBox TerrainLayer2CheckBox;
+        private System.Windows.Forms.TextBox TerrainLayer2AliasTextBox;
+        private System.Windows.Forms.Button TerrainLayer2Button;
+        private System.Windows.Forms.TextBox TerrainLayer2ColorTextBox;
+        private System.Windows.Forms.NumericUpDown TerrainLayer2NumericUpDown;
     }
 }
 

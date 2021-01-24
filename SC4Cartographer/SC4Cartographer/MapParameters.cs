@@ -46,13 +46,64 @@ namespace SC4CartographerUI
         CommercialLow,
         IndustrialHigh,
         IndustrialMid,
-        IndustrialLow
+        IndustrialLow,
+
+        TerrainLayer1,
+        TerrainLayer2,
+        TerrainLayer3,
+        TerrainLayer4,
+        TerrainLayer5,
+        TerrainLayer6,
+        TerrainLayer7,
+        TerrainLayer8,
+        TerrainLayer9,
+        TerrainLayer10,
+        TerrainLayer11,
+        TerrainLayer12,
+        TerrainLayer13,
+        TerrainLayer14,
+        TerrainLayer15,
+        TerrainLayer16,
+        TerrainLayer17,
+        TerrainLayer18,
+        TerrainLayer19,
+        TerrainLayer20,
+        TerrainLayer21,
+        TerrainLayer22,
+        TerrainLayer23
+    }
+
+    public enum TerrainObject
+    {
+        Layer1,
+        Layer2,
+        Layer3,
+        Layer4,
+        Layer5,
+        Layer6,
+        Layer7,
+        Layer8,
+        Layer9,
+        Layer10,
+        Layer11,
+        Layer12,
+        Layer13,
+        Layer14,
+        Layer15,
+        Layer16,
+        Layer17,
+        Layer18,
+        Layer19,
+        Layer20,
+        Layer21,
+        Layer22,
+        Layer23
     }
 
     public enum OutFormat
     {
         PNG,
-        JPEG,
+        JPEG
     }
 
     /// <summary>
@@ -114,6 +165,33 @@ namespace SC4CartographerUI
             MapObject.IndustrialLowZone
         };
 
+        public Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> TerrainDataDictionary 
+            = new Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)>()
+        {
+                {TerrainObject.Layer1, (true, "Deep water", MapColorObject.TerrainLayer1, 219) },
+                {TerrainObject.Layer2, (true, "Shallow water 1", MapColorObject.TerrainLayer2, 220) },
+                {TerrainObject.Layer3, (true, "Shallow water 2", MapColorObject.TerrainLayer3, 230) },
+                {TerrainObject.Layer4, (true, "Shallow water 3", MapColorObject.TerrainLayer4, 237) },
+                {TerrainObject.Layer5, (true, "Sand ", MapColorObject.TerrainLayer5, 254) },
+                {TerrainObject.Layer6, (true, "Grass 1", MapColorObject.TerrainLayer6, 261) },
+                {TerrainObject.Layer7, (true, "Grass 2", MapColorObject.TerrainLayer7, 264) },
+                {TerrainObject.Layer8, (true, "Grass 3", MapColorObject.TerrainLayer8, 268) },
+                {TerrainObject.Layer9, (true, "Grass 4", MapColorObject.TerrainLayer9, 272) },
+                {TerrainObject.Layer10, (true, "Grass 5", MapColorObject.TerrainLayer10, 275) },
+                {TerrainObject.Layer11, (true, "Hill 1", MapColorObject.TerrainLayer11, 297) },
+                {TerrainObject.Layer12, (true, "Hill 2", MapColorObject.TerrainLayer12, 289) },
+                {TerrainObject.Layer13, (true, "Hill 3", MapColorObject.TerrainLayer13, 305) },
+                {TerrainObject.Layer14, (true, "Hill 4", MapColorObject.TerrainLayer14, 307) },
+                {TerrainObject.Layer15, (true, "Hill 5", MapColorObject.TerrainLayer15, 315) },
+                {TerrainObject.Layer16, (true, "Mountain 1", MapColorObject.TerrainLayer16, 355) },
+                {TerrainObject.Layer17, (true, "Mountain 2", MapColorObject.TerrainLayer17, 372) },
+                {TerrainObject.Layer18, (true, "Mountain 3", MapColorObject.TerrainLayer18, 401) },
+                {TerrainObject.Layer19, (true, "Mountain 4", MapColorObject.TerrainLayer19, 481) },
+                {TerrainObject.Layer20, (true, "Mountain 5", MapColorObject.TerrainLayer20, 526) },
+                {TerrainObject.Layer21, (true, "Mountain 6", MapColorObject.TerrainLayer21, 807) },
+                {TerrainObject.Layer22, (true, "Mountain 7", MapColorObject.TerrainLayer22, 1011) },
+                {TerrainObject.Layer23, (true, "Mountain 8", MapColorObject.TerrainLayer23, 1600) },
+        };
 
         #endregion
 
@@ -138,6 +216,31 @@ namespace SC4CartographerUI
             {MapColorObject.IndustrialHigh, Color.FromArgb(188, 159, 55)},
             {MapColorObject.IndustrialMid, Color.FromArgb(198, 183, 51)},
             {MapColorObject.IndustrialLow, Color.FromArgb(208, 208, 48)},
+
+            {MapColorObject.TerrainLayer1, Color.FromArgb(61, 102, 180)},
+            {MapColorObject.TerrainLayer2, Color.FromArgb(65, 108, 182)},
+            {MapColorObject.TerrainLayer3, Color.FromArgb(90, 126, 172)},
+            {MapColorObject.TerrainLayer4, Color.FromArgb(112, 136, 156)},
+            {MapColorObject.TerrainLayer5, Color.FromArgb(161, 147, 111)},
+            {MapColorObject.TerrainLayer6, Color.FromArgb(123, 136, 81)},
+            {MapColorObject.TerrainLayer7, Color.FromArgb(120, 133, 79)},
+            {MapColorObject.TerrainLayer8, Color.FromArgb(100, 125, 64)},
+            {MapColorObject.TerrainLayer9, Color.FromArgb(79, 118, 48)},
+            {MapColorObject.TerrainLayer10, Color.FromArgb(81, 120, 63)},
+            {MapColorObject.TerrainLayer11, Color.FromArgb(93, 135, 112)},
+            {MapColorObject.TerrainLayer12, Color.FromArgb(86, 130, 96)},
+            {MapColorObject.TerrainLayer13, Color.FromArgb(92, 130, 108)},
+            {MapColorObject.TerrainLayer14, Color.FromArgb(94, 129, 105)},
+            {MapColorObject.TerrainLayer15, Color.FromArgb(94, 124, 100)},
+            {MapColorObject.TerrainLayer16, Color.FromArgb(115, 113, 83)},
+            {MapColorObject.TerrainLayer17, Color.FromArgb(121, 108, 77)},
+            {MapColorObject.TerrainLayer18, Color.FromArgb(124, 111, 82)},
+            {MapColorObject.TerrainLayer19, Color.FromArgb(131, 120, 93)},
+            {MapColorObject.TerrainLayer20, Color.FromArgb(136, 125, 100)},
+            {MapColorObject.TerrainLayer21, Color.FromArgb(162, 156, 141)},
+            {MapColorObject.TerrainLayer22, Color.FromArgb(181, 179, 171)},
+            {MapColorObject.TerrainLayer23, Color.FromArgb(200, 200, 200)},
+
         };
 
         #endregion
@@ -148,6 +251,7 @@ namespace SC4CartographerUI
 
             // Get the properties as a list of strings
             properties.Add($"Version:{VERSION};");
+            properties.Add("!!!WARNING: This file is Case-Sensitive!!!");
             properties.Add($"ShowGridLines:{(ShowGridLines ? "true" : "false")};");
             properties.Add($"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};");
             properties.Add($"GridSegmentSize:{GridSegmentSize};");
@@ -156,23 +260,14 @@ namespace SC4CartographerUI
             properties.Add($"SegmentOffsetX:{SegmentOffsetX};");
             properties.Add($"SegmentOffsetY:{SegmentOffsetY};");
             properties.Add($"VisibleObjects:{string.Join(",", VisibleMapObjects)};");
-            properties.Add($"Color@Background:{ColorDictionary[MapColorObject.Background].R},{ColorDictionary[MapColorObject.Background].G},{ColorDictionary[MapColorObject.Background].B};");
-            properties.Add($"Color@GridLines:{ColorDictionary[MapColorObject.GridLines].R},{ColorDictionary[MapColorObject.GridLines].G},{ColorDictionary[MapColorObject.GridLines].B};");
-            properties.Add($"Color@ZoneOutline:{ColorDictionary[MapColorObject.ZoneOutline].R},{ColorDictionary[MapColorObject.ZoneOutline].G},{ColorDictionary[MapColorObject.ZoneOutline].B};");
-            properties.Add($"Color@PloppedBuilding:{ColorDictionary[MapColorObject.PloppedBuilding].R},{ColorDictionary[MapColorObject.PloppedBuilding].G},{ColorDictionary[MapColorObject.PloppedBuilding].B};");
-            properties.Add($"Color@Military:{ColorDictionary[MapColorObject.Military].R},{ColorDictionary[MapColorObject.Military].G},{ColorDictionary[MapColorObject.Military].B};");
-            properties.Add($"Color@Airport:{ColorDictionary[MapColorObject.Airport].R},{ColorDictionary[MapColorObject.Airport].G},{ColorDictionary[MapColorObject.Airport].B};");
-            properties.Add($"Color@Seaport:{ColorDictionary[MapColorObject.Seaport].R},{ColorDictionary[MapColorObject.Seaport].G},{ColorDictionary[MapColorObject.Seaport].B};");
-            properties.Add($"Color@Spaceport:{ColorDictionary[MapColorObject.Spaceport].R},{ColorDictionary[MapColorObject.Spaceport].G},{ColorDictionary[MapColorObject.Spaceport].B};");
-            properties.Add($"Color@ResidentialHigh:{ColorDictionary[MapColorObject.ResidentialHigh].R},{ColorDictionary[MapColorObject.ResidentialHigh].G},{ColorDictionary[MapColorObject.ResidentialHigh].B};");
-            properties.Add($"Color@ResidentialMid:{ColorDictionary[MapColorObject.ResidentialMid].R},{ColorDictionary[MapColorObject.ResidentialMid].G},{ColorDictionary[MapColorObject.ResidentialMid].B};");
-            properties.Add($"Color@ResidentialLow:{ColorDictionary[MapColorObject.ResidentialLow].R},{ColorDictionary[MapColorObject.ResidentialLow].G},{ColorDictionary[MapColorObject.ResidentialLow].B};");
-            properties.Add($"Color@CommercialHigh:{ColorDictionary[MapColorObject.CommercialHigh].R},{ColorDictionary[MapColorObject.CommercialHigh].G},{ColorDictionary[MapColorObject.CommercialHigh].B};");
-            properties.Add($"Color@CommercialMid:{ColorDictionary[MapColorObject.CommercialMid].R},{ColorDictionary[MapColorObject.CommercialMid].G},{ColorDictionary[MapColorObject.CommercialMid].B};");
-            properties.Add($"Color@CommercialLow:{ColorDictionary[MapColorObject.CommercialLow].R},{ColorDictionary[MapColorObject.CommercialLow].G},{ColorDictionary[MapColorObject.CommercialLow].B};");
-            properties.Add($"Color@IndustrialHigh:{ColorDictionary[MapColorObject.IndustrialHigh].R},{ColorDictionary[MapColorObject.IndustrialHigh].G},{ColorDictionary[MapColorObject.IndustrialHigh].B};");
-            properties.Add($"Color@IndustrialMid:{ColorDictionary[MapColorObject.IndustrialMid].R},{ColorDictionary[MapColorObject.IndustrialMid].G},{ColorDictionary[MapColorObject.IndustrialMid].B};");
-            properties.Add($"Color@IndustrialLow:{ColorDictionary[MapColorObject.IndustrialLow].R},{ColorDictionary[MapColorObject.IndustrialLow].G},{ColorDictionary[MapColorObject.IndustrialLow].B};");
+            foreach (var data in TerrainDataDictionary)
+            {
+                properties.Add($"TerrainData@{data.Key}:{(data.Value.enabled ? "true" : "false")},\"{data.Value.alias}\",{data.Value.colorObject},{data.Value.height};");
+            }
+            foreach (var color in ColorDictionary)
+            {
+                properties.Add($"Color@{color.Key}:{color.Value.R},{color.Value.G},{color.Value.B};");
+            }
 
             // Write each properties to a line in a file
             using (StreamWriter writer = new StreamWriter(path))
@@ -184,10 +279,12 @@ namespace SC4CartographerUI
             }
         }
 
+        // TODO: Add comments
         public void LoadFromFile(string path)
         {
             MapCreationParameters mapCreationParameters = new MapCreationParameters(this);
             Dictionary<MapColorObject, Color> colors = ColorDictionary;
+            Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> terrainData = TerrainDataDictionary;
 
             Dictionary<string, string> properties = new Dictionary<string, string>();
 
@@ -199,7 +296,7 @@ namespace SC4CartographerUI
                     // Split the line via ':'
                     string[] lineData = line.Replace(";", "").Split(':');
 
-                    string propertyKey = lineData.First().ToLower();
+                    string propertyKey = lineData.First();//.ToLower();
                     string propertyValue = lineData.Last();//.ToLower();
 
                     // Add line info to properties dictionary
@@ -209,12 +306,12 @@ namespace SC4CartographerUI
             }
             
 
-            if (properties["version"] == "")
+            if (properties["Version"] == "")
             {
                 throw new Exception($"Could not find version of properties file. Can't parse file.");
             }
 
-            if (int.Parse(properties["version"]) > VERSION)
+            if (int.Parse(properties["Version"]) > VERSION)
             {
                 throw new Exception($"Properties file version too high. Can only parse version {VERSION} or lower, version {properties["version"]} found in file");
             }
@@ -223,101 +320,63 @@ namespace SC4CartographerUI
             foreach (var property in properties)
             {
                 // Sort and assign colours seperately
-                if (property.Key.Contains("color@"))
+                if (property.Key.Contains("Color@"))
                 {
                     string colorKey = property.Key.Split('@').Last();
                     string[] colorValues = property.Value.Split(',');
                     int r = int.Parse(colorValues[0]);
                     int g = int.Parse(colorValues[1]);
                     int b = int.Parse(colorValues[2]);
-                    switch (colorKey)
-                    {
-                        case "background":
-                            colors[MapColorObject.Background] = Color.FromArgb(r, g, b);
-                            break;
-                        case "gridlines":
-                            colors[MapColorObject.GridLines] = Color.FromArgb(r, g, b);
-                            break;
-                        case "zoneoutline":
-                            colors[MapColorObject.ZoneOutline] = Color.FromArgb(r, g, b);
-                            break;
-                        case "ploppedbuilding":
-                            colors[MapColorObject.PloppedBuilding] = Color.FromArgb(r, g, b);
-                            break;
-                        case "military":
-                            colors[MapColorObject.Military] = Color.FromArgb(r, g, b);
-                            break;
-                        case "airport":
-                            colors[MapColorObject.Airport] = Color.FromArgb(r, g, b);
-                            break;
-                        case "seaport":
-                            colors[MapColorObject.Seaport] = Color.FromArgb(r, g, b);
-                            break;
-                        case "spaceport":
-                            colors[MapColorObject.Spaceport] = Color.FromArgb(r, g, b);
-                            break;
-                        case "residentialhigh":
-                            colors[MapColorObject.ResidentialHigh] = Color.FromArgb(r, g, b);
-                            break;
-                        case "residentialmid":
-                            colors[MapColorObject.ResidentialMid] = Color.FromArgb(r, g, b);
-                            break;
-                        case "residentiallow":
-                            colors[MapColorObject.ResidentialLow] = Color.FromArgb(r, g, b);
-                            break;
-                        case "commercialhigh":
-                            colors[MapColorObject.CommercialHigh] = Color.FromArgb(r, g, b);
-                            break;
-                        case "commercialmid":
-                            colors[MapColorObject.CommercialMid] = Color.FromArgb(r, g, b);
-                            break;
-                        case "commerciallow":
-                            colors[MapColorObject.CommercialLow] = Color.FromArgb(r, g, b);
-                            break;
-                        case "industrialhigh":
-                            colors[MapColorObject.IndustrialHigh] = Color.FromArgb(r, g, b);
-                            break;
-                        case "industrialmid":
-                            colors[MapColorObject.IndustrialMid] = Color.FromArgb(r, g, b);
-                            break;
-                        case "industriallow":
-                            colors[MapColorObject.IndustrialLow] = Color.FromArgb(r, g, b);
-                            break;
-                    }
+
+                    // Load the colors from the file into the dictionary
+                    colors[(MapColorObject)Enum.Parse(typeof(MapColorObject), colorKey)] = Color.FromArgb(r, g, b);
+                }
+                else if (property.Key.Contains("TerrainData@"))
+                {
+                    string dataKey = property.Key.Split('@').Last();
+                    string[] dataValues = property.Value.Split(',');
+
+                    bool enabled = (dataValues[0] == "true" ? true : false);
+                    string alias = dataValues[1].Replace("\"", ""); //TODO: so why even use speachmarks, also detect bad characters here?
+                    MapColorObject colorObject = (MapColorObject)Enum.Parse(typeof(MapColorObject), dataValues[2]);
+                    int height = int.Parse(dataValues[3]);
+
+                    // Load terrain data into dictionary
+                    terrainData[(TerrainObject)Enum.Parse(typeof(TerrainObject), dataKey)] = (enabled, alias, colorObject, height);
                 }
                 else
                 {
                     // Sort all other properties
                     switch (property.Key)
                     {
-                        case "showgridlines":
+                        case "ShowGridLines":
                             if (property.Value == "true")
                                 mapCreationParameters.ShowGridLines = true;
                             else
                                 mapCreationParameters.ShowGridLines = false;
                             break;
-                        case "showzoneoutlines":
+                        case "ShowZoneOutLines":
                             if (property.Value == "true")
                                 mapCreationParameters.ShowZoneOutlines = true;
                             else
                                 mapCreationParameters.ShowZoneOutlines = false;
                             break;
-                        case "gridsegmentsize":
+                        case "GridSegmentSize":
                             mapCreationParameters.GridSegmentSize = int.Parse(property.Value);
                             break;
-                        case "segmentpaddingx":
+                        case "SegmentPaddingX":
                             mapCreationParameters.SegmentPaddingX = int.Parse(property.Value);
                             break;
-                        case "segmentpaddingy":
+                        case "SegmentPaddingY":
                             mapCreationParameters.SegmentPaddingY = int.Parse(property.Value);
                             break;
-                        case "segmentoffsetx":
+                        case "SegmentOffsetX":
                             mapCreationParameters.SegmentOffsetX = int.Parse(property.Value);
                             break;
-                        case "segmentoffsety":
+                        case "SegmentOffsetY":
                             mapCreationParameters.SegmentOffsetY = int.Parse(property.Value);
                             break;
-                        case "visibleobjects":
+                        case "VisibleObjects":
                             mapCreationParameters.VisibleMapObjects = new List<MapObject>();
 
                             foreach (string mapObject in property.Value.Split(','))
