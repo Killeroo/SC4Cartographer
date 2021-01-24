@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SC4CartographerUI</RootNamespace>
     <AssemblyName>SC4Cartographer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>false</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -107,6 +108,9 @@
     <Compile Include="..\SC4Parser\SC4Parser\DataStructures\SaveGameProperty.cs">
       <Link>SC4Parser\DataStructures\SaveGameProperty.cs</Link>
     </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile.cs">
+      <Link>SC4Parser\DataStructures\NetworkTile.cs</Link>
+    </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
       <Link>SC4Parser\Files\DatabaseDirectoryFile.cs</Link>
     </Compile>
@@ -142,6 +146,9 @@
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\SubFiles\TerrainMapSubfile.cs">
       <Link>SC4Parser\Subfiles\TerrainMapSubfile.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\NetworkSubfile1.cs">
+      <Link>SC4Parser\Subfiles\NetworkSubfile1.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Types\TypeGroupInstance.cs">
       <Link>SC4Parser\Types\TypeGroupInstance.cs</Link>
