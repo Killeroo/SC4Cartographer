@@ -75,6 +75,7 @@ namespace SC4CartographerUI
 
     public enum TerrainObject
     {
+        None,
         Layer1,
         Layer2,
         Layer3,
@@ -97,7 +98,7 @@ namespace SC4CartographerUI
         Layer20,
         Layer21,
         Layer22,
-        Layer23
+        Layer23,
     }
 
     public enum OutFormat
@@ -127,6 +128,7 @@ namespace SC4CartographerUI
             GridSegmentSize = parameters.GridSegmentSize;
             ColorDictionary = parameters.ColorDictionary;
             VisibleMapObjects = parameters.VisibleMapObjects;
+            TerrainDataDictionary = parameters.TerrainDataDictionary;
         }
 
         #region Ouput
@@ -165,33 +167,34 @@ namespace SC4CartographerUI
             MapObject.IndustrialLowZone
         };
 
-        public Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> TerrainDataDictionary 
+        public Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> TerrainDataDictionary
             = new Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)>()
         {
-                {TerrainObject.Layer1, (true, "Deep water", MapColorObject.TerrainLayer1, 219) },
-                {TerrainObject.Layer2, (true, "Shallow water 1", MapColorObject.TerrainLayer2, 220) },
-                {TerrainObject.Layer3, (true, "Shallow water 2", MapColorObject.TerrainLayer3, 230) },
-                {TerrainObject.Layer4, (true, "Shallow water 3", MapColorObject.TerrainLayer4, 237) },
-                {TerrainObject.Layer5, (true, "Sand ", MapColorObject.TerrainLayer5, 254) },
-                {TerrainObject.Layer6, (true, "Grass 1", MapColorObject.TerrainLayer6, 261) },
-                {TerrainObject.Layer7, (true, "Grass 2", MapColorObject.TerrainLayer7, 264) },
-                {TerrainObject.Layer8, (true, "Grass 3", MapColorObject.TerrainLayer8, 268) },
-                {TerrainObject.Layer9, (true, "Grass 4", MapColorObject.TerrainLayer9, 272) },
-                {TerrainObject.Layer10, (true, "Grass 5", MapColorObject.TerrainLayer10, 275) },
-                {TerrainObject.Layer11, (true, "Hill 1", MapColorObject.TerrainLayer11, 297) },
-                {TerrainObject.Layer12, (true, "Hill 2", MapColorObject.TerrainLayer12, 289) },
-                {TerrainObject.Layer13, (true, "Hill 3", MapColorObject.TerrainLayer13, 305) },
-                {TerrainObject.Layer14, (true, "Hill 4", MapColorObject.TerrainLayer14, 307) },
-                {TerrainObject.Layer15, (true, "Hill 5", MapColorObject.TerrainLayer15, 315) },
-                {TerrainObject.Layer16, (true, "Mountain 1", MapColorObject.TerrainLayer16, 355) },
-                {TerrainObject.Layer17, (true, "Mountain 2", MapColorObject.TerrainLayer17, 372) },
-                {TerrainObject.Layer18, (true, "Mountain 3", MapColorObject.TerrainLayer18, 401) },
-                {TerrainObject.Layer19, (true, "Mountain 4", MapColorObject.TerrainLayer19, 481) },
-                {TerrainObject.Layer20, (true, "Mountain 5", MapColorObject.TerrainLayer20, 526) },
-                {TerrainObject.Layer21, (true, "Mountain 6", MapColorObject.TerrainLayer21, 807) },
-                {TerrainObject.Layer22, (true, "Mountain 7", MapColorObject.TerrainLayer22, 1011) },
-                {TerrainObject.Layer23, (true, "Mountain 8", MapColorObject.TerrainLayer23, 1600) },
+            {TerrainObject.Layer1, (true, "Deep water", MapColorObject.TerrainLayer1, 219) },
+            {TerrainObject.Layer2, (true, "Shallow water 1", MapColorObject.TerrainLayer2, 220) },
+            {TerrainObject.Layer3, (true, "Shallow water 2", MapColorObject.TerrainLayer3, 230) },
+            {TerrainObject.Layer4, (true, "Shallow water 3", MapColorObject.TerrainLayer4, 237) },
+            {TerrainObject.Layer5, (true, "Sand ", MapColorObject.TerrainLayer5, 254) },
+            {TerrainObject.Layer6, (true, "Grass 1", MapColorObject.TerrainLayer6, 261) },
+            {TerrainObject.Layer7, (true, "Grass 2", MapColorObject.TerrainLayer7, 264) },
+            {TerrainObject.Layer8, (true, "Grass 3", MapColorObject.TerrainLayer8, 268) },
+            {TerrainObject.Layer9, (true, "Grass 4", MapColorObject.TerrainLayer9, 272) },
+            {TerrainObject.Layer10, (true, "Grass 5", MapColorObject.TerrainLayer10, 275) },
+            {TerrainObject.Layer11, (true, "Hill 1", MapColorObject.TerrainLayer11, 297) },
+            {TerrainObject.Layer12, (true, "Hill 2", MapColorObject.TerrainLayer12, 289) },
+            {TerrainObject.Layer13, (true, "Hill 3", MapColorObject.TerrainLayer13, 305) },
+            {TerrainObject.Layer14, (true, "Hill 4", MapColorObject.TerrainLayer14, 307) },
+            {TerrainObject.Layer15, (true, "Hill 5", MapColorObject.TerrainLayer15, 315) },
+            {TerrainObject.Layer16, (true, "Mountain 1", MapColorObject.TerrainLayer16, 355) },
+            {TerrainObject.Layer17, (true, "Mountain 2", MapColorObject.TerrainLayer17, 372) },
+            {TerrainObject.Layer18, (true, "Mountain 3", MapColorObject.TerrainLayer18, 401) },
+            {TerrainObject.Layer19, (true, "Mountain 4", MapColorObject.TerrainLayer19, 481) },
+            {TerrainObject.Layer20, (true, "Mountain 5", MapColorObject.TerrainLayer20, 526) },
+            {TerrainObject.Layer21, (true, "Mountain 6", MapColorObject.TerrainLayer21, 807) },
+            {TerrainObject.Layer22, (true, "Mountain 7", MapColorObject.TerrainLayer22, 1011) },
+            {TerrainObject.Layer23, (true, "Mountain 8", MapColorObject.TerrainLayer23, 1600) },
         };
+
 
         #endregion
 

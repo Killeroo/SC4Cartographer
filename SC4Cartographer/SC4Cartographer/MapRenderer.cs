@@ -41,59 +41,30 @@ namespace SC4CartographerUI
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                Color deepWaterColor = Color.FromArgb(61, 102, 180);
-                Color shallowWaterColor1 = Color.FromArgb(65, 108, 182);
-                Color shallowWaterColor2 = Color.FromArgb(90, 126, 172);
-                Color shallowWaterColor3 = Color.FromArgb(112, 136, 156);
-                Color sandColor1 = Color.FromArgb(161, 147, 111);
-                Color grassColor1 = Color.FromArgb(123, 136, 81);
-                Color grassColor2 = Color.FromArgb(120, 133, 79);
-                Color grassColor3 = Color.FromArgb(100, 125, 64);
-                Color grassColor4 = Color.FromArgb(79, 118, 48);
-                Color grassColor5 = Color.FromArgb(81, 120, 63);
-                Color hillColor1 = Color.FromArgb(93, 135, 112);
-                Color hillColor2 = Color.FromArgb(86, 130, 96);
-                Color hillColor3 = Color.FromArgb(92, 130, 108);
-                Color hillColor4 = Color.FromArgb(94, 129, 105);
-                Color hillColor5 = Color.FromArgb(94, 124, 100);
-                Color mountainColor1 = Color.FromArgb(115, 113, 83);
-                Color mountainColor2 = Color.FromArgb(121, 108, 77);
-                Color mountainColor3 = Color.FromArgb(124, 111, 82);
-                Color mountainColor4 = Color.FromArgb(131, 120, 93);
-                Color mountainColor5 = Color.FromArgb(136, 125, 100);
-                Color mountainColor6 = Color.FromArgb(162, 156, 141);
-                Color mountainColor7 = Color.FromArgb(181, 179, 171);
-                Color mountainColor8 = Color.FromArgb(200, 200, 200);
 
-                int deepWaterHeight = 220;
-                //int shallowWater1Height = // Basically anything between 220 and 230
-                int shallowWater2Height = 230;
-                int shallowWater3Height = 237;
-                int sand1Height = 254;
-                int grass1Height = 261;
-                int grass2Height = 264;
-                int grass3Height = 268;
-                int grass4Height = 272;
-                int grass5Height = 275;
-                int hill1Height = 297;
-                int hill2Height = 289;
-                int hill3Height = 305;
-                int hill4Height = 307;
-                int hill5Height = 315;
-                int mountain1Height = 355;
-                int mountain2Height = 372;
-                int mountain3Height = 401;
-                int mountain4Height = 481;
-                int mountain5Height = 526;
-                int mountain6Height = 807;
-                int mountain7Height = 1011;
-                int mountain8Height = 1600;
-
-                // Render terrain map
+                // Render terrain map first
                 // this can almost certainly done better but yeah...
                 // Did you know I spent 6 months writing this tool and the parser? :/
                 if (parameters.VisibleMapObjects.Contains(MapObject.TerrainMap))
                 {
+                    // First create a list of enabled terrain layers, their height and respective colorObject
+                    // We want stuff in a list because it more easy to work with than a dictionary
+                    // (we want to be able to seek backwards and forwards from an index which is not so easy with a dict)
+                    List<(int height, MapColorObject colorObject)> sortedTerrainList = new List<(int, MapColorObject)>();
+                    foreach (var terrainData in parameters.TerrainDataDictionary)
+                    {
+                        if (terrainData.Value.enabled == false)
+                        {
+                            continue;
+                        }
+
+                        sortedTerrainList.Add((terrainData.Value.height, terrainData.Value.colorObject));
+                    }
+
+                    // Order it by height
+                    sortedTerrainList.OrderBy(terrain => terrain.height);
+
+                    // Go through each height in the height map
                     for (int x = 0; x < gridSizeX; x++)
                     {
                         for (int y = 0; y < gridSizeY; y++)
@@ -109,101 +80,55 @@ namespace SC4CartographerUI
                             float height = heightMap[y][x];
                             Color c;
 
-                            // Determine colour 
-                            // (this is the part that can be done better btws
-                            if (height < deepWaterHeight)
+                            // Find the closest terrain layer
+                            // Go through the sorted list and find the index of the layer
+                            // that has the closest height to our current height
+                            float currentBestDifference = 999999;
+                            int currentBestIndex = 0;
+                            for (int index = 0; index < sortedTerrainList.Count(); index++)
                             {
-                                c = deepWaterColor;
+                                float diff = ((float)sortedTerrainList[index].height) - height;
+
+                                if (diff > 0 && diff < currentBestDifference)
+                                {
+                                    currentBestIndex = index;
+                                    currentBestDifference = diff;
+
+                                    // Because the list is ordered, the first instance where we 
+                                    // get a positive difference is going to be the closest layer to 
+                                    // our current height. 
+                                    // If we get out early then we save some time by not going through the whole list
+                                    break;
+                                }
+                                else if (index == sortedTerrainList.Count)
+                                {
+                                    // If we are at the end of the list and have found nothing then just
+                                    // grab the last index and move out
+                                    currentBestIndex = index;
+                                }
                             }
-                            else if (height <= shallowWater2Height)
+
+                            // Fetch the colour 
+                            if (currentBestIndex == 0 || currentBestIndex == sortedTerrainList.Count())
                             {
-                                c = MapColor(height, deepWaterHeight, shallowWater2Height, shallowWaterColor1, shallowWaterColor2);
-                            }
-                            else if (height <= shallowWater3Height)
-                            {
-                                c = MapColor(height, shallowWater2Height, shallowWater3Height, shallowWaterColor2, shallowWaterColor3);
-                            }
-                            else if (height <= sand1Height)
-                            {
-                                c = MapColor(height, shallowWater3Height, sand1Height, shallowWaterColor3, sandColor1);
-                            }
-                            else if (height <= grass1Height)
-                            {
-                                c = MapColor(height, sand1Height, grass1Height, sandColor1, grassColor1);
-                            }
-                            else if (height <= grass2Height)
-                            {
-                                c = MapColor(height, grass1Height, grass2Height, grassColor1, grassColor2);
-                            }
-                            else if (height <= grass3Height)
-                            {
-                                c = MapColor(height, grass2Height, grass3Height, grassColor2, grassColor3);
-                            }
-                            else if (height <= grass4Height)
-                            {
-                                c = MapColor(height, grass3Height, grass4Height, grassColor3, grassColor4);
-                            }
-                            else if (height <= grass5Height)
-                            {
-                                c = MapColor(height, grass4Height, grass5Height, grassColor4, grassColor5);
-                            }
-                            else if (height <= hill1Height)
-                            {
-                                c = MapColor(height, grass5Height, hill1Height, grassColor5, hillColor1);
-                            }
-                            else if (height <= hill2Height)
-                            {
-                                c = MapColor(height, hill1Height, hill2Height, hillColor1, hillColor2);
-                            }
-                            else if (height <= hill3Height)
-                            {
-                                c = MapColor(height, hill2Height, hill3Height, hillColor2, hillColor3);
-                            }
-                            else if (height <= hill4Height)
-                            {
-                                c = MapColor(height, hill3Height, hill4Height, hillColor3, hillColor4);
-                            }
-                            else if (height <= hill5Height)
-                            {
-                                c = MapColor(height, hill4Height, hill5Height, hillColor4, hillColor5);
-                            }
-                            else if (height <= mountain1Height)
-                            {
-                                c = MapColor(height, hill5Height, mountain1Height, hillColor5, mountainColor1);
-                            }
-                            else if (height <= mountain2Height)
-                            {
-                                c = MapColor(height, mountain1Height, mountain2Height, mountainColor1, mountainColor2);
-                            }
-                            else if (height <= mountain3Height)
-                            {
-                                c = MapColor(height, mountain2Height, mountain3Height, mountainColor2, mountainColor3);
-                            }
-                            else if (height <= mountain4Height)
-                            {
-                                c = MapColor(height, mountain3Height, mountain4Height, mountainColor3, mountainColor4);
-                            }
-                            else if (height <= mountain5Height)
-                            {
-                                c = MapColor(height, mountain4Height, mountain5Height, mountainColor4, mountainColor5);
-                            }
-                            else if (height <= mountain6Height)
-                            {
-                                c = MapColor(height, mountain5Height, mountain6Height, mountainColor5, mountainColor6);
-                            }
-                            else if (height <= mountain7Height)
-                            {
-                                c = MapColor(height, mountain6Height, mountain7Height, mountainColor6, mountainColor7);
-                            }
-                            else if (height <= mountain8Height)
-                            {
-                                c = MapColor(height, mountain7Height, mountain8Height, mountainColor7, mountainColor8);
+                                // If the closest index that we found is the start or end of the list then we just
+                                // use that colour uniformaly 
+                                c = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
                             }
                             else
                             {
-                                c = mountainColor8;
+                                // If we are not at the start or end of the list we are safe to fetch the previous index
+                                // and map the value to a color between the 2 closest color layers 
+                                c = MapColor(
+                                    height,
+                                    sortedTerrainList[currentBestIndex - 1].height,
+                                    sortedTerrainList[currentBestIndex].height,
+                                    parameters.ColorDictionary[sortedTerrainList[currentBestIndex - 1].colorObject],
+                                    parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject]);
+
                             }
 
+                            // Paint the actual grid
                             g.FillRectangle(new SolidBrush(c), rect);
                         }
                     }
