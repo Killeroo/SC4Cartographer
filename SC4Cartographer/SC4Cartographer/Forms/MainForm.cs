@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Net;
+using System.Diagnostics;
+using System.Timers;
+
+using Timer = System.Timers.Timer;
 
 using SC4Parser.DataStructures;
 using SC4Parser.Files;
@@ -18,7 +22,6 @@ using SC4Parser.Types;
 using SC4Parser.Subfiles;
 using SC4Parser;
 using SC4Parser.Logging;
-using System.Diagnostics;
 
 namespace SC4CartographerUI
 {
@@ -54,17 +57,19 @@ namespace SC4CartographerUI
         {
             InitializeComponent();
 
-            //propertiesForm = new PropertiesForm(map.Parameters, this);
+            // Setup cleanup timer
+            cleanupTimer = new System.Timers.Timer(4000);
+            cleanupTimer.AutoReset = false;
+            cleanupTimer.Elapsed += OnCleanupTimerElapsed;
 
+            // Setup parser logger
             //logger = new RichTextBoxLogger(LogTextBox);
             fileLogger = new FileLogger();
 
+            // Create some new default map parameters
             map.Parameters = new MapCreationParameters();
 
-            //map.Parameters.VisibleMapObjects = new List<MapObject>() { MapObject.AirportZone, MapObject.MilitaryZone };
-            //map.Parameters.SaveToFile("test.sc4cart");
-            //map.Parameters.LoadFromFile("test.sc4cart");
-
+            // Setup appearance tab
             SetAppearanceUIValuesUsingParameters(map.Parameters);
             RegisterAppearanceEvents();
 
@@ -82,6 +87,8 @@ namespace SC4CartographerUI
         #region Preview and Save game functionality
         // TODO: Seperate out
 
+        System.Timers.Timer cleanupTimer = new System.Timers.Timer(1000);
+
         /// <summary>
         /// Sets map creation parameters and refreshes preview
         /// </summary>
@@ -96,6 +103,17 @@ namespace SC4CartographerUI
             // gets a bit spammy sometimes.... man modern constructs like GC have made me weak
             // and this is almost certainly not a good move
             // but.....
+
+            if (cleanupTimer.Enabled == false)
+            {
+                cleanupTimer.Enabled = true;
+            }
+
+
+        }
+
+        private void OnCleanupTimerElapsed(Object source, ElapsedEventArgs e)
+        {
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -235,8 +253,8 @@ namespace SC4CartographerUI
             EnableSaveButtons();
 
             // Call garbage collector to cleanup anything left over from last load
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
         }
 
         public string GenerateDefaultMapFilename()
