@@ -24,6 +24,11 @@ Bug
 - jpeg button doesn't work
 - disallow special characters in alias textbox
 - need min window width and height
+- order and comment appearance code and stuff
+- High terrains rendering as water
+
+check
+no internet update check
 
 need:
 to know how nam reacts
@@ -43,6 +48,3 @@ future:
 - Add shadows at some point
 - smooth squares that would be nice
 - probably should hunt down those preview memory leaks
-
-Parser
-'parsing' log messages
