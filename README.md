@@ -14,11 +14,12 @@ The latest stable release can be downloaded [here](https://github.com/Killeroo/S
 
 Here are some map images that have been created using SC4Cartographer
 
-![alt text](Images/Mia.png)
-![alt text](Images/Kensington.png)
-![alt text](Images/Luxuria.png)
-![alt text](Images/Panem.png)
+![alt text](Images/The_Last_Wish.png)
+![alt text](Images/Casarano.png)
+![alt text](Images/unknown.png)
+![alt text](Images/wow.png)
 ![alt text](Images/Interpol.png)
+![alt text](Images/Kensington.png)
 
 # Screenshots
 
