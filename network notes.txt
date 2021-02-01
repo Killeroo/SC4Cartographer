@@ -1,9 +1,32 @@
+==============================================================================
 cross overs between network types on same tile cause not rendering somehow
 - Previous x,y,z could be used as a grid position instead
 - Or other size 
 
+type 0x03 is a road (then 0x0)
+
+Notes:
+
+
+Wins/knowns:
+- Each item in network file is a single network tile
+- Orientation connections (NorthConnection, SouthConnection... etc) match flow of road, can be used to create offset when rendering
+- Orientation connection shows if network tile connects to neighbouring city
+- 2nd set of size coordinates can be converted to grid position (divide by 16) of tile
+- index files might be able to be parsed directly (won't have to parse index)
+
+unknowns
+- network type for street and road might have swapped, check if other types swap
+- test all types
+- why some stuff weird
+- does some stuff appear in network file but not appear in city
+
 tip
 networkfile 2 store undergound and road stuff
+==============================================================================
+
+Tasks
+Render network tiles, add colour options to color menu, export to file
 
 Bug
 -zooming cuts off the top of the map
@@ -42,9 +65,13 @@ release:
 - update pics with people's maps
 - post about sc4parser on tropolis
 - try and spread findings on network to people
+- credits on the readme
 
 future:
 - Retain position and zoom when modifying properties
 - Add shadows at some point
 - smooth squares that would be nice
 - probably should hunt down those preview memory leaks
+
+Parser
+'parsing' log messages
