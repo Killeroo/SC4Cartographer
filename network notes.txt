@@ -1,77 +1,55 @@
-==============================================================================
-cross overs between network types on same tile cause not rendering somehow
-- Previous x,y,z could be used as a grid position instead
-- Or other size 
+Tasks:
+- Render network file 1 and 2 tiles, add colour options to color menu, export to file (add work around to use first coordinates in case of an overflow) [road, rails, mono, subway]
 
-type 0x03 is a road (then 0x0)
+Bugs:
+- High terrains rendering as water
+- Error while loading proper_terrain_for_non_maped.sc4cart
+- Unchecking all terrain layers causes crash
+- GetPixelinfo crashes when no map is loaded
+- Zones are cut off at the top/edge of the map
+- jpeg button doesn't work
+- output path is empty
+- success textbox is empty
+- Entering 0 manually in segment offset (and probably in others) doesn't work
+- text overflow in success form
 
-Notes:
-
-
-Wins/knowns:
-- Each item in network file is a single network tile
-- Orientation connections (NorthConnection, SouthConnection... etc) match flow of road, can be used to create offset when rendering
-- Orientation connection shows if network tile connects to neighbouring city
-- 2nd set of size coordinates can be converted to grid position (divide by 16) of tile
-- index files might be able to be parsed directly (won't have to parse index)
-
-unknowns
-- network type for street and road might have swapped, check if other types swap
-- test all types
-- why some stuff weird
-- does some stuff appear in network file but not appear in city
-
-tip
-networkfile 2 store undergound and road stuff
-==============================================================================
-
-Tasks
-Render network tiles, add colour options to color menu, export to file
-
-Bug
--zooming cuts off the top of the map
-- offset and padding anchor from the top right should be equal on all sides
-- simple auto expand on layers checkbox
-- Cleanup properties window in mainform code
+Enhancements:
+- Add option to toggle mapping terrain colors (off by default)
+- Load without lot file present
 - retain zoomed in when changing params
 - TODOs
-- add more comments
-- Save button auto focus
-- success textbox is empty
-- output path is empty
+- Disable scroll wheel over numeric values
+- autosave and load current parameters
+- zone offset and padding anchor from the top right should be equal on all sides
 - put restore defaults somewhere
-- get expand arrows to show up on side and bottom
-- Load without lot file present
-- Entering 0 manually in segment offset (and probably in others) doesn't work
-- outputh path has nothing in it
-- jpeg button doesn't work
+- place to save properties on main form
 - disallow special characters in alias textbox
+- Make sure elements in different tabs are at the same level
+- get expand arrows to show up on side and bottom
 - need min window width and height
-- order and comment appearance code and stuff
-- High terrains rendering as water
+- Cleanup properties window code in mainform code
+- simple auto expand on layers checkbox
+- control s control o
+- Save button auto focus
+- add more comments
+- Switch to using other terrain colour values for more accurate colours (from file)
+- save button could be clearer
 
-check
-no internet update check
+Testing:
+- How city with NAM reacts
+- no internet update check
 
-need:
-to know how nam reacts
-place to save properties on main form?
-layers window could be bigger 
-save button could be clearer
-control s control o
-autosave parameters? :/
+Findings:
+- Small differences in network subfiles 2 and 1 on the wiki
+- Post about findings on tunnel, bridge and highway network subfile as well as bad info for network index file
+- Post showing SC4Parser
 
-release:
-- update pics with people's maps
-- post about sc4parser on tropolis
-- try and spread findings on network to people
-- credits on the readme
+Readme:
+- Credits
+- Update screenshots
 
-future:
+Tickets:
 - Retain position and zoom when modifying properties
-- Add shadows at some point
-- smooth squares that would be nice
+- Add shadows to terrain
+- Smooth squares option
 - probably should hunt down those preview memory leaks
-
-Parser
-'parsing' log messages
