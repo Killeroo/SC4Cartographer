@@ -58,6 +58,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -111,7 +114,7 @@
     <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile1.cs">
       <Link>SC4Parser\DataStructures\NetworkTile1.cs</Link>
     </Compile>
-	<Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile2.cs">
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile2.cs">
       <Link>SC4Parser\DataStructures\NetworkTile2.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
@@ -153,10 +156,10 @@
     <Compile Include="..\SC4Parser\SC4Parser\SubFiles\NetworkSubfile1.cs">
       <Link>SC4Parser\Subfiles\NetworkSubfile1.cs</Link>
     </Compile>
-	<Compile Include="..\SC4Parser\SC4Parser\SubFiles\NetworkSubfile2.cs">
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\NetworkSubfile2.cs">
       <Link>SC4Parser\Subfiles\NetworkSubfile2.cs</Link>
     </Compile>
-	<Compile Include="..\SC4Parser\SC4Parser\Extensions.cs">
+    <Compile Include="..\SC4Parser\SC4Parser\Extensions.cs">
       <Link>SC4Parser\Extensions.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Types\TypeGroupInstance.cs">
