@@ -109,24 +109,23 @@ namespace SC4CartographerUI
                             }
 
                             // Fetch the colour 
-                            if (currentBestIndex == 0 || currentBestIndex == sortedTerrainList.Count())
-                            {
+                            //if (currentBestIndex == 0 || currentBestIndex == sortedTerrainList.Count())
+                            //{
                                 // If the closest index that we found is the start or end of the list then we just
                                 // use that colour uniformaly 
                                 c = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
-                            }
-                            else
-                            {
-                                // If we are not at the start or end of the list we are safe to fetch the previous index
-                                // and map the value to a color between the 2 closest color layers 
-                                c = MapColor(
-                                    height,
-                                    sortedTerrainList[currentBestIndex - 1].height,
-                                    sortedTerrainList[currentBestIndex].height,
-                                    parameters.ColorDictionary[sortedTerrainList[currentBestIndex - 1].colorObject],
-                                    parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject]);
-
-                            }
+                            //}
+                            //else
+                            //{
+                            //    // If we are not at the start or end of the list we are safe to fetch the previous index
+                            //    // and map the value to a color between the 2 closest color layers 
+                            //    c = MapColor(
+                            //        height,
+                            //        sortedTerrainList[currentBestIndex - 1].height,
+                            //        sortedTerrainList[currentBestIndex].height,
+                            //        parameters.ColorDictionary[sortedTerrainList[currentBestIndex - 1].colorObject],
+                            //        parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject]);
+                            //}
 
                             // Paint the actual grid
                             g.FillRectangle(new SolidBrush(c), rect);
@@ -144,6 +143,7 @@ namespace SC4CartographerUI
                 gridLinesPen.Width = 1;
                 zoneOutlinePen.Width = 1;
 
+                // Render lots
                 foreach (var lot in save.GetLotSubfile().Lots)
                 {
                     Rectangle rect = new Rectangle();
@@ -390,20 +390,36 @@ namespace SC4CartographerUI
                     }
                 }
 
-                //foreach (NetworkTile tile in save.GetNetworkSubfile1().Tiles)
-                //{
-                //    if (tile.MaxSizeX > 0  && tile.MaxSizeZ > 0)
-                //    {
-                //        Rectangle rect = new Rectangle(
-                //            parameters.GridSegmentSize * (int) (Math.Truncate(tile.MinSizeX / 16)),
-                //            parameters.GridSegmentSize * (int) (Math.Truncate(tile.MinSizeZ / 16)),
-                //            parameters.GridSegmentSize * (int) (Math.Truncate((tile.MaxSizeX - tile.MinSizeX) / 16)),
-                //            parameters.GridSegmentSize * (int) (Math.Truncate((tile.MaxSizeZ - tile.MinSizeZ) / 16))
-                //        );
+                // Render transport stuff
+                foreach (NetworkTile1 tile in save.GetNetworkSubfile1().NetworkTiles)
+                {
+                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                    {
+                        Rectangle rect = new Rectangle(
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                        );
 
-                //        g.FillRectangle(new SolidBrush(Color.White), rect);
-                //    }
-                //}
+                        g.FillRectangle(new SolidBrush(Color.GhostWhite), rect);
+                    }
+                }
+                foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
+                {
+                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                    {
+                        Rectangle rect = new Rectangle(
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                        );
+
+                        g.FillRectangle(new SolidBrush(Color.Purple), rect);
+                    }
+                }
+
 
                 // Render grid lines
                 if (parameters.ShowGridLines)
