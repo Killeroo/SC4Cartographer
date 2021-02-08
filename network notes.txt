@@ -34,6 +34,7 @@ Enhancements:
 - add more comments
 - Switch to using other terrain colour values for more accurate colours (from file)
 - save button could be clearer
+- Draw network tiles with padding
 
 Testing:
 - How city with NAM reacts

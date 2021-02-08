@@ -393,32 +393,72 @@ namespace SC4CartographerUI
                 // Render transport stuff
                 foreach (NetworkTile1 tile in save.GetNetworkSubfile1().NetworkTiles)
                 {
-                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                    // So...
+                    // First some context as to why you see the below. Network subfile 1 (that is the file inside simcity 4 save games
+                    // that contains a list of all network tiles at ground level) has a bunch of different positional data in it, the purpose of which
+                    // is not completely known.
+                    // There are 2 sets of size coordinates for the tile, the second set (the variables with 2 at the end) seem to specify the size of the network tile
+                    // in 'units' (16 'units' = 1 grid segment). So, because our rendering is grid based, it is pretty easy for us to convert the units to a grid coordinates (divide by 16)
+                    // and render the tile. Wooow isn't that perfect, the world makes sense, puppies should be given to everyone.
+                    // Sadly this is not the way the world works. For some unknown reason, when 2 network tiles of different types intersect this second set of coordinates 
+                    // is rendered essentially meaningless. For some reason it is filled with 0s. So we use the first set of size coordinates for the network file, this set of coordinates
+                    // seems to be a quarter of the size of the actual network tile (your guess is as good as mine, I will share my thoughts at the end of this over long comment)
+                    // So to summerize, 2 sets of size coordinates per network tile, one is the size of the whole tile, the other the size of a quarter of the tile. For some reason
+                    // one set of tiles doesn't work so we have to switch to using the other. Fin.
+                    // (ps I think the quarter tile size is used because the network tiles are actually rendered in quarters, that is how they are able to be used in so many situations, turns and such)
+                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0 && tile.MaxSizeY2 > 0
+                        && tile.MinSizeX1 > 0 && tile.MinSizeZ1 > 0 && tile.MinSizeY1 > 0)
                     {
                         Rectangle rect = new Rectangle(
                             parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
                             parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
                             parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
                             parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                        );
+
+                        Color c = new Color();
+                        switch (tile.NetworkType)
+                        {
+                            case 0x01: c = Color.DarkRed; break; // Rail
+                            case 0x02: c = Color.MediumVioletRed; break; // Road
+                            case 0x03: c = Color.Red; break; // Street
+                            case 0x04: c = Color.OrangeRed; break;
+                            case 0x05: c = Color.Orange; break;
+                            case 0x06: c = Color.Yellow; break; // Avenue
+                            case 0x07: c = Color.YellowGreen; break;
+                            case 0x08: c = Color.Green; break;
+                            case 0x09: c = Color.Blue; break;
+                            default: c = Color.Violet; break;
+                        }
+
+                        g.FillRectangle(new SolidBrush(c), rect);
+                    } 
+                    else
+                    {
+                        Rectangle rect = new Rectangle(
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX1 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ1 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX1 - tile.MinSizeX1) / 16) + 1),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ1 - tile.MinSizeZ1) / 16) + 1)
                         );
 
                         g.FillRectangle(new SolidBrush(Color.GhostWhite), rect);
                     }
                 }
-                foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
-                {
-                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
-                    {
-                        Rectangle rect = new Rectangle(
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
-                        );
+                //foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
+                //{
+                //    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                //    {
+                //        Rectangle rect = new Rectangle(
+                //            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                //            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                //            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                //            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                //        );
 
-                        g.FillRectangle(new SolidBrush(Color.Purple), rect);
-                    }
-                }
+                //        g.FillRectangle(new SolidBrush(Color.Purple), rect);
+                //    }
+                //}
 
 
                 // Render grid lines
