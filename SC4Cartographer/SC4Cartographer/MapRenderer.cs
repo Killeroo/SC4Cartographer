@@ -406,8 +406,8 @@ namespace SC4CartographerUI
                     // So to summerize, 2 sets of size coordinates per network tile, one is the size of the whole tile, the other the size of a quarter of the tile. For some reason
                     // one set of tiles doesn't work so we have to switch to using the other. Fin.
                     // (ps I think the quarter tile size is used because the network tiles are actually rendered in quarters, that is how they are able to be used in so many situations, turns and such)
-                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0 && tile.MaxSizeY2 > 0
-                        && tile.MinSizeX1 > 0 && tile.MinSizeZ1 > 0 && tile.MinSizeY1 > 0)
+                    if (tile.MaxSizeX2 > 5 && tile.MaxSizeZ2 > 5 && tile.MaxSizeY2 > 5
+                        && tile.MinSizeX2 > 5 && tile.MinSizeZ2 > 5 && tile.MinSizeY2 > 5)
                     {
                         Rectangle rect = new Rectangle(
                             parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
@@ -419,8 +419,9 @@ namespace SC4CartographerUI
                         Color c = new Color();
                         switch (tile.NetworkType)
                         {
+                            case 0x00: c = Color.Purple; break; // Road
                             case 0x01: c = Color.DarkRed; break; // Rail
-                            case 0x02: c = Color.MediumVioletRed; break; // Road
+                            case 0x02: c = Color.Blue; break;
                             case 0x03: c = Color.Red; break; // Street
                             case 0x04: c = Color.OrangeRed; break;
                             case 0x05: c = Color.Orange; break;
@@ -442,7 +443,23 @@ namespace SC4CartographerUI
                             parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ1 - tile.MinSizeZ1) / 16) + 1)
                         );
 
-                        g.FillRectangle(new SolidBrush(Color.GhostWhite), rect);
+                        Color c = new Color();
+                        switch (tile.NetworkType)
+                        {
+                            case 0x00: c = Color.Purple; break; // Road
+                            case 0x01: c = Color.DarkRed; break; // Rail
+                            case 0x02: c = Color.Blue; break; 
+                            case 0x03: c = Color.Red; break; // Street
+                            case 0x04: c = Color.OrangeRed; break;
+                            case 0x05: c = Color.Orange; break;
+                            case 0x06: c = Color.Yellow; break; // Avenue
+                            case 0x07: c = Color.YellowGreen; break;
+                            case 0x08: c = Color.Green; break;
+                            case 0x09: c = Color.Blue; break;
+                            default: c = Color.Violet; break;
+                        }
+
+                        g.FillRectangle(new SolidBrush(c), rect);
                     }
                 }
                 //foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
