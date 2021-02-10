@@ -43,6 +43,7 @@ namespace SC4CartographerUI
         private Bitmap previewNormalMapBitmap;
         private Bitmap previewZoomedMapBitmap;
         private bool previewZoomed = false;
+        private bool mapLoaded = false;
 
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
@@ -251,6 +252,8 @@ namespace SC4CartographerUI
             this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
                 
             EnableSaveButtons();
+
+            mapLoaded = true;
 
             // Call garbage collector to cleanup anything left over from last load
             //GC.Collect();
@@ -629,6 +632,10 @@ namespace SC4CartographerUI
 
             int cityX = 0;
             int cityY = 0;
+
+            // Don't try and fetch any details if nothing is loaded
+            if (mapLoaded == false)
+                return "";
 
             if (previewZoomed)
             {
@@ -1182,6 +1189,12 @@ namespace SC4CartographerUI
             this.ResidentialZoneHighEditButton.Click += new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
             this.ResidentialZoneMidEditButton.Click += new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
             this.GridBackgroundEditButton.Click += new System.EventHandler(this.GridBackgroundEditButton_Click);
+            this.StreetEditButton.Click += new System.EventHandler(this.StreetEditButton_Click);
+            this.RoadEditButton.Click += new System.EventHandler(this.RoadEditButton_Click);
+            this.OneWayRoadEditButton.Click += new System.EventHandler(this.OneWayRoadEditButton_Click);
+            this.AvenueEditButton.Click += new System.EventHandler(this.AvenueEditButton_Click);
+            this.RailwayEditButton.Click += new System.EventHandler(this.RailwayEditButton_Click);
+            this.SubwayEditButton.Click += new System.EventHandler(this.SubwayEditButton_Click);
 
             this.TerrainLayer1CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer1CheckBox_CheckedChanged);
             this.TerrainLayer2CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer2CheckBox_CheckedChanged);
@@ -1274,6 +1287,14 @@ namespace SC4CartographerUI
             IndustrialZoneLowTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialLow];
             IndustrialZoneMidTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialMid];
             IndustrialZoneHighTextbox.BackColor = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
+
+            // Transport stuff
+            StreetTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Street];
+            RoadTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Road];
+            OneWayRoadTextBox.BackColor = parameters.ColorDictionary[MapColorObject.OneWayRoad];
+            AvenueTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Avenue];
+            RailwayTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Railway];
+            SubwayTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Subway];
 
             // Terrain stuff
             TerrainLayer1CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer1].enabled;
@@ -1557,6 +1578,13 @@ namespace SC4CartographerUI
             parameters.ColorDictionary[MapColorObject.IndustrialMid] = IndustrialZoneMidTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.IndustrialHigh] = IndustrialZoneHighTextbox.BackColor;
 
+            parameters.ColorDictionary[MapColorObject.Street] = StreetTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Road] = RoadTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.OneWayRoad] = OneWayRoadTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Avenue] = AvenueTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Railway] = RailwayTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.Subway] = SubwayTextBox.BackColor;
+
             parameters.ColorDictionary[MapColorObject.TerrainLayer1] = TerrainLayer1ColorTextBox.BackColor;
             parameters.ColorDictionary[MapColorObject.TerrainLayer2] = TerrainLayer2ColorTextBox.BackColor;
             parameters.ColorDictionary[MapColorObject.TerrainLayer3] = TerrainLayer3ColorTextBox.BackColor;
@@ -1738,6 +1766,48 @@ namespace SC4CartographerUI
                                 CheckAllParents(node.Parent, true);
                             }
                             break;
+                        case "Streets":
+                            if (objects.Contains(MapObject.StreetNetwork))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "Roads":
+                            if (objects.Contains(MapObject.RoadNetwork))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "OneWayRoads":
+                            if (objects.Contains(MapObject.OneWayRoadNetwork))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "Avenues":
+                            if (objects.Contains(MapObject.AvenueNetwork))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "Railways":
+                            if (objects.Contains(MapObject.RailwayNetwork))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
+                        case "Subways":
+                            if (objects.Contains(MapObject.SubwayNetwork))
+                            {
+                                node.Checked = true;
+                                CheckAllParents(node.Parent, true);
+                            }
+                            break;
                         case "TerrainMap":
                             if (objects.Contains(MapObject.TerrainMap))
                             {
@@ -1809,6 +1879,24 @@ namespace SC4CartographerUI
                                 break;
                             case "TerrainMap":
                                 objects.Add(MapObject.TerrainMap);
+                                break;
+                            case "Streets":
+                                objects.Add(MapObject.StreetNetwork);
+                                break;
+                            case "Roads":
+                                objects.Add(MapObject.RoadNetwork);
+                                break;
+                            case "OneWayRoads":
+                                objects.Add(MapObject.OneWayRoadNetwork);
+                                break;
+                            case "Avenues":
+                                objects.Add(MapObject.AvenueNetwork);
+                                break;
+                            case "Railways":
+                                objects.Add(MapObject.RailwayNetwork);
+                                break;
+                            case "Subways":
+                                objects.Add(MapObject.SubwayNetwork);
                                 break;
                         }
                     }
@@ -2127,18 +2215,115 @@ namespace SC4CartographerUI
         private void SpaceportEditButton_Click(object sender, EventArgs e)
         {
             colorDialog = new ColorDialog();
-            colorDialog.Color = SeaportTextbox.BackColor;
+            colorDialog.Color = SpaceportTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
             colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
-                SeaportTextbox.BackColor = colorDialog.Color;
+                SpaceportTextbox.BackColor = colorDialog.Color;
 
                 SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
             }
         }
+
+        private void StreetEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = StreetTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                StreetTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void RoadEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = RoadTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                RoadTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void OneWayRoadEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = OneWayRoadTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                OneWayRoadTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void AvenueEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = AvenueTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                AvenueTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void RailwayEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = RailwayTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                RailwayTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void SubwayEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = SubwayTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                SubwayTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
 
         private void EditOutputPathButton_Click(object sender, EventArgs e)
         {

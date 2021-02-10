@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace SC4CartographerUI
 {
+
     public enum MapObject
     {
         TerrainMap,
@@ -25,7 +26,13 @@ namespace SC4CartographerUI
         CommercialLowZone,
         IndustrialHighZone,
         IndustrialMidZone,
-        IndustrialLowZone
+        IndustrialLowZone,  
+        StreetNetwork,
+        RoadNetwork,
+        OneWayRoadNetwork,
+        AvenueNetwork,
+        RailwayNetwork,
+        SubwayNetwork
     }
 
     public enum MapColorObject
@@ -47,6 +54,13 @@ namespace SC4CartographerUI
         IndustrialHigh,
         IndustrialMid,
         IndustrialLow,
+
+        Street,
+        Road,
+        OneWayRoad,
+        Avenue,
+        Railway,
+        Subway,
 
         TerrainLayer1,
         TerrainLayer2,
@@ -164,7 +178,12 @@ namespace SC4CartographerUI
             MapObject.CommercialLowZone,
             MapObject.IndustrialHighZone,
             MapObject.IndustrialMidZone,
-            MapObject.IndustrialLowZone
+            MapObject.IndustrialLowZone,
+            MapObject.StreetNetwork,
+            MapObject.RoadNetwork,
+            MapObject.OneWayRoadNetwork,
+            MapObject.AvenueNetwork,
+            MapObject.RailwayNetwork,
         };
 
         public Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> TerrainDataDictionary
@@ -219,6 +238,13 @@ namespace SC4CartographerUI
             {MapColorObject.IndustrialHigh, Color.FromArgb(188, 159, 55)},
             {MapColorObject.IndustrialMid, Color.FromArgb(198, 183, 51)},
             {MapColorObject.IndustrialLow, Color.FromArgb(208, 208, 48)},
+
+            {MapColorObject.Street, Color.FromArgb(147, 147, 146) },
+            {MapColorObject.Road, Color.FromArgb(126, 126, 126)},
+            {MapColorObject.OneWayRoad, Color.FromArgb(102, 102, 102)},
+            {MapColorObject.Avenue, Color.FromArgb(192, 192, 192)},
+            {MapColorObject.Railway, Color.FromArgb(179, 24, 21)},
+            {MapColorObject.Subway, Color.FromArgb(120, 0, 180)},
 
             {MapColorObject.TerrainLayer1, Color.FromArgb(61, 102, 180)},
             {MapColorObject.TerrainLayer2, Color.FromArgb(65, 108, 182)},
@@ -403,5 +429,15 @@ namespace SC4CartographerUI
             this.VisibleMapObjects = mapCreationParameters.VisibleMapObjects;
         }
 
+        // Helper lookup dictionary for network tile types
+        public static Dictionary<byte, MapObject> NetworkTypeLookupDictionary = new Dictionary<byte, MapObject>()
+        {
+            {0x00, MapObject.RoadNetwork},
+            {0x01, MapObject.RailwayNetwork},
+            {0x03, MapObject.StreetNetwork},
+            {0x06, MapObject.AvenueNetwork},
+            {0x07, MapObject.SubwayNetwork},
+            {0x0A, MapObject.OneWayRoadNetwork},
+        };
     }
 }

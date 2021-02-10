@@ -393,6 +393,35 @@ namespace SC4CartographerUI
                 // Render transport stuff
                 foreach (NetworkTile1 tile in save.GetNetworkSubfile1().NetworkTiles)
                 {
+                    // Skip over if object isn't in visible objects
+                    if (MapCreationParameters.NetworkTypeLookupDictionary.ContainsKey(tile.NetworkType))
+                    {
+                        if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeLookupDictionary[tile.NetworkType]) == false)
+                            continue;
+                    }
+
+                    Color tileColor = new Color();
+                    switch (tile.NetworkType)
+                    {
+                        case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
+                        case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
+                        //case 0x02: c = Color.Blue; break;
+                        case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
+                        //case 0x04: c = Color.OrangeRed; break;
+                        //case 0x05: c = Color.Orange; break;
+                        case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
+                        //case 0x07: c = Color.YellowGreen; break;// subway?
+                        case 0x08: tileColor = Color.Green; break;// subway?
+                        //case 0x09: c = Color.Blue; break;
+                        case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
+                        //case 0x0B: c = Color.Green; break;
+                        //case 0x0C: c = Color.PaleVioletRed; break;
+                        //case 0x0D: c = Color.AntiqueWhite; break;
+                        //case 0x0E: c = Color.AntiqueWhite; break;
+                        //case 0x0F: c = Color.AntiqueWhite; break;
+                        default: tileColor = Color.Violet; break;
+                    }
+
                     // So...
                     // First some context as to why you see the below. Network subfile 1 (that is the file inside simcity 4 save games
                     // that contains a list of all network tiles at ground level) has a bunch of different positional data in it, the purpose of which
@@ -416,23 +445,8 @@ namespace SC4CartographerUI
                             parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
                         );
 
-                        Color c = new Color();
-                        switch (tile.NetworkType)
-                        {
-                            case 0x00: c = Color.Purple; break; // Road
-                            case 0x01: c = Color.DarkRed; break; // Rail
-                            case 0x02: c = Color.Blue; break;
-                            case 0x03: c = Color.Red; break; // Street
-                            case 0x04: c = Color.OrangeRed; break;
-                            case 0x05: c = Color.Orange; break;
-                            case 0x06: c = Color.Yellow; break; // Avenue
-                            case 0x07: c = Color.YellowGreen; break;
-                            case 0x08: c = Color.Green; break;
-                            case 0x09: c = Color.Blue; break;
-                            default: c = Color.Violet; break;
-                        }
 
-                        g.FillRectangle(new SolidBrush(c), rect);
+                        g.FillRectangle(new SolidBrush(tileColor), rect);
                     } 
                     else
                     {
@@ -443,39 +457,30 @@ namespace SC4CartographerUI
                             parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ1 - tile.MinSizeZ1) / 16) + 1)
                         );
 
-                        Color c = new Color();
-                        switch (tile.NetworkType)
-                        {
-                            case 0x00: c = Color.Purple; break; // Road
-                            case 0x01: c = Color.DarkRed; break; // Rail
-                            case 0x02: c = Color.Blue; break; 
-                            case 0x03: c = Color.Red; break; // Street
-                            case 0x04: c = Color.OrangeRed; break;
-                            case 0x05: c = Color.Orange; break;
-                            case 0x06: c = Color.Yellow; break; // Avenue
-                            case 0x07: c = Color.YellowGreen; break;
-                            case 0x08: c = Color.Green; break;
-                            case 0x09: c = Color.Blue; break;
-                            default: c = Color.Violet; break;
-                        }
-
-                        g.FillRectangle(new SolidBrush(c), rect);
+                        g.FillRectangle(new SolidBrush(tileColor), rect);
                     }
                 }
-                //foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
-                //{
-                //    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
-                //    {
-                //        Rectangle rect = new Rectangle(
-                //            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
-                //            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
-                //            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
-                //            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
-                //        );
+                foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
+                {
+                    // Skip over if object isn't in visible objects
+                    if (MapCreationParameters.NetworkTypeLookupDictionary.ContainsKey(tile.NetworkType))
+                    {
+                        if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeLookupDictionary[tile.NetworkType]) == false)
+                            continue;
+                    }
 
-                //        g.FillRectangle(new SolidBrush(Color.Purple), rect);
-                //    }
-                //}
+                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                    {
+                        Rectangle rect = new Rectangle(
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                        );
+
+                        g.FillRectangle(new SolidBrush(Color.Purple), rect);
+                    }
+                }
 
 
                 // Render grid lines

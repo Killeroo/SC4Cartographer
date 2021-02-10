@@ -30,44 +30,57 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Terrain");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
             treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
             treeNode6,
-            treeNode7,
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
             treeNode10,
-            treeNode11,
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Plopped Building");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Military");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Airports");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Seaport");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Spaceport");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Plopped Building");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Military");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Airports");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Seaport");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Spaceport");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
             treeNode14,
             treeNode15,
             treeNode16,
-            treeNode17,
+            treeNode17});
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode8,
+            treeNode12,
             treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode9,
-            treeNode13,
-            treeNode19});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Streets");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Roads");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("One Way Roads");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Avenues");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Railways");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Subways");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
+            treeNode20,
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Terrain");
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OpenTextLabel = new System.Windows.Forms.Label();
@@ -180,30 +193,24 @@
             this.GridLinesTextbox = new System.Windows.Forms.TextBox();
             this.GridBackgroundTextbox = new System.Windows.Forms.TextBox();
             this.TransportTabPage = new System.Windows.Forms.TabPage();
-            this.button11 = new System.Windows.Forms.Button();
-            this.label47 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.label46 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
+            this.SubwayEditButton = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.SubwayTextBox = new System.Windows.Forms.TextBox();
+            this.RailwayEditButton = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.RailwayTextBox = new System.Windows.Forms.TextBox();
+            this.AvenueEditButton = new System.Windows.Forms.Button();
             this.label43 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.AvenueTextBox = new System.Windows.Forms.TextBox();
+            this.OneWayRoadEditButton = new System.Windows.Forms.Button();
             this.label42 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.OneWayRoadTextBox = new System.Windows.Forms.TextBox();
+            this.RoadEditButton = new System.Windows.Forms.Button();
             this.label41 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.RoadTextBox = new System.Windows.Forms.TextBox();
+            this.StreetEditButton = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.StreetTextBox = new System.Windows.Forms.TextBox();
             this.TerrainTabPage = new System.Windows.Forms.TabPage();
             this.TerrainLayer23CheckBox = new System.Windows.Forms.CheckBox();
             this.TerrainLayer23AliasTextBox = new System.Windows.Forms.TextBox();
@@ -542,7 +549,7 @@
             this.savegameToolStripMenuItem,
             this.folderToolStripMenuItem});
             this.loadSC4SaveToolStripMenuItem.Name = "loadSC4SaveToolStripMenuItem";
-            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadSC4SaveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.loadSC4SaveToolStripMenuItem.Text = "Open..";
             // 
             // savegameToolStripMenuItem
@@ -562,13 +569,13 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(163, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -576,38 +583,38 @@
             // 
             this.saveAsToolStripMenuItem.Enabled = false;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItem8.Text = "Save Appearance";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItem7.Text = "Load Appearance";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1495,30 +1502,24 @@
             // TransportTabPage
             // 
             this.TransportTabPage.AutoScroll = true;
-            this.TransportTabPage.Controls.Add(this.button11);
-            this.TransportTabPage.Controls.Add(this.label47);
-            this.TransportTabPage.Controls.Add(this.textBox14);
-            this.TransportTabPage.Controls.Add(this.button10);
-            this.TransportTabPage.Controls.Add(this.label46);
-            this.TransportTabPage.Controls.Add(this.textBox13);
-            this.TransportTabPage.Controls.Add(this.button9);
+            this.TransportTabPage.Controls.Add(this.SubwayEditButton);
             this.TransportTabPage.Controls.Add(this.label45);
-            this.TransportTabPage.Controls.Add(this.textBox12);
-            this.TransportTabPage.Controls.Add(this.button8);
+            this.TransportTabPage.Controls.Add(this.SubwayTextBox);
+            this.TransportTabPage.Controls.Add(this.RailwayEditButton);
             this.TransportTabPage.Controls.Add(this.label44);
-            this.TransportTabPage.Controls.Add(this.textBox11);
-            this.TransportTabPage.Controls.Add(this.button7);
+            this.TransportTabPage.Controls.Add(this.RailwayTextBox);
+            this.TransportTabPage.Controls.Add(this.AvenueEditButton);
             this.TransportTabPage.Controls.Add(this.label43);
-            this.TransportTabPage.Controls.Add(this.textBox10);
-            this.TransportTabPage.Controls.Add(this.button6);
+            this.TransportTabPage.Controls.Add(this.AvenueTextBox);
+            this.TransportTabPage.Controls.Add(this.OneWayRoadEditButton);
             this.TransportTabPage.Controls.Add(this.label42);
-            this.TransportTabPage.Controls.Add(this.textBox9);
-            this.TransportTabPage.Controls.Add(this.button5);
+            this.TransportTabPage.Controls.Add(this.OneWayRoadTextBox);
+            this.TransportTabPage.Controls.Add(this.RoadEditButton);
             this.TransportTabPage.Controls.Add(this.label41);
-            this.TransportTabPage.Controls.Add(this.textBox8);
-            this.TransportTabPage.Controls.Add(this.button4);
+            this.TransportTabPage.Controls.Add(this.RoadTextBox);
+            this.TransportTabPage.Controls.Add(this.StreetEditButton);
             this.TransportTabPage.Controls.Add(this.label30);
-            this.TransportTabPage.Controls.Add(this.textBox7);
+            this.TransportTabPage.Controls.Add(this.StreetTextBox);
             this.TransportTabPage.Location = new System.Drawing.Point(4, 22);
             this.TransportTabPage.Name = "TransportTabPage";
             this.TransportTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -1527,221 +1528,167 @@
             this.TransportTabPage.Text = "Transport";
             this.TransportTabPage.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // SubwayEditButton
             // 
-            this.button11.Location = new System.Drawing.Point(224, 180);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(34, 23);
-            this.button11.TabIndex = 84;
-            this.button11.Text = "Edit";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(6, 185);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(87, 13);
-            this.label47.TabIndex = 85;
-            this.label47.Text = "Grid Background";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Enabled = false;
-            this.textBox14.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox14.Location = new System.Drawing.Point(134, 182);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(84, 20);
-            this.textBox14.TabIndex = 83;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(224, 153);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(34, 23);
-            this.button10.TabIndex = 81;
-            this.button10.Text = "Edit";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(6, 158);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(87, 13);
-            this.label46.TabIndex = 82;
-            this.label46.Text = "Grid Background";
-            // 
-            // textBox13
-            // 
-            this.textBox13.Enabled = false;
-            this.textBox13.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox13.Location = new System.Drawing.Point(134, 155);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(84, 20);
-            this.textBox13.TabIndex = 80;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(224, 128);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(34, 23);
-            this.button9.TabIndex = 78;
-            this.button9.Text = "Edit";
-            this.button9.UseVisualStyleBackColor = true;
+            this.SubwayEditButton.Location = new System.Drawing.Point(222, 121);
+            this.SubwayEditButton.Name = "SubwayEditButton";
+            this.SubwayEditButton.Size = new System.Drawing.Size(34, 23);
+            this.SubwayEditButton.TabIndex = 78;
+            this.SubwayEditButton.Text = "Edit";
+            this.SubwayEditButton.UseVisualStyleBackColor = true;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(6, 133);
+            this.label45.Location = new System.Drawing.Point(6, 127);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(87, 13);
+            this.label45.Size = new System.Drawing.Size(45, 13);
             this.label45.TabIndex = 79;
-            this.label45.Text = "Grid Background";
+            this.label45.Text = "Subway";
             // 
-            // textBox12
+            // SubwayTextBox
             // 
-            this.textBox12.Enabled = false;
-            this.textBox12.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox12.Location = new System.Drawing.Point(134, 130);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(84, 20);
-            this.textBox12.TabIndex = 77;
+            this.SubwayTextBox.Enabled = false;
+            this.SubwayTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.SubwayTextBox.Location = new System.Drawing.Point(132, 123);
+            this.SubwayTextBox.Name = "SubwayTextBox";
+            this.SubwayTextBox.Size = new System.Drawing.Size(84, 20);
+            this.SubwayTextBox.TabIndex = 77;
             // 
-            // button8
+            // RailwayEditButton
             // 
-            this.button8.Location = new System.Drawing.Point(224, 105);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(34, 23);
-            this.button8.TabIndex = 75;
-            this.button8.Text = "Edit";
-            this.button8.UseVisualStyleBackColor = true;
+            this.RailwayEditButton.Location = new System.Drawing.Point(222, 98);
+            this.RailwayEditButton.Name = "RailwayEditButton";
+            this.RailwayEditButton.Size = new System.Drawing.Size(34, 23);
+            this.RailwayEditButton.TabIndex = 75;
+            this.RailwayEditButton.Text = "Edit";
+            this.RailwayEditButton.UseVisualStyleBackColor = true;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 110);
+            this.label44.Location = new System.Drawing.Point(6, 103);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(87, 13);
+            this.label44.Size = new System.Drawing.Size(44, 13);
             this.label44.TabIndex = 76;
-            this.label44.Text = "Grid Background";
+            this.label44.Text = "Railway";
             // 
-            // textBox11
+            // RailwayTextBox
             // 
-            this.textBox11.Enabled = false;
-            this.textBox11.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox11.Location = new System.Drawing.Point(134, 107);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(84, 20);
-            this.textBox11.TabIndex = 74;
+            this.RailwayTextBox.Enabled = false;
+            this.RailwayTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.RailwayTextBox.Location = new System.Drawing.Point(132, 100);
+            this.RailwayTextBox.Name = "RailwayTextBox";
+            this.RailwayTextBox.Size = new System.Drawing.Size(84, 20);
+            this.RailwayTextBox.TabIndex = 74;
             // 
-            // button7
+            // AvenueEditButton
             // 
-            this.button7.Location = new System.Drawing.Point(224, 82);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(34, 23);
-            this.button7.TabIndex = 72;
-            this.button7.Text = "Edit";
-            this.button7.UseVisualStyleBackColor = true;
+            this.AvenueEditButton.Location = new System.Drawing.Point(222, 75);
+            this.AvenueEditButton.Name = "AvenueEditButton";
+            this.AvenueEditButton.Size = new System.Drawing.Size(34, 23);
+            this.AvenueEditButton.TabIndex = 72;
+            this.AvenueEditButton.Text = "Edit";
+            this.AvenueEditButton.UseVisualStyleBackColor = true;
             // 
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 87);
+            this.label43.Location = new System.Drawing.Point(6, 80);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(87, 13);
+            this.label43.Size = new System.Drawing.Size(44, 13);
             this.label43.TabIndex = 73;
-            this.label43.Text = "Grid Background";
+            this.label43.Text = "Avenue";
             // 
-            // textBox10
+            // AvenueTextBox
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox10.Location = new System.Drawing.Point(134, 84);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(84, 20);
-            this.textBox10.TabIndex = 71;
+            this.AvenueTextBox.Enabled = false;
+            this.AvenueTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.AvenueTextBox.Location = new System.Drawing.Point(132, 77);
+            this.AvenueTextBox.Name = "AvenueTextBox";
+            this.AvenueTextBox.Size = new System.Drawing.Size(84, 20);
+            this.AvenueTextBox.TabIndex = 71;
             // 
-            // button6
+            // OneWayRoadEditButton
             // 
-            this.button6.Location = new System.Drawing.Point(224, 56);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(34, 23);
-            this.button6.TabIndex = 69;
-            this.button6.Text = "Edit";
-            this.button6.UseVisualStyleBackColor = true;
+            this.OneWayRoadEditButton.Location = new System.Drawing.Point(222, 52);
+            this.OneWayRoadEditButton.Name = "OneWayRoadEditButton";
+            this.OneWayRoadEditButton.Size = new System.Drawing.Size(34, 23);
+            this.OneWayRoadEditButton.TabIndex = 69;
+            this.OneWayRoadEditButton.Text = "Edit";
+            this.OneWayRoadEditButton.UseVisualStyleBackColor = true;
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 61);
+            this.label42.Location = new System.Drawing.Point(6, 57);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(87, 13);
+            this.label42.Size = new System.Drawing.Size(81, 13);
             this.label42.TabIndex = 70;
-            this.label42.Text = "Grid Background";
+            this.label42.Text = "One Way Road";
             // 
-            // textBox9
+            // OneWayRoadTextBox
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox9.Location = new System.Drawing.Point(134, 58);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(84, 20);
-            this.textBox9.TabIndex = 68;
+            this.OneWayRoadTextBox.Enabled = false;
+            this.OneWayRoadTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.OneWayRoadTextBox.Location = new System.Drawing.Point(132, 54);
+            this.OneWayRoadTextBox.Name = "OneWayRoadTextBox";
+            this.OneWayRoadTextBox.Size = new System.Drawing.Size(84, 20);
+            this.OneWayRoadTextBox.TabIndex = 68;
             // 
-            // button5
+            // RoadEditButton
             // 
-            this.button5.Location = new System.Drawing.Point(224, 32);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(34, 23);
-            this.button5.TabIndex = 66;
-            this.button5.Text = "Edit";
-            this.button5.UseVisualStyleBackColor = true;
+            this.RoadEditButton.Location = new System.Drawing.Point(222, 29);
+            this.RoadEditButton.Name = "RoadEditButton";
+            this.RoadEditButton.Size = new System.Drawing.Size(34, 23);
+            this.RoadEditButton.TabIndex = 66;
+            this.RoadEditButton.Text = "Edit";
+            this.RoadEditButton.UseVisualStyleBackColor = true;
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 37);
+            this.label41.Location = new System.Drawing.Point(4, 11);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(44, 13);
+            this.label41.Size = new System.Drawing.Size(35, 13);
             this.label41.TabIndex = 67;
-            this.label41.Text = "Railway";
+            this.label41.Text = "Street";
             // 
-            // textBox8
+            // RoadTextBox
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox8.Location = new System.Drawing.Point(134, 34);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(84, 20);
-            this.textBox8.TabIndex = 65;
+            this.RoadTextBox.Enabled = false;
+            this.RoadTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.RoadTextBox.Location = new System.Drawing.Point(132, 31);
+            this.RoadTextBox.Name = "RoadTextBox";
+            this.RoadTextBox.Size = new System.Drawing.Size(84, 20);
+            this.RoadTextBox.TabIndex = 65;
             // 
-            // button4
+            // StreetEditButton
             // 
-            this.button4.Location = new System.Drawing.Point(224, 8);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(34, 23);
-            this.button4.TabIndex = 63;
-            this.button4.Text = "Edit";
-            this.button4.UseVisualStyleBackColor = true;
+            this.StreetEditButton.Location = new System.Drawing.Point(222, 6);
+            this.StreetEditButton.Name = "StreetEditButton";
+            this.StreetEditButton.Size = new System.Drawing.Size(34, 23);
+            this.StreetEditButton.TabIndex = 63;
+            this.StreetEditButton.Text = "Edit";
+            this.StreetEditButton.UseVisualStyleBackColor = true;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 13);
+            this.label30.Location = new System.Drawing.Point(6, 34);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(33, 13);
             this.label30.TabIndex = 64;
             this.label30.Text = "Road";
             // 
-            // textBox7
+            // StreetTextBox
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox7.Location = new System.Drawing.Point(134, 10);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(84, 20);
-            this.textBox7.TabIndex = 62;
+            this.StreetTextBox.Enabled = false;
+            this.StreetTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.StreetTextBox.Location = new System.Drawing.Point(132, 8);
+            this.StreetTextBox.Name = "StreetTextBox";
+            this.StreetTextBox.Size = new System.Drawing.Size(84, 20);
+            this.StreetTextBox.TabIndex = 62;
             // 
             // TerrainTabPage
             // 
@@ -3185,69 +3132,90 @@
             this.VisibleObjectsTreeView.CheckBoxes = true;
             this.VisibleObjectsTreeView.Location = new System.Drawing.Point(6, 19);
             this.VisibleObjectsTreeView.Name = "VisibleObjectsTreeView";
-            treeNode1.Name = "Node1";
-            treeNode1.Tag = "TerrainMap";
-            treeNode1.Text = "Terrain";
-            treeNode2.Name = "ResidentialLowDensity";
-            treeNode2.Tag = "ResidentialLowZone";
-            treeNode2.Text = "Low Density";
-            treeNode3.Name = "ResidentialMediumDensity";
-            treeNode3.Tag = "ResidentialMidZone";
-            treeNode3.Text = "Medium Density";
-            treeNode4.Name = "ResidentialHighDensity";
-            treeNode4.Tag = "ResidentialHighZone";
-            treeNode4.Text = "High Density";
-            treeNode5.Name = "ResidentialRootNode";
-            treeNode5.Tag = "Residential";
-            treeNode5.Text = "Residential";
-            treeNode6.Name = "CommercialLowDensity";
-            treeNode6.Tag = "CommercialLowZone";
-            treeNode6.Text = "Low Density";
-            treeNode7.Name = "CommercialMediumDensity";
-            treeNode7.Tag = "CommercialMidZone";
-            treeNode7.Text = "Medium Density";
-            treeNode8.Name = "CommercialHighDensity";
-            treeNode8.Tag = "CommercialHighZone";
-            treeNode8.Text = "High Density";
-            treeNode9.Name = "CommercialRootNode";
-            treeNode9.Tag = "Commercial";
-            treeNode9.Text = "Commercial";
-            treeNode10.Name = "IndustrialLowDensity";
-            treeNode10.Tag = "IndustrialLowZone";
-            treeNode10.Text = "Low Density";
-            treeNode11.Name = "IndustrialMediumDensity";
-            treeNode11.Tag = "IndustrialMidZone";
-            treeNode11.Text = "Medium Density";
-            treeNode12.Name = "IndustrialHighDensity";
-            treeNode12.Tag = "IndustrialHighZone";
-            treeNode12.Text = "High Density";
-            treeNode13.Name = "IndustrialRootNode";
-            treeNode13.Tag = "Industrial";
-            treeNode13.Text = "Industrial";
-            treeNode14.Name = "PloppedBuildingZone";
-            treeNode14.Tag = "PloppedBuildingZone";
-            treeNode14.Text = "Plopped Building";
-            treeNode15.Name = "MilitaryZone";
-            treeNode15.Tag = "MilitaryZone";
-            treeNode15.Text = "Military";
-            treeNode16.Name = "AirportsZone";
-            treeNode16.Tag = "AirportZone";
-            treeNode16.Text = "Airports";
-            treeNode17.Name = "SeaportZones";
-            treeNode17.Tag = "SeaportZone";
-            treeNode17.Text = "Seaport";
-            treeNode18.Name = "SpaceportZone";
-            treeNode18.Tag = "SpaceportZone";
-            treeNode18.Text = "Spaceport";
-            treeNode19.Name = "Other";
-            treeNode19.Tag = "Other";
-            treeNode19.Text = "Other";
-            treeNode20.Name = "Node0";
-            treeNode20.Tag = "Zones";
-            treeNode20.Text = "Zones";
+            treeNode1.Name = "ResidentialLowDensity";
+            treeNode1.Tag = "ResidentialLowZone";
+            treeNode1.Text = "Low Density";
+            treeNode2.Name = "ResidentialMediumDensity";
+            treeNode2.Tag = "ResidentialMidZone";
+            treeNode2.Text = "Medium Density";
+            treeNode3.Name = "ResidentialHighDensity";
+            treeNode3.Tag = "ResidentialHighZone";
+            treeNode3.Text = "High Density";
+            treeNode4.Name = "ResidentialRootNode";
+            treeNode4.Tag = "Residential";
+            treeNode4.Text = "Residential";
+            treeNode5.Name = "CommercialLowDensity";
+            treeNode5.Tag = "CommercialLowZone";
+            treeNode5.Text = "Low Density";
+            treeNode6.Name = "CommercialMediumDensity";
+            treeNode6.Tag = "CommercialMidZone";
+            treeNode6.Text = "Medium Density";
+            treeNode7.Name = "CommercialHighDensity";
+            treeNode7.Tag = "CommercialHighZone";
+            treeNode7.Text = "High Density";
+            treeNode8.Name = "CommercialRootNode";
+            treeNode8.Tag = "Commercial";
+            treeNode8.Text = "Commercial";
+            treeNode9.Name = "IndustrialLowDensity";
+            treeNode9.Tag = "IndustrialLowZone";
+            treeNode9.Text = "Low Density";
+            treeNode10.Name = "IndustrialMediumDensity";
+            treeNode10.Tag = "IndustrialMidZone";
+            treeNode10.Text = "Medium Density";
+            treeNode11.Name = "IndustrialHighDensity";
+            treeNode11.Tag = "IndustrialHighZone";
+            treeNode11.Text = "High Density";
+            treeNode12.Name = "IndustrialRootNode";
+            treeNode12.Tag = "Industrial";
+            treeNode12.Text = "Industrial";
+            treeNode13.Name = "PloppedBuildingZone";
+            treeNode13.Tag = "PloppedBuildingZone";
+            treeNode13.Text = "Plopped Building";
+            treeNode14.Name = "MilitaryZone";
+            treeNode14.Tag = "MilitaryZone";
+            treeNode14.Text = "Military";
+            treeNode15.Name = "AirportsZone";
+            treeNode15.Tag = "AirportZone";
+            treeNode15.Text = "Airports";
+            treeNode16.Name = "SeaportZones";
+            treeNode16.Tag = "SeaportZone";
+            treeNode16.Text = "Seaport";
+            treeNode17.Name = "SpaceportZone";
+            treeNode17.Tag = "SpaceportZone";
+            treeNode17.Text = "Spaceport";
+            treeNode18.Name = "Other";
+            treeNode18.Tag = "Other";
+            treeNode18.Text = "Other";
+            treeNode19.Name = "Node0";
+            treeNode19.Tag = "Zones";
+            treeNode19.Text = "Zones";
+            treeNode20.Name = "Streets";
+            treeNode20.Tag = "Streets";
+            treeNode20.Text = "Streets";
+            treeNode21.Name = "Roads";
+            treeNode21.Tag = "Roads";
+            treeNode21.Text = "Roads";
+            treeNode22.Name = "OneWayRoads";
+            treeNode22.Tag = "OneWayRoads";
+            treeNode22.Text = "One Way Roads";
+            treeNode23.Name = "Avenues";
+            treeNode23.Tag = "Avenues";
+            treeNode23.Text = "Avenues";
+            treeNode24.Name = "Railways";
+            treeNode24.Tag = "Railways";
+            treeNode24.Text = "Railways";
+            treeNode25.Name = "Subways";
+            treeNode25.Tag = "Subways";
+            treeNode25.Text = "Subways";
+            treeNode26.Name = "Node0";
+            treeNode26.Text = "Transport";
+            treeNode27.Name = "Node1";
+            treeNode27.Tag = "TerrainMap";
+            treeNode27.Text = "Terrain";
             this.VisibleObjectsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode20});
+            treeNode19,
+            treeNode26,
+            treeNode27});
             this.VisibleObjectsTreeView.Size = new System.Drawing.Size(283, 91);
             this.VisibleObjectsTreeView.TabIndex = 1;
             this.VisibleObjectsTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.VisibleObjectsTreeView_AfterCheck);
@@ -3449,30 +3417,24 @@
         private System.Windows.Forms.TextBox ResidentialZoneLowTextbox;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button SubwayEditButton;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox SubwayTextBox;
+        private System.Windows.Forms.Button RailwayEditButton;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox RailwayTextBox;
+        private System.Windows.Forms.Button AvenueEditButton;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox AvenueTextBox;
+        private System.Windows.Forms.Button OneWayRoadEditButton;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox OneWayRoadTextBox;
+        private System.Windows.Forms.Button RoadEditButton;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox RoadTextBox;
+        private System.Windows.Forms.Button StreetEditButton;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox StreetTextBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton JPEGRadioButton;
         private System.Windows.Forms.RadioButton PNGRadioButton;
