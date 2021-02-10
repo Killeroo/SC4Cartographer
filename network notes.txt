@@ -28,7 +28,6 @@ Enhancements:
 - put restore defaults somewhere
 - place to save properties on main form
 - disallow special characters in alias textbox
-- Make sure elements in different tabs are at the same level
 - get expand arrows to show up on side and bottom
 - need min window width and height
 - Cleanup properties window code in mainform code
@@ -39,6 +38,8 @@ Enhancements:
 - Switch to using other terrain colour values for more accurate colours (from file)
 - save button could be clearer
 - Clean up visible hack
+- Cleanup network tile render code
+- Update sc4parser version
 - Draw network tiles with padding
 
 Testing:
