@@ -79,7 +79,7 @@ namespace SC4CartographerUI
 
                             float height = heightMap[y][x];
                             Color c;
-
+                            
                             // Find the closest terrain layer
                             // Go through the sorted list and find the index of the layer
                             // that has the closest height to our current height
@@ -100,7 +100,7 @@ namespace SC4CartographerUI
                                     // If we get out early then we save some time by not going through the whole list
                                     break;
                                 }
-                                else if (index == sortedTerrainList.Count)
+                                else //if (index == sortedTerrainList.Count)
                                 {
                                     // If we are at the end of the list and have found nothing then just
                                     // grab the last index and move out

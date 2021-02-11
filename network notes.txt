@@ -2,7 +2,6 @@ Tasks:
 
 
 Bugs:
-- High terrains rendering as water
 - Error while loading proper_terrain_for_non_maped.sc4cart
 - Unchecking all terrain layers causes crash
 - GetPixelinfo crashes when no map is loaded
@@ -36,6 +35,7 @@ Enhancements:
 - Save button auto focus
 - add more comments
 - Switch to using other terrain colour values for more accurate colours (from file)
+- Change roads to be white
 - save button could be clearer
 - Clean up visible hack
 - Cleanup network tile render code
