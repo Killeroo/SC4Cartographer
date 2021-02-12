@@ -2400,208 +2400,461 @@ namespace SC4CartographerUI
 
         private void TerrainLayer1CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer1CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer1AliasTextBox.Enabled = TerrainLayer1CheckBox.Checked;
             TerrainLayer1NumericUpDown.Enabled = TerrainLayer1CheckBox.Checked;
             TerrainLayer1Button.Enabled = TerrainLayer1CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer2CheckBox_CheckedChanged(object sender, EventArgs e)
-        {
+        {            
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer2CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer2AliasTextBox.Enabled = TerrainLayer2CheckBox.Checked;
             TerrainLayer2NumericUpDown.Enabled = TerrainLayer2CheckBox.Checked;
             TerrainLayer2Button.Enabled = TerrainLayer2CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer3CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer3CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer3AliasTextBox.Enabled = TerrainLayer3CheckBox.Checked;
             TerrainLayer3NumericUpDown.Enabled = TerrainLayer3CheckBox.Checked;
             TerrainLayer3Button.Enabled = TerrainLayer3CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer4CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer4CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer4AliasTextBox.Enabled = TerrainLayer4CheckBox.Checked;
             TerrainLayer4NumericUpDown.Enabled = TerrainLayer4CheckBox.Checked;
             TerrainLayer4Button.Enabled = TerrainLayer4CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer5CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer5CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer5AliasTextBox.Enabled = TerrainLayer5CheckBox.Checked;
             TerrainLayer5NumericUpDown.Enabled = TerrainLayer5CheckBox.Checked;
             TerrainLayer5Button.Enabled = TerrainLayer5CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer6CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer6CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer6AliasTextBox.Enabled = TerrainLayer6CheckBox.Checked;
             TerrainLayer6NumericUpDown.Enabled = TerrainLayer6CheckBox.Checked;
             TerrainLayer6Button.Enabled = TerrainLayer6CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer7CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer7CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer7AliasTextBox.Enabled = TerrainLayer7CheckBox.Checked;
             TerrainLayer7NumericUpDown.Enabled = TerrainLayer7CheckBox.Checked;
             TerrainLayer7Button.Enabled = TerrainLayer7CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer8CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer8CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer8AliasTextBox.Enabled = TerrainLayer8CheckBox.Checked;
             TerrainLayer8NumericUpDown.Enabled = TerrainLayer8CheckBox.Checked;
             TerrainLayer8Button.Enabled = TerrainLayer8CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer9CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer9CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer9AliasTextBox.Enabled = TerrainLayer9CheckBox.Checked;
             TerrainLayer9NumericUpDown.Enabled = TerrainLayer9CheckBox.Checked;
             TerrainLayer9Button.Enabled = TerrainLayer9CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer10CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer10CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer10AliasTextBox.Enabled = TerrainLayer10CheckBox.Checked;
             TerrainLayer10NumericUpDown.Enabled = TerrainLayer10CheckBox.Checked;
             TerrainLayer10Button.Enabled = TerrainLayer10CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer11CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer11CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer11AliasTextBox.Enabled = TerrainLayer11CheckBox.Checked;
             TerrainLayer11NumericUpDown.Enabled = TerrainLayer11CheckBox.Checked;
             TerrainLayer11Button.Enabled = TerrainLayer11CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer12CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer12CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer12AliasTextBox.Enabled = TerrainLayer12CheckBox.Checked;
             TerrainLayer12NumericUpDown.Enabled = TerrainLayer12CheckBox.Checked;
             TerrainLayer12Button.Enabled = TerrainLayer12CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer13CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer13CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer13AliasTextBox.Enabled = TerrainLayer13CheckBox.Checked;
             TerrainLayer13NumericUpDown.Enabled = TerrainLayer13CheckBox.Checked;
             TerrainLayer13Button.Enabled = TerrainLayer13CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer14CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer14CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer14AliasTextBox.Enabled = TerrainLayer14CheckBox.Checked;
             TerrainLayer14NumericUpDown.Enabled = TerrainLayer14CheckBox.Checked;
             TerrainLayer14Button.Enabled = TerrainLayer14CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer15CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer15CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer15AliasTextBox.Enabled = TerrainLayer15CheckBox.Checked;
             TerrainLayer15NumericUpDown.Enabled = TerrainLayer15CheckBox.Checked;
             TerrainLayer15Button.Enabled = TerrainLayer15CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer16CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer16CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer16AliasTextBox.Enabled = TerrainLayer16CheckBox.Checked;
             TerrainLayer16NumericUpDown.Enabled = TerrainLayer16CheckBox.Checked;
             TerrainLayer16Button.Enabled = TerrainLayer16CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer17CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer17CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer17AliasTextBox.Enabled = TerrainLayer17CheckBox.Checked;
             TerrainLayer17NumericUpDown.Enabled = TerrainLayer17CheckBox.Checked;
             TerrainLayer17Button.Enabled = TerrainLayer17CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer18CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer18CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer18AliasTextBox.Enabled = TerrainLayer18CheckBox.Checked;
             TerrainLayer18NumericUpDown.Enabled = TerrainLayer18CheckBox.Checked;
             TerrainLayer18Button.Enabled = TerrainLayer18CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer19CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer19CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer19AliasTextBox.Enabled = TerrainLayer19CheckBox.Checked;
             TerrainLayer19NumericUpDown.Enabled = TerrainLayer19CheckBox.Checked;
             TerrainLayer19Button.Enabled = TerrainLayer19CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer20CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer20CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer20AliasTextBox.Enabled = TerrainLayer20CheckBox.Checked;
             TerrainLayer20NumericUpDown.Enabled = TerrainLayer20CheckBox.Checked;
             TerrainLayer20Button.Enabled = TerrainLayer20CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer21CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer21CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer21AliasTextBox.Enabled = TerrainLayer21CheckBox.Checked;
             TerrainLayer21NumericUpDown.Enabled = TerrainLayer21CheckBox.Checked;
             TerrainLayer21Button.Enabled = TerrainLayer21CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer22CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer22CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer22AliasTextBox.Enabled = TerrainLayer22CheckBox.Checked;
             TerrainLayer22NumericUpDown.Enabled = TerrainLayer22CheckBox.Checked;
             TerrainLayer22Button.Enabled = TerrainLayer22CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         private void TerrainLayer23CheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Check how many terrain items are enabled 
+            var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
+            if (enabledItems.Count == 1)
+            {
+                // Don't allow user to disable all terrain layers or we will crash
+                TerrainLayer23CheckBox.Checked = true;
+                return;
+            }
+
+            // Disabled or enable all controls for the terrain layer
             TerrainLayer23AliasTextBox.Enabled = TerrainLayer23CheckBox.Checked;
             TerrainLayer23NumericUpDown.Enabled = TerrainLayer23CheckBox.Checked;
             TerrainLayer23Button.Enabled = TerrainLayer23CheckBox.Checked;
 
+            // Update preview
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
