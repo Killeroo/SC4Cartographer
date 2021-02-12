@@ -3,7 +3,6 @@ Tasks:
 
 Bugs:
 - Error while loading proper_terrain_for_non_maped.sc4cart
-- Unchecking all terrain layers causes crash
 - Zones are cut off at the top/edge of the map
 - jpeg button doesn't work
 - output path is empty

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorForm));
             this.OKButton = new System.Windows.Forms.Button();
             this.CopyErrorButton = new System.Windows.Forms.Button();
             this.Line3Label = new System.Windows.Forms.Label();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.CopyErrorButton);
             this.Controls.Add(this.OKButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "ErrorForm";
             this.Text = "Error";
