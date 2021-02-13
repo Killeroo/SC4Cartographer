@@ -1095,7 +1095,10 @@ namespace SC4CartographerUI
                 {
                     // Load new parameters and regenerate preview
                     LoadMapParameters(fileDialog.FileName);
-                    GenerateMapPreview();
+
+                    // Only update preview if a map is loaded 
+                    if (mapLoaded)
+                        GenerateMapPreview();
                 }
             }
         }
