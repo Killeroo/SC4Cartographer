@@ -282,7 +282,25 @@ namespace SC4CartographerUI
                 path = Directory.GetCurrentDirectory();
             }
 
-            string filePath = Path.Combine(path, name);
+            // Try to get a full path to save to
+            string filePath = "";
+            try
+            {
+                filePath = Path.Combine(path, name);
+            }
+            catch(ArgumentException e)
+            {
+                var errorForm = new ErrorForm(
+                    "Error saving map",
+                    $"Could resolve path to save map to. Please check the output path and try again.",
+                    e,
+                    false);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
 
             // Check path exists
             if (Directory.Exists(path) == false)
