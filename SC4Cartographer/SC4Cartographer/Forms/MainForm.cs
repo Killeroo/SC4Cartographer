@@ -3338,6 +3338,24 @@ namespace SC4CartographerUI
             }
         }
 
+        private void PNGRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PNGRadioButton.Checked)
+                map.Parameters.OutputFormat = OutFormat.PNG;
+            else
+                map.Parameters.OutputFormat = OutFormat.JPEG;
+        }
+
+        private void JPEGRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (JPEGRadioButton.Checked)
+                map.Parameters.OutputFormat = OutFormat.JPEG;
+            else
+                map.Parameters.OutputFormat = OutFormat.PNG;
+        }
+
         #endregion
+
+
     }
 }
