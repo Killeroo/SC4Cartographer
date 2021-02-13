@@ -465,6 +465,10 @@ namespace SC4CartographerUI
         /// </summary>
         public void TogglePreviewImage()
         {
+            // Don't mess with the picture box if nothing is loaded 
+            if (mapLoaded == false)
+                return;
+                
             previewZoomed = !previewZoomed;
 
             // Don't show preview image if the grid size is already bigger than the zoomed in size
@@ -646,12 +650,6 @@ namespace SC4CartographerUI
         /// <param name="picImage"></param>
         private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
         {
-            // Only resize image when a map is loaded
-            if (mapLoaded == false)
-            {
-                return;
-            }
-
             // Set image
             MapPictureBox.Image = picImage;
 
@@ -1164,6 +1162,10 @@ namespace SC4CartographerUI
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
+            // Don't mess with picture box if nothing is loaded
+            if (mapLoaded == false)
+                return;
+
             if (previewZoomed)
             {
                 CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
