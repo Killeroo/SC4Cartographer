@@ -1,5 +1,7 @@
 Tasks:
 
+[zoom: 1 hour max
+Cleanup zoom functions, check bitmap size (in opposite direction), get slider values to look nicer]
 
 Bugs:
 - Error while loading proper_terrain_for_non_maped.sc4cart
@@ -10,7 +12,6 @@ Bugs:
 
 Enhancements:
 - Load without lot file present
-- retain zoomed in when changing params
 - Add default transport colour
 - TODOs
 - better layout between appearance code (network rendering
@@ -48,7 +49,6 @@ new SC4Parser release
 github, simtrop, sc4devot
 
 Tickets:
-- Retain position and zoom when modifying properties
 - Add shadows to terrain
 - Smooth squares option
 - probably should hunt down those preview memory leaks

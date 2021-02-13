@@ -39,11 +39,17 @@ namespace SC4CartographerUI
             "SimCity 4", 
             "Regions");
 
+        private const int MAX_ZOOM_SIZE = 10000;
+
         private Map map = new Map();
-        private Bitmap previewNormalMapBitmap;
-        private Bitmap previewZoomedMapBitmap;
+        private Bitmap originalMapPreviewBitmap; 
+        private Bitmap zoomedMapPreviewBitmap; 
         private bool previewZoomed = false;
         private bool mapLoaded = false;
+        private bool forceRecenter = false;
+        private int oldSegmentSize = 0;
+
+        private int zoomFactor = 1;
 
         private RichTextBoxLogger logger = null;
         private FileLogger fileLogger = null;
@@ -131,39 +137,47 @@ namespace SC4CartographerUI
         /// </summary>
         public void GenerateMapPreview()
         {
+            // Dispose of any old map previews before generating the new ones
+            originalMapPreviewBitmap?.Dispose();
+            zoomedMapPreviewBitmap?.Dispose();
+
             // Generate normal preview image
             MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
-            previewNormalMapBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
+            originalMapPreviewBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
 
-            // Don't bother rendering a zoomed in map if the segment size is bigger than 10 pixels (zoomed in map size)
-            // We perform the same check in TogglePreviewImage()
-            if (map.Parameters.GridSegmentSize <= 10)
+            // Recenter the image if the size has changed
+            if (oldSegmentSize != map.Parameters.GridSegmentSize)
             {
-                // Generate zoomed preview image
-                MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
-                zoomedMapPreviewParameters.GridSegmentSize = 10;
-                zoomedMapPreviewParameters.SegmentPaddingX = 2;
-                zoomedMapPreviewParameters.SegmentPaddingY = 2;
-                previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
+                forceRecenter = true;
+            }
 
-                // Change cursor to show we can zoom in
-                MapPictureBox.Cursor = Cursors.Cross;
+            // Set image
+            MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            if (ZoomTrackBar.Value > 1)
+            {
+                ZoomImage(forceRecenter);
             }
             else
             {
-                // Reset the cursor to whatever the user is currently using
-                MapPictureBox.Cursor = Cursors.Default;
+                if (forceRecenter)
+                {
+                    CenterPictureBox(MapPictureBox, originalMapPreviewBitmap);
+                }
+                else
+                {
+
+                    MapPictureBox.Image = originalMapPreviewBitmap;
+                }
             }
 
-            // Set image, reset zoom
-            MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
-            previewZoomed = false;
+            forceRecenter = false;
 
             // Setup toolstrip details
             Process proc = Process.GetCurrentProcess();
             MemoryUsedToolStripStatusLabel.Text = $"Memory used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
-            MapSizeToolStripStatusLabel.Text = $"Size: {previewNormalMapBitmap.Width.ToString()} x {previewNormalMapBitmap.Height.ToString()}px";
+            MapSizeToolStripStatusLabel.Text = $"Size: {originalMapPreviewBitmap.Width.ToString()} x {originalMapPreviewBitmap.Height.ToString()}px";
+
+            oldSegmentSize = map.Parameters.GridSegmentSize;
         }
 
         /// <summary>
@@ -235,6 +249,7 @@ namespace SC4CartographerUI
             try
             {
                 // Generate and set map preview images
+                forceRecenter = true;
                 GenerateMapPreview();
             }
             catch (SubfileNotFoundException e)
@@ -463,6 +478,41 @@ namespace SC4CartographerUI
             }
         }
 
+        private void ZoomImage(bool center)
+        {
+            Size newSize = new Size();
+            if (zoomFactor < 0)
+            {
+                newSize = new Size((int)(originalMapPreviewBitmap.Width / Math.Abs(zoomFactor)), (int)(originalMapPreviewBitmap.Height / Math.Abs(zoomFactor)));
+            }
+            else
+            {
+                newSize = new Size((int)(originalMapPreviewBitmap.Width * zoomFactor), (int)(originalMapPreviewBitmap.Height * zoomFactor));
+            }
+
+            
+            // Don't zoom in on anything that is already ridiculously big
+            if (newSize.Width > MAX_ZOOM_SIZE)
+            {
+                return;
+            }
+
+            zoomedMapPreviewBitmap?.Dispose(); // Delete old zoomed in image
+            zoomedMapPreviewBitmap = new Bitmap(originalMapPreviewBitmap, newSize);
+
+            if (center)
+            {
+                CenterPictureBox(MapPictureBox, zoomedMapPreviewBitmap);
+            }
+            else
+            {
+                MapPictureBox.Image = new Bitmap(originalMapPreviewBitmap, newSize);
+            }
+
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
+        }
+
         /// <summary>
         /// Switch between zoomed and normal images
         /// </summary>
@@ -471,7 +521,7 @@ namespace SC4CartographerUI
             // Don't mess with the picture box if nothing is loaded 
             if (mapLoaded == false)
                 return;
-                
+
             previewZoomed = !previewZoomed;
 
             // Don't show preview image if the grid size is already bigger than the zoomed in size
@@ -480,14 +530,17 @@ namespace SC4CartographerUI
                 return;
             }
 
-            if (previewZoomed)
-            {
-                CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
-            }
-            else
-            {
-                CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
-            }
+            Size newSize = new Size((int)(originalMapPreviewBitmap.Width * zoomFactor), (int)(originalMapPreviewBitmap.Height * zoomFactor));
+            MapPictureBox.Image = new Bitmap(originalMapPreviewBitmap, newSize);
+
+            //if (previewZoomed)
+            //{
+            //    CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
+            //}
+            //else
+            //{
+            //    CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
+            //}
         }
 
         /// <summary>
@@ -678,6 +731,11 @@ namespace SC4CartographerUI
         /// <returns></returns>
         private string GetMapPixelInfo(int x, int y)
         {
+            // If we are zoomed in don't both getting map pixel info
+            // it will be wrong and be time consuming;
+            if (zoomFactor > 1)
+                return "";
+
             string result = "";
 
             int cityX = 0;
@@ -1169,13 +1227,13 @@ namespace SC4CartographerUI
             if (mapLoaded == false)
                 return;
 
-            if (previewZoomed)
+            if (zoomFactor > 1)
             {
-                CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
+                CenterPictureBox(MapPictureBox, zoomedMapPreviewBitmap);
             }
             else
             {
-                CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
+                CenterPictureBox(MapPictureBox, originalMapPreviewBitmap);
             }
         }
 
@@ -3473,8 +3531,18 @@ namespace SC4CartographerUI
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
+
         #endregion
 
+        private void ZoomTrackBar_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void ZoomTrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            zoomFactor = ZoomTrackBar.Value;
+            ZoomImage(true);
+        }
     }
 }
