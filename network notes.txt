@@ -13,10 +13,9 @@ Enhancements:
 - retain zoomed in when changing params
 - Add default transport colour
 - TODOs
-- better layout between appearance code
+- better layout between appearance code (network rendering
 - Disable scroll wheel over numeric values
 - autosave and load current parameters
-- zone offset and padding anchor from the top right should be equal on all sides
 - put restore defaults somewhere
 - place to save properties on main form
 - disallow special characters in alias textbox

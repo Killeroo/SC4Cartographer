@@ -139,8 +139,8 @@ namespace SC4CartographerUI
                 // Generate zoomed preview image
                 MapCreationParameters zoomedMapPreviewParameters = new MapCreationParameters(map.Parameters);
                 zoomedMapPreviewParameters.GridSegmentSize = 10;
-                zoomedMapPreviewParameters.SegmentPaddingX = 4;
-                zoomedMapPreviewParameters.SegmentPaddingY = 4;
+                zoomedMapPreviewParameters.SegmentPaddingX = 2;
+                zoomedMapPreviewParameters.SegmentPaddingY = 2;
                 previewZoomedMapBitmap = MapRenderer.CreateMapBitmap(map.Save, zoomedMapPreviewParameters);
 
                 // Change cursor to show we can zoom in

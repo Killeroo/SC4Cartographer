@@ -159,8 +159,8 @@ namespace SC4CartographerUI
         public bool ShowZoneOutlines = false;
         public bool BlendTerrainLayers = false;
         public int GridSegmentSize = 5;//10;
-        public int SegmentPaddingX = 2;//4;
-        public int SegmentPaddingY = 2;//4;
+        public int SegmentPaddingX = 1;//4;
+        public int SegmentPaddingY = 1;//4;
         public int SegmentOffsetX = 0;//2;
         public int SegmentOffsetY = 0;//2;
 
