@@ -14,7 +14,6 @@ Enhancements:
 - Add default transport colour
 - TODOs
 - better layout between appearance code (network rendering
-- Disable scroll wheel over numeric values
 - autosave and load current parameters
 - put restore defaults somewhere
 - place to save properties on main form

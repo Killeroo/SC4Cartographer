@@ -1322,6 +1322,34 @@ namespace SC4CartographerUI
             this.TerrainLayer21Button.Click += new System.EventHandler(this.TerrainLayer21Button_click);
             this.TerrainLayer22Button.Click += new System.EventHandler(this.TerrainLayer22Button_click);
             this.TerrainLayer23Button.Click += new System.EventHandler(this.TerrainLayer23Button_click);
+
+            // Register mouse wheel callbacks to stop mouse wheels incrementing values too quickly
+            this.GridSegmentSizeNumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.SegmentOffsetNumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.SegmentPaddingNumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer1NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer2NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer3NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer4NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer5NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer6NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer7NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer8NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer9NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer10NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer11NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer12NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer13NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer14NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer15NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer16NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer17NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer18NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer19NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer20NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer21NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer22NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+            this.TerrainLayer23NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
         }
 
         private void SetAppearanceUIValuesUsingParameters(MapCreationParameters parameters)
@@ -3428,6 +3456,18 @@ namespace SC4CartographerUI
         private void BlendTerrainColorsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        /// <summary>
+        /// Stud mouse wheel event for numeric controls, used to stop mouse wheels incrementing values of 
+        /// numericupdodnw control too quickly
+        /// Source: https://stackoverflow.com/a/59863542
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumericUpDown_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
         }
 
         #endregion
