@@ -646,7 +646,11 @@ namespace SC4CartographerUI
         /// <param name="picImage"></param>
         private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
         {
-            // TODO: Exception here when map isn't loaded 
+            // Only resize image when a map is loaded
+            if (mapLoaded == false)
+            {
+                return;
+            }
 
             // Set image
             MapPictureBox.Image = picImage;
