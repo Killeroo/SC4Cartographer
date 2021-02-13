@@ -80,6 +80,9 @@ namespace SC4CartographerUI
             // Set cursor to end of textbox
             OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
             OutputPathTextbox.SelectionLength = 0;
+
+            // Focus on save button at start up
+            SaveButton.Select();
         }
         public MainForm(string path) : this()
         {
