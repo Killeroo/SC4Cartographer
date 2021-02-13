@@ -22,8 +22,6 @@ using SC4Parser.Types;
 using SC4Parser.Subfiles;
 using SC4Parser;
 using SC4Parser.Logging;
-using System.Security;
-using System.Security.Permissions;
 
 namespace SC4CartographerUI
 {
@@ -117,8 +115,6 @@ namespace SC4CartographerUI
             {
                 cleanupTimer.Enabled = true;
             }
-
-
         }
 
         private void OnCleanupTimerElapsed(Object source, ElapsedEventArgs e)
@@ -280,6 +276,12 @@ namespace SC4CartographerUI
         /// </summary>
         public void SaveMap(string path, string name)
         {
+            // If the directory path is empty then use our current location
+            if (string.IsNullOrEmpty(path))
+            {
+                path = Directory.GetCurrentDirectory();
+            }
+
             string filePath = Path.Combine(path, name);
 
             // Check path exists
@@ -332,7 +334,7 @@ namespace SC4CartographerUI
                 // Show form when successfully created
                 var mapCreatedForm = new SuccessForm(
                     "Map Saved",
-                    $"Map '{Path.GetFileName(currentFilename)}' has been successfully saved to",
+                    $"Map '{Path.GetFileName(currentFilename)}' has been successfully saved to:",
                     Path.GetDirectoryName(currentFilename),
                     currentFilename);
 
@@ -391,7 +393,7 @@ namespace SC4CartographerUI
 
                 var successForm = new SuccessForm(
                     "Map appearance saved",
-                    $"Map appearance file '{Path.GetFileName(path)}' has been successfully saved to",
+                    $"Map appearance file '{Path.GetFileName(path)}' has been successfully saved to:",
                     Path.GetDirectoryName(path),
                     path);
 
@@ -626,6 +628,8 @@ namespace SC4CartographerUI
         /// <param name="picImage"></param>
         private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
         {
+            // TODO: Exception here when map isn't loaded 
+
             // Set image
             MapPictureBox.Image = picImage;
 
