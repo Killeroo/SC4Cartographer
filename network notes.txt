@@ -20,7 +20,6 @@ Enhancements:
 - place to save properties on main form
 - disallow special characters in alias textbox
 - get expand arrows to show up on side and bottom
-- need min window width and height
 - Cleanup properties window code in mainform code
 - simple auto expand on visible layers checkbox
 - control s control o
