@@ -76,6 +76,12 @@ namespace SC4CartographerUI
             SetAppearanceUIValuesUsingParameters(map.Parameters);
             RegisterAppearanceEvents();
 
+            // Set our default save location to be our current directory
+            OutputPathTextbox.Text = Directory.GetCurrentDirectory();
+
+            // Set cursor to end of textbox
+            OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
+            OutputPathTextbox.SelectionLength = 0;
         }
         public MainForm(string path) : this()
         {
@@ -282,7 +288,7 @@ namespace SC4CartographerUI
                 var errorForm = new ErrorForm(
                     "Error saving map",
                     $"Could not save map, the path \"{path}\" does not exist or is invalid.",
-                    new DirectoryNotFoundException(),
+                    new DirectoryNotFoundException("The path \"{path}\" does not exist or is invalid."),
                     false);
 
                 errorForm.StartPosition = FormStartPosition.CenterParent;
