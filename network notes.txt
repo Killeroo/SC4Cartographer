@@ -4,7 +4,6 @@ Tasks:
 Bugs:
 - Error while loading proper_terrain_for_non_maped.sc4cart
 - Zones are cut off at the top/edge of the map
-- output path is empty
 - success textbox is empty
 - Entering 0 manually in segment offset (and probably in others) doesn't work
 - text overflow in success form

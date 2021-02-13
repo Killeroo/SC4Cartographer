@@ -22,6 +22,8 @@ using SC4Parser.Types;
 using SC4Parser.Subfiles;
 using SC4Parser;
 using SC4Parser.Logging;
+using System.Security;
+using System.Security.Permissions;
 
 namespace SC4CartographerUI
 {
@@ -274,6 +276,21 @@ namespace SC4CartographerUI
         {
             string filePath = Path.Combine(path, name);
 
+            // Check path exists
+            if (Directory.Exists(path) == false)
+            {
+                var errorForm = new ErrorForm(
+                    "Error saving map",
+                    $"Could not save map, the path \"{path}\" does not exist or is invalid.",
+                    new DirectoryNotFoundException(),
+                    false);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
+
             // Get current extension
             string extension = "";
             switch (map.Parameters.OutputFormat)
@@ -321,9 +338,9 @@ namespace SC4CartographerUI
             {
                 var errorForm = new ErrorForm(
                     "Error saving map",
-                    $"There was an error while trying to save a map for '{path}'.",
+                    $"There was an error trying to save a map to '{path}'. Please check that you can access and save to that folder and try again.",
                     e,
-                    true);
+                    false);
 
                 errorForm.StartPosition = FormStartPosition.CenterParent;
                 errorForm.ShowDialog();
@@ -1198,6 +1215,7 @@ namespace SC4CartographerUI
             this.AvenueEditButton.Click += new System.EventHandler(this.AvenueEditButton_Click);
             this.RailwayEditButton.Click += new System.EventHandler(this.RailwayEditButton_Click);
             this.SubwayEditButton.Click += new System.EventHandler(this.SubwayEditButton_Click);
+            this.EditOutputPathButton.Click += new System.EventHandler(this.EditOutputPathButton_Click);
 
             this.TerrainLayer1CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer1CheckBox_CheckedChanged);
             this.TerrainLayer2CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer2CheckBox_CheckedChanged);
@@ -2334,7 +2352,14 @@ namespace SC4CartographerUI
             {
                 folderDialog.SelectedPath = OutputPathTextbox.Text;
                 if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    // put path into output path textbox
                     OutputPathTextbox.Text = folderDialog.SelectedPath;
+
+                    // Set cursor to end of textbox
+                    OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
+                    OutputPathTextbox.SelectionLength = 0;
+                }
             }
         }
 
@@ -3355,6 +3380,11 @@ namespace SC4CartographerUI
                 map.Parameters.OutputFormat = OutFormat.JPEG;
             else
                 map.Parameters.OutputFormat = OutFormat.PNG;
+        }
+
+        private void OutputPathTextbox_TextChanged(object sender, EventArgs e)
+        {
+            map.Parameters.OutputPath = OutputPathTextbox.Text;
         }
 
         #endregion
