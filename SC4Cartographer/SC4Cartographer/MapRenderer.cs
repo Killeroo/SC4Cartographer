@@ -15,19 +15,6 @@ namespace SC4CartographerUI
 {
     class MapRenderer
     {
-        public static float Map(float value, float valueMin, float valueMax, float outMin, float outMax)
-        {
-            return (value - valueMin) / (valueMax - valueMin) * (outMax - outMin) + outMin;
-        }
-        public static Color MapColor(float value, float valueMin, float valueMax, Color colorMin, Color colorMax)
-        {
-            float red = Map(value, valueMin, valueMax, colorMin.R, colorMax.R);
-            float green = Map(value, valueMin, valueMax, colorMin.G, colorMax.G);
-            float blue = Map(value, valueMin, valueMax, colorMin.B, colorMax.B);
-
-            return Color.FromArgb((int)red, (int)green, (int)blue);
-        }
-
         // Create a map from MapCreationParameters
         public static Bitmap CreateMapBitmap(SC4SaveFile save, MapCreationParameters parameters)
         {
@@ -108,24 +95,32 @@ namespace SC4CartographerUI
                                 }
                             }
 
-                            // Fetch the colour 
-                            //if (currentBestIndex == 0 || currentBestIndex == sortedTerrainList.Count())
-                            //{
-                                // If the closest index that we found is the start or end of the list then we just
-                                // use that colour uniformaly 
+                            if (parameters.BlendTerrainLayers)
+                            {
+                                // Blend the colour of a tile between the colors of the 2 height layers it falls between
+                                if (currentBestIndex == 0 || currentBestIndex == sortedTerrainList.Count())
+                                {
+                                    // If the closest index that we found is the start or end of the list then we just
+                                    // use that colour uniformaly
+                                    c = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
+                                }
+                                else
+                                {
+                                    // If we are not at the start or end of the list we are safe to fetch the previous index
+                                    // and map the value to a color between the 2 closest color layers 
+                                    c = Helper.MapColor(
+                                        height,
+                                        sortedTerrainList[currentBestIndex - 1].height,
+                                        sortedTerrainList[currentBestIndex].height,
+                                        parameters.ColorDictionary[sortedTerrainList[currentBestIndex - 1].colorObject],
+                                        parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject]);
+                                }
+                            }
+                            else
+                            {
+                                // Just paint the color of the layer we are in
                                 c = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
-                            //}
-                            //else
-                            //{
-                            //    // If we are not at the start or end of the list we are safe to fetch the previous index
-                            //    // and map the value to a color between the 2 closest color layers 
-                            //    c = MapColor(
-                            //        height,
-                            //        sortedTerrainList[currentBestIndex - 1].height,
-                            //        sortedTerrainList[currentBestIndex].height,
-                            //        parameters.ColorDictionary[sortedTerrainList[currentBestIndex - 1].colorObject],
-                            //        parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject]);
-                            //}
+                            }
 
                             // Paint the actual grid
                             g.FillRectangle(new SolidBrush(c), rect);

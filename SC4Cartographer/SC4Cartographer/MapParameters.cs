@@ -135,6 +135,7 @@ namespace SC4CartographerUI
             OutputFormat = parameters.OutputFormat;
             ShowGridLines = parameters.ShowGridLines;
             ShowZoneOutlines = parameters.ShowZoneOutlines;
+            BlendTerrainLayers = parameters.BlendTerrainLayers;
             SegmentPaddingX = parameters.SegmentPaddingX;
             SegmentPaddingY = parameters.SegmentPaddingY;
             SegmentOffsetX = parameters.SegmentOffsetX;
@@ -156,6 +157,7 @@ namespace SC4CartographerUI
 
         public bool ShowGridLines = false;
         public bool ShowZoneOutlines = false;
+        public bool BlendTerrainLayers = false;
         public int GridSegmentSize = 5;//10;
         public int SegmentPaddingX = 2;//4;
         public int SegmentPaddingY = 2;//4;
@@ -283,6 +285,7 @@ namespace SC4CartographerUI
             properties.Add("!!!WARNING: This file is Case-Sensitive!!!");
             properties.Add($"ShowGridLines:{(ShowGridLines ? "true" : "false")};");
             properties.Add($"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};");
+            properties.Add($"BlendTerrainColors:{(BlendTerrainLayers ? "true" : "false")};");
             properties.Add($"GridSegmentSize:{GridSegmentSize};");
             properties.Add($"SegmentPaddingX:{SegmentPaddingX};");
             properties.Add($"SegmentPaddingY:{SegmentPaddingY};");
@@ -390,6 +393,12 @@ namespace SC4CartographerUI
                             else
                                 mapCreationParameters.ShowZoneOutlines = false;
                             break;
+                        case "BlendTerrainColors":
+                            if (property.Value == "true")
+                                mapCreationParameters.BlendTerrainLayers = true;
+                            else
+                                mapCreationParameters.BlendTerrainLayers = false;
+                            break;
                         case "GridSegmentSize":
                             mapCreationParameters.GridSegmentSize = int.Parse(property.Value);
                             break;
@@ -421,6 +430,7 @@ namespace SC4CartographerUI
             this.ColorDictionary = colors;
             this.ShowGridLines = mapCreationParameters.ShowGridLines;
             this.ShowZoneOutlines = mapCreationParameters.ShowZoneOutlines;
+            this.BlendTerrainLayers = mapCreationParameters.BlendTerrainLayers;
             this.GridSegmentSize = mapCreationParameters.GridSegmentSize;
             this.SegmentPaddingX = mapCreationParameters.SegmentPaddingX;
             this.SegmentPaddingY = mapCreationParameters.SegmentPaddingY;

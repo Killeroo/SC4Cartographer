@@ -1209,6 +1209,7 @@ namespace SC4CartographerUI
             SegmentOffsetLabel.Visible = show;
             ShowGridLinesCheckbox.Visible = show;
             ShowZoneOutlinesCheckbox.Visible = show;
+            BlendTerrainColorsCheckBox.Visible = show;
             PNGRadioButton.Visible = show;
             JPEGRadioButton.Visible = show;
             OutputPathTextbox.Visible = show;
@@ -1226,6 +1227,7 @@ namespace SC4CartographerUI
             this.SegmentPaddingNumericUpDown.ValueChanged += new System.EventHandler(this.SegmentPaddingNumericUpDown_ValueChanged);
             this.GridSegmentSizeNumericUpDown.ValueChanged += new System.EventHandler(this.GridSegmentSizeNumericUpDown_ValueChanged);
             this.ShowGridLinesCheckbox.CheckedChanged += new System.EventHandler(this.ShowGridLinesCheckbox_CheckedChanged);
+            this.BlendTerrainColorsCheckBox.CheckedChanged += new System.EventHandler(this.BlendTerrainColorsCheckBox_CheckedChanged);
             this.SpaceportEditButton.Click += new System.EventHandler(this.SpaceportEditButton_Click);
             this.SeaportsEditButton.Click += new System.EventHandler(this.SeaportsEditButton_Click);
             this.AirportsEditButton.Click += new System.EventHandler(this.AirportsEditButton_Click);
@@ -1590,6 +1592,7 @@ namespace SC4CartographerUI
             SegmentOffsetNumericUpDown.Value = parameters.SegmentOffsetX;
             ShowGridLinesCheckbox.Checked = parameters.ShowGridLines;
             ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
+            BlendTerrainColorsCheckBox.Checked = parameters.BlendTerrainLayers;
 
             // Output stuff
             OutputPathTextbox.Text = parameters.OutputPath;
@@ -1695,6 +1698,7 @@ namespace SC4CartographerUI
             parameters.SegmentOffsetY = (int)SegmentOffsetNumericUpDown.Value;
             parameters.ShowGridLines = ShowGridLinesCheckbox.Checked;
             parameters.ShowZoneOutlines = ShowZoneOutlinesCheckbox.Checked;
+            parameters.BlendTerrainLayers = BlendTerrainColorsCheckBox.Checked;
 
             parameters.OutputPath = OutputPathTextbox.Text;
             if (PNGRadioButton.Checked)
@@ -3419,6 +3423,11 @@ namespace SC4CartographerUI
         private void OutputPathTextbox_TextChanged(object sender, EventArgs e)
         {
             map.Parameters.OutputPath = OutputPathTextbox.Text;
+        }
+
+        private void BlendTerrainColorsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
         #endregion

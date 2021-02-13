@@ -7,6 +7,8 @@ using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
 
+using System.Drawing;
+
 namespace SC4CartographerUI
 {
     static class Helper
@@ -99,9 +101,46 @@ namespace SC4CartographerUI
             return currentFilePath;
         }
 
+        /// <summary>
+        /// Does what it says on the tin
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static double ConvertBytesToMegabytes(long bytes)
         {
             return (bytes / 1024f) / 1024f;
+        }
+
+        /// <summary>
+        /// Simple map function to map a value to a new value based on a new max and min value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="valueMin"></param>
+        /// <param name="valueMax"></param>
+        /// <param name="outMin"></param>
+        /// <param name="outMax"></param>
+        /// <returns></returns>
+        public static float Map(float value, float valueMin, float valueMax, float outMin, float outMax)
+        {
+            return (value - valueMin) / (valueMax - valueMin) * (outMax - outMin) + outMin;
+        }
+
+        /// <summary>
+        /// Method to map a value to a colour given a particular range
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="valueMin"></param>
+        /// <param name="valueMax"></param>
+        /// <param name="colorMin"></param>
+        /// <param name="colorMax"></param>
+        /// <returns></returns>
+        public static Color MapColor(float value, float valueMin, float valueMax, Color colorMin, Color colorMax)
+        {
+            float red = Map(value, valueMin, valueMax, colorMin.R, colorMax.R);
+            float green = Map(value, valueMin, valueMax, colorMin.G, colorMax.G);
+            float blue = Map(value, valueMin, valueMax, colorMin.B, colorMax.B);
+
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 }

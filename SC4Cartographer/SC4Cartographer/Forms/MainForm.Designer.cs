@@ -30,57 +30,57 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
-            treeNode82,
-            treeNode83,
-            treeNode84});
-            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
-            treeNode86,
-            treeNode87,
-            treeNode88});
-            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
-            treeNode90,
-            treeNode91,
-            treeNode92});
-            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("Plopped Building");
-            System.Windows.Forms.TreeNode treeNode95 = new System.Windows.Forms.TreeNode("Military");
-            System.Windows.Forms.TreeNode treeNode96 = new System.Windows.Forms.TreeNode("Airports");
-            System.Windows.Forms.TreeNode treeNode97 = new System.Windows.Forms.TreeNode("Seaport");
-            System.Windows.Forms.TreeNode treeNode98 = new System.Windows.Forms.TreeNode("Spaceport");
-            System.Windows.Forms.TreeNode treeNode99 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
-            treeNode94,
-            treeNode95,
-            treeNode96,
-            treeNode97,
-            treeNode98});
-            System.Windows.Forms.TreeNode treeNode100 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
-            treeNode85,
-            treeNode89,
-            treeNode93,
-            treeNode99});
-            System.Windows.Forms.TreeNode treeNode101 = new System.Windows.Forms.TreeNode("Streets");
-            System.Windows.Forms.TreeNode treeNode102 = new System.Windows.Forms.TreeNode("Roads");
-            System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("One Way Roads");
-            System.Windows.Forms.TreeNode treeNode104 = new System.Windows.Forms.TreeNode("Avenues");
-            System.Windows.Forms.TreeNode treeNode105 = new System.Windows.Forms.TreeNode("Railways");
-            System.Windows.Forms.TreeNode treeNode106 = new System.Windows.Forms.TreeNode("Subways");
-            System.Windows.Forms.TreeNode treeNode107 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
-            treeNode101,
-            treeNode102,
-            treeNode103,
-            treeNode104,
-            treeNode105,
-            treeNode106});
-            System.Windows.Forms.TreeNode treeNode108 = new System.Windows.Forms.TreeNode("Terrain");
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
+            treeNode55,
+            treeNode56,
+            treeNode57});
+            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
+            treeNode59,
+            treeNode60,
+            treeNode61});
+            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
+            treeNode63,
+            treeNode64,
+            treeNode65});
+            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Plopped Building");
+            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Military");
+            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Airports");
+            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Seaport");
+            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Spaceport");
+            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode67,
+            treeNode68,
+            treeNode69,
+            treeNode70,
+            treeNode71});
+            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
+            treeNode58,
+            treeNode62,
+            treeNode66,
+            treeNode72});
+            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Streets");
+            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Roads");
+            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("One Way Roads");
+            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Avenues");
+            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Railways");
+            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Subways");
+            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
+            treeNode74,
+            treeNode75,
+            treeNode76,
+            treeNode77,
+            treeNode78,
+            treeNode79});
+            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Terrain");
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OpenTextLabel = new System.Windows.Forms.Label();
@@ -119,6 +119,7 @@
             this.MemoryUsedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MousePositionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.AppearanceGroupBox = new System.Windows.Forms.GroupBox();
+            this.BlendTerrainColorsCheckBox = new System.Windows.Forms.CheckBox();
             this.OutputFormatLabel = new System.Windows.Forms.Label();
             this.JPEGRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -724,6 +725,7 @@
             // 
             this.AppearanceGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AppearanceGroupBox.Controls.Add(this.BlendTerrainColorsCheckBox);
             this.AppearanceGroupBox.Controls.Add(this.OutputFormatLabel);
             this.AppearanceGroupBox.Controls.Add(this.JPEGRadioButton);
             this.AppearanceGroupBox.Controls.Add(this.groupBox5);
@@ -754,11 +756,22 @@
             this.AppearanceGroupBox.TabStop = false;
             this.AppearanceGroupBox.Text = "Appearance";
             // 
+            // BlendTerrainColorsCheckBox
+            // 
+            this.BlendTerrainColorsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BlendTerrainColorsCheckBox.AutoSize = true;
+            this.BlendTerrainColorsCheckBox.Location = new System.Drawing.Point(171, 626);
+            this.BlendTerrainColorsCheckBox.Name = "BlendTerrainColorsCheckBox";
+            this.BlendTerrainColorsCheckBox.Size = new System.Drawing.Size(121, 17);
+            this.BlendTerrainColorsCheckBox.TabIndex = 70;
+            this.BlendTerrainColorsCheckBox.Text = "Blend Terrain Colors";
+            this.BlendTerrainColorsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // OutputFormatLabel
             // 
             this.OutputFormatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.OutputFormatLabel.AutoSize = true;
-            this.OutputFormatLabel.Location = new System.Drawing.Point(13, 666);
+            this.OutputFormatLabel.Location = new System.Drawing.Point(10, 666);
             this.OutputFormatLabel.Name = "OutputFormatLabel";
             this.OutputFormatLabel.Size = new System.Drawing.Size(74, 13);
             this.OutputFormatLabel.TabIndex = 69;
@@ -831,7 +844,7 @@
             this.PixelLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PixelLabel3.AutoSize = true;
             this.PixelLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PixelLabel3.Location = new System.Drawing.Point(173, 626);
+            this.PixelLabel3.Location = new System.Drawing.Point(150, 626);
             this.PixelLabel3.Name = "PixelLabel3";
             this.PixelLabel3.Size = new System.Drawing.Size(18, 13);
             this.PixelLabel3.TabIndex = 60;
@@ -842,7 +855,7 @@
             this.PixelLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PixelLabel2.AutoSize = true;
             this.PixelLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PixelLabel2.Location = new System.Drawing.Point(173, 602);
+            this.PixelLabel2.Location = new System.Drawing.Point(150, 602);
             this.PixelLabel2.Name = "PixelLabel2";
             this.PixelLabel2.Size = new System.Drawing.Size(18, 13);
             this.PixelLabel2.TabIndex = 59;
@@ -861,7 +874,7 @@
             // 
             this.OutputPathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.OutputPathLabel.AutoSize = true;
-            this.OutputPathLabel.Location = new System.Drawing.Point(14, 690);
+            this.OutputPathLabel.Location = new System.Drawing.Point(11, 690);
             this.OutputPathLabel.Name = "OutputPathLabel";
             this.OutputPathLabel.Size = new System.Drawing.Size(64, 13);
             this.OutputPathLabel.TabIndex = 61;
@@ -872,7 +885,7 @@
             this.PixelLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PixelLabel1.AutoSize = true;
             this.PixelLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PixelLabel1.Location = new System.Drawing.Point(173, 578);
+            this.PixelLabel1.Location = new System.Drawing.Point(150, 578);
             this.PixelLabel1.Name = "PixelLabel1";
             this.PixelLabel1.Size = new System.Drawing.Size(18, 13);
             this.PixelLabel1.TabIndex = 58;
@@ -882,7 +895,7 @@
             // 
             this.ShowZoneOutlinesCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ShowZoneOutlinesCheckbox.AutoSize = true;
-            this.ShowZoneOutlinesCheckbox.Location = new System.Drawing.Point(197, 603);
+            this.ShowZoneOutlinesCheckbox.Location = new System.Drawing.Point(171, 602);
             this.ShowZoneOutlinesCheckbox.Name = "ShowZoneOutlinesCheckbox";
             this.ShowZoneOutlinesCheckbox.Size = new System.Drawing.Size(92, 17);
             this.ShowZoneOutlinesCheckbox.TabIndex = 56;
@@ -892,7 +905,7 @@
             // SegmentOffsetNumericUpDown
             // 
             this.SegmentOffsetNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SegmentOffsetNumericUpDown.Location = new System.Drawing.Point(121, 624);
+            this.SegmentOffsetNumericUpDown.Location = new System.Drawing.Point(98, 624);
             this.SegmentOffsetNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -905,7 +918,7 @@
             // SegmentPaddingNumericUpDown
             // 
             this.SegmentPaddingNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SegmentPaddingNumericUpDown.Location = new System.Drawing.Point(121, 600);
+            this.SegmentPaddingNumericUpDown.Location = new System.Drawing.Point(98, 600);
             this.SegmentPaddingNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -918,7 +931,7 @@
             // GridSegmentSizeNumericUpDown
             // 
             this.GridSegmentSizeNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(121, 575);
+            this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(98, 575);
             this.GridSegmentSizeNumericUpDown.Maximum = new decimal(new int[] {
             60,
             0,
@@ -932,7 +945,7 @@
             // 
             this.SegmentOffsetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentOffsetLabel.AutoSize = true;
-            this.SegmentOffsetLabel.Location = new System.Drawing.Point(14, 626);
+            this.SegmentOffsetLabel.Location = new System.Drawing.Point(5, 626);
             this.SegmentOffsetLabel.Name = "SegmentOffsetLabel";
             this.SegmentOffsetLabel.Size = new System.Drawing.Size(80, 13);
             this.SegmentOffsetLabel.TabIndex = 52;
@@ -942,7 +955,7 @@
             // 
             this.SegmentPaddingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPaddingLabel.AutoSize = true;
-            this.SegmentPaddingLabel.Location = new System.Drawing.Point(14, 602);
+            this.SegmentPaddingLabel.Location = new System.Drawing.Point(5, 602);
             this.SegmentPaddingLabel.Name = "SegmentPaddingLabel";
             this.SegmentPaddingLabel.Size = new System.Drawing.Size(91, 13);
             this.SegmentPaddingLabel.TabIndex = 51;
@@ -952,7 +965,7 @@
             // 
             this.GridSegmentSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.GridSegmentSizeLabel.AutoSize = true;
-            this.GridSegmentSizeLabel.Location = new System.Drawing.Point(14, 578);
+            this.GridSegmentSizeLabel.Location = new System.Drawing.Point(5, 578);
             this.GridSegmentSizeLabel.Name = "GridSegmentSizeLabel";
             this.GridSegmentSizeLabel.Size = new System.Drawing.Size(94, 13);
             this.GridSegmentSizeLabel.TabIndex = 50;
@@ -962,7 +975,7 @@
             // 
             this.ShowGridLinesCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ShowGridLinesCheckbox.AutoSize = true;
-            this.ShowGridLinesCheckbox.Location = new System.Drawing.Point(197, 577);
+            this.ShowGridLinesCheckbox.Location = new System.Drawing.Point(170, 578);
             this.ShowGridLinesCheckbox.Name = "ShowGridLinesCheckbox";
             this.ShowGridLinesCheckbox.Size = new System.Drawing.Size(73, 17);
             this.ShowGridLinesCheckbox.TabIndex = 49;
@@ -3136,90 +3149,90 @@
             this.VisibleObjectsTreeView.CheckBoxes = true;
             this.VisibleObjectsTreeView.Location = new System.Drawing.Point(6, 19);
             this.VisibleObjectsTreeView.Name = "VisibleObjectsTreeView";
-            treeNode82.Name = "ResidentialLowDensity";
-            treeNode82.Tag = "ResidentialLowZone";
-            treeNode82.Text = "Low Density";
-            treeNode83.Name = "ResidentialMediumDensity";
-            treeNode83.Tag = "ResidentialMidZone";
-            treeNode83.Text = "Medium Density";
-            treeNode84.Name = "ResidentialHighDensity";
-            treeNode84.Tag = "ResidentialHighZone";
-            treeNode84.Text = "High Density";
-            treeNode85.Name = "ResidentialRootNode";
-            treeNode85.Tag = "Residential";
-            treeNode85.Text = "Residential";
-            treeNode86.Name = "CommercialLowDensity";
-            treeNode86.Tag = "CommercialLowZone";
-            treeNode86.Text = "Low Density";
-            treeNode87.Name = "CommercialMediumDensity";
-            treeNode87.Tag = "CommercialMidZone";
-            treeNode87.Text = "Medium Density";
-            treeNode88.Name = "CommercialHighDensity";
-            treeNode88.Tag = "CommercialHighZone";
-            treeNode88.Text = "High Density";
-            treeNode89.Name = "CommercialRootNode";
-            treeNode89.Tag = "Commercial";
-            treeNode89.Text = "Commercial";
-            treeNode90.Name = "IndustrialLowDensity";
-            treeNode90.Tag = "IndustrialLowZone";
-            treeNode90.Text = "Low Density";
-            treeNode91.Name = "IndustrialMediumDensity";
-            treeNode91.Tag = "IndustrialMidZone";
-            treeNode91.Text = "Medium Density";
-            treeNode92.Name = "IndustrialHighDensity";
-            treeNode92.Tag = "IndustrialHighZone";
-            treeNode92.Text = "High Density";
-            treeNode93.Name = "IndustrialRootNode";
-            treeNode93.Tag = "Industrial";
-            treeNode93.Text = "Industrial";
-            treeNode94.Name = "PloppedBuildingZone";
-            treeNode94.Tag = "PloppedBuildingZone";
-            treeNode94.Text = "Plopped Building";
-            treeNode95.Name = "MilitaryZone";
-            treeNode95.Tag = "MilitaryZone";
-            treeNode95.Text = "Military";
-            treeNode96.Name = "AirportsZone";
-            treeNode96.Tag = "AirportZone";
-            treeNode96.Text = "Airports";
-            treeNode97.Name = "SeaportZones";
-            treeNode97.Tag = "SeaportZone";
-            treeNode97.Text = "Seaport";
-            treeNode98.Name = "SpaceportZone";
-            treeNode98.Tag = "SpaceportZone";
-            treeNode98.Text = "Spaceport";
-            treeNode99.Name = "Other";
-            treeNode99.Tag = "Other";
-            treeNode99.Text = "Other";
-            treeNode100.Name = "Node0";
-            treeNode100.Tag = "Zones";
-            treeNode100.Text = "Zones";
-            treeNode101.Name = "Streets";
-            treeNode101.Tag = "Streets";
-            treeNode101.Text = "Streets";
-            treeNode102.Name = "Roads";
-            treeNode102.Tag = "Roads";
-            treeNode102.Text = "Roads";
-            treeNode103.Name = "OneWayRoads";
-            treeNode103.Tag = "OneWayRoads";
-            treeNode103.Text = "One Way Roads";
-            treeNode104.Name = "Avenues";
-            treeNode104.Tag = "Avenues";
-            treeNode104.Text = "Avenues";
-            treeNode105.Name = "Railways";
-            treeNode105.Tag = "Railways";
-            treeNode105.Text = "Railways";
-            treeNode106.Name = "Subways";
-            treeNode106.Tag = "Subways";
-            treeNode106.Text = "Subways";
-            treeNode107.Name = "Node0";
-            treeNode107.Text = "Transport";
-            treeNode108.Name = "Node1";
-            treeNode108.Tag = "TerrainMap";
-            treeNode108.Text = "Terrain";
+            treeNode55.Name = "ResidentialLowDensity";
+            treeNode55.Tag = "ResidentialLowZone";
+            treeNode55.Text = "Low Density";
+            treeNode56.Name = "ResidentialMediumDensity";
+            treeNode56.Tag = "ResidentialMidZone";
+            treeNode56.Text = "Medium Density";
+            treeNode57.Name = "ResidentialHighDensity";
+            treeNode57.Tag = "ResidentialHighZone";
+            treeNode57.Text = "High Density";
+            treeNode58.Name = "ResidentialRootNode";
+            treeNode58.Tag = "Residential";
+            treeNode58.Text = "Residential";
+            treeNode59.Name = "CommercialLowDensity";
+            treeNode59.Tag = "CommercialLowZone";
+            treeNode59.Text = "Low Density";
+            treeNode60.Name = "CommercialMediumDensity";
+            treeNode60.Tag = "CommercialMidZone";
+            treeNode60.Text = "Medium Density";
+            treeNode61.Name = "CommercialHighDensity";
+            treeNode61.Tag = "CommercialHighZone";
+            treeNode61.Text = "High Density";
+            treeNode62.Name = "CommercialRootNode";
+            treeNode62.Tag = "Commercial";
+            treeNode62.Text = "Commercial";
+            treeNode63.Name = "IndustrialLowDensity";
+            treeNode63.Tag = "IndustrialLowZone";
+            treeNode63.Text = "Low Density";
+            treeNode64.Name = "IndustrialMediumDensity";
+            treeNode64.Tag = "IndustrialMidZone";
+            treeNode64.Text = "Medium Density";
+            treeNode65.Name = "IndustrialHighDensity";
+            treeNode65.Tag = "IndustrialHighZone";
+            treeNode65.Text = "High Density";
+            treeNode66.Name = "IndustrialRootNode";
+            treeNode66.Tag = "Industrial";
+            treeNode66.Text = "Industrial";
+            treeNode67.Name = "PloppedBuildingZone";
+            treeNode67.Tag = "PloppedBuildingZone";
+            treeNode67.Text = "Plopped Building";
+            treeNode68.Name = "MilitaryZone";
+            treeNode68.Tag = "MilitaryZone";
+            treeNode68.Text = "Military";
+            treeNode69.Name = "AirportsZone";
+            treeNode69.Tag = "AirportZone";
+            treeNode69.Text = "Airports";
+            treeNode70.Name = "SeaportZones";
+            treeNode70.Tag = "SeaportZone";
+            treeNode70.Text = "Seaport";
+            treeNode71.Name = "SpaceportZone";
+            treeNode71.Tag = "SpaceportZone";
+            treeNode71.Text = "Spaceport";
+            treeNode72.Name = "Other";
+            treeNode72.Tag = "Other";
+            treeNode72.Text = "Other";
+            treeNode73.Name = "Node0";
+            treeNode73.Tag = "Zones";
+            treeNode73.Text = "Zones";
+            treeNode74.Name = "Streets";
+            treeNode74.Tag = "Streets";
+            treeNode74.Text = "Streets";
+            treeNode75.Name = "Roads";
+            treeNode75.Tag = "Roads";
+            treeNode75.Text = "Roads";
+            treeNode76.Name = "OneWayRoads";
+            treeNode76.Tag = "OneWayRoads";
+            treeNode76.Text = "One Way Roads";
+            treeNode77.Name = "Avenues";
+            treeNode77.Tag = "Avenues";
+            treeNode77.Text = "Avenues";
+            treeNode78.Name = "Railways";
+            treeNode78.Tag = "Railways";
+            treeNode78.Text = "Railways";
+            treeNode79.Name = "Subways";
+            treeNode79.Tag = "Subways";
+            treeNode79.Text = "Subways";
+            treeNode80.Name = "Node0";
+            treeNode80.Text = "Transport";
+            treeNode81.Name = "Node1";
+            treeNode81.Tag = "TerrainMap";
+            treeNode81.Text = "Terrain";
             this.VisibleObjectsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode100,
-            treeNode107,
-            treeNode108});
+            treeNode73,
+            treeNode80,
+            treeNode81});
             this.VisibleObjectsTreeView.Size = new System.Drawing.Size(283, 91);
             this.VisibleObjectsTreeView.TabIndex = 1;
             this.VisibleObjectsTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.VisibleObjectsTreeView_AfterCheck);
@@ -3557,6 +3570,7 @@
         private System.Windows.Forms.Button TerrainLayer2Button;
         private System.Windows.Forms.TextBox TerrainLayer2ColorTextBox;
         private System.Windows.Forms.NumericUpDown TerrainLayer2NumericUpDown;
+        private System.Windows.Forms.CheckBox BlendTerrainColorsCheckBox;
     }
 }
 

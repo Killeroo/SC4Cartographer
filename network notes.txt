@@ -6,9 +6,9 @@ Bugs:
 - Zones are cut off at the top/edge of the map
 - Entering 0 manually in segment offset (and probably in others) doesn't work
 - Mouse over stats aren't accurate when segment size is increase
+- Road colors blend into top layer of height
 
 Enhancements:
-- Add option to toggle mapping terrain colors (off by default)
 - Load without lot file present
 - retain zoomed in when changing params
 - Add default transport colour
@@ -23,7 +23,7 @@ Enhancements:
 - get expand arrows to show up on side and bottom
 - need min window width and height
 - Cleanup properties window code in mainform code
-- simple auto expand on layers checkbox
+- simple auto expand on visible layers checkbox
 - control s control o
 - Save button auto focus
 - add more comments
@@ -33,7 +33,6 @@ Enhancements:
 - Clean up visible hack (manual lookup in map parameters)
 - Cleanup network tile render code
 - Update sc4parser version code
-- Draw network tiles with padding
 
 Testing:
 - How city with NAM reacts
@@ -60,3 +59,4 @@ Tickets:
 - Add shadows to terrain
 - Smooth squares option
 - probably should hunt down those preview memory leaks
+- Draw network tiles with padding
