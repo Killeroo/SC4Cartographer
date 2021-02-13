@@ -52,6 +52,7 @@ namespace SC4CartographerUI
                     sortedTerrainList.OrderBy(terrain => terrain.height);
 
                     // Go through each height in the height map
+                    SolidBrush brush = new SolidBrush(Color.White);
                     for (int x = 0; x < gridSizeX; x++)
                     {
                         for (int y = 0; y < gridSizeY; y++)
@@ -65,7 +66,6 @@ namespace SC4CartographerUI
                                     (parameters.GridSegmentSize));
 
                             float height = heightMap[y][x];
-                            Color c;
                             
                             // Find the closest terrain layer
                             // Go through the sorted list and find the index of the layer
@@ -102,13 +102,13 @@ namespace SC4CartographerUI
                                 {
                                     // If the closest index that we found is the start or end of the list then we just
                                     // use that colour uniformaly
-                                    c = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
+                                    brush.Color = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
                                 }
                                 else
                                 {
                                     // If we are not at the start or end of the list we are safe to fetch the previous index
                                     // and map the value to a color between the 2 closest color layers 
-                                    c = Helper.MapColor(
+                                    brush.Color = Helper.MapColor(
                                         height,
                                         sortedTerrainList[currentBestIndex - 1].height,
                                         sortedTerrainList[currentBestIndex].height,
@@ -119,11 +119,11 @@ namespace SC4CartographerUI
                             else
                             {
                                 // Just paint the color of the layer we are in
-                                c = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
+                                brush.Color = parameters.ColorDictionary[sortedTerrainList[currentBestIndex].colorObject];
                             }
 
                             // Paint the actual grid
-                            g.FillRectangle(new SolidBrush(c), rect);
+                            g.FillRectangle(brush, rect);
                         }
                     }
                 }
