@@ -746,6 +746,7 @@
             this.AppearanceGroupBox.Controls.Add(this.ShowGridLinesCheckbox);
             this.AppearanceGroupBox.Controls.Add(this.ColorsTabControl);
             this.AppearanceGroupBox.Controls.Add(this.VisibleObjectsTreeView);
+            this.AppearanceGroupBox.Enabled = false;
             this.AppearanceGroupBox.Location = new System.Drawing.Point(875, 27);
             this.AppearanceGroupBox.Name = "AppearanceGroupBox";
             this.AppearanceGroupBox.Size = new System.Drawing.Size(295, 714);
