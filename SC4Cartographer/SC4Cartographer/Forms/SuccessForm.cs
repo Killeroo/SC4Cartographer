@@ -19,8 +19,7 @@ namespace SC4CartographerUI
         {
             InitializeComponent();
             this.Text = title;
-            MainTextLabel.Text = line1;
-            ExtraTextLabel.Text = line2;
+            PathTextBox.Text = line1 + Environment.NewLine + line2;
             FilePath = path;
 
             if (path != "")
