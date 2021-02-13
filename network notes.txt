@@ -12,7 +12,6 @@ Enhancements:
 - Load without lot file present
 - retain zoomed in when changing params
 - Add default transport colour
-- Make road colours more readable or the same
 - TODOs
 - better layout between appearance code
 - Disable scroll wheel over numeric values

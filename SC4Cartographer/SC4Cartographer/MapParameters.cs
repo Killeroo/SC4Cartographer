@@ -239,9 +239,9 @@ namespace SC4CartographerUI
             {MapColorObject.IndustrialMid, Color.FromArgb(198, 183, 51)},
             {MapColorObject.IndustrialLow, Color.FromArgb(208, 208, 48)},
 
-            {MapColorObject.Street, Color.FromArgb(147, 147, 146) },
-            {MapColorObject.Road, Color.FromArgb(126, 126, 126)},
-            {MapColorObject.OneWayRoad, Color.FromArgb(102, 102, 102)},
+            {MapColorObject.Street, Color.FromArgb(192, 192, 192) },
+            {MapColorObject.Road, Color.FromArgb(192, 192, 192)},
+            {MapColorObject.OneWayRoad, Color.FromArgb(192, 192, 192)},
             {MapColorObject.Avenue, Color.FromArgb(192, 192, 192)},
             {MapColorObject.Railway, Color.FromArgb(179, 24, 21)},
             {MapColorObject.Subway, Color.FromArgb(120, 0, 180)},
