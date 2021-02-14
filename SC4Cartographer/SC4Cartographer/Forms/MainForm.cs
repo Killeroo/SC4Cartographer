@@ -137,6 +137,9 @@ namespace SC4CartographerUI
         /// </summary>
         public void GenerateMapPreview(bool newMap)
         {
+            // Change cursor to indicate that we are working on the preview
+            this.Cursor = Cursors.WaitCursor;
+
             // Dispose of any old map previews before generating the new ones
             originalMapPreviewBitmap?.Dispose();
             zoomedMapPreviewBitmap?.Dispose();
@@ -150,6 +153,9 @@ namespace SC4CartographerUI
             {
                 forceRecenter = true;
             }
+
+            // Reset cursor 
+            this.Cursor = Cursors.Default;
 
             if (newMap)
             {
@@ -360,9 +366,13 @@ namespace SC4CartographerUI
 
             try
             {
-                // Get the bitmap (this time we actually generate it from what the user inputted
-                // not what we needed when we were generating the preview)
-                //Bitmap outBitmap = MapRenderer.CreateMapBitmap(map.Save, map.Parameters);
+                // Set a nice lil waiting cursor
+                this.Cursor = Cursors.WaitCursor;
+
+                // So the original map preview we use is actually the true map
+                // that the user has generated with their intended colours and such
+                // so instead of generating another we just save that map to a file 
+                // (this saves ALOT of memory for bigger maps)
 
                 // Actually save out the image
                 switch (map.Parameters.OutputFormat)
@@ -375,8 +385,8 @@ namespace SC4CartographerUI
                         break;
                 }
 
-                // Dispose of bitmap now that we have used it
-                //outBitmap.Dispose();
+                // Change back cursor
+                this.Cursor = Cursors.Default;
 
                 // Show form when successfully created
                 var mapCreatedForm = new SuccessForm(
@@ -391,6 +401,9 @@ namespace SC4CartographerUI
             }
             catch (Exception e)
             {
+                // Change back cursor
+                this.Cursor = Cursors.Default;
+
                 var errorForm = new ErrorForm(
                     "Error saving map",
                     $"There was an error trying to save a map to '{path}'. Please check that you can access and save to that folder and try again.",
@@ -511,11 +524,16 @@ namespace SC4CartographerUI
             // Don't zoom in on anything that is already ridiculously big
             if (newSize.Width > MAX_ZOOM_SIZE)
             {
+                // Recursively reset zoom until we reach a more 'restrained' zoom size
+                // TODO: Check this, I don't think it works
                 zoomFactor--;
                 ZoomTrackBar.Value--;
                 ZoomImage(center);
                 return;
             }
+
+            // add nice lil wait cursor
+            this.Cursor = Cursors.WaitCursor;
 
             zoomedMapPreviewBitmap?.Dispose(); // Delete old zoomed in image
             zoomedMapPreviewBitmap = new Bitmap(originalMapPreviewBitmap, newSize);
@@ -528,6 +546,9 @@ namespace SC4CartographerUI
             {
                 MapPictureBox.Image = zoomedMapPreviewBitmap;
             }
+
+            // reset cursor
+            this.Cursor = Cursors.Default;
 
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
