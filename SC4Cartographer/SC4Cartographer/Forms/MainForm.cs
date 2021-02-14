@@ -1104,7 +1104,7 @@ namespace SC4CartographerUI
         {
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
-                fileDialog.Title = "Load SimCity 4 save game";
+                fileDialog.Title = "Load SimCity 4 Save Game";
                 fileDialog.InitialDirectory = SavePathTextbox.Text;
                 fileDialog.RestoreDirectory = true;
                 fileDialog.CheckFileExists = true;
@@ -1205,33 +1205,6 @@ namespace SC4CartographerUI
 
                 successForm.StartPosition = FormStartPosition.CenterParent;
                 successForm.ShowDialog();
-            }
-        }
-
-        private void toolStripMenuItem8_Click(object sender, EventArgs e)
-        {
-            SaveMapParametersWithDialog();
-        }
-
-        private void toolStripMenuItem7_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog fileDialog = new OpenFileDialog())
-            {
-                fileDialog.Title = "Load SC4Cartographer map properties";
-                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.RestoreDirectory = true;
-                fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    // Load new parameters and regenerate preview
-                    LoadMapParameters(fileDialog.FileName);
-
-                    // Only update preview if a map is loaded 
-                    if (mapLoaded)
-                        GenerateMapPreview(false);
-                }
             }
         }
 
@@ -2514,19 +2487,6 @@ namespace SC4CartographerUI
             }
         }
 
-        private void RestoreDefaultsButton_Click(object sender, EventArgs e)
-        {
-            MapCreationParameters pristineParameters = new MapCreationParameters();
-
-            // Copy over the output path
-            // TODO: Watch it....
-            // TODO: need common method for resetting and setting ui
-            pristineParameters.OutputPath = map.Parameters.OutputPath;
-
-            SetAppearanceUIValuesUsingParameters(pristineParameters);
-            SetAndUpdateMapCreationParameters(pristineParameters);
-        }
-
         private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
@@ -3583,6 +3543,46 @@ namespace SC4CartographerUI
             zoomFactor = 1;
             ZoomTrackBar.Value = 0;
             ZoomImage(true);
+        }
+
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveMapParametersWithDialog();
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+            {
+                fileDialog.Title = "Load SC4Cartographer map properties";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.RestoreDirectory = true;
+                fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    // Load new parameters and regenerate preview
+                    LoadMapParameters(fileDialog.FileName);
+
+                    // Only update preview if a map is loaded 
+                    if (mapLoaded)
+                        GenerateMapPreview(false);
+                }
+            }
+        }
+
+        private void restoreDefaultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MapCreationParameters pristineParameters = new MapCreationParameters();
+
+            // Copy over the output path
+            // TODO: Watch it....
+            // TODO: need common method for resetting and setting ui
+            pristineParameters.OutputPath = map.Parameters.OutputPath;
+
+            SetAppearanceUIValuesUsingParameters(pristineParameters);
+            SetAndUpdateMapCreationParameters(pristineParameters);
         }
     }
 }

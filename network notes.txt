@@ -1,7 +1,7 @@
 Tasks:
 
 [zoom: 1 hour max
-Cleanup zoom functions, check bitmap size (in opposite direction), get slider values to look nicer]
+Cleanup zoom functions, check bitmap size (in opposite direction), get slider values to look nicer, control scroll]
 
 Bugs:
 - Error while loading proper_terrain_for_non_maped.sc4cart
