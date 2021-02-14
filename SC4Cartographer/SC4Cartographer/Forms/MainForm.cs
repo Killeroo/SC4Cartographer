@@ -26,49 +26,76 @@ using System.Text.RegularExpressions;
 
 namespace SC4CartographerUI
 {
+
+    /// <summary>
+    /// Map struct contains current save and map creation parameters
+    /// Bundled together for convience
+    /// </summary>
+    struct Map
+    {
+        public SC4SaveFile Save;
+        public MapCreationParameters Parameters;
+    }
+
     public partial class MainForm : Form
     {
-        struct Map
-        {
-            public SC4SaveFile Save;
-            public MapCreationParameters Parameters;
-        }
+        private const int MAX_ZOOM_SIZE = 10000;
+        private const string SC4PARSER_VERSION = "v1.0.0.0";
 
-        string RootSimCitySavePath = Path.Combine(
+        /// <summary>
+        /// Currently loaded map
+        /// </summary>
+        private Map map = new Map();
+
+        /// <summary>
+        /// Map Bitmaps used for preview and for actually saving to a file
+        /// mapBitmap is what the map is created using the MapCreationParameters
+        /// zoomedMapBitmap is mapBitmap zoomed in depending on the zoomFactor
+        /// </summary>
+        private Bitmap mapBitmap; 
+        private Bitmap zoomedMapBitmap;
+
+        /// <summary>
+        /// FileLogger is the logger that SC4Parser uses to log out internal goings on
+        /// </summary>
+        private FileLogger fileLogger = null;
+
+        /// <summary> 
+        /// Locally cached data from our currently loaded save game
+        /// Used when getting pixel data from map
+        /// (saves excessive logging calls that happen when using map.Save directly)
+        /// </summary>
+        private float[][] terrainData = null;
+        private List<Lot> zoneData = null;
+
+        /// <summary>
+        /// GC timer is set off when a map preview is generated, it is used to cleanup any old map data when a new 
+        /// bitmap is generated
+        /// </summary>
+        private Timer garbageCollectorCleanupTimer = new System.Timers.Timer(1000);
+
+        /// <summary>
+        /// Root to look for simcity save games in
+        /// </summary>
+        private string rootSimCitySavePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            "Documents", 
-            "SimCity 4", 
+            "Documents",
+            "SimCity 4",
             "Regions");
 
-        private const int MAX_ZOOM_SIZE = 10000;
-
-        private Map map = new Map();
-        private Bitmap originalMapPreviewBitmap; 
-        private Bitmap zoomedMapPreviewBitmap; 
-        private bool previewZoomed = false;
         private bool mapLoaded = false;
         private bool forceRecenter = false;
         private int oldSegmentSize = 0;
-
         private int zoomFactor = 1;
-
-        private RichTextBoxLogger logger = null;
-        private FileLogger fileLogger = null;
-
-        // Locally cached data from our currently loaded save game
-        // Used when getting pixel data from map
-        // (saves excessive logging calls that happen when using map.Save directly)
-        private float[][] terrainData = null;
-        private List<Lot> zoneData = null;
 
         public MainForm()
         {
             InitializeComponent();
 
             // Setup cleanup timer
-            cleanupTimer = new System.Timers.Timer(4000);
-            cleanupTimer.AutoReset = false;
-            cleanupTimer.Elapsed += OnCleanupTimerElapsed;
+            garbageCollectorCleanupTimer = new System.Timers.Timer(4000);
+            garbageCollectorCleanupTimer.AutoReset = false;
+            garbageCollectorCleanupTimer.Elapsed += OnCleanupTimerElapsed;
 
             // Setup parser logger
             //logger = new RichTextBoxLogger(LogTextBox);
@@ -98,118 +125,124 @@ namespace SC4CartographerUI
             LoadMapParameters(path);
         }
 
-        #region Core functionality
-        #endregion
+        #region Form Functionality
 
-        #region Preview and Save game functionality
-        // TODO: Seperate out
-
-        System.Timers.Timer cleanupTimer = new System.Timers.Timer(1000);
+        #region Core Functionality
 
         /// <summary>
-        /// Sets map creation parameters and refreshes preview
+        /// Common function that saves out a map to a file
         /// </summary>
-        /// <param name="parameters"></param>
-        public void SetAndUpdateMapCreationParameters(MapCreationParameters parameters)
+        public void SaveMap(string path, string name)
         {
-            map.Parameters = parameters;
-
-            // Add wait cursor
-            this.Cursor = Cursors.WaitCursor;
-
-            GenerateMapPreview(false);
-
-            // Reset cursor 
-            this.Cursor = Cursors.Default;
-
-            // Call garbage collector to cleanup anything left over from generating new preview
-            // gets a bit spammy sometimes.... man modern constructs like GC have made me weak
-            // and this is almost certainly not a good move
-            // but.....
-
-            if (cleanupTimer.Enabled == false)
+            // If the directory path is empty then use our current location
+            if (string.IsNullOrEmpty(path))
             {
-                cleanupTimer.Enabled = true;
-            }
-        }
-
-        private void OnCleanupTimerElapsed(Object source, ElapsedEventArgs e)
-        {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
-
-        /// <summary>
-        /// Generates and sets preview map image on form
-        /// </summary>
-        public void GenerateMapPreview(bool newMap)
-        {
-            // Dispose of any old map previews before generating the new ones
-            originalMapPreviewBitmap?.Dispose();
-            zoomedMapPreviewBitmap?.Dispose();
-
-            // Generate normal preview image
-            MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
-            originalMapPreviewBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
-
-            // Recenter the image if the size has changed
-            if (oldSegmentSize != map.Parameters.GridSegmentSize)
-            {
-                forceRecenter = true;
+                path = Directory.GetCurrentDirectory();
             }
 
-            if (newMap)
-            {
-                // If loading a new map we reset the zoom values
-                ZoomTrackBar.Value = 0;
-                zoomFactor = 1;
-            }
-
-            // Set image
-            MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            if (zoomFactor != 1)
-            {
-                ZoomImage(forceRecenter);
-            }
-            else
-            {
-                if (forceRecenter)
-                {
-                    CenterPictureBox(MapPictureBox, originalMapPreviewBitmap);
-                }
-                else
-                {
-
-                    MapPictureBox.Image = originalMapPreviewBitmap;
-                }
-            }
-
-            forceRecenter = false;
-
-            // Setup toolstrip details
-            Process proc = Process.GetCurrentProcess();
-            MemoryUsedToolStripStatusLabel.Text = $"Memory used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
-            MapSizeToolStripStatusLabel.Text = $"Size: {originalMapPreviewBitmap.Width.ToString()} x {originalMapPreviewBitmap.Height.ToString()}px";
-
-            oldSegmentSize = map.Parameters.GridSegmentSize;
-        }
-
-        /// <summary>
-        /// Check if a save has the subfile we need, if it does then we can load it
-        /// if not avoid it otherwise SC4Parsernwill throw an exception
-        /// </summary>
-        public bool CheckSaveCanLoad(string path)
-        {
+            // Try to get a full path to save to
+            string filePath = "";
             try
             {
-                SC4SaveFile save = new SC4SaveFile(path);
-                save.GetLotSubfile();
-                return true;
+                filePath = Path.Combine(path, name);
             }
-            catch (Exception)
+            catch (ArgumentException e)
             {
-                return false;
-            } 
+                var errorForm = new ErrorForm(
+                    "Error saving map",
+                    $"Could resolve path to save map to. Please check the output path and try again.",
+                    e,
+                    false);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
+
+            // Check path exists
+            if (Directory.Exists(path) == false)
+            {
+                var errorForm = new ErrorForm(
+                    "Error saving map",
+                    $"Could not save map, the path \"{path}\" does not exist or is invalid.",
+                    new DirectoryNotFoundException("The path \"{path}\" does not exist or is invalid."),
+                    false);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
+
+            // Get current extension
+            string extension = "";
+            switch (map.Parameters.OutputFormat)
+            {
+                case OutFormat.PNG:
+                    extension = ".png";
+                    break;
+                case OutFormat.JPEG:
+                    extension = ".jpg";
+                    break;
+            }
+
+            string currentFilename = filePath + extension;
+            currentFilename = Helper.GenerateFilename(currentFilename);
+
+            try
+            {
+                // Set a nice lil waiting cursor
+                this.Cursor = Cursors.WaitCursor;
+
+                // So the original map preview we use is actually the true map
+                // that the user has generated with their intended colours and such
+                // so instead of generating another we just save that map to a file 
+                // (this saves ALOT of memory for bigger maps)
+
+                // Actually save out the image
+                switch (map.Parameters.OutputFormat)
+                {
+                    case OutFormat.PNG:
+                        mapBitmap.Save(currentFilename, ImageFormat.Png);
+                        break;
+                    case OutFormat.JPEG:
+                        mapBitmap.Save(currentFilename, ImageFormat.Jpeg);
+                        break;
+                }
+
+                // Change back cursor
+                this.Cursor = Cursors.Default;
+
+                // Show form when successfully created
+                var mapCreatedForm = new SuccessForm(
+                    "Map Saved",
+                    $"Map '{Path.GetFileName(currentFilename)}' has been successfully saved to:",
+                    Path.GetDirectoryName(currentFilename),
+                    currentFilename);
+
+                mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+                mapCreatedForm.ShowDialog();
+
+            }
+            catch (Exception e)
+            {
+                // Change back cursor
+                this.Cursor = Cursors.Default;
+
+                var errorForm = new ErrorForm(
+                    "Error saving map",
+                    $"There was an error trying to save a map to '{path}'. Please check that you can access and save to that folder and try again.",
+                    e,
+                    false);
+
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+            }
+
+            // Cleanup any stuff after saving (these bitmaps can take up a fair amount of memory)
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         /// <summary>
@@ -296,7 +329,7 @@ namespace SC4CartographerUI
 
             // Set window title
             this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
-                
+
             EnableMapButtons();
 
             mapLoaded = true;
@@ -306,6 +339,109 @@ namespace SC4CartographerUI
             //GC.WaitForPendingFinalizers();
         }
 
+        /// <summary>
+        /// Generates and sets preview map image on form
+        /// </summary>
+        public void GenerateMapPreview(bool newMap)
+        {
+            // Dispose of any old map previews before generating the new ones
+            mapBitmap?.Dispose();
+            zoomedMapBitmap?.Dispose();
+
+            // Generate normal preview image
+            MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
+            mapBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
+
+            // Recenter the image if the size has changed
+            if (oldSegmentSize != map.Parameters.GridSegmentSize)
+            {
+                forceRecenter = true;
+            }
+
+            if (newMap)
+            {
+                // If loading a new map we reset the zoom values
+                ZoomTrackBar.Value = 0;
+                zoomFactor = 1;
+            }
+
+            // Set image
+            MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            if (zoomFactor != 1)
+            {
+                ZoomImage(forceRecenter);
+            }
+            else
+            {
+                if (forceRecenter)
+                {
+                    CenterPictureBox(MapPictureBox, mapBitmap);
+                }
+                else
+                {
+
+                    MapPictureBox.Image = mapBitmap;
+                }
+            }
+
+            forceRecenter = false;
+
+            // Setup toolstrip details
+            Process proc = Process.GetCurrentProcess();
+            MemoryUsedToolStripStatusLabel.Text = $"Memory used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
+            MapSizeToolStripStatusLabel.Text = $"Size: {mapBitmap.Width.ToString()} x {mapBitmap.Height.ToString()}px";
+
+            oldSegmentSize = map.Parameters.GridSegmentSize;
+        }
+
+        /// <summary>
+        /// Sets map creation parameters and refreshes preview
+        /// </summary>
+        /// <param name="parameters"></param>
+        public void SetAndUpdateMapCreationParameters(MapCreationParameters parameters)
+        {
+            map.Parameters = parameters;
+
+            // Add wait cursor
+            this.Cursor = Cursors.WaitCursor;
+
+            GenerateMapPreview(false);
+
+            // Reset cursor 
+            this.Cursor = Cursors.Default;
+
+            // Call garbage collector to cleanup anything left over from generating new preview
+            // gets a bit spammy sometimes.... man modern constructs like GC have made me weak
+            // and this is almost certainly not a good move
+            // but.....
+
+            if (garbageCollectorCleanupTimer.Enabled == false)
+            {
+                garbageCollectorCleanupTimer.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// We don't want these buttons to be enabled when nothing is loaded
+        /// </summary>
+        private void EnableMapButtons()
+        {
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
+            SaveButton.Enabled = true;
+
+            AppearanceGroupBox.Enabled = true;
+
+            ResetZoomButton.Enabled = true;
+            ZoomTrackBar.Enabled = true;
+
+            OpenTextLabel.Visible = false;
+        }
+
+        /// <summary>
+        /// Generates a default name for a map that is being saved
+        /// </summary>
+        /// <returns></returns>
         public string GenerateDefaultMapFilename()
         {
             string savefile = Path.GetFileNameWithoutExtension(map.Save.FilePath);
@@ -314,142 +450,100 @@ namespace SC4CartographerUI
         }
 
         /// <summary>
-        /// Common function that saves out a map to a file
+        /// Check if a save has the subfile we need, if it does then we can load it
+        /// if not avoid it otherwise SC4Parsernwill throw an exception
         /// </summary>
-        public void SaveMap(string path, string name)
+        public bool CheckSaveCanLoad(string path)
         {
-            // If the directory path is empty then use our current location
-            if (string.IsNullOrEmpty(path))
-            {
-                path = Directory.GetCurrentDirectory();
-            }
-
-            // Try to get a full path to save to
-            string filePath = "";
             try
             {
-                filePath = Path.Combine(path, name);
+                SC4SaveFile save = new SC4SaveFile(path);
+                save.GetLotSubfile();
+                return true;
             }
-            catch(ArgumentException e)
+            catch (Exception)
             {
-                var errorForm = new ErrorForm(
-                    "Error saving map",
-                    $"Could resolve path to save map to. Please check the output path and try again.",
-                    e,
-                    false);
-
-                errorForm.StartPosition = FormStartPosition.CenterParent;
-                errorForm.ShowDialog();
-
-                return;
+                return false;
             }
+        }
 
-            // Check path exists
-            if (Directory.Exists(path) == false)
-            {
-                var errorForm = new ErrorForm(
-                    "Error saving map",
-                    $"Could not save map, the path \"{path}\" does not exist or is invalid.",
-                    new DirectoryNotFoundException("The path \"{path}\" does not exist or is invalid."),
-                    false);
-
-                errorForm.StartPosition = FormStartPosition.CenterParent;
-                errorForm.ShowDialog();
-
-                return;
-            }
-
-            // Get current extension
-            string extension = "";
-            switch (map.Parameters.OutputFormat)
-            {
-                case OutFormat.PNG:
-                    extension = ".png";
-                    break;
-                case OutFormat.JPEG:
-                    extension = ".jpg";
-                    break;
-            }
-
-            string currentFilename = filePath + extension;
-            currentFilename = Helper.GenerateFilename(currentFilename);
+        /// <summary>
+        /// Searches through a folder and returns a random SC4 savegame 
+        /// </summary>
+        /// <returns></returns>
+        private string FindRandomSavegameFileInPath(string path)
+        {
+            Random rand = new Random();
+            List<string> savegames = new List<string>();
 
             try
             {
-                // Set a nice lil waiting cursor
-                this.Cursor = Cursors.WaitCursor;
-
-                // So the original map preview we use is actually the true map
-                // that the user has generated with their intended colours and such
-                // so instead of generating another we just save that map to a file 
-                // (this saves ALOT of memory for bigger maps)
-
-                // Actually save out the image
-                switch (map.Parameters.OutputFormat)
+                foreach (string dir in Directory.GetDirectories(path))
                 {
-                    case OutFormat.PNG:
-                        originalMapPreviewBitmap.Save(currentFilename, ImageFormat.Png);
-                        break;
-                    case OutFormat.JPEG:
-                        originalMapPreviewBitmap.Save(currentFilename, ImageFormat.Jpeg);
-                        break;
+                    foreach (string file in Directory.GetFiles(dir))
+                    {
+                        if (file.ToLower().Contains(".sc4")
+                            && !file.Contains("City - New City")
+                            && !file.Contains("Tutorial"))
+                        {
+                            savegames.Add(file);
+                        }
+                    }
                 }
-
-                // Change back cursor
-                this.Cursor = Cursors.Default;
-
-                // Show form when successfully created
-                var mapCreatedForm = new SuccessForm(
-                    "Map Saved",
-                    $"Map '{Path.GetFileName(currentFilename)}' has been successfully saved to:",
-                    Path.GetDirectoryName(currentFilename),
-                    currentFilename);
-
-                mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
-                mapCreatedForm.ShowDialog();
-
             }
-            catch (Exception e)
-            {
-                // Change back cursor
-                this.Cursor = Cursors.Default;
+            catch (Exception e) { }
+            // TODO: Handle this exception, put in log
 
-                var errorForm = new ErrorForm(
-                    "Error saving map",
-                    $"There was an error trying to save a map to '{path}'. Please check that you can access and save to that folder and try again.",
-                    e,
-                    false);
+            return savegames[rand.Next(savegames.Count)];
+        }
 
-                errorForm.StartPosition = FormStartPosition.CenterParent;
-                errorForm.ShowDialog();
-            }
-
-            // Cleanup any stuff after saving (these bitmaps can take up a fair amount of memory)
+        /// <summary>
+        /// Cleanup timer code, calls GC 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void OnCleanupTimerElapsed(Object source, ElapsedEventArgs e)
+        {
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
 
-        public void SaveMapParametersWithDialog()
+        /// <summary>
+        /// Callback called when check for update (call to github to fetch info about latest release)
+        /// has been performed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpdateChecked(object sender, DownloadStringCompletedEventArgs e)
         {
-            // Create generic name at current directory
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "map_appearance.sc4cart");
-            filePath = Helper.GenerateFilename(filePath);
-
-            using (SaveFileDialog fileDialog = new SaveFileDialog())
+            // If we encounter an error then silently continue
+            if (e.Error != null)
             {
-                fileDialog.Title = "Save SC4Cartographer map properties";
-                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.FileName = Path.GetFileName(filePath);
-                fileDialog.RestoreDirectory = true;
-                //fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    SaveMapParameters(fileDialog.FileName);
-                }
+                return;
+            }
+
+            UpdateInfo info = null;
+            try
+            {
+                info = new UpdateInfo(e.Result);
+            }
+            catch (Exception)
+            {
+                // Again this parser _might_ fail so we want to silently continue for an auto update
+                // (oh well)
+                return;
+            }
+
+            if (info.NewVersionAvailable)
+            {
+                var updateFormat = new UpdateForm(info);
+                updateFormat.ShowDialog();
             }
         }
+
+        #endregion
+
+        #region Menu Strip Functionality
 
         /// <summary>
         /// Common function called when saving map parameters/properties/appearance to a file
@@ -512,109 +606,36 @@ namespace SC4CartographerUI
             }
         }
 
-        private void ZoomImage(bool center)
+        public void SaveMapParametersWithDialog()
         {
-            if (zoomFactor == 1)
+            // Create generic name at current directory
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "map_appearance.sc4cart");
+            filePath = Helper.GenerateFilename(filePath);
+
+            using (SaveFileDialog fileDialog = new SaveFileDialog())
             {
-                CenterPictureBox(MapPictureBox, originalMapPreviewBitmap);
-                return;
+                fileDialog.Title = "Save SC4Cartographer map properties";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.FileName = Path.GetFileName(filePath);
+                fileDialog.RestoreDirectory = true;
+                //fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    SaveMapParameters(fileDialog.FileName);
+                }
             }
-
-            Size newSize = new Size();
-            if (zoomFactor < 0)
-            {
-                newSize = new Size((int)(originalMapPreviewBitmap.Width / Math.Abs(zoomFactor)), (int)(originalMapPreviewBitmap.Height / Math.Abs(zoomFactor)));
-            }
-            else
-            {
-                newSize = new Size((int)(originalMapPreviewBitmap.Width * zoomFactor), (int)(originalMapPreviewBitmap.Height * zoomFactor));
-            }
-
-            
-            // Don't zoom in on anything that is already ridiculously big
-            if (newSize.Width > MAX_ZOOM_SIZE)
-            {
-                // Recursively reset zoom until we reach a more 'restrained' zoom size
-                // TODO: Check this, I don't think it works
-                zoomFactor--;
-                ZoomTrackBar.Value--;
-                ZoomImage(center);
-                return;
-            }
-
-            // add nice lil wait cursor
-            this.Cursor = Cursors.WaitCursor;
-
-            zoomedMapPreviewBitmap?.Dispose(); // Delete old zoomed in image
-            zoomedMapPreviewBitmap = new Bitmap(originalMapPreviewBitmap, newSize);
-
-            if (center)
-            {
-                CenterPictureBox(MapPictureBox, zoomedMapPreviewBitmap);
-            }
-            else
-            {
-                MapPictureBox.Image = zoomedMapPreviewBitmap;
-            }
-
-            // reset cursor
-            this.Cursor = Cursors.Default;
-
-            //GC.Collect();
-            //GC.WaitForPendingFinalizers();
         }
 
-        /// <summary>
-        /// Switch between zoomed and normal images
-        /// </summary>
-        public void TogglePreviewImage()
-        {
-            // Don't mess with the picture box if nothing is loaded 
-            if (mapLoaded == false)
-                return;
+        #endregion
 
-            previewZoomed = !previewZoomed;
-
-            // Don't show preview image if the grid size is already bigger than the zoomed in size
-            if (map.Parameters.GridSegmentSize > 10)
-            {
-                return;
-            }
-
-            Size newSize = new Size((int)(originalMapPreviewBitmap.Width * zoomFactor), (int)(originalMapPreviewBitmap.Height * zoomFactor));
-            MapPictureBox.Image = new Bitmap(originalMapPreviewBitmap, newSize);
-
-            //if (previewZoomed)
-            //{
-            //    CenterPictureBox(MapPictureBox, previewZoomedMapBitmap);
-            //}
-            //else
-            //{
-            //    CenterPictureBox(MapPictureBox, previewNormalMapBitmap);
-            //}
-        }
+        #region Save Games Control Functionality
 
         /// <summary>
-        /// We don't want these buttons to be enabled when nothing is loaded
+        /// Rebuilds Save Game tree view and its contents
         /// </summary>
-        private void EnableMapButtons()
-        {
-            saveToolStripMenuItem.Enabled = true;
-            saveAsToolStripMenuItem.Enabled = true;
-            SaveButton.Enabled = true;
-
-            AppearanceGroupBox.Enabled = true;
-
-            ResetZoomButton.Enabled = true;
-            ZoomTrackBar.Enabled = true;
-
-            OpenTextLabel.Visible = false;
-        }
-
-        /// <summary>
-        /// Rebuilds tree view and its contents
-        /// </summary>
-        private void RefreshTreeView()
+        private void RefreshSaveGamesTreeView()
         {
             // Clear the tree
             FileTreeView.Nodes.Clear();
@@ -690,622 +711,12 @@ namespace SC4CartographerUI
             }
         }
 
-        /// <summary>
-        /// Searches through a folder and returns a random SC4 savegame 
-        /// </summary>
-        /// <returns></returns>
-        private string FindRandomSavegameFileInPath(string path)
-        {
-            Random rand = new Random();
-            List<string> savegames = new List<string>();
-
-            try
-            {
-                foreach (string dir in Directory.GetDirectories(path))
-                {
-                    foreach (string file in Directory.GetFiles(dir))
-                    {
-                        if (file.ToLower().Contains(".sc4")
-                            && !file.Contains("City - New City")
-                            && !file.Contains("Tutorial"))
-                        {
-                            savegames.Add(file);
-                        }
-                    }
-                }
-            }
-            catch (Exception e) { }
-            // TODO: Handle this exception, put in log
-
-            return savegames[rand.Next(savegames.Count)];
-        }
-
-        /// <summary>
-        /// Callback called when check for update (call to github to fetch info about latest release)
-        /// has been performed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUpdateChecked(object sender, DownloadStringCompletedEventArgs e)
-        {
-            // If we encounter an error then silently continue
-            if (e.Error != null)
-            {
-                return;
-            }
-
-            UpdateInfo info = null;
-            try
-            {
-                info = new UpdateInfo(e.Result);
-            }
-            catch (Exception) 
-            {
-                // Again this parser _might_ fail so we want to silently continue for an auto update
-                // (oh well)
-                return;
-            }
-
-            if (info.NewVersionAvailable)
-            {
-                var updateFormat = new UpdateForm(info);
-                updateFormat.ShowDialog();
-            }
-        }
-
-        /// <summary>
-        /// Center bitmap inside picture box (amazing)
-        /// Source: https://stackoverflow.com/a/9383029
-        /// </summary>
-        /// <param name="picBox"></param>
-        /// <param name="picImage"></param>
-        private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
-        {
-            // Set image
-            MapPictureBox.Image = picImage;
-
-            // Center scroll bars
-            panel1.AutoScrollPosition =
-                new Point
-                {
-                    X = (MapPictureBox.Width - panel1.Width) / 2,
-                    Y = (MapPictureBox.Height - panel1.Height) / 2
-                };
-
-            // Center image in picturebox
-            picBox.Location = new Point((picBox.Parent.ClientSize.Width / 2) - (picImage.Width / 2),
-                                        (picBox.Parent.ClientSize.Height / 2) - (picImage.Height / 2));
-            picBox.Refresh();
-        }
-
-        /// <summary>
-        /// Gets information for a specific pixel on the map. Returned as a string
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        private string GetMapPixelInfo(int x, int y)
-        {
-            // If we are zoomed in don't both getting map pixel info
-            // it will be wrong and be time consuming;
-            if (zoomFactor > 1)
-                return "";
-
-            string result = "";
-
-            int cityX = 0;
-            int cityY = 0;
-
-            // Don't try and fetch any details if nothing is loaded
-            if (mapLoaded == false)
-                return "";
-
-            if (previewZoomed)
-            {
-                cityX = x / 10;
-                cityY = y / 10;
-            }
-            else
-            {
-                // Work out coordinates on map
-                cityX = x / map.Parameters.GridSegmentSize;
-                cityY = y / map.Parameters.GridSegmentSize;
-            }
-
-            result = $"Mouse: {x}, {y}px (tile: {cityX}x, {cityY}z) ";
-
-            try
-            {
-                result += $" (height: {terrainData[cityY][cityX]})";
-            }
-            catch (IndexOutOfRangeException) { } // Silently continue when we accidently get a range outside of the terrain map bounds 
-
-            // See if there is any zone data on that segment
-            foreach (Lot lot in zoneData)
-            {
-                for (int lotZ = lot.MinTileZ; lotZ <= lot.MaxTileZ; lotZ++)
-                {
-                    if (lotZ == cityY)
-                    {
-                        for (int lotX = lot.MinTileX; lotX <= lot.MaxTileX; lotX++)
-                        {
-                            if (lotX == cityX)
-                            {
-                                result += $" (zone: {SC4Parser.Constants.LOT_ZONE_TYPE_STRINGS[lot.ZoneType]} [{SC4Parser.Constants.LOT_ZONE_WEALTH_STRINGS[lot.ZoneWealth]}])";
-                            }
-                        }
-                    }
-                }
-            }
-
-            return result;
-        }
-
         #endregion
 
-        #region Savegames and Preview Callbacks
-        // TODO: Seperate out
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            string name = GenerateDefaultMapFilename();
-            SaveMap(map.Parameters.OutputPath, name);
-        }
+        #region Appearance Controls Functionality
 
         /// <summary>
-        /// When main form loads
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            // Load a random map on open
-            //logger = new RichTextBoxLogger(LogTextBox);
-            if (Directory.Exists(RootSimCitySavePath))
-            {
-                bool validSaveFound = false;
-                string path = "";
-
-                // Find a save that will load without errors (probably doesn't have a lot subfile :/)
-                while (validSaveFound == false)
-                {
-                    SavePathTextbox.Text = RootSimCitySavePath;
-                    path = FindRandomSavegameFileInPath(RootSimCitySavePath);
-                    if (CheckSaveCanLoad(path))
-                    {
-                        validSaveFound = true;
-                    }
-                }
-
-                // Found a good save, load it
-                LoadSaveGame(path);
-            }
-            else
-            {
-                SavePathTextbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            }
-
-            // Set current path as output path
-            map.Parameters.OutputPath = Directory.GetCurrentDirectory();
-
-
-            // Check for update on startup
-            if (Properties.Settings.Default.IgnoreUpdatePrompts == false)
-            {
-                UpdateChecker.GetLatestReleaseInfoAsync(OnUpdateChecked);
-            }
-        }
-
-        /// <summary>
-        /// Populates FileTreeView when SavegamePathTextbox's text changes
-        /// </summary>
-        private void SavePathTextbox_TextChanged(object sender, EventArgs e)
-        {
-            // Clear the tree
-            FileTreeView.Nodes.Clear();
-
-            // If entered directory doesnt exist, dont bother rendering tree
-            if (!Directory.Exists(SavePathTextbox.Text))
-                return;
-
-            // Get folders and files
-            string[] dirs = Directory.GetDirectories(SavePathTextbox.Text);
-            string[] files = Directory.GetFiles(SavePathTextbox.Text);
-
-            foreach (string dir in dirs)
-            {
-                DirectoryInfo di = new DirectoryInfo(dir);
-                TreeNode node = new TreeNode(di.Name, 0, 1);
-
-                try
-                {
-                    node.Tag = dir;  //keep the directory's full path in the tag for use later
-
-                    //if the directory has any sub directories add the place holder
-                    if (di.GetFiles().Count() > 0 || di.GetDirectories().Count() > 0)//GetDirectories().Count() > 0) di.GetDirectories().Count() > 0)
-                        node.Nodes.Add(null, "...", 0, 0);
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    //if an unauthorized access exception occured display a locked folder
-                    node.ImageIndex = 12;
-                    node.SelectedImageIndex = 12;
-                }
-                catch (Exception ex)
-                {
-                    ErrorForm form = new ErrorForm(
-                        "Directory tree error",
-                        "An error occured while trying to populate save game file tree.",
-                        ex,
-                        false);
-
-                    form.StartPosition = FormStartPosition.CenterParent;
-                    form.ShowDialog();
-                }
-                finally
-                {
-                    FileTreeView.Nodes.Add(node);
-                }
-            }
-
-            foreach (string file in files)
-            {
-                // Creat new node with file name
-                TreeNode node = new TreeNode(Path.GetFileName(file), 0, 1);
-
-                // Display file image on node
-                node.ImageIndex = 13;
-                node.SelectedImageIndex = 13;
-                node.Tag = file;
-
-                // Only show files with sc4 extension and don't show cities that haven't been
-                // founded yet
-                if (file.Contains(".sc4"))
-                    //&& !file.Contains("City - New City ("))
-                {
-                    if (FilterNewCitiesCheckbox.Checked 
-                        && file.Contains("City - New City"))
-                    {
-                        continue;
-                    }
-
-                    // Add to node
-                    FileTreeView.Nodes.Add(node);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Generates a list of files and folders and adds them to the FileTreeView as nodes are expanded
-        /// </summary>
-        private void FileTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node.Nodes.Count > 0)
-            {
-                if (e.Node.Nodes[0].Text == "..." && e.Node.Nodes[0].Tag == null)
-                {
-                    e.Node.Nodes.Clear();
-
-                    // get the list of sub directories & files
-                    string[] dirs = Directory.GetDirectories(e.Node.Tag.ToString());
-                    string[] files = Directory.GetFiles(e.Node.Tag.ToString());
-
-                    foreach (string dir in dirs)
-                    {
-                        DirectoryInfo di = new DirectoryInfo(dir);
-                        TreeNode node = new TreeNode(di.Name, 0, 1);
-
-                        try
-                        {
-                            //keep the directory's full path in the tag for use later
-                            node.Tag = dir;
-
-                            //if the directory has any sub directories add the place holder
-                            if (di.GetFiles().Count() > 0 || di.GetDirectories().Count() > 0)//GetDirectories().Count() > 0)
-                                node.Nodes.Add(null, "...", 0, 0);
-                        }
-                        catch (UnauthorizedAccessException)
-                        {
-                            //if an unauthorized access exception occured display a locked folder
-                            node.ImageIndex = 12;
-                            node.SelectedImageIndex = 12;
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorForm form = new ErrorForm(
-                                "Directory tree error",
-                                "An error occured while trying to populate save game file tree.",
-                                ex,
-                                false);
-
-                            form.StartPosition = FormStartPosition.CenterParent;
-                            form.ShowDialog();
-                        }
-                        finally
-                        {
-                            e.Node.Nodes.Add(node);
-                        }
-                    }
-
-                    foreach (string file in files)
-                    {
-                        // Creat new node with file name
-                        TreeNode node = new TreeNode(Path.GetFileName(file), 0, 1);
-
-                        // Display file image on node
-                        node.ImageIndex = 13;
-                        node.SelectedImageIndex = 13;
-                        node.Tag = file;
-
-                        // Only show files with sc4 extension and don't show cities that haven't been
-                        // founded yet
-                        if (file.Contains(".sc4") )
-                            //&& !file.Contains("City - New City (")
-                        {
-                            if (FilterNewCitiesCheckbox.Checked
-                                && file.Contains("City - New City"))
-                            {
-                                continue;
-                            }
-
-                            // Add to node
-                            e.Node.Nodes.Add(node);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void LogTextBox_TextChanged(object sender, EventArgs e)
-        {
-            // Set caret position to end of current text
-            //LogTextBox.SelectionStart = LogTextBox.Text.Length;
-
-            // Scroll to bottom automatically
-            //LogTextBox.ScrollToCaret();
-        }
-
-        private void PropertiesButton_Click(object sender, EventArgs e)
-        {
-
-            // Generate map again
-            //LoadSaveGame(mapCreationParameters.SaveFile.FilePath);
-        }
-
-        /// <summary>
-        /// Load a file from the tree view
-        /// </summary>
-        private void FileTreeView_OnNodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            // Check the node we have clicked on is a file
-            // (check the image index that we have set earlier, this is the easiest way)
-            if (e.Node.ImageIndex == 13)
-            {
-                
-                LoadSaveGame((string) e.Node.Tag);
-
-            }
-        }
-
-        private void FileBrowserButton_Click(object sender, EventArgs e)
-        {
-            // Create folder browser dialog
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
-            {
-                folderDialog.SelectedPath = SavePathTextbox.Text;
-                if (folderDialog.ShowDialog(this) == DialogResult.OK)
-                    SavePathTextbox.Text = folderDialog.SelectedPath;
-            }
-        }
-
-        private void MapPictureBox_Clicked(object sender, EventArgs e)
-        {
-            TogglePreviewImage();
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string name = GenerateDefaultMapFilename();
-            SaveMap(map.Parameters.OutputPath, name);
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog fileDialog = new SaveFileDialog())
-            {
-                fileDialog.Title = "Save SimCity 4 map";
-                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.RestoreDirectory = true;
-                //fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                //fileDialog.Filter = "Simcity 4 save files (*.sc4)|*.sc4";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    SaveMap(Path.GetDirectoryName(fileDialog.FileName), Path.GetFileNameWithoutExtension(fileDialog.FileName));
-                }
-            }
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void savegameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog fileDialog = new OpenFileDialog())
-            {
-                fileDialog.Title = "Load SimCity 4 Save Game";
-                fileDialog.InitialDirectory = SavePathTextbox.Text;
-                fileDialog.RestoreDirectory = true;
-                fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "Simcity 4 save file (*.sc4)|*.sc4";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                    LoadSaveGame(fileDialog.FileName);
-            }
-        }
-
-        private void folderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Create folder browser dialog
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
-            {
-                folderDialog.SelectedPath = SavePathTextbox.Text;
-                if (folderDialog.ShowDialog(this) == DialogResult.OK)
-                    SavePathTextbox.Text = folderDialog.SelectedPath;
-            }
-        }
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var mapCreatedForm = new AboutBox();
-            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
-            mapCreatedForm.ShowDialog();
-        }
-
-        private void FilterNewCitiesCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshTreeView();
-        }
-
-        private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Version v = Assembly.GetExecutingAssembly().GetName().Version;
-            string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
-            version = version.Replace(' ', '+');
-            string parserVersion = "SC4Parser+v1.0.0.0";
-
-            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---------%0A" + version + "%0A" + parserVersion;
-            System.Diagnostics.Process.Start(issueLink);
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var mapCreatedForm = new AboutBox();
-            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
-            mapCreatedForm.ShowDialog();
-        }
-       
-        private void projectWebpageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://github.com/killeroo/SC4Cartographer");
-        }
-       
-        private void toolStripMenuItem6_Click(object sender, EventArgs e)
-        {
-            var mapCreatedForm = new LogForm(fileLogger.LogPath, fileLogger.Created);
-            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
-            mapCreatedForm.ShowDialog();
-        }
-
-        private void UpdatesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateInfo info = null;
-
-            try
-            {
-                // Try and fetch latest release info from github
-                info = UpdateChecker.GetLatestReleaseInfo();
-            }
-            catch (Exception ex)
-            {
-                var errorForm = new ErrorForm(
-                    "Error fetching SC4Cartographer update info",
-                    $"Could not get current release information from github.",
-                    ex, 
-                    false);
-                errorForm.StartPosition = FormStartPosition.CenterParent;
-                errorForm.ShowDialog();
-
-                return;
-            }
-
-            if (info.NewVersionAvailable)
-            {
-                var updateFormat = new UpdateForm(info);
-                updateFormat.ShowDialog();
-            }
-            else
-            {
-
-                var successForm = new SuccessForm(
-                    "Up to date!",
-                    "You are using the most recent version of SC4Cartographer.", 
-                    "");
-
-                successForm.StartPosition = FormStartPosition.CenterParent;
-                successForm.ShowDialog();
-            }
-        }
-
-        private void MapPictureBox_MouseMove(object sender, MouseEventArgs e)
-        {
-            MousePositionToolStripStatusLabel.Text = GetMapPixelInfo(e.X, e.Y);
-        }
-
-        private void MapPictureBox_MouseLeave(object sender, EventArgs e)
-        {
-            MousePositionToolStripStatusLabel.Text = "";
-        }
-
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            // Don't mess with picture box if nothing is loaded
-            if (mapLoaded == false)
-                return;
-
-            if (zoomFactor != 1)
-            {
-                CenterPictureBox(MapPictureBox, zoomedMapPreviewBitmap);
-            }
-            else
-            {
-                CenterPictureBox(MapPictureBox, originalMapPreviewBitmap);
-            }
-        }
-
-        private void MainForm_ResizeBegin(object sender, EventArgs e)
-        {
-            ShowAppearanceTabUI(false);
-        }
-
-        private void MainForm_ResizeEnd(object sender, EventArgs e)
-        {
-            ShowAppearanceTabUI(true);
-        }
-
-        #endregion
-
-
-        #region Appearance Group Functionality
-
-        private void ShowAppearanceTabUI(bool show)
-        {
-            VisibleObjectsTreeView.Visible = show;
-            ColorsTabControl.Visible = show;
-            GridSegmentSizeLabel.Visible = show;
-            SegmentOffsetLabel.Visible = show;
-            SegmentPaddingLabel.Visible = show;
-            OutputFormatLabel.Visible = show;
-            OutputPathLabel.Visible = show;
-            PixelLabel1.Visible = show;
-            PixelLabel2.Visible = show;
-            PixelLabel3.Visible = show;
-            GridSegmentSizeNumericUpDown.Visible = show;
-            SegmentOffsetNumericUpDown.Visible = show;
-            SegmentPaddingNumericUpDown.Visible = show;
-            SegmentOffsetLabel.Visible = show;
-            ShowGridLinesCheckbox.Visible = show;
-            ShowZoneOutlinesCheckbox.Visible = show;
-            BlendTerrainColorsCheckBox.Visible = show;
-            PNGRadioButton.Visible = show;
-            JPEGRadioButton.Visible = show;
-            OutputPathTextbox.Visible = show;
-            EditOutputPathButton.Visible = show;
-        }
-
-        /// <summary>
+        /// Register all appearance UI events 
         /// We seperated out registering events from their components creation so we can set the UI values without having 
         /// their callbacks fire
         /// </summary>
@@ -1441,6 +852,14 @@ namespace SC4CartographerUI
             this.TerrainLayer23NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
         }
 
+        /// <summary>
+        /// Sets the appearance UI items from a given MapCreationParameters object
+        /// The map appearance UI works by loading in a given MapCreationParameter object and it's values into the appearance
+        /// UI controls, the user then modifies the ui controls, the ui controls are then turned into a MapCreationParameter object
+        /// that is used to generate the map. This function is a key part of this and is used to convert from a parameters object to ui values
+        /// modifi
+        /// </summary>
+        /// <param name="parameters"></param>
         private void SetAppearanceUIValuesUsingParameters(MapCreationParameters parameters)
         {
             // Fill zone stuff
@@ -1731,6 +1150,15 @@ namespace SC4CartographerUI
             VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
 
         }
+
+        /// <summary>
+        /// Creates a MapCreationParameter object from the current appearance UI values
+        /// 
+        /// The map appearance UI works by loading in a given MapCreationParameter object and it's values into the appearance
+        /// UI controls, the user then modifies the ui controls, the ui controls are then turned into a MapCreationParameter object
+        /// that is used to generate the map. This function is a key part of this and is used to convert from UI to a parameters object
+        /// </summary>
+        /// <returns></returns>
         private MapCreationParameters GetParametersFromAppearanceUIValues()
         {
             MapCreationParameters parameters = new MapCreationParameters();
@@ -1832,6 +1260,42 @@ namespace SC4CartographerUI
             return parameters;
         }
 
+        /// <summary>
+        /// Toggle visiblity of appearance controls, used for hidding appearance UI for performance
+        /// </summary>
+        /// <param name="show"></param>
+        private void ShowAppearanceTabUI(bool show)
+        {
+            VisibleObjectsTreeView.Visible = show;
+            ColorsTabControl.Visible = show;
+            GridSegmentSizeLabel.Visible = show;
+            SegmentOffsetLabel.Visible = show;
+            SegmentPaddingLabel.Visible = show;
+            OutputFormatLabel.Visible = show;
+            OutputPathLabel.Visible = show;
+            PixelLabel1.Visible = show;
+            PixelLabel2.Visible = show;
+            PixelLabel3.Visible = show;
+            GridSegmentSizeNumericUpDown.Visible = show;
+            SegmentOffsetNumericUpDown.Visible = show;
+            SegmentPaddingNumericUpDown.Visible = show;
+            SegmentOffsetLabel.Visible = show;
+            ShowGridLinesCheckbox.Visible = show;
+            ShowZoneOutlinesCheckbox.Visible = show;
+            BlendTerrainColorsCheckBox.Visible = show;
+            PNGRadioButton.Visible = show;
+            JPEGRadioButton.Visible = show;
+            OutputPathTextbox.Visible = show;
+            EditOutputPathButton.Visible = show;
+        }
+
+        #region Appearance Visible layers TreeView functionality
+
+        /// <summary>
+        /// Populate visible layers tree view with objects from MapCreationParameters
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="objects"></param>
         public void PopulateLayersTreeView(TreeNodeCollection nodes, List<MapObject> objects)
         {
             foreach (TreeNode node in nodes)
@@ -1995,6 +1459,11 @@ namespace SC4CartographerUI
             }
         }
 
+        /// <summary>
+        /// Parse a visible layers tree view and extract any checked visible objects
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <returns></returns>
         public List<MapObject> ParseLayersTreeView(TreeNodeCollection nodes)
         {
             List<MapObject> objects = new List<MapObject>();
@@ -2082,6 +1551,11 @@ namespace SC4CartographerUI
             return objects;
         }
 
+        /// <summary>
+        /// Checks a tree node's parent
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="check"></param>
         private void CheckParent(TreeNode parent, bool check)
         {
             if (parent == null)
@@ -2090,6 +1564,11 @@ namespace SC4CartographerUI
             parent.Checked = check;
         }
 
+        /// <summary>
+        /// Check all nodes in a tree view
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="check"></param>
         private void CheckAllNodes(TreeNodeCollection nodes, bool check)
         {
             foreach (TreeNode node in nodes)
@@ -2103,6 +1582,11 @@ namespace SC4CartographerUI
             }
         }
 
+        /// <summary>
+        /// Check all parent nodes of a node
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="check"></param>
         private void CheckAllParents(TreeNode parent, bool check)
         {
             parent.Checked = check;
@@ -2113,6 +1597,11 @@ namespace SC4CartographerUI
             }
         }
 
+        /// <summary>
+        /// Checks if sibling nodes are checked
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <returns></returns>
         private bool AreSiblingsChecked(TreeNodeCollection nodes)
         {
             bool isChecked = false;
@@ -2130,7 +1619,815 @@ namespace SC4CartographerUI
 
         #endregion
 
-        #region Appearance Group Callbacks
+        #endregion
+
+        #region Map zoom and center functionality
+
+        /// <summary>
+        /// Applies zoom to map bitmap, used zoomFactor variable to set zoom
+        /// </summary>
+        /// <param name="center"></param>
+        private void ZoomImage(bool center)
+        {
+            if (zoomFactor == 1)
+            {
+                CenterPictureBox(MapPictureBox, mapBitmap);
+                return;
+            }
+
+            Size newSize = new Size();
+            if (zoomFactor < 0)
+            {
+                newSize = new Size((int)(mapBitmap.Width / Math.Abs(zoomFactor)), (int)(mapBitmap.Height / Math.Abs(zoomFactor)));
+            }
+            else
+            {
+                newSize = new Size((int)(mapBitmap.Width * zoomFactor), (int)(mapBitmap.Height * zoomFactor));
+            }
+
+
+            // Don't zoom in on anything that is already ridiculously big
+            if (newSize.Width > MAX_ZOOM_SIZE)
+            {
+                // Recursively reset zoom until we reach a more 'restrained' zoom size
+                // TODO: Check this, I don't think it works
+                zoomFactor--;
+                ZoomTrackBar.Value--;
+                ZoomImage(center);
+                return;
+            }
+
+            // add nice lil wait cursor
+            this.Cursor = Cursors.WaitCursor;
+
+            zoomedMapBitmap?.Dispose(); // Delete old zoomed in image
+            zoomedMapBitmap = new Bitmap(mapBitmap, newSize);
+
+            if (center)
+            {
+                CenterPictureBox(MapPictureBox, zoomedMapBitmap);
+            }
+            else
+            {
+                MapPictureBox.Image = zoomedMapBitmap;
+            }
+
+            // reset cursor
+            this.Cursor = Cursors.Default;
+
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
+        }
+
+        /// <summary>
+        /// Center bitmap inside picture box (amazing)
+        /// Source: https://stackoverflow.com/a/9383029
+        /// </summary>
+        /// <param name="picBox"></param>
+        /// <param name="picImage"></param>
+        private void CenterPictureBox(PictureBox picBox, Bitmap picImage)
+        {
+            // Set image
+            MapPictureBox.Image = picImage;
+
+            // Center scroll bars
+            panel1.AutoScrollPosition =
+                new Point
+                {
+                    X = (MapPictureBox.Width - panel1.Width) / 2,
+                    Y = (MapPictureBox.Height - panel1.Height) / 2
+                };
+
+            // Center image in picturebox
+            picBox.Location = new Point((picBox.Parent.ClientSize.Width / 2) - (picImage.Width / 2),
+                                        (picBox.Parent.ClientSize.Height / 2) - (picImage.Height / 2));
+            picBox.Refresh();
+        }
+
+        #endregion
+
+        #region Status Strip Functionality
+
+        /// <summary>
+        /// Gets information for a specific pixel on the map. Returned as a string
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        private string GetMapPixelInfo(int x, int y)
+        {
+            // If we are zoomed in don't both getting map pixel info
+            // it will be wrong and be time consuming;
+            if (zoomFactor > 1)
+                return "";
+
+            string result = "";
+
+            int cityX = 0;
+            int cityY = 0;
+
+            // Don't try and fetch any details if nothing is loaded
+            if (mapLoaded == false)
+                return "";
+
+            // Work out coordinates on map
+            cityX = x / map.Parameters.GridSegmentSize;
+            cityY = y / map.Parameters.GridSegmentSize;
+
+            result = $"Mouse: {x}, {y}px (tile: {cityX}x, {cityY}z) ";
+
+            try
+            {
+                result += $" (height: {terrainData[cityY][cityX]})";
+            }
+            catch (IndexOutOfRangeException) { } // Silently continue when we accidently get a range outside of the terrain map bounds 
+
+            // See if there is any zone data on that segment
+            foreach (Lot lot in zoneData)
+            {
+                for (int lotZ = lot.MinTileZ; lotZ <= lot.MaxTileZ; lotZ++)
+                {
+                    if (lotZ == cityY)
+                    {
+                        for (int lotX = lot.MinTileX; lotX <= lot.MaxTileX; lotX++)
+                        {
+                            if (lotX == cityX)
+                            {
+                                result += $" (zone: {SC4Parser.Constants.LOT_ZONE_TYPE_STRINGS[lot.ZoneType]} [{SC4Parser.Constants.LOT_ZONE_WEALTH_STRINGS[lot.ZoneWealth]}])";
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region UI Events
+
+        #region MainForm Events
+
+        /// <summary>
+        /// When main form loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Load a random map on open
+            //logger = new RichTextBoxLogger(LogTextBox);
+            if (Directory.Exists(rootSimCitySavePath))
+            {
+                bool validSaveFound = false;
+                string path = "";
+
+                // Find a save that will load without errors (probably doesn't have a lot subfile :/)
+                while (validSaveFound == false)
+                {
+                    SavePathTextbox.Text = rootSimCitySavePath;
+                    path = FindRandomSavegameFileInPath(rootSimCitySavePath);
+                    if (CheckSaveCanLoad(path))
+                    {
+                        validSaveFound = true;
+                    }
+                }
+
+                // Found a good save, load it
+                LoadSaveGame(path);
+            }
+            else
+            {
+                SavePathTextbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            }
+
+            // Set current path as output path
+            map.Parameters.OutputPath = Directory.GetCurrentDirectory();
+
+
+            // Check for update on startup
+            if (Properties.Settings.Default.IgnoreUpdatePrompts == false)
+            {
+                UpdateChecker.GetLatestReleaseInfoAsync(OnUpdateChecked);
+            }
+        }
+
+        /// <summary>
+        /// MainForm resize event, whenever the main form is resized we recenter the map so it is in the center of
+        /// the picture box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            // Don't mess with picture box if nothing is loaded
+            if (mapLoaded == false)
+                return;
+
+            // Work out if we should be showing the zoomed or normal bitmap
+            if (zoomFactor != 1)
+            {
+                CenterPictureBox(MapPictureBox, zoomedMapBitmap);
+            }
+            else
+            {
+                CenterPictureBox(MapPictureBox, mapBitmap);
+            }
+        }
+
+        /// <summary>
+        /// Resize begin event, we use this to hide the appearance tab when the form is being moved
+        /// or resize. We do this for performance reasons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_ResizeBegin(object sender, EventArgs e)
+        {
+            ShowAppearanceTabUI(false);
+        }
+
+        /// <summary>
+        /// Resize end event, we use this to show the appearance tab again once the window is done being moved.
+        /// Again, we hide it in the first place for performance reasons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            ShowAppearanceTabUI(true);
+        }
+
+        #endregion
+
+        #region Menu Strip Events
+
+        /// <summary>
+        /// Save map menu strip button (saves map with default name)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = GenerateDefaultMapFilename();
+            SaveMap(map.Parameters.OutputPath, name);
+        }
+
+        /// <summary>
+        /// Map Save as menu strip button (save file with dialog)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog fileDialog = new SaveFileDialog())
+            {
+                fileDialog.Title = "Save SimCity 4 map";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.RestoreDirectory = true;
+                //fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                //fileDialog.Filter = "Simcity 4 save files (*.sc4)|*.sc4";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    SaveMap(Path.GetDirectoryName(fileDialog.FileName), Path.GetFileNameWithoutExtension(fileDialog.FileName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Exit menu strip item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Load save game menu strip item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void savegameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+            {
+                fileDialog.Title = "Load SimCity 4 Save Game";
+                fileDialog.InitialDirectory = SavePathTextbox.Text;
+                fileDialog.RestoreDirectory = true;
+                fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "Simcity 4 save file (*.sc4)|*.sc4";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                    LoadSaveGame(fileDialog.FileName);
+            }
+        }
+
+        /// <summary>
+        /// Open folder menu strip item (opens folder in save game section)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void folderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create folder browser dialog
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.SelectedPath = SavePathTextbox.Text;
+                if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                    SavePathTextbox.Text = folderDialog.SelectedPath;
+            }
+        }
+
+        /// <summary>
+        /// Menu item that allows you to report a bug on github
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Version v = Assembly.GetExecutingAssembly().GetName().Version;
+            string version = Assembly.GetExecutingAssembly().GetName().Name + " v" + v.Major + "." + v.Minor + "." + v.Build + " (r" + v.Revision + ") ";
+            version = version.Replace(' ', '+');
+            string parserVersion = "SC4Parser+" + SC4PARSER_VERSION;
+
+            string issueLink = @"https://github.com/killeroo/SC4Cartographer/issues/new?body=%0A%0A%0A---------%0A" + version + "%0A" + parserVersion;
+            System.Diagnostics.Process.Start(issueLink);
+        }
+
+        /// <summary>
+        /// About menu item, opens about form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mapCreatedForm = new AboutBox();
+            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+            mapCreatedForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Project webpage item, opens project page in browser
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void projectWebpageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/killeroo/SC4Cartographer");
+        }
+
+        /// <summary>
+        /// Show log item, opens log form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            var mapCreatedForm = new LogForm(fileLogger.LogPath, fileLogger.Created);
+            mapCreatedForm.StartPosition = FormStartPosition.CenterParent;
+            mapCreatedForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Update item, opens up dialog to check if an update is available
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateInfo info = null;
+
+            try
+            {
+                // Try and fetch latest release info from github
+                info = UpdateChecker.GetLatestReleaseInfo();
+            }
+            catch (Exception ex)
+            {
+                var errorForm = new ErrorForm(
+                    "Error fetching SC4Cartographer update info",
+                    $"Could not get current release information from github.",
+                    ex,
+                    false);
+                errorForm.StartPosition = FormStartPosition.CenterParent;
+                errorForm.ShowDialog();
+
+                return;
+            }
+
+            if (info.NewVersionAvailable)
+            {
+                var updateFormat = new UpdateForm(info);
+                updateFormat.ShowDialog();
+            }
+            else
+            {
+
+                var successForm = new SuccessForm(
+                    "Up to date!",
+                    "You are using the most recent version of SC4Cartographer.",
+                    "");
+
+                successForm.StartPosition = FormStartPosition.CenterParent;
+                successForm.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Save map parameters menu strip item for saving current map parameters to a file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveMapParametersWithDialog();
+        }
+
+        /// <summary>
+        /// Load map properties menu strip item, opens dialog to load map parameters from a file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+            {
+                fileDialog.Title = "Load SC4Cartographer map properties";
+                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                fileDialog.RestoreDirectory = true;
+                fileDialog.CheckFileExists = true;
+                fileDialog.CheckPathExists = true;
+                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                if (fileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    // Load new parameters and regenerate preview
+                    LoadMapParameters(fileDialog.FileName);
+
+                    // Change cursor to indicate that we are working on the preview
+                    this.Cursor = Cursors.WaitCursor;
+
+                    // Only update preview if a map is loaded 
+                    if (mapLoaded)
+                        GenerateMapPreview(false);
+
+                    // Reset cursor 
+                    this.Cursor = Cursors.Default;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Restore menu strip item to restore map appearances to defaults
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void restoreDefaultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MapCreationParameters pristineParameters = new MapCreationParameters();
+
+            // Copy over the output path
+            // TODO: Watch it....
+            // TODO: need common method for resetting and setting ui
+            pristineParameters.OutputPath = map.Parameters.OutputPath;
+
+            SetAppearanceUIValuesUsingParameters(pristineParameters);
+            SetAndUpdateMapCreationParameters(pristineParameters);
+        }
+
+
+        #endregion
+
+        #region Save Button Event
+
+        /// <summary>
+        /// Event for save button click, creates a default name and saves the map to the inputted output path
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            string name = GenerateDefaultMapFilename();
+            SaveMap(map.Parameters.OutputPath, name);
+        }
+
+        #endregion
+
+        #region Zoom Controls Events
+
+        /// <summary>
+        /// Initiates zoom when mouse click is release while on zoom track bar
+        /// We do this on mouse up for performance, instead of everytime a value on bar changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomTrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            //zoomFactor = ZoomTrackBar.Value;
+            if (ZoomTrackBar.Value < 0)
+            {
+                zoomFactor = ZoomTrackBar.Value - 1;
+            }
+            else if (ZoomTrackBar.Value >= 0)
+            {
+                zoomFactor = ZoomTrackBar.Value + 1;
+            }
+
+            ZoomImage(true);
+        }
+
+        /// <summary>
+        /// Resets current zoom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResetZoomButton_Click(object sender, EventArgs e)
+        {
+            zoomFactor = 1;
+            ZoomTrackBar.Value = 0;
+            ZoomImage(true);
+        }
+
+
+        #endregion
+
+        #region MapPictureBox Events
+
+        /// <summary>
+        /// Mouse move event for picture box, used to populate info on bottom tool strip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionToolStripStatusLabel.Text = GetMapPixelInfo(e.X, e.Y);
+        }
+
+        /// <summary>
+        /// Mouse leave event used to reset string on bottom tool strip bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapPictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            MousePositionToolStripStatusLabel.Text = "";
+        }
+
+        #endregion
+
+        #region Save Games Control Events
+
+        /// <summary>
+        /// Populates FileTreeView when SavegamePathTextbox's text changes
+        /// </summary>
+        private void SavePathTextbox_TextChanged(object sender, EventArgs e)
+        {
+            // Clear the tree
+            FileTreeView.Nodes.Clear();
+
+            // If entered directory doesnt exist, dont bother rendering tree
+            if (!Directory.Exists(SavePathTextbox.Text))
+                return;
+
+            // Get folders and files
+            string[] dirs = Directory.GetDirectories(SavePathTextbox.Text);
+            string[] files = Directory.GetFiles(SavePathTextbox.Text);
+
+            foreach (string dir in dirs)
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+                TreeNode node = new TreeNode(di.Name, 0, 1);
+
+                try
+                {
+                    node.Tag = dir;  //keep the directory's full path in the tag for use later
+
+                    //if the directory has any sub directories add the place holder
+                    if (di.GetFiles().Count() > 0 || di.GetDirectories().Count() > 0)//GetDirectories().Count() > 0) di.GetDirectories().Count() > 0)
+                        node.Nodes.Add(null, "...", 0, 0);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //if an unauthorized access exception occured display a locked folder
+                    node.ImageIndex = 12;
+                    node.SelectedImageIndex = 12;
+                }
+                catch (Exception ex)
+                {
+                    ErrorForm form = new ErrorForm(
+                        "Directory tree error",
+                        "An error occured while trying to populate save game file tree.",
+                        ex,
+                        false);
+
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    form.ShowDialog();
+                }
+                finally
+                {
+                    FileTreeView.Nodes.Add(node);
+                }
+            }
+
+            foreach (string file in files)
+            {
+                // Creat new node with file name
+                TreeNode node = new TreeNode(Path.GetFileName(file), 0, 1);
+
+                // Display file image on node
+                node.ImageIndex = 13;
+                node.SelectedImageIndex = 13;
+                node.Tag = file;
+
+                // Only show files with sc4 extension and don't show cities that haven't been
+                // founded yet
+                if (file.Contains(".sc4"))
+                //&& !file.Contains("City - New City ("))
+                {
+                    if (FilterNewCitiesCheckbox.Checked
+                        && file.Contains("City - New City"))
+                    {
+                        continue;
+                    }
+
+                    // Add to node
+                    FileTreeView.Nodes.Add(node);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Generates a list of files and folders and adds them to the FileTreeView as nodes are expanded
+        /// </summary>
+        private void FileTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node.Nodes.Count > 0)
+            {
+                if (e.Node.Nodes[0].Text == "..." && e.Node.Nodes[0].Tag == null)
+                {
+                    e.Node.Nodes.Clear();
+
+                    // get the list of sub directories & files
+                    string[] dirs = Directory.GetDirectories(e.Node.Tag.ToString());
+                    string[] files = Directory.GetFiles(e.Node.Tag.ToString());
+
+                    foreach (string dir in dirs)
+                    {
+                        DirectoryInfo di = new DirectoryInfo(dir);
+                        TreeNode node = new TreeNode(di.Name, 0, 1);
+
+                        try
+                        {
+                            //keep the directory's full path in the tag for use later
+                            node.Tag = dir;
+
+                            //if the directory has any sub directories add the place holder
+                            if (di.GetFiles().Count() > 0 || di.GetDirectories().Count() > 0)//GetDirectories().Count() > 0)
+                                node.Nodes.Add(null, "...", 0, 0);
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            //if an unauthorized access exception occured display a locked folder
+                            node.ImageIndex = 12;
+                            node.SelectedImageIndex = 12;
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorForm form = new ErrorForm(
+                                "Directory tree error",
+                                "An error occured while trying to populate save game file tree.",
+                                ex,
+                                false);
+
+                            form.StartPosition = FormStartPosition.CenterParent;
+                            form.ShowDialog();
+                        }
+                        finally
+                        {
+                            e.Node.Nodes.Add(node);
+                        }
+                    }
+
+                    foreach (string file in files)
+                    {
+                        // Creat new node with file name
+                        TreeNode node = new TreeNode(Path.GetFileName(file), 0, 1);
+
+                        // Display file image on node
+                        node.ImageIndex = 13;
+                        node.SelectedImageIndex = 13;
+                        node.Tag = file;
+
+                        // Only show files with sc4 extension and don't show cities that haven't been
+                        // founded yet
+                        if (file.Contains(".sc4"))
+                        //&& !file.Contains("City - New City (")
+                        {
+                            if (FilterNewCitiesCheckbox.Checked
+                                && file.Contains("City - New City"))
+                            {
+                                continue;
+                            }
+
+                            // Add to node
+                            e.Node.Nodes.Add(node);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load a file from the tree view
+        /// </summary>
+        private void FileTreeView_OnNodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            // Check the node we have clicked on is a file
+            // (check the image index that we have set earlier, this is the easiest way)
+            if (e.Node.ImageIndex == 13)
+            {
+
+                LoadSaveGame((string)e.Node.Tag);
+
+            }
+        }
+
+        /// <summary>
+        /// when user clicks the browse file button 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FileBrowserButton_Click(object sender, EventArgs e)
+        {
+            // Create folder browser dialog
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.SelectedPath = SavePathTextbox.Text;
+                if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                    SavePathTextbox.Text = folderDialog.SelectedPath;
+            }
+        }
+
+        /// <summary>
+        /// Checkbox button that filters out any new cities from the SaveGames tree view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FilterNewCitiesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshSaveGamesTreeView();
+        }
+
+        #endregion
+
+        #region Appearance Control Events
+
+        #region Visible Objects TreeView Events
+
+        /// <summary>
+        /// After check event for visible objects treeview, used to check parents and children 
+        /// after a check event in tree view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VisibleObjectsTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Parent != null)
+            {
+                VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
+                if (AreSiblingsChecked(e.Node.Parent.Nodes))
+                {
+                    CheckParent(e.Node.Parent, true);
+                }
+                else
+                {
+                    CheckParent(e.Node.Parent, false);
+                }
+                VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
+            }
+            if (e.Node.Nodes.Count != 0)
+            {
+                VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
+                CheckAllNodes(e.Node.Nodes, e.Node.Checked);
+                VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
+            }
+
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        #endregion
+
+        #region Zones Tab Events
+
+        /// <summary>
+        /// Zone edit color buttons, all do the same thing.
+        /// Opens color picker, sets the color of the matching textbox to that color,
+        /// calls setandupdate parameters which regenerates the preview
+        /// </summary>
 
         private void GridBackgroundEditButton_Click(object sender, EventArgs e)
         {
@@ -2404,6 +2701,16 @@ namespace SC4CartographerUI
             }
         }
 
+        #endregion
+
+        #region Transport Tab Events
+
+        /// <summary>
+        /// Transport edit color buttons, all do the same thing.
+        /// Opens color picker, sets the color of the matching textbox to that color,
+        /// calls setandupdate parameters which regenerates the preview
+        /// </summary>
+
         private void StreetEditButton_Click(object sender, EventArgs e)
         {
             colorDialog = new ColorDialog();
@@ -2500,73 +2807,27 @@ namespace SC4CartographerUI
             }
         }
 
+        #endregion
 
-        private void EditOutputPathButton_Click(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
-            {
-                folderDialog.SelectedPath = OutputPathTextbox.Text;
-                if (folderDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    // put path into output path textbox
-                    OutputPathTextbox.Text = folderDialog.SelectedPath;
+        #region Terrain Tab Events
 
-                    // Set cursor to end of textbox
-                    OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
-                    OutputPathTextbox.SelectionLength = 0;
-                }
-            }
-        }
+        /// <summary>
+        /// Slightly different than zones and transport functionality.
+        /// Each terrain layer has a few items associated with them:
+        /// - Color edit button
+        /// - Alias textbox
+        /// - Enabled checkbox
+        /// - Height value numericupdown
+        /// Each works slightly differently but they all do generally the same thing as before:
+        /// When they are updated they regenerate the preview.
+        /// 
+        /// NOTE: All the callbacks for a lot of these are setup manually after the application has loaded.
+        /// this is to avoid the callbacks being fired when they are being set with values from the MapCreationParameters
+        /// 
+        /// Prepare for a lot of copy and pasting
+        /// </summary>
 
-        private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
-
-        private void SegmentPaddingNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
-
-        private void SegmentOffsetNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
-
-        private void ShowGridLinesCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
-
-        private void ShowZoneOutlinesCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
-
-        private void VisibleObjectsTreeView_AfterCheck(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node.Parent != null)
-            {
-                VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
-                if (AreSiblingsChecked(e.Node.Parent.Nodes))
-                {
-                    CheckParent(e.Node.Parent, true);
-                }
-                else
-                {
-                    CheckParent(e.Node.Parent, false);
-                }
-                VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
-            }
-            if (e.Node.Nodes.Count != 0)
-            {
-                VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
-                CheckAllNodes(e.Node.Nodes, e.Node.Checked);
-                VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
-            }
-
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
+        #region Terrain Tab CheckBox Events
 
         private void TerrainLayer1CheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -2589,7 +2850,7 @@ namespace SC4CartographerUI
         }
 
         private void TerrainLayer2CheckBox_CheckedChanged(object sender, EventArgs e)
-        {            
+        {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
             if (enabledItems.Count == 1)
@@ -3028,6 +3289,10 @@ namespace SC4CartographerUI
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
 
+        #endregion
+
+        #region Terrain Tab NumericUpDown Events
+
         private void TerrainLayer1NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
@@ -3067,7 +3332,7 @@ namespace SC4CartographerUI
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
-        
+
         private void TerrainLayer9NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
@@ -3097,14 +3362,17 @@ namespace SC4CartographerUI
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
+
         private void TerrainLayer15NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
+
         private void TerrainLayer16NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
+
         private void TerrainLayer17NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
@@ -3139,6 +3407,10 @@ namespace SC4CartographerUI
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
+
+        #endregion
+
+        #region Terrain Tab Button Events
 
         private void TerrainLayer1Button_click(object sender, EventArgs e)
         {
@@ -3508,6 +3780,70 @@ namespace SC4CartographerUI
             }
         }
 
+        #endregion
+
+        #endregion
+
+        #region Grid, Zone and Terrain Properties Events
+
+        /// <summary>
+        /// All pretty basic, when the value is changed they call the update preview function
+        /// 
+        /// NOTE: All the callbacks for a lot of these are setup manually after the application has loaded.
+        /// this is to avoid the callbacks being fired when they are being set with values from the MapCreationParameters
+        /// </summary>
+
+        private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void SegmentPaddingNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void SegmentOffsetNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void ShowGridLinesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void ShowZoneOutlinesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void BlendTerrainColorsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        #endregion
+
+        #region Output Events
+
+        private void EditOutputPathButton_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.SelectedPath = OutputPathTextbox.Text;
+                if (folderDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    // put path into output path textbox
+                    OutputPathTextbox.Text = folderDialog.SelectedPath;
+
+                    // Set cursor to end of textbox
+                    OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
+                    OutputPathTextbox.SelectionLength = 0;
+                }
+            }
+        }
+
         private void PNGRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (PNGRadioButton.Checked)
@@ -3526,14 +3862,18 @@ namespace SC4CartographerUI
 
         private void OutputPathTextbox_TextChanged(object sender, EventArgs e)
         {
+            // Copy over whatever is in this box to our parameter's output path
             map.Parameters.OutputPath = OutputPathTextbox.Text;
         }
 
-        private void BlendTerrainColorsCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
-        }
+        #endregion
 
+        #region Common Events
+
+        /// <summary>
+        /// A bunch of common events used by multiple ui items in appearance group
+        /// </summary>
+        
         /// <summary>
         /// Stub mouse wheel event for numeric controls, used to stop mouse wheels incrementing values of 
         /// numericupdown control too quickly
@@ -3546,79 +3886,11 @@ namespace SC4CartographerUI
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        private void ZoomTrackBar_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ZoomTrackBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            //zoomFactor = ZoomTrackBar.Value;
-            if (ZoomTrackBar.Value < 0)
-            {
-                zoomFactor = ZoomTrackBar.Value - 1;
-            }
-            else if (ZoomTrackBar.Value >= 0)
-            {
-                zoomFactor = ZoomTrackBar.Value + 1;
-            }
-
-            ZoomImage(true);
-        }
-
-        private void ResetZoomButton_Click(object sender, EventArgs e)
-        {
-            zoomFactor = 1;
-            ZoomTrackBar.Value = 0;
-            ZoomImage(true);
-        }
-
-        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            SaveMapParametersWithDialog();
-        }
-
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog fileDialog = new OpenFileDialog())
-            {
-                fileDialog.Title = "Load SC4Cartographer map properties";
-                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.RestoreDirectory = true;
-                fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    // Load new parameters and regenerate preview
-                    LoadMapParameters(fileDialog.FileName);
-
-                    // Change cursor to indicate that we are working on the preview
-                    this.Cursor = Cursors.WaitCursor;
-
-                    // Only update preview if a map is loaded 
-                    if (mapLoaded)
-                        GenerateMapPreview(false);
-
-                    // Reset cursor 
-                    this.Cursor = Cursors.Default;
-                }
-            }
-        }
-
-        private void restoreDefaultsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MapCreationParameters pristineParameters = new MapCreationParameters();
-
-            // Copy over the output path
-            // TODO: Watch it....
-            // TODO: need common method for resetting and setting ui
-            pristineParameters.OutputPath = map.Parameters.OutputPath;
-
-            SetAppearanceUIValuesUsingParameters(pristineParameters);
-            SetAndUpdateMapCreationParameters(pristineParameters);
-        }
-
+        /// <summary>
+        /// Textbox event that allows only alpha numeric values to be entered into textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBoxDisallowSpecialCharacters_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Regex expression that negatively match any characters that aren't alphanumeric
@@ -3632,7 +3904,11 @@ namespace SC4CartographerUI
 
         }
 
+        #endregion
 
         #endregion
+
+        #endregion
+
     }
 }

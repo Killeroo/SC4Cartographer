@@ -30,57 +30,57 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Plopped Building");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Military");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Airports");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Seaport");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Spaceport");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode17});
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode8,
-            treeNode12,
-            treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Streets");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Roads");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("One Way Roads");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Avenues");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Railways");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Subways");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
-            treeNode20,
-            treeNode21,
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Terrain");
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
+            treeNode55,
+            treeNode56,
+            treeNode57});
+            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
+            treeNode59,
+            treeNode60,
+            treeNode61});
+            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
+            treeNode63,
+            treeNode64,
+            treeNode65});
+            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Plopped Building");
+            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Military");
+            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Airports");
+            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Seaport");
+            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Spaceport");
+            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode67,
+            treeNode68,
+            treeNode69,
+            treeNode70,
+            treeNode71});
+            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
+            treeNode58,
+            treeNode62,
+            treeNode66,
+            treeNode72});
+            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Streets");
+            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Roads");
+            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("One Way Roads");
+            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Avenues");
+            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Railways");
+            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Subways");
+            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
+            treeNode74,
+            treeNode75,
+            treeNode76,
+            treeNode77,
+            treeNode78,
+            treeNode79});
+            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Terrain");
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OpenTextLabel = new System.Windows.Forms.Label();
@@ -102,12 +102,12 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.appearanceStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.restoreDefaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -424,7 +424,6 @@
             this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.MapPictureBox.TabIndex = 2;
             this.MapPictureBox.TabStop = false;
-            this.MapPictureBox.Click += new System.EventHandler(this.MapPictureBox_Clicked);
             this.MapPictureBox.MouseLeave += new System.EventHandler(this.MapPictureBox_MouseLeave);
             this.MapPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseMove);
             // 
@@ -528,8 +527,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.toolStripMenuItem9,
-            this.toolStripMenuItem2});
+            this.appearanceStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1182, 24);
@@ -609,16 +608,16 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem9
+            // appearanceStripMenuItem
             // 
-            this.toolStripMenuItem9.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.appearanceStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem1,
             this.loadToolStripMenuItem,
             this.toolStripSeparator6,
             this.restoreDefaultsToolStripMenuItem});
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(82, 20);
-            this.toolStripMenuItem9.Text = "Appearance";
+            this.appearanceStripMenuItem.Name = "appearanceStripMenuItem";
+            this.appearanceStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.appearanceStripMenuItem.Text = "Appearance";
             // 
             // saveToolStripMenuItem1
             // 
@@ -646,9 +645,9 @@
             this.restoreDefaultsToolStripMenuItem.Text = "Restore Defaults";
             this.restoreDefaultsToolStripMenuItem.Click += new System.EventHandler(this.restoreDefaultsToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
+            // helpToolStripMenuItem
             // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.UpdatesToolStripMenuItem,
             this.toolStripSeparator4,
             this.toolStripMenuItem3,
@@ -657,9 +656,9 @@
             this.toolStripMenuItem6,
             this.toolStripSeparator3,
             this.toolStripMenuItem5});
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
-            this.toolStripMenuItem2.Text = "Help";
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
             // 
             // UpdatesToolStripMenuItem
             // 
@@ -3199,90 +3198,90 @@
             this.VisibleObjectsTreeView.CheckBoxes = true;
             this.VisibleObjectsTreeView.Location = new System.Drawing.Point(6, 19);
             this.VisibleObjectsTreeView.Name = "VisibleObjectsTreeView";
-            treeNode1.Name = "ResidentialLowDensity";
-            treeNode1.Tag = "ResidentialLowZone";
-            treeNode1.Text = "Low Density";
-            treeNode2.Name = "ResidentialMediumDensity";
-            treeNode2.Tag = "ResidentialMidZone";
-            treeNode2.Text = "Medium Density";
-            treeNode3.Name = "ResidentialHighDensity";
-            treeNode3.Tag = "ResidentialHighZone";
-            treeNode3.Text = "High Density";
-            treeNode4.Name = "ResidentialRootNode";
-            treeNode4.Tag = "Residential";
-            treeNode4.Text = "Residential";
-            treeNode5.Name = "CommercialLowDensity";
-            treeNode5.Tag = "CommercialLowZone";
-            treeNode5.Text = "Low Density";
-            treeNode6.Name = "CommercialMediumDensity";
-            treeNode6.Tag = "CommercialMidZone";
-            treeNode6.Text = "Medium Density";
-            treeNode7.Name = "CommercialHighDensity";
-            treeNode7.Tag = "CommercialHighZone";
-            treeNode7.Text = "High Density";
-            treeNode8.Name = "CommercialRootNode";
-            treeNode8.Tag = "Commercial";
-            treeNode8.Text = "Commercial";
-            treeNode9.Name = "IndustrialLowDensity";
-            treeNode9.Tag = "IndustrialLowZone";
-            treeNode9.Text = "Low Density";
-            treeNode10.Name = "IndustrialMediumDensity";
-            treeNode10.Tag = "IndustrialMidZone";
-            treeNode10.Text = "Medium Density";
-            treeNode11.Name = "IndustrialHighDensity";
-            treeNode11.Tag = "IndustrialHighZone";
-            treeNode11.Text = "High Density";
-            treeNode12.Name = "IndustrialRootNode";
-            treeNode12.Tag = "Industrial";
-            treeNode12.Text = "Industrial";
-            treeNode13.Name = "PloppedBuildingZone";
-            treeNode13.Tag = "PloppedBuildingZone";
-            treeNode13.Text = "Plopped Building";
-            treeNode14.Name = "MilitaryZone";
-            treeNode14.Tag = "MilitaryZone";
-            treeNode14.Text = "Military";
-            treeNode15.Name = "AirportsZone";
-            treeNode15.Tag = "AirportZone";
-            treeNode15.Text = "Airports";
-            treeNode16.Name = "SeaportZones";
-            treeNode16.Tag = "SeaportZone";
-            treeNode16.Text = "Seaport";
-            treeNode17.Name = "SpaceportZone";
-            treeNode17.Tag = "SpaceportZone";
-            treeNode17.Text = "Spaceport";
-            treeNode18.Name = "Other";
-            treeNode18.Tag = "Other";
-            treeNode18.Text = "Other";
-            treeNode19.Name = "Node0";
-            treeNode19.Tag = "Zones";
-            treeNode19.Text = "Zones";
-            treeNode20.Name = "Streets";
-            treeNode20.Tag = "Streets";
-            treeNode20.Text = "Streets";
-            treeNode21.Name = "Roads";
-            treeNode21.Tag = "Roads";
-            treeNode21.Text = "Roads";
-            treeNode22.Name = "OneWayRoads";
-            treeNode22.Tag = "OneWayRoads";
-            treeNode22.Text = "One Way Roads";
-            treeNode23.Name = "Avenues";
-            treeNode23.Tag = "Avenues";
-            treeNode23.Text = "Avenues";
-            treeNode24.Name = "Railways";
-            treeNode24.Tag = "Railways";
-            treeNode24.Text = "Railways";
-            treeNode25.Name = "Subways";
-            treeNode25.Tag = "Subways";
-            treeNode25.Text = "Subways";
-            treeNode26.Name = "Node0";
-            treeNode26.Text = "Transport";
-            treeNode27.Name = "Node1";
-            treeNode27.Tag = "TerrainMap";
-            treeNode27.Text = "Terrain";
+            treeNode55.Name = "ResidentialLowDensity";
+            treeNode55.Tag = "ResidentialLowZone";
+            treeNode55.Text = "Low Density";
+            treeNode56.Name = "ResidentialMediumDensity";
+            treeNode56.Tag = "ResidentialMidZone";
+            treeNode56.Text = "Medium Density";
+            treeNode57.Name = "ResidentialHighDensity";
+            treeNode57.Tag = "ResidentialHighZone";
+            treeNode57.Text = "High Density";
+            treeNode58.Name = "ResidentialRootNode";
+            treeNode58.Tag = "Residential";
+            treeNode58.Text = "Residential";
+            treeNode59.Name = "CommercialLowDensity";
+            treeNode59.Tag = "CommercialLowZone";
+            treeNode59.Text = "Low Density";
+            treeNode60.Name = "CommercialMediumDensity";
+            treeNode60.Tag = "CommercialMidZone";
+            treeNode60.Text = "Medium Density";
+            treeNode61.Name = "CommercialHighDensity";
+            treeNode61.Tag = "CommercialHighZone";
+            treeNode61.Text = "High Density";
+            treeNode62.Name = "CommercialRootNode";
+            treeNode62.Tag = "Commercial";
+            treeNode62.Text = "Commercial";
+            treeNode63.Name = "IndustrialLowDensity";
+            treeNode63.Tag = "IndustrialLowZone";
+            treeNode63.Text = "Low Density";
+            treeNode64.Name = "IndustrialMediumDensity";
+            treeNode64.Tag = "IndustrialMidZone";
+            treeNode64.Text = "Medium Density";
+            treeNode65.Name = "IndustrialHighDensity";
+            treeNode65.Tag = "IndustrialHighZone";
+            treeNode65.Text = "High Density";
+            treeNode66.Name = "IndustrialRootNode";
+            treeNode66.Tag = "Industrial";
+            treeNode66.Text = "Industrial";
+            treeNode67.Name = "PloppedBuildingZone";
+            treeNode67.Tag = "PloppedBuildingZone";
+            treeNode67.Text = "Plopped Building";
+            treeNode68.Name = "MilitaryZone";
+            treeNode68.Tag = "MilitaryZone";
+            treeNode68.Text = "Military";
+            treeNode69.Name = "AirportsZone";
+            treeNode69.Tag = "AirportZone";
+            treeNode69.Text = "Airports";
+            treeNode70.Name = "SeaportZones";
+            treeNode70.Tag = "SeaportZone";
+            treeNode70.Text = "Seaport";
+            treeNode71.Name = "SpaceportZone";
+            treeNode71.Tag = "SpaceportZone";
+            treeNode71.Text = "Spaceport";
+            treeNode72.Name = "Other";
+            treeNode72.Tag = "Other";
+            treeNode72.Text = "Other";
+            treeNode73.Name = "Node0";
+            treeNode73.Tag = "Zones";
+            treeNode73.Text = "Zones";
+            treeNode74.Name = "Streets";
+            treeNode74.Tag = "Streets";
+            treeNode74.Text = "Streets";
+            treeNode75.Name = "Roads";
+            treeNode75.Tag = "Roads";
+            treeNode75.Text = "Roads";
+            treeNode76.Name = "OneWayRoads";
+            treeNode76.Tag = "OneWayRoads";
+            treeNode76.Text = "One Way Roads";
+            treeNode77.Name = "Avenues";
+            treeNode77.Tag = "Avenues";
+            treeNode77.Text = "Avenues";
+            treeNode78.Name = "Railways";
+            treeNode78.Tag = "Railways";
+            treeNode78.Text = "Railways";
+            treeNode79.Name = "Subways";
+            treeNode79.Tag = "Subways";
+            treeNode79.Text = "Subways";
+            treeNode80.Name = "Node0";
+            treeNode80.Text = "Transport";
+            treeNode81.Name = "Node1";
+            treeNode81.Tag = "TerrainMap";
+            treeNode81.Text = "Terrain";
             this.VisibleObjectsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode26,
-            treeNode27});
+            treeNode73,
+            treeNode80,
+            treeNode81});
             this.VisibleObjectsTreeView.Size = new System.Drawing.Size(283, 91);
             this.VisibleObjectsTreeView.TabIndex = 1;
             this.VisibleObjectsTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.VisibleObjectsTreeView_AfterCheck);
@@ -3293,20 +3292,19 @@
             this.ZoomTrackBar.AutoSize = false;
             this.ZoomTrackBar.Enabled = false;
             this.ZoomTrackBar.LargeChange = 1;
-            this.ZoomTrackBar.Location = new System.Drawing.Point(279, 714);
+            this.ZoomTrackBar.Location = new System.Drawing.Point(279, 716);
             this.ZoomTrackBar.Maximum = 4;
             this.ZoomTrackBar.Minimum = -4;
             this.ZoomTrackBar.Name = "ZoomTrackBar";
             this.ZoomTrackBar.Size = new System.Drawing.Size(141, 23);
             this.ZoomTrackBar.TabIndex = 13;
-            this.ZoomTrackBar.ValueChanged += new System.EventHandler(this.ZoomTrackBar_ValueChanged);
             this.ZoomTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ZoomTrackBar_MouseUp);
             // 
             // label18
             // 
             this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(207, 718);
+            this.label18.Location = new System.Drawing.Point(206, 719);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(59, 13);
             this.label18.TabIndex = 14;
@@ -3317,7 +3315,7 @@
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(417, 713);
+            this.label19.Location = new System.Drawing.Point(417, 715);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(17, 18);
             this.label19.TabIndex = 15;
@@ -3328,7 +3326,7 @@
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(271, 713);
+            this.label20.Location = new System.Drawing.Point(271, 715);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(13, 18);
             this.label20.TabIndex = 16;
@@ -3338,7 +3336,7 @@
             // 
             this.ResetZoomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ResetZoomButton.Enabled = false;
-            this.ResetZoomButton.Location = new System.Drawing.Point(440, 713);
+            this.ResetZoomButton.Location = new System.Drawing.Point(440, 714);
             this.ResetZoomButton.Name = "ResetZoomButton";
             this.ResetZoomButton.Size = new System.Drawing.Size(53, 23);
             this.ResetZoomButton.TabIndex = 18;
@@ -3445,7 +3443,7 @@
         private System.Windows.Forms.ToolStripMenuItem savegameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem;
         private System.Windows.Forms.Label OpenTextLabel;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
@@ -3676,7 +3674,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button ResetZoomButton;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem appearanceStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
