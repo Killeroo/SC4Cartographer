@@ -22,6 +22,7 @@ using SC4Parser.Types;
 using SC4Parser.Subfiles;
 using SC4Parser;
 using SC4Parser.Logging;
+using System.Text.RegularExpressions;
 
 namespace SC4CartographerUI
 {
@@ -113,7 +114,13 @@ namespace SC4CartographerUI
         {
             map.Parameters = parameters;
 
+            // Add wait cursor
+            this.Cursor = Cursors.WaitCursor;
+
             GenerateMapPreview(false);
+
+            // Reset cursor 
+            this.Cursor = Cursors.Default;
 
             // Call garbage collector to cleanup anything left over from generating new preview
             // gets a bit spammy sometimes.... man modern constructs like GC have made me weak
@@ -137,9 +144,6 @@ namespace SC4CartographerUI
         /// </summary>
         public void GenerateMapPreview(bool newMap)
         {
-            // Change cursor to indicate that we are working on the preview
-            this.Cursor = Cursors.WaitCursor;
-
             // Dispose of any old map previews before generating the new ones
             originalMapPreviewBitmap?.Dispose();
             zoomedMapPreviewBitmap?.Dispose();
@@ -153,9 +157,6 @@ namespace SC4CartographerUI
             {
                 forceRecenter = true;
             }
-
-            // Reset cursor 
-            this.Cursor = Cursors.Default;
 
             if (newMap)
             {
@@ -261,12 +262,21 @@ namespace SC4CartographerUI
 
             try
             {
+                // Change cursor to indicate that we are working on the preview
+                this.Cursor = Cursors.WaitCursor;
+
                 // Generate and set map preview images
                 forceRecenter = true;
                 GenerateMapPreview(true);
+
+                // Reset cursor 
+                this.Cursor = Cursors.Default;
             }
             catch (SubfileNotFoundException e)
             {
+                // Reset cursor 
+                this.Cursor = Cursors.Default;
+
                 // TODO: Exception can fire twice and cause errorform to be used twice and crash?
                 var errorForm = new ErrorForm(
                     "Error creating preview",
@@ -3536,9 +3546,6 @@ namespace SC4CartographerUI
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-
-        #endregion
-
         private void ZoomTrackBar_ValueChanged(object sender, EventArgs e)
         {
 
@@ -3586,9 +3593,15 @@ namespace SC4CartographerUI
                     // Load new parameters and regenerate preview
                     LoadMapParameters(fileDialog.FileName);
 
+                    // Change cursor to indicate that we are working on the preview
+                    this.Cursor = Cursors.WaitCursor;
+
                     // Only update preview if a map is loaded 
                     if (mapLoaded)
                         GenerateMapPreview(false);
+
+                    // Reset cursor 
+                    this.Cursor = Cursors.Default;
                 }
             }
         }
@@ -3605,5 +3618,21 @@ namespace SC4CartographerUI
             SetAppearanceUIValuesUsingParameters(pristineParameters);
             SetAndUpdateMapCreationParameters(pristineParameters);
         }
+
+        private void TextBoxDisallowSpecialCharacters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Regex expression that negatively match any characters that aren't alphanumeric
+            Regex regex = new Regex(@"[^a-zA-Z0-9\s]");
+
+            if (regex.IsMatch(e.KeyChar.ToString()))
+            {
+                // Ignore the inputted character if it matches 
+                e.Handled = true;
+            }
+
+        }
+
+
+        #endregion
     }
 }

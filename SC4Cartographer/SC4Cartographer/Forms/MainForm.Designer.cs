@@ -30,57 +30,57 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
-            treeNode28,
-            treeNode29,
-            treeNode30});
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
-            treeNode32,
-            treeNode33,
-            treeNode34});
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Low Density");
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Medium Density");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("High Density");
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
-            treeNode36,
-            treeNode37,
-            treeNode38});
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Plopped Building");
-            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Military");
-            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Airports");
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Seaport");
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Spaceport");
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
-            treeNode40,
-            treeNode41,
-            treeNode42,
-            treeNode43,
-            treeNode44});
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
-            treeNode31,
-            treeNode35,
-            treeNode39,
-            treeNode45});
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Streets");
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Roads");
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("One Way Roads");
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Avenues");
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Railways");
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Subways");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
-            treeNode47,
-            treeNode48,
-            treeNode49,
-            treeNode50,
-            treeNode51,
-            treeNode52});
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Terrain");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Residential", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Commercial", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Low Density");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Medium Density");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("High Density");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Industrial", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Plopped Building");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Military");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Airports");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Seaport");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Spaceport");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Other", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17});
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Zones", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode8,
+            treeNode12,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Streets");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Roads");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("One Way Roads");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Avenues");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Railways");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Subways");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Transport", new System.Windows.Forms.TreeNode[] {
+            treeNode20,
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Terrain");
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OpenTextLabel = new System.Windows.Forms.Label();
@@ -569,14 +569,14 @@
             // folderToolStripMenuItem
             // 
             this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.folderToolStripMenuItem.Text = "Folder...";
             this.folderToolStripMenuItem.Click += new System.EventHandler(this.folderToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(144, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(195, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -600,12 +600,12 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1876,6 +1876,7 @@
             this.TerrainLayer23AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer23AliasTextBox.TabIndex = 210;
             this.TerrainLayer23AliasTextBox.Text = "water deep";
+            this.TerrainLayer23AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer23Button
             // 
@@ -1933,6 +1934,7 @@
             this.TerrainLayer22AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer22AliasTextBox.TabIndex = 205;
             this.TerrainLayer22AliasTextBox.Text = "water deep";
+            this.TerrainLayer22AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer22Button
             // 
@@ -1990,6 +1992,7 @@
             this.TerrainLayer21AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer21AliasTextBox.TabIndex = 200;
             this.TerrainLayer21AliasTextBox.Text = "water deep";
+            this.TerrainLayer21AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer21Button
             // 
@@ -2047,6 +2050,7 @@
             this.TerrainLayer20AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer20AliasTextBox.TabIndex = 195;
             this.TerrainLayer20AliasTextBox.Text = "water deep";
+            this.TerrainLayer20AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer20Button
             // 
@@ -2104,6 +2108,7 @@
             this.TerrainLayer19AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer19AliasTextBox.TabIndex = 190;
             this.TerrainLayer19AliasTextBox.Text = "water deep";
+            this.TerrainLayer19AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer19Button
             // 
@@ -2161,6 +2166,7 @@
             this.TerrainLayer18AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer18AliasTextBox.TabIndex = 185;
             this.TerrainLayer18AliasTextBox.Text = "water deep";
+            this.TerrainLayer18AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer18Button
             // 
@@ -2218,6 +2224,7 @@
             this.TerrainLayer17AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer17AliasTextBox.TabIndex = 180;
             this.TerrainLayer17AliasTextBox.Text = "water deep";
+            this.TerrainLayer17AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer17Button
             // 
@@ -2275,6 +2282,7 @@
             this.TerrainLayer16AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer16AliasTextBox.TabIndex = 175;
             this.TerrainLayer16AliasTextBox.Text = "water deep";
+            this.TerrainLayer16AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer16Button
             // 
@@ -2332,6 +2340,7 @@
             this.TerrainLayer15AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer15AliasTextBox.TabIndex = 170;
             this.TerrainLayer15AliasTextBox.Text = "water deep";
+            this.TerrainLayer15AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer15Button
             // 
@@ -2389,6 +2398,7 @@
             this.TerrainLayer14AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer14AliasTextBox.TabIndex = 165;
             this.TerrainLayer14AliasTextBox.Text = "water deep";
+            this.TerrainLayer14AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer14Button
             // 
@@ -2446,6 +2456,7 @@
             this.TerrainLayer13AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer13AliasTextBox.TabIndex = 160;
             this.TerrainLayer13AliasTextBox.Text = "water deep";
+            this.TerrainLayer13AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer13Button
             // 
@@ -2503,6 +2514,7 @@
             this.TerrainLayer12AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer12AliasTextBox.TabIndex = 155;
             this.TerrainLayer12AliasTextBox.Text = "water deep";
+            this.TerrainLayer12AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer12Button
             // 
@@ -2560,6 +2572,7 @@
             this.TerrainLayer11AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer11AliasTextBox.TabIndex = 150;
             this.TerrainLayer11AliasTextBox.Text = "water deep";
+            this.TerrainLayer11AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer11Button
             // 
@@ -2617,6 +2630,7 @@
             this.TerrainLayer10AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer10AliasTextBox.TabIndex = 145;
             this.TerrainLayer10AliasTextBox.Text = "water deep";
+            this.TerrainLayer10AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer10Button
             // 
@@ -2674,6 +2688,7 @@
             this.TerrainLayer9AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer9AliasTextBox.TabIndex = 140;
             this.TerrainLayer9AliasTextBox.Text = "water deep";
+            this.TerrainLayer9AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer9Button
             // 
@@ -2731,6 +2746,7 @@
             this.TerrainLayer8AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer8AliasTextBox.TabIndex = 135;
             this.TerrainLayer8AliasTextBox.Text = "water deep";
+            this.TerrainLayer8AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer8Button
             // 
@@ -2788,6 +2804,7 @@
             this.TerrainLayer7AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer7AliasTextBox.TabIndex = 130;
             this.TerrainLayer7AliasTextBox.Text = "water deep";
+            this.TerrainLayer7AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer7Button
             // 
@@ -2845,6 +2862,7 @@
             this.TerrainLayer6AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer6AliasTextBox.TabIndex = 125;
             this.TerrainLayer6AliasTextBox.Text = "water deep";
+            this.TerrainLayer6AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer6Button
             // 
@@ -2902,6 +2920,7 @@
             this.TerrainLayer5AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer5AliasTextBox.TabIndex = 120;
             this.TerrainLayer5AliasTextBox.Text = "water deep";
+            this.TerrainLayer5AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer5Button
             // 
@@ -2959,6 +2978,7 @@
             this.TerrainLayer4AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer4AliasTextBox.TabIndex = 115;
             this.TerrainLayer4AliasTextBox.Text = "water deep";
+            this.TerrainLayer4AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer4Button
             // 
@@ -3016,6 +3036,7 @@
             this.TerrainLayer3AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer3AliasTextBox.TabIndex = 110;
             this.TerrainLayer3AliasTextBox.Text = "water deep";
+            this.TerrainLayer3AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer3Button
             // 
@@ -3073,6 +3094,7 @@
             this.TerrainLayer2AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer2AliasTextBox.TabIndex = 105;
             this.TerrainLayer2AliasTextBox.Text = "water deep";
+            this.TerrainLayer2AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer2Button
             // 
@@ -3130,6 +3152,7 @@
             this.TerrainLayer1AliasTextBox.Size = new System.Drawing.Size(72, 20);
             this.TerrainLayer1AliasTextBox.TabIndex = 100;
             this.TerrainLayer1AliasTextBox.Text = "water deep";
+            this.TerrainLayer1AliasTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisallowSpecialCharacters_KeyPress);
             // 
             // TerrainLayer1Button
             // 
@@ -3176,90 +3199,90 @@
             this.VisibleObjectsTreeView.CheckBoxes = true;
             this.VisibleObjectsTreeView.Location = new System.Drawing.Point(6, 19);
             this.VisibleObjectsTreeView.Name = "VisibleObjectsTreeView";
-            treeNode28.Name = "ResidentialLowDensity";
-            treeNode28.Tag = "ResidentialLowZone";
-            treeNode28.Text = "Low Density";
-            treeNode29.Name = "ResidentialMediumDensity";
-            treeNode29.Tag = "ResidentialMidZone";
-            treeNode29.Text = "Medium Density";
-            treeNode30.Name = "ResidentialHighDensity";
-            treeNode30.Tag = "ResidentialHighZone";
-            treeNode30.Text = "High Density";
-            treeNode31.Name = "ResidentialRootNode";
-            treeNode31.Tag = "Residential";
-            treeNode31.Text = "Residential";
-            treeNode32.Name = "CommercialLowDensity";
-            treeNode32.Tag = "CommercialLowZone";
-            treeNode32.Text = "Low Density";
-            treeNode33.Name = "CommercialMediumDensity";
-            treeNode33.Tag = "CommercialMidZone";
-            treeNode33.Text = "Medium Density";
-            treeNode34.Name = "CommercialHighDensity";
-            treeNode34.Tag = "CommercialHighZone";
-            treeNode34.Text = "High Density";
-            treeNode35.Name = "CommercialRootNode";
-            treeNode35.Tag = "Commercial";
-            treeNode35.Text = "Commercial";
-            treeNode36.Name = "IndustrialLowDensity";
-            treeNode36.Tag = "IndustrialLowZone";
-            treeNode36.Text = "Low Density";
-            treeNode37.Name = "IndustrialMediumDensity";
-            treeNode37.Tag = "IndustrialMidZone";
-            treeNode37.Text = "Medium Density";
-            treeNode38.Name = "IndustrialHighDensity";
-            treeNode38.Tag = "IndustrialHighZone";
-            treeNode38.Text = "High Density";
-            treeNode39.Name = "IndustrialRootNode";
-            treeNode39.Tag = "Industrial";
-            treeNode39.Text = "Industrial";
-            treeNode40.Name = "PloppedBuildingZone";
-            treeNode40.Tag = "PloppedBuildingZone";
-            treeNode40.Text = "Plopped Building";
-            treeNode41.Name = "MilitaryZone";
-            treeNode41.Tag = "MilitaryZone";
-            treeNode41.Text = "Military";
-            treeNode42.Name = "AirportsZone";
-            treeNode42.Tag = "AirportZone";
-            treeNode42.Text = "Airports";
-            treeNode43.Name = "SeaportZones";
-            treeNode43.Tag = "SeaportZone";
-            treeNode43.Text = "Seaport";
-            treeNode44.Name = "SpaceportZone";
-            treeNode44.Tag = "SpaceportZone";
-            treeNode44.Text = "Spaceport";
-            treeNode45.Name = "Other";
-            treeNode45.Tag = "Other";
-            treeNode45.Text = "Other";
-            treeNode46.Name = "Node0";
-            treeNode46.Tag = "Zones";
-            treeNode46.Text = "Zones";
-            treeNode47.Name = "Streets";
-            treeNode47.Tag = "Streets";
-            treeNode47.Text = "Streets";
-            treeNode48.Name = "Roads";
-            treeNode48.Tag = "Roads";
-            treeNode48.Text = "Roads";
-            treeNode49.Name = "OneWayRoads";
-            treeNode49.Tag = "OneWayRoads";
-            treeNode49.Text = "One Way Roads";
-            treeNode50.Name = "Avenues";
-            treeNode50.Tag = "Avenues";
-            treeNode50.Text = "Avenues";
-            treeNode51.Name = "Railways";
-            treeNode51.Tag = "Railways";
-            treeNode51.Text = "Railways";
-            treeNode52.Name = "Subways";
-            treeNode52.Tag = "Subways";
-            treeNode52.Text = "Subways";
-            treeNode53.Name = "Node0";
-            treeNode53.Text = "Transport";
-            treeNode54.Name = "Node1";
-            treeNode54.Tag = "TerrainMap";
-            treeNode54.Text = "Terrain";
+            treeNode1.Name = "ResidentialLowDensity";
+            treeNode1.Tag = "ResidentialLowZone";
+            treeNode1.Text = "Low Density";
+            treeNode2.Name = "ResidentialMediumDensity";
+            treeNode2.Tag = "ResidentialMidZone";
+            treeNode2.Text = "Medium Density";
+            treeNode3.Name = "ResidentialHighDensity";
+            treeNode3.Tag = "ResidentialHighZone";
+            treeNode3.Text = "High Density";
+            treeNode4.Name = "ResidentialRootNode";
+            treeNode4.Tag = "Residential";
+            treeNode4.Text = "Residential";
+            treeNode5.Name = "CommercialLowDensity";
+            treeNode5.Tag = "CommercialLowZone";
+            treeNode5.Text = "Low Density";
+            treeNode6.Name = "CommercialMediumDensity";
+            treeNode6.Tag = "CommercialMidZone";
+            treeNode6.Text = "Medium Density";
+            treeNode7.Name = "CommercialHighDensity";
+            treeNode7.Tag = "CommercialHighZone";
+            treeNode7.Text = "High Density";
+            treeNode8.Name = "CommercialRootNode";
+            treeNode8.Tag = "Commercial";
+            treeNode8.Text = "Commercial";
+            treeNode9.Name = "IndustrialLowDensity";
+            treeNode9.Tag = "IndustrialLowZone";
+            treeNode9.Text = "Low Density";
+            treeNode10.Name = "IndustrialMediumDensity";
+            treeNode10.Tag = "IndustrialMidZone";
+            treeNode10.Text = "Medium Density";
+            treeNode11.Name = "IndustrialHighDensity";
+            treeNode11.Tag = "IndustrialHighZone";
+            treeNode11.Text = "High Density";
+            treeNode12.Name = "IndustrialRootNode";
+            treeNode12.Tag = "Industrial";
+            treeNode12.Text = "Industrial";
+            treeNode13.Name = "PloppedBuildingZone";
+            treeNode13.Tag = "PloppedBuildingZone";
+            treeNode13.Text = "Plopped Building";
+            treeNode14.Name = "MilitaryZone";
+            treeNode14.Tag = "MilitaryZone";
+            treeNode14.Text = "Military";
+            treeNode15.Name = "AirportsZone";
+            treeNode15.Tag = "AirportZone";
+            treeNode15.Text = "Airports";
+            treeNode16.Name = "SeaportZones";
+            treeNode16.Tag = "SeaportZone";
+            treeNode16.Text = "Seaport";
+            treeNode17.Name = "SpaceportZone";
+            treeNode17.Tag = "SpaceportZone";
+            treeNode17.Text = "Spaceport";
+            treeNode18.Name = "Other";
+            treeNode18.Tag = "Other";
+            treeNode18.Text = "Other";
+            treeNode19.Name = "Node0";
+            treeNode19.Tag = "Zones";
+            treeNode19.Text = "Zones";
+            treeNode20.Name = "Streets";
+            treeNode20.Tag = "Streets";
+            treeNode20.Text = "Streets";
+            treeNode21.Name = "Roads";
+            treeNode21.Tag = "Roads";
+            treeNode21.Text = "Roads";
+            treeNode22.Name = "OneWayRoads";
+            treeNode22.Tag = "OneWayRoads";
+            treeNode22.Text = "One Way Roads";
+            treeNode23.Name = "Avenues";
+            treeNode23.Tag = "Avenues";
+            treeNode23.Text = "Avenues";
+            treeNode24.Name = "Railways";
+            treeNode24.Tag = "Railways";
+            treeNode24.Text = "Railways";
+            treeNode25.Name = "Subways";
+            treeNode25.Tag = "Subways";
+            treeNode25.Text = "Subways";
+            treeNode26.Name = "Node0";
+            treeNode26.Text = "Transport";
+            treeNode27.Name = "Node1";
+            treeNode27.Tag = "TerrainMap";
+            treeNode27.Text = "Terrain";
             this.VisibleObjectsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode46,
-            treeNode53,
-            treeNode54});
+            treeNode19,
+            treeNode26,
+            treeNode27});
             this.VisibleObjectsTreeView.Size = new System.Drawing.Size(283, 91);
             this.VisibleObjectsTreeView.TabIndex = 1;
             this.VisibleObjectsTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.VisibleObjectsTreeView_AfterCheck);
