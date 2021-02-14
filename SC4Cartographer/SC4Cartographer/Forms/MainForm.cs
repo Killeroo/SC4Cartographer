@@ -113,7 +113,7 @@ namespace SC4CartographerUI
         {
             map.Parameters = parameters;
 
-            GenerateMapPreview();
+            GenerateMapPreview(false);
 
             // Call garbage collector to cleanup anything left over from generating new preview
             // gets a bit spammy sometimes.... man modern constructs like GC have made me weak
@@ -135,7 +135,7 @@ namespace SC4CartographerUI
         /// <summary>
         /// Generates and sets preview map image on form
         /// </summary>
-        public void GenerateMapPreview()
+        public void GenerateMapPreview(bool newMap)
         {
             // Dispose of any old map previews before generating the new ones
             originalMapPreviewBitmap?.Dispose();
@@ -151,9 +151,16 @@ namespace SC4CartographerUI
                 forceRecenter = true;
             }
 
+            if (newMap)
+            {
+                // If loading a new map we reset the zoom values
+                ZoomTrackBar.Value = 0;
+                zoomFactor = 1;
+            }
+
             // Set image
             MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            if (ZoomTrackBar.Value > 1)
+            if (zoomFactor != 1)
             {
                 ZoomImage(forceRecenter);
             }
@@ -250,10 +257,11 @@ namespace SC4CartographerUI
             {
                 // Generate and set map preview images
                 forceRecenter = true;
-                GenerateMapPreview();
+                GenerateMapPreview(true);
             }
             catch (SubfileNotFoundException e)
             {
+                // TODO: Exception can fire twice and cause errorform to be used twice and crash?
                 var errorForm = new ErrorForm(
                     "Error creating preview",
                     $"Could not create preview map for '{Path.GetFileName(path)}'.",
@@ -273,7 +281,7 @@ namespace SC4CartographerUI
             // Set window title
             this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
                 
-            EnableSaveButtons();
+            EnableMapButtons();
 
             mapLoaded = true;
 
@@ -354,18 +362,21 @@ namespace SC4CartographerUI
             {
                 // Get the bitmap (this time we actually generate it from what the user inputted
                 // not what we needed when we were generating the preview)
-                Bitmap outBitmap = MapRenderer.CreateMapBitmap(map.Save, map.Parameters);
+                //Bitmap outBitmap = MapRenderer.CreateMapBitmap(map.Save, map.Parameters);
 
                 // Actually save out the image
                 switch (map.Parameters.OutputFormat)
                 {
                     case OutFormat.PNG:
-                        outBitmap.Save(currentFilename, ImageFormat.Png);
+                        originalMapPreviewBitmap.Save(currentFilename, ImageFormat.Png);
                         break;
                     case OutFormat.JPEG:
-                        outBitmap.Save(currentFilename, ImageFormat.Jpeg);
+                        originalMapPreviewBitmap.Save(currentFilename, ImageFormat.Jpeg);
                         break;
                 }
+
+                // Dispose of bitmap now that we have used it
+                //outBitmap.Dispose();
 
                 // Show form when successfully created
                 var mapCreatedForm = new SuccessForm(
@@ -480,6 +491,12 @@ namespace SC4CartographerUI
 
         private void ZoomImage(bool center)
         {
+            if (zoomFactor == 1)
+            {
+                CenterPictureBox(MapPictureBox, originalMapPreviewBitmap);
+                return;
+            }
+
             Size newSize = new Size();
             if (zoomFactor < 0)
             {
@@ -494,6 +511,9 @@ namespace SC4CartographerUI
             // Don't zoom in on anything that is already ridiculously big
             if (newSize.Width > MAX_ZOOM_SIZE)
             {
+                zoomFactor--;
+                ZoomTrackBar.Value--;
+                ZoomImage(center);
                 return;
             }
 
@@ -506,7 +526,7 @@ namespace SC4CartographerUI
             }
             else
             {
-                MapPictureBox.Image = new Bitmap(originalMapPreviewBitmap, newSize);
+                MapPictureBox.Image = zoomedMapPreviewBitmap;
             }
 
             //GC.Collect();
@@ -546,12 +566,16 @@ namespace SC4CartographerUI
         /// <summary>
         /// We don't want these buttons to be enabled when nothing is loaded
         /// </summary>
-        private void EnableSaveButtons()
+        private void EnableMapButtons()
         {
             saveToolStripMenuItem.Enabled = true;
             saveAsToolStripMenuItem.Enabled = true;
             SaveButton.Enabled = true;
+
             AppearanceGroupBox.Enabled = true;
+
+            ResetZoomButton.Enabled = true;
+            ZoomTrackBar.Enabled = true;
 
             OpenTextLabel.Visible = false;
         }
@@ -1206,7 +1230,7 @@ namespace SC4CartographerUI
 
                     // Only update preview if a map is loaded 
                     if (mapLoaded)
-                        GenerateMapPreview();
+                        GenerateMapPreview(false);
                 }
             }
         }
@@ -1227,7 +1251,7 @@ namespace SC4CartographerUI
             if (mapLoaded == false)
                 return;
 
-            if (zoomFactor > 1)
+            if (zoomFactor != 1)
             {
                 CenterPictureBox(MapPictureBox, zoomedMapPreviewBitmap);
             }
@@ -3520,8 +3544,8 @@ namespace SC4CartographerUI
         }
 
         /// <summary>
-        /// Stud mouse wheel event for numeric controls, used to stop mouse wheels incrementing values of 
-        /// numericupdodnw control too quickly
+        /// Stub mouse wheel event for numeric controls, used to stop mouse wheels incrementing values of 
+        /// numericupdown control too quickly
         /// Source: https://stackoverflow.com/a/59863542
         /// </summary>
         /// <param name="sender"></param>
@@ -3541,7 +3565,23 @@ namespace SC4CartographerUI
 
         private void ZoomTrackBar_MouseUp(object sender, MouseEventArgs e)
         {
-            zoomFactor = ZoomTrackBar.Value;
+            //zoomFactor = ZoomTrackBar.Value;
+            if (ZoomTrackBar.Value < 0)
+            {
+                zoomFactor = ZoomTrackBar.Value - 1;
+            }
+            else if (ZoomTrackBar.Value >= 0)
+            {
+                zoomFactor = ZoomTrackBar.Value + 1;
+            }
+
+            ZoomImage(true);
+        }
+
+        private void ResetZoomButton_Click(object sender, EventArgs e)
+        {
+            zoomFactor = 1;
+            ZoomTrackBar.Value = 0;
             ZoomImage(true);
         }
     }

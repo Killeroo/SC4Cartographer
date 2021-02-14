@@ -333,6 +333,9 @@
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.ZoomTrackBar = new System.Windows.Forms.TrackBar();
             this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.ResetZoomButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
@@ -936,7 +939,7 @@
             this.GridSegmentSizeNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.GridSegmentSizeNumericUpDown.Location = new System.Drawing.Point(98, 575);
             this.GridSegmentSizeNumericUpDown.Maximum = new decimal(new int[] {
-            60,
+            50,
             0,
             0,
             0});
@@ -970,9 +973,9 @@
             this.GridSegmentSizeLabel.AutoSize = true;
             this.GridSegmentSizeLabel.Location = new System.Drawing.Point(5, 578);
             this.GridSegmentSizeLabel.Name = "GridSegmentSizeLabel";
-            this.GridSegmentSizeLabel.Size = new System.Drawing.Size(86, 13);
+            this.GridSegmentSizeLabel.Size = new System.Drawing.Size(94, 13);
             this.GridSegmentSizeLabel.TabIndex = 50;
-            this.GridSegmentSizeLabel.Text = "Grid Square Size";
+            this.GridSegmentSizeLabel.Text = "Grid Segment Size";
             // 
             // ShowGridLinesCheckbox
             // 
@@ -3254,14 +3257,14 @@
             // 
             this.ZoomTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ZoomTrackBar.AutoSize = false;
+            this.ZoomTrackBar.Enabled = false;
             this.ZoomTrackBar.LargeChange = 1;
-            this.ZoomTrackBar.Location = new System.Drawing.Point(272, 714);
-            this.ZoomTrackBar.Maximum = 5;
-            this.ZoomTrackBar.Minimum = -5;
+            this.ZoomTrackBar.Location = new System.Drawing.Point(279, 714);
+            this.ZoomTrackBar.Maximum = 4;
+            this.ZoomTrackBar.Minimum = -4;
             this.ZoomTrackBar.Name = "ZoomTrackBar";
             this.ZoomTrackBar.Size = new System.Drawing.Size(141, 23);
             this.ZoomTrackBar.TabIndex = 13;
-            this.ZoomTrackBar.Value = 1;
             this.ZoomTrackBar.ValueChanged += new System.EventHandler(this.ZoomTrackBar_ValueChanged);
             this.ZoomTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ZoomTrackBar_MouseUp);
             // 
@@ -3275,11 +3278,48 @@
             this.label18.TabIndex = 14;
             this.label18.Text = "Zoom level";
             // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(417, 713);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(17, 18);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "+";
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(271, 713);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(13, 18);
+            this.label20.TabIndex = 16;
+            this.label20.Text = "-";
+            // 
+            // ResetZoomButton
+            // 
+            this.ResetZoomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ResetZoomButton.Enabled = false;
+            this.ResetZoomButton.Location = new System.Drawing.Point(440, 713);
+            this.ResetZoomButton.Name = "ResetZoomButton";
+            this.ResetZoomButton.Size = new System.Drawing.Size(53, 23);
+            this.ResetZoomButton.TabIndex = 18;
+            this.ResetZoomButton.Text = "Reset";
+            this.ResetZoomButton.UseVisualStyleBackColor = true;
+            this.ResetZoomButton.Click += new System.EventHandler(this.ResetZoomButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 768);
+            this.Controls.Add(this.ResetZoomButton);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.ZoomTrackBar);
             this.Controls.Add(this.RestoreDefaultsButton);
@@ -3604,6 +3644,9 @@
         private System.Windows.Forms.CheckBox BlendTerrainColorsCheckBox;
         private System.Windows.Forms.TrackBar ZoomTrackBar;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button ResetZoomButton;
     }
 }
 
