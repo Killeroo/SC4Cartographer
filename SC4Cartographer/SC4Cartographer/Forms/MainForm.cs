@@ -300,7 +300,7 @@ namespace SC4CartographerUI
 
                 // Generate and set map preview images
                 forceRecenter = true;
-                GenerateMapPreview(true);
+                GenerateMapPreviewBitmaps(true);
 
                 // Reset cursor 
                 this.Cursor = Cursors.Default;
@@ -342,7 +342,7 @@ namespace SC4CartographerUI
         /// <summary>
         /// Generates and sets preview map image on form
         /// </summary>
-        public void GenerateMapPreview(bool newMap)
+        public void GenerateMapPreviewBitmaps(bool newMap)
         {
             // Dispose of any old map previews before generating the new ones
             mapBitmap?.Dispose();
@@ -405,7 +405,7 @@ namespace SC4CartographerUI
             // Add wait cursor
             this.Cursor = Cursors.WaitCursor;
 
-            GenerateMapPreview(false);
+            GenerateMapPreviewBitmaps(false);
 
             // Reset cursor 
             this.Cursor = Cursors.Default;
@@ -2073,7 +2073,7 @@ namespace SC4CartographerUI
 
                     // Only update preview if a map is loaded 
                     if (mapLoaded)
-                        GenerateMapPreview(false);
+                        GenerateMapPreviewBitmaps(false);
 
                     // Reset cursor 
                     this.Cursor = Cursors.Default;

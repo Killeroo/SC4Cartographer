@@ -10,7 +10,6 @@ Bugs:
 Cleanup:
 - Cleanup network tile render code (appearance and dictionary lookup in mapparameters)
 - TODOs
-- Change/clean zoom and preview function and variable names
 
 Enhancements:
 - Load without lot file present
