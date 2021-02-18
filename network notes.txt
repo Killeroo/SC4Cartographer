@@ -3,8 +3,6 @@ Tasks:
 Bugs:
 - Error while loading proper_terrain_for_non_maped.sc4cart
 - Zones are cut off at the top/edge of the map
-- Entering 0 manually in segment offset (and probably in others) doesn't work
-- Mouse over stats aren't accurate when segment size is increase
 - Road colors blend into top layer of height
 
 Cleanup:
@@ -42,7 +40,7 @@ Readme:
 - Update screenshots
 
 -Release
-new SC4Parser release
+new SC4Parser release (new doc generation)
 github, simtrop, sc4devot
 
 Tickets:

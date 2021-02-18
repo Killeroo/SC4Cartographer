@@ -492,7 +492,6 @@ namespace SC4CartographerUI
                 }
             }
             catch (Exception e) { }
-            // TODO: Handle this exception, put in log
 
             return savegames[rand.Next(savegames.Count)];
         }
