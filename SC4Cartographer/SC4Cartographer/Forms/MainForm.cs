@@ -1712,9 +1712,9 @@ namespace SC4CartographerUI
         /// <returns></returns>
         private string GetMapPixelInfo(int x, int y)
         {
-            // If we are zoomed in don't both getting map pixel info
+            // If we are zoomed in (or out) don't both getting map pixel info
             // it will be wrong and be time consuming;
-            if (zoomFactor > 1)
+            if (zoomFactor != 1)
                 return "";
 
             string result = "";

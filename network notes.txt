@@ -17,7 +17,6 @@ Enhancements:
 - Update sc4parser version code
 - autosave and load current parameters
 
-disable mouse hover while zoomed out as well
 mb used update more
 
 reset zoom when changing grid size?
