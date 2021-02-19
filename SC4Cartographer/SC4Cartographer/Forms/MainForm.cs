@@ -72,7 +72,12 @@ namespace SC4CartographerUI
         /// GC timer is set off when a map preview is generated, it is used to cleanup any old map data when a new 
         /// bitmap is generated
         /// </summary>
-        private Timer garbageCollectorCleanupTimer = new System.Timers.Timer(1000);
+        private Timer garbageCollectorCleanupTimer = new System.Timers.Timer(4000);
+
+        /// <summary>
+        /// Time for periodically update memory used display on main form
+        /// </summary>
+        private Timer memoryUsedUpdateTimer = new System.Timers.Timer(1500);
 
         /// <summary>
         /// Root to look for simcity save games in
@@ -97,6 +102,12 @@ namespace SC4CartographerUI
             garbageCollectorCleanupTimer.AutoReset = false;
             garbageCollectorCleanupTimer.Elapsed += OnCleanupTimerElapsed;
 
+            // Setup mem usage time
+            memoryUsedUpdateTimer = new System.Timers.Timer(1500);
+            memoryUsedUpdateTimer.AutoReset = true;
+            memoryUsedUpdateTimer.Elapsed += MemoryUsedUpdateTimer_Elapsed;
+            memoryUsedUpdateTimer.Start();
+
             // Setup parser logger
             //logger = new RichTextBoxLogger(LogTextBox);
             fileLogger = new FileLogger();
@@ -118,6 +129,7 @@ namespace SC4CartographerUI
             // Focus on save button at start up
             SaveButton.Select();
         }
+
         public MainForm(string path) : this()
         {
             // Try and load parameters from path if they have been given to program
@@ -390,13 +402,10 @@ namespace SC4CartographerUI
                 }
             }
 
-            forceRecenter = false;
-
-            // Setup toolstrip details
-            Process proc = Process.GetCurrentProcess();
-            MemoryUsedToolStripStatusLabel.Text = $"Memory used: {Math.Truncate(Helper.ConvertBytesToMegabytes(proc.PrivateMemorySize64)).ToString()} MB";
+            // Update status label
             MapSizeToolStripStatusLabel.Text = $"Size: {mapBitmap.Width.ToString()} x {mapBitmap.Height.ToString()}px";
 
+            forceRecenter = false;
             oldSegmentSize = map.Parameters.GridSegmentSize;
         }
 
@@ -502,6 +511,18 @@ namespace SC4CartographerUI
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        /// <summary>
+        /// Updates memory used label every so often with the current memory used by program
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void MemoryUsedUpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            // Setup toolstrip details
+            Process currentProc = Process.GetCurrentProcess();
+            MemoryUsedToolStripStatusLabel.Text = $"Memory used: {Math.Truncate(Helper.ConvertBytesToMegabytes(currentProc.PrivateMemorySize64)).ToString()} MB";
         }
 
         /// <summary>

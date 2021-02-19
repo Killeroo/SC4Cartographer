@@ -17,8 +17,6 @@ Enhancements:
 - Update sc4parser version code
 - autosave and load current parameters
 
-mb used update more
-
 reset zoom when changing grid size?
 
 ---------------------------------------------------------------------------------------------
