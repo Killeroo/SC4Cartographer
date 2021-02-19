@@ -118,7 +118,7 @@ namespace SC4CartographerUI
 
             // Setup appearance tab
             SetAppearanceUIValuesUsingParameters(map.Parameters);
-            RegisterAppearanceEvents();
+            //RegisterAppearanceEvents();
 
             // Set our default save location to be our current directory
             OutputPathTextbox.Text = Directory.GetCurrentDirectory();
@@ -133,14 +133,9 @@ namespace SC4CartographerUI
 
         public MainForm(string path) : this()
         {
-            // Deregister events so we don't crash (no map is loaded yet)
-            DeregisterAppearanceEvents();
-
             // Try and load parameters from path if they have been given to program
             // (this is called when an associated file [.sc4cart] is used to call program)
             LoadMapParameters(path);
-
-            RegisterAppearanceEvents();
         }
 
         #region Form Functionality
@@ -742,6 +737,7 @@ namespace SC4CartographerUI
         /// Register all appearance UI events 
         /// We seperated out registering events from their components creation so we can set the UI values without having 
         /// their callbacks fire
+        /// NOTE: Don't call this without calling deregister method, events can be hooked twice
         /// </summary>
         private void RegisterAppearanceEvents()
         {
@@ -1020,6 +1016,8 @@ namespace SC4CartographerUI
         /// <param name="parameters"></param>
         private void SetAppearanceUIValuesUsingParameters(MapCreationParameters parameters)
         {
+            DeregisterAppearanceEvents();
+
             // Fill zone stuff
             GridBackgroundTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Background];
             GridLinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.GridLines];
@@ -1308,6 +1306,7 @@ namespace SC4CartographerUI
             VisibleObjectsTreeView.ExpandAll();
             VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
 
+            RegisterAppearanceEvents();
         }
 
         /// <summary>

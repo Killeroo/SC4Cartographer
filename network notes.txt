@@ -11,7 +11,6 @@ Enhancements:
 - control scroll to zoom
 - simple auto expand on visible layers checkbox
 - Switch to using other terrain colour values for more accurate colours (from file)
-- autosave and load current parameters
 
 reset zoom when changing grid size?
 
@@ -43,3 +42,4 @@ Tickets:
 - probably should hunt down those preview memory leaks
 - Draw network tiles with padding
 - Add default transport colour (won't add)
+- autosave and load current parameters
