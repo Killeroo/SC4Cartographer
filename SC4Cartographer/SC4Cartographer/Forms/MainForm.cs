@@ -104,6 +104,7 @@ namespace SC4CartographerUI
 
             // Setup mem usage time
             memoryUsedUpdateTimer = new System.Timers.Timer(1500);
+            memoryUsedUpdateTimer.SynchronizingObject = this;
             memoryUsedUpdateTimer.AutoReset = true;
             memoryUsedUpdateTimer.Elapsed += MemoryUsedUpdateTimer_Elapsed;
             memoryUsedUpdateTimer.Start();
@@ -132,9 +133,14 @@ namespace SC4CartographerUI
 
         public MainForm(string path) : this()
         {
+            // Deregister events so we don't crash (no map is loaded yet)
+            DeregisterAppearanceEvents();
+
             // Try and load parameters from path if they have been given to program
             // (this is called when an associated file [.sc4cart] is used to call program)
             LoadMapParameters(path);
+
+            RegisterAppearanceEvents();
         }
 
         #region Form Functionality
@@ -867,6 +873,141 @@ namespace SC4CartographerUI
             this.TerrainLayer21NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
             this.TerrainLayer22NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
             this.TerrainLayer23NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
+        }
+
+        /// <summary>
+        /// Deregister all appearance callbacks, we use this to temporarily disable all callbacks when loading map parameters
+        /// when no map is loaded
+        /// </summary>
+        private void DeregisterAppearanceEvents()
+        {
+            this.ShowZoneOutlinesCheckbox.CheckedChanged -= new System.EventHandler(this.ShowZoneOutlinesCheckbox_CheckedChanged);
+            this.SegmentOffsetNumericUpDown.ValueChanged -= new System.EventHandler(this.SegmentOffsetNumericUpDown_ValueChanged);
+            this.SegmentPaddingNumericUpDown.ValueChanged -= new System.EventHandler(this.SegmentPaddingNumericUpDown_ValueChanged);
+            this.GridSegmentSizeNumericUpDown.ValueChanged -= new System.EventHandler(this.GridSegmentSizeNumericUpDown_ValueChanged);
+            this.ShowGridLinesCheckbox.CheckedChanged -= new System.EventHandler(this.ShowGridLinesCheckbox_CheckedChanged);
+            this.BlendTerrainColorsCheckBox.CheckedChanged -= new System.EventHandler(this.BlendTerrainColorsCheckBox_CheckedChanged);
+            this.SpaceportEditButton.Click -= new System.EventHandler(this.SpaceportEditButton_Click);
+            this.SeaportsEditButton.Click -= new System.EventHandler(this.SeaportsEditButton_Click);
+            this.AirportsEditButton.Click -= new System.EventHandler(this.AirportsEditButton_Click);
+            this.MilitaryEditButton.Click -= new System.EventHandler(this.MilitaryEditButton_Click);
+            this.ZoneOutlinesEditButton.Click -= new System.EventHandler(this.ZoneOutlinesEditButton_Click);
+            this.IndustrialZoneLowEditButton.Click -= new System.EventHandler(this.IndustrialZoneLowEditButton_Click);
+            this.IndustrialZoneMidEditButton.Click -= new System.EventHandler(this.IndustrialZoneMidEditButton_Click);
+            this.IndustrialZoneHighEditButton.Click -= new System.EventHandler(this.IndustrialZoneHighEditButton_Click);
+            this.CommercialZoneHighEditButton.Click -= new System.EventHandler(this.CommercialZoneHighEditButton_Click);
+            this.CommercialZoneMidEditButton.Click -= new System.EventHandler(this.CommercialZoneMidEditButton_Click);
+            this.CommercialZoneLowEditButton.Click -= new System.EventHandler(this.CommercialZoneLowEditButton_Click);
+            this.GridLinesEditTextbox.Click -= new System.EventHandler(this.GridLinesEditTextbox_Click);
+            this.BuildingsEditButton.Click -= new System.EventHandler(this.BuildingsEditButton_Click);
+            this.ResidentialZoneLowEditButton.Click -= new System.EventHandler(this.ResidentialZoneLowEditButton_Click);
+            this.ResidentialZoneHighEditButton.Click -= new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
+            this.ResidentialZoneMidEditButton.Click -= new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
+            this.GridBackgroundEditButton.Click -= new System.EventHandler(this.GridBackgroundEditButton_Click);
+            this.StreetEditButton.Click -= new System.EventHandler(this.StreetEditButton_Click);
+            this.RoadEditButton.Click -= new System.EventHandler(this.RoadEditButton_Click);
+            this.OneWayRoadEditButton.Click -= new System.EventHandler(this.OneWayRoadEditButton_Click);
+            this.AvenueEditButton.Click -= new System.EventHandler(this.AvenueEditButton_Click);
+            this.RailwayEditButton.Click -= new System.EventHandler(this.RailwayEditButton_Click);
+            this.SubwayEditButton.Click -= new System.EventHandler(this.SubwayEditButton_Click);
+            this.EditOutputPathButton.Click -= new System.EventHandler(this.EditOutputPathButton_Click);
+
+            this.TerrainLayer1CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer1CheckBox_CheckedChanged);
+            this.TerrainLayer2CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer2CheckBox_CheckedChanged);
+            this.TerrainLayer3CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer3CheckBox_CheckedChanged);
+            this.TerrainLayer4CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer4CheckBox_CheckedChanged);
+            this.TerrainLayer5CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer5CheckBox_CheckedChanged);
+            this.TerrainLayer6CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer6CheckBox_CheckedChanged);
+            this.TerrainLayer7CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer7CheckBox_CheckedChanged);
+            this.TerrainLayer8CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer8CheckBox_CheckedChanged);
+            this.TerrainLayer9CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer9CheckBox_CheckedChanged);
+            this.TerrainLayer10CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer10CheckBox_CheckedChanged);
+            this.TerrainLayer11CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer11CheckBox_CheckedChanged);
+            this.TerrainLayer12CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer12CheckBox_CheckedChanged);
+            this.TerrainLayer13CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer13CheckBox_CheckedChanged);
+            this.TerrainLayer14CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer14CheckBox_CheckedChanged);
+            this.TerrainLayer15CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer15CheckBox_CheckedChanged);
+            this.TerrainLayer16CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer16CheckBox_CheckedChanged);
+            this.TerrainLayer17CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer17CheckBox_CheckedChanged);
+            this.TerrainLayer18CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer18CheckBox_CheckedChanged);
+            this.TerrainLayer19CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer19CheckBox_CheckedChanged);
+            this.TerrainLayer20CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer20CheckBox_CheckedChanged);
+            this.TerrainLayer21CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer21CheckBox_CheckedChanged);
+            this.TerrainLayer22CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer22CheckBox_CheckedChanged);
+            this.TerrainLayer23CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer23CheckBox_CheckedChanged);
+            this.TerrainLayer1NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer1NumericUpDown_ValueChanged);
+            this.TerrainLayer2NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer2NumericUpDown_ValueChanged);
+            this.TerrainLayer3NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer3NumericUpDown_ValueChanged);
+            this.TerrainLayer4NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer4NumericUpDown_ValueChanged);
+            this.TerrainLayer5NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer5NumericUpDown_ValueChanged);
+            this.TerrainLayer6NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer6NumericUpDown_ValueChanged);
+            this.TerrainLayer7NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer7NumericUpDown_ValueChanged);
+            this.TerrainLayer8NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer8NumericUpDown_ValueChanged);
+            this.TerrainLayer9NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer9NumericUpDown_ValueChanged);
+            this.TerrainLayer10NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer10NumericUpDown_ValueChanged);
+            this.TerrainLayer11NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer11NumericUpDown_ValueChanged);
+            this.TerrainLayer12NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer12NumericUpDown_ValueChanged);
+            this.TerrainLayer13NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer13NumericUpDown_ValueChanged);
+            this.TerrainLayer14NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer14NumericUpDown_ValueChanged);
+            this.TerrainLayer15NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer15NumericUpDown_ValueChanged);
+            this.TerrainLayer16NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer16NumericUpDown_ValueChanged);
+            this.TerrainLayer17NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer17NumericUpDown_ValueChanged);
+            this.TerrainLayer18NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer18NumericUpDown_ValueChanged);
+            this.TerrainLayer19NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer19NumericUpDown_ValueChanged);
+            this.TerrainLayer20NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer20NumericUpDown_ValueChanged);
+            this.TerrainLayer21NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer21NumericUpDown_ValueChanged);
+            this.TerrainLayer22NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer22NumericUpDown_ValueChanged);
+            this.TerrainLayer23NumericUpDown.ValueChanged -= new System.EventHandler(this.TerrainLayer23NumericUpDown_ValueChanged);
+            this.TerrainLayer1Button.Click -= new System.EventHandler(this.TerrainLayer1Button_click);
+            this.TerrainLayer2Button.Click -= new System.EventHandler(this.TerrainLayer2Button_click);
+            this.TerrainLayer3Button.Click -= new System.EventHandler(this.TerrainLayer3Button_click);
+            this.TerrainLayer4Button.Click -= new System.EventHandler(this.TerrainLayer4Button_click);
+            this.TerrainLayer5Button.Click -= new System.EventHandler(this.TerrainLayer5Button_click);
+            this.TerrainLayer6Button.Click -= new System.EventHandler(this.TerrainLayer6Button_click);
+            this.TerrainLayer7Button.Click -= new System.EventHandler(this.TerrainLayer7Button_click);
+            this.TerrainLayer8Button.Click -= new System.EventHandler(this.TerrainLayer8Button_click);
+            this.TerrainLayer9Button.Click -= new System.EventHandler(this.TerrainLayer9Button_click);
+            this.TerrainLayer10Button.Click -= new System.EventHandler(this.TerrainLayer10Button_click);
+            this.TerrainLayer11Button.Click -= new System.EventHandler(this.TerrainLayer11Button_click);
+            this.TerrainLayer12Button.Click -= new System.EventHandler(this.TerrainLayer12Button_click);
+            this.TerrainLayer13Button.Click -= new System.EventHandler(this.TerrainLayer13Button_click);
+            this.TerrainLayer14Button.Click -= new System.EventHandler(this.TerrainLayer14Button_click);
+            this.TerrainLayer15Button.Click -= new System.EventHandler(this.TerrainLayer15Button_click);
+            this.TerrainLayer16Button.Click -= new System.EventHandler(this.TerrainLayer16Button_click);
+            this.TerrainLayer17Button.Click -= new System.EventHandler(this.TerrainLayer17Button_click);
+            this.TerrainLayer18Button.Click -= new System.EventHandler(this.TerrainLayer18Button_click);
+            this.TerrainLayer19Button.Click -= new System.EventHandler(this.TerrainLayer19Button_click);
+            this.TerrainLayer20Button.Click -= new System.EventHandler(this.TerrainLayer20Button_click);
+            this.TerrainLayer21Button.Click -= new System.EventHandler(this.TerrainLayer21Button_click);
+            this.TerrainLayer22Button.Click -= new System.EventHandler(this.TerrainLayer22Button_click);
+            this.TerrainLayer23Button.Click -= new System.EventHandler(this.TerrainLayer23Button_click);
+
+            this.GridSegmentSizeNumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.SegmentOffsetNumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.SegmentPaddingNumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer1NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer2NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer3NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer4NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer5NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer6NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer7NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer8NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer9NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer10NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer11NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer12NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer13NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer14NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer15NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer16NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer17NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer18NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer19NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer20NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer21NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer22NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
+            this.TerrainLayer23NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 Tasks:
 
 Bugs:
-- Error while loading proper_terrain_for_non_maped.sc4cart
 - Zones are cut off at the top/edge of the map
 - Road colors blend into top layer of height
 
@@ -12,7 +11,6 @@ Enhancements:
 - control scroll to zoom
 - simple auto expand on visible layers checkbox
 - Switch to using other terrain colour values for more accurate colours (from file)
-- Update sc4parser version code
 - autosave and load current parameters
 
 reset zoom when changing grid size?
