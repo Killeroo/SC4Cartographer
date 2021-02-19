@@ -1303,6 +1303,7 @@ namespace SC4CartographerUI
 
             // Layers tree
             VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
+            CheckAllNodes(VisibleObjectsTreeView.Nodes, false); // Uncheck everything first
             PopulateLayersTreeView(VisibleObjectsTreeView.Nodes, parameters.VisibleMapObjects);
             VisibleObjectsTreeView.ExpandAll();
             VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
