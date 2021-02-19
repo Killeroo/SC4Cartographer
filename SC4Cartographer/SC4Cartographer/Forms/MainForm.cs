@@ -2997,7 +2997,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer1CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer1CheckBox.Checked = true;
@@ -3017,7 +3017,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer2CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer2CheckBox.Checked = true;
@@ -3037,7 +3037,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer3CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer3CheckBox.Checked = true;
@@ -3057,7 +3057,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer4CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer4CheckBox.Checked = true;
@@ -3077,7 +3077,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer5CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer5CheckBox.Checked = true;
@@ -3097,7 +3097,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer6CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer6CheckBox.Checked = true;
@@ -3117,7 +3117,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer7CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer7CheckBox.Checked = true;
@@ -3137,7 +3137,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer8CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer8CheckBox.Checked = true;
@@ -3157,7 +3157,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer9CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer9CheckBox.Checked = true;
@@ -3177,7 +3177,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer10CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer10CheckBox.Checked = true;
@@ -3197,7 +3197,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer11CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer11CheckBox.Checked = true;
@@ -3217,7 +3217,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer12CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer12CheckBox.Checked = true;
@@ -3237,7 +3237,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer13CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer13CheckBox.Checked = true;
@@ -3257,7 +3257,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer14CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer14CheckBox.Checked = true;
@@ -3277,7 +3277,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer15CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer15CheckBox.Checked = true;
@@ -3297,7 +3297,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer16CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer16CheckBox.Checked = true;
@@ -3317,7 +3317,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer17CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer17CheckBox.Checked = true;
@@ -3337,7 +3337,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer18CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer18CheckBox.Checked = true;
@@ -3357,7 +3357,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer19CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer19CheckBox.Checked = true;
@@ -3377,7 +3377,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer20CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer20CheckBox.Checked = true;
@@ -3397,7 +3397,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer21CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer21CheckBox.Checked = true;
@@ -3417,7 +3417,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer22CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer22CheckBox.Checked = true;
@@ -3437,7 +3437,7 @@ namespace SC4CartographerUI
         {
             // Check how many terrain items are enabled 
             var enabledItems = map.Parameters.TerrainDataDictionary.Where(i => i.Value.enabled == true).ToList();
-            if (enabledItems.Count == 1)
+            if (enabledItems.Count == 1 && TerrainLayer23CheckBox.Checked == false)
             {
                 // Don't allow user to disable all terrain layers or we will crash
                 TerrainLayer23CheckBox.Checked = true;
