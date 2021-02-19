@@ -15,26 +15,35 @@ namespace SC4CartographerUI
 {
     class MapRenderer
     {
-        // Create a map from MapCreationParameters
+        /// <summary>
+        /// Create a map from MapCreationParameters
+        /// </summary>
+        /// <param name="save">The save game object to extract the data for the map from</param>
+        /// <param name="parameters">The display parameters of the map</param>
+        /// <returns>A bitmap of the map</returns>
         public static Bitmap CreateMapBitmap(SC4SaveFile save, MapCreationParameters parameters)
         {
             int gridSizeX = (int) save.GetRegionViewSubfile().CitySizeX;
             int gridSizeY = (int) save.GetRegionViewSubfile().CitySizeY;
 
-            float[][] heightMap = save.GetTerrainMapSubfile().Map;
+            // Create our bitmap for our map
             Bitmap bmp = new Bitmap(
                 gridSizeX * parameters.GridSegmentSize + 1,
                 gridSizeY * parameters.GridSegmentSize + 1);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-
                 // Render terrain map first
-                // this can almost certainly done better but yeah...
-                // Did you know I spent 6 months writing this tool and the parser? :/
-                if (parameters.VisibleMapObjects.Contains(MapObject.TerrainMap))
+                if (parameters.VisibleMapObjects.Contains(MapObject.TerrainMap) 
+                    && save.ContainsTerrainMapSubfile())
                 {
-                    // First create a list of enabled terrain layers, their height and respective colorObject
+                    // this can almost certainly done better but yeah...
+                    // Did you know I spent 6 months writing this tool and the parser? :/
+
+                    // First get the height data from the save
+                    float[][] heightMap = save.GetTerrainMapSubfile().Map;
+
+                    // Then create a list of enabled terrain layers, their height and respective colorObject
                     // We want stuff in a list because it more easy to work with than a dictionary
                     // (we want to be able to seek backwards and forwards from an index which is not so easy with a dict)
                     List<(int height, MapColorObject colorObject)> sortedTerrainList = new List<(int, MapColorObject)>();
@@ -133,354 +142,368 @@ namespace SC4CartographerUI
                     g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
                 }
 
-                Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
-                Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
-                gridLinesPen.Width = 1;
-                zoneOutlinePen.Width = 1;
-
                 // Render lots
-                foreach (var lot in save.GetLotSubfile().Lots)
+                if (parameters.VisibleMapObjects.FindAll(x => x.ToString().Contains("Zone")).Count() != 0
+                    && save.ContainsLotSubfile())
                 {
-                    Rectangle rect = new Rectangle();
+                    Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
+                    zoneOutlinePen.Width = 1;
 
-                    // Get colour of zone (and check if it should be displayed)
-                    Color c = new Color();
-                    switch (lot.ZoneType)
+                    foreach (var lot in save.GetLotSubfile().Lots)
                     {
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_LOW:
-                            {
-                                // Check the zone is in the list of visible map objects
-                                if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialLowZone))
+                        Rectangle rect = new Rectangle();
+
+                        // Get colour of zone (and check if it should be displayed)
+                        Color c = new Color();
+                        switch (lot.ZoneType)
+                        {
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_LOW:
                                 {
-                                    c = parameters.ColorDictionary[MapColorObject.ResidentialLow];
+                                    // Check the zone is in the list of visible map objects
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialLowZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.ResidentialLow];
+                                    }
+                                    else
+                                    {
+                                        // if not skip it
+                                        continue;
+                                    }
+
+                                    break;
                                 }
-                                else
+
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_MEDIUM:
                                 {
-                                    // if not skip it
-                                    continue;
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialMidZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.ResidentialMid];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
                                 }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_HIGH:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialHighZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.ResidentialHigh];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_LOW:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.CommercialLowZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.CommercialLow];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_MEDIUM:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.CommercialMidZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.CommercialMid];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_HIGH:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.CommercialHighZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.CommercialHigh];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_LOW:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialLowZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.IndustrialLow];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_MEDIUM:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialMidZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.IndustrialMid];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_HIGH:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialHighZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_MILITARY:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.MilitaryZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.Military];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_AIRPORT:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.AirportZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.Airport];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_SEAPORT:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.SeaportZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.Seaport];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_SPACEPORT:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.SpaceportZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.Spaceport];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.PloppedBuildingZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING_ALT:
+                                {
+                                    if (parameters.VisibleMapObjects.Contains(MapObject.PloppedBuildingZone))
+                                    {
+                                        c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+
+                                    break;
+                                }
+                            default:
+                                c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+                                break;
+                        }
+
+                        // Get the actual dimensions of the zone
+                        switch (lot.Orientation)
+                        {
+                            case Constants.ORIENTATION_NORTH:
+                            case Constants.ORIENTATION_SOUTH:
+                                rect = new Rectangle(
+                                    parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
+                                    parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                    (parameters.GridSegmentSize * lot.SizeX) - (parameters.SegmentPaddingX * 2),
+                                    (parameters.GridSegmentSize * lot.SizeZ) - (parameters.SegmentPaddingY * 2));
+                                break;
+
+                            case Constants.ORIENTATION_WEST:
+                            case Constants.ORIENTATION_EAST:
+                                rect = new Rectangle(
+                                    parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
+                                    parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                    (parameters.GridSegmentSize * lot.SizeZ) - (parameters.SegmentPaddingX * 2),
+                                    (parameters.GridSegmentSize * lot.SizeX) - (parameters.SegmentPaddingY * 2));
+
 
                                 break;
-                            }
 
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_MEDIUM:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialMidZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.ResidentialMid];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
+                        }
 
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_RESIDENTIAL_HIGH:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.ResidentialHighZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.ResidentialHigh];
-                                }
-                                else
-                                { 
-                                    continue;                               
-                                }
+                        // Draw the zone on the bitmap
+                        g.FillRectangle(new SolidBrush(c), rect);
 
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_LOW:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.CommercialLowZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.CommercialLow];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_MEDIUM:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.CommercialMidZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.CommercialMid];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_COMMERCIAL_HIGH:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.CommercialHighZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.CommercialHigh];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_LOW:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialLowZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.IndustrialLow];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_MEDIUM:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialMidZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.IndustrialMid];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_INDUSTRIAL_HIGH:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.IndustrialHighZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.IndustrialHigh];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_MILITARY:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.MilitaryZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.Military];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_AIRPORT:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.AirportZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.Airport];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_SEAPORT:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.SeaportZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.Seaport];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_SPACEPORT:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.SpaceportZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.Spaceport];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.PloppedBuildingZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        case SC4Parser.Constants.LOT_ZONE_TYPE_PLOPPED_BUILDING_ALT:
-                            {
-                                if (parameters.VisibleMapObjects.Contains(MapObject.PloppedBuildingZone))
-                                {
-                                    c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-
-                                break;
-                            }
-                        default:
-                            c = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
-                            break;
-                    }
-
-                    // Get the actual dimensions of the zone
-                    switch (lot.Orientation)
-                    {
-                        case Constants.ORIENTATION_NORTH:
-                        case Constants.ORIENTATION_SOUTH:
-                            rect = new Rectangle(
-                                parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
-                                parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
-                                (parameters.GridSegmentSize * lot.SizeX) - (parameters.SegmentPaddingX * 2),
-                                (parameters.GridSegmentSize * lot.SizeZ) - (parameters.SegmentPaddingY * 2));
-                            break;
-
-                        case Constants.ORIENTATION_WEST:
-                        case Constants.ORIENTATION_EAST:
-                            rect = new Rectangle(
-                                parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
-                                parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
-                                (parameters.GridSegmentSize * lot.SizeZ) - (parameters.SegmentPaddingX * 2),
-                                (parameters.GridSegmentSize * lot.SizeX) - (parameters.SegmentPaddingY * 2));
-
-
-                            break;
-
-                    }
-
-                    // Draw the zone on the bitmap
-                    g.FillRectangle(new SolidBrush(c), rect);
-
-                    // draw an outline if that option is enabled
-                    if (parameters.ShowZoneOutlines)
-                    {
-                        g.DrawRectangle(zoneOutlinePen, rect);
+                        // draw an outline if that option is enabled
+                        if (parameters.ShowZoneOutlines)
+                        {
+                            g.DrawRectangle(zoneOutlinePen, rect);
+                        }
                     }
                 }
 
-                // Render transport stuff
-                foreach (NetworkTile1 tile in save.GetNetworkSubfile1().NetworkTiles)
+                // Render Network Subfile 1
+                if (parameters.VisibleMapObjects.FindAll(x => x.ToString().Contains("Network1")).Count() != 0
+                    && save.ContainsNetworkSubfile1())
                 {
-                    // Skip over if object isn't in visible objects
-                    if (MapCreationParameters.NetworkTypeLookupDictionary.ContainsKey(tile.NetworkType))
+                    foreach (NetworkTile1 tile in save.GetNetworkSubfile1().NetworkTiles)
                     {
-                        if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeLookupDictionary[tile.NetworkType]) == false)
-                            continue;
-                    }
+                        // Skip over if object isn't in visible objects
+                        if (MapCreationParameters.NetworkTypeLookupDictionary.ContainsKey(tile.NetworkType))
+                        {
+                            if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeLookupDictionary[tile.NetworkType]) == false)
+                                continue;
+                        }
 
-                    Color tileColor = new Color();
-                    switch (tile.NetworkType)
-                    {
-                        case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
-                        case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
-                        //case 0x02: c = Color.Blue; break;
-                        case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
-                        //case 0x04: c = Color.OrangeRed; break;
-                        //case 0x05: c = Color.Orange; break;
-                        case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
-                        //case 0x07: c = Color.YellowGreen; break;// subway?
-                        case 0x08: tileColor = Color.Green; break;// subway?
-                        //case 0x09: c = Color.Blue; break;
-                        case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
-                        //case 0x0B: c = Color.Green; break;
-                        //case 0x0C: c = Color.PaleVioletRed; break;
-                        //case 0x0D: c = Color.AntiqueWhite; break;
-                        //case 0x0E: c = Color.AntiqueWhite; break;
-                        //case 0x0F: c = Color.AntiqueWhite; break;
-                        default: tileColor = Color.Violet; break;
-                    }
+                        Color tileColor = new Color();
+                        switch (tile.NetworkType)
+                        {
+                            case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
+                            case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
+                            //case 0x02: c = Color.Blue; break;
+                            case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
+                            //case 0x04: c = Color.OrangeRed; break;
+                            //case 0x05: c = Color.Orange; break;
+                            case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
+                            //case 0x07: c = Color.YellowGreen; break;// subway?
+                            case 0x08: tileColor = Color.Green; break;// subway?
+                            //case 0x09: c = Color.Blue; break;
+                            case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
+                             //case 0x0B: c = Color.Green; break;
+                             //case 0x0C: c = Color.PaleVioletRed; break;
+                             //case 0x0D: c = Color.AntiqueWhite; break;
+                             //case 0x0E: c = Color.AntiqueWhite; break;
+                             //case 0x0F: c = Color.AntiqueWhite; break;
+                            default: tileColor = Color.Violet; break;
+                        }
 
-                    // So...
-                    // First some context as to why you see the below. Network subfile 1 (that is the file inside simcity 4 save games
-                    // that contains a list of all network tiles at ground level) has a bunch of different positional data in it, the purpose of which
-                    // is not completely known.
-                    // There are 2 sets of size coordinates for the tile, the second set (the variables with 2 at the end) seem to specify the size of the network tile
-                    // in 'units' (16 'units' = 1 grid segment). So, because our rendering is grid based, it is pretty easy for us to convert the units to a grid coordinates (divide by 16)
-                    // and render the tile. Wooow isn't that perfect, the world makes sense, puppies should be given to everyone.
-                    // Sadly this is not the way the world works. For some unknown reason, when 2 network tiles of different types intersect this second set of coordinates 
-                    // is rendered essentially meaningless. For some reason it is filled with 0s. So we use the first set of size coordinates for the network file, this set of coordinates
-                    // seems to be a quarter of the size of the actual network tile (your guess is as good as mine, I will share my thoughts at the end of this over long comment)
-                    // So to summerize, 2 sets of size coordinates per network tile, one is the size of the whole tile, the other the size of a quarter of the tile. For some reason
-                    // one set of tiles doesn't work so we have to switch to using the other. Fin.
-                    // (ps I think the quarter tile size is used because the network tiles are actually rendered in quarters, that is how they are able to be used in so many situations, turns and such)
-                    if (tile.MaxSizeX2 > 5 && tile.MaxSizeZ2 > 5 && tile.MaxSizeY2 > 5
-                        && tile.MinSizeX2 > 5 && tile.MinSizeZ2 > 5 && tile.MinSizeY2 > 5)
-                    {
-                        Rectangle rect = new Rectangle(
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
-                        );
+                        // So...
+                        // First some context as to why you see the below. Network subfile 1 (that is the file inside simcity 4 save games
+                        // that contains a list of all network tiles at ground level) has a bunch of different positional data in it, the purpose of which
+                        // is not completely known.
+                        // There are 2 sets of size coordinates for the tile, the second set (the variables with 2 at the end) seem to specify the size of the network tile
+                        // in 'units' (16 'units' = 1 grid segment). So, because our rendering is grid based, it is pretty easy for us to convert the units to a grid coordinates (divide by 16)
+                        // and render the tile. Wooow isn't that perfect, the world makes sense, puppies should be given to everyone.
+                        // Sadly this is not the way the world works. For some unknown reason, when 2 network tiles of different types intersect this second set of coordinates 
+                        // is rendered essentially meaningless. For some reason it is filled with 0s. So we use the first set of size coordinates for the network file, this set of coordinates
+                        // seems to be a quarter of the size of the actual network tile (your guess is as good as mine, I will share my thoughts at the end of this over long comment)
+                        // So to summerize, 2 sets of size coordinates per network tile, one is the size of the whole tile, the other the size of a quarter of the tile. For some reason
+                        // one set of tiles doesn't work so we have to switch to using the other. Fin.
+                        // (ps I think the quarter tile size is used because the network tiles are actually rendered in quarters, that is how they are able to be used in so many situations, turns and such)
+                        if (tile.MaxSizeX2 > 5 && tile.MaxSizeZ2 > 5 && tile.MaxSizeY2 > 5
+                            && tile.MinSizeX2 > 5 && tile.MinSizeZ2 > 5 && tile.MinSizeY2 > 5)
+                        {
+                            Rectangle rect = new Rectangle(
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                            );
 
 
-                        g.FillRectangle(new SolidBrush(tileColor), rect);
-                    } 
-                    else
-                    {
-                        Rectangle rect = new Rectangle(
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX1 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ1 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX1 - tile.MinSizeX1) / 16) + 1),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ1 - tile.MinSizeZ1) / 16) + 1)
-                        );
+                            g.FillRectangle(new SolidBrush(tileColor), rect);
+                        }
+                        else
+                        {
+                            Rectangle rect = new Rectangle(
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX1 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ1 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX1 - tile.MinSizeX1) / 16) + 1),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ1 - tile.MinSizeZ1) / 16) + 1)
+                            );
 
-                        g.FillRectangle(new SolidBrush(tileColor), rect);
-                    }
-                }
-                foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
-                {
-                    // Skip over if object isn't in visible objects
-                    if (MapCreationParameters.NetworkTypeLookupDictionary.ContainsKey(tile.NetworkType))
-                    {
-                        if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeLookupDictionary[tile.NetworkType]) == false)
-                            continue;
-                    }
-
-                    if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
-                    {
-                        Rectangle rect = new Rectangle(
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
-                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
-                        );
-
-                        g.FillRectangle(new SolidBrush(Color.Purple), rect);
+                            g.FillRectangle(new SolidBrush(tileColor), rect);
+                        }
                     }
                 }
 
+                // Render Network Subfile 2
+                if (parameters.VisibleMapObjects.FindAll(x => x.ToString().Contains("Network2")).Count() != 0
+                    && save.ContainsNetworkSubfile2())
+                {
+                    foreach (NetworkTile2 tile in save.GetNetworkSubfile2().NetworkTiles)
+                    {
+                        // Skip over if object isn't in visible objects
+                        if (MapCreationParameters.NetworkTypeLookupDictionary.ContainsKey(tile.NetworkType))
+                        {
+                            if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeLookupDictionary[tile.NetworkType]) == false)
+                                continue;
+                        }
+
+                        if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                        {
+                            Rectangle rect = new Rectangle(
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                            );
+
+                            g.FillRectangle(new SolidBrush(Color.Purple), rect);
+                        }
+                    }
+                }
 
                 // Render grid lines
                 if (parameters.ShowGridLines)
                 {
+                    Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
+                    gridLinesPen.Width = 1;
+
                     for (int y = 0; y < gridSizeY; ++y)
                     {
                         g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);

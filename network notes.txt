@@ -10,7 +10,6 @@ Cleanup:
 - TODOs
 
 Enhancements:
-- Load without lot file present
 - Add default transport colour
 - control scroll to zoom
 - simple auto expand on visible layers checkbox
@@ -20,6 +19,8 @@ Enhancements:
 
 disable mouse hover while zoomed out as well
 mb used update more
+
+reset zoom when changing grid size?
 
 ---------------------------------------------------------------------------------------------
 

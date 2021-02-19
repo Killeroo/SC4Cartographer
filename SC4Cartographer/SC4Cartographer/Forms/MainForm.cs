@@ -274,13 +274,13 @@ namespace SC4CartographerUI
             // see if lots subfile exists
             try
             {
-                save.GetLotSubfile();
+                save.GetTerrainMapSubfile();
             }
             catch (SubfileNotFoundException e)
             {
                 var errorForm = new ErrorForm(
                     "Error loading save game",
-                    $"Could not create map for '{Path.GetFileName(path)}'. Could not load zone data or it does not exist.",
+                    $"Could not create map for '{Path.GetFileName(path)}'. Could not find terrain data in the save.",
                     e,
                     true);
 
@@ -323,9 +323,15 @@ namespace SC4CartographerUI
                 return;
             }
 
-            // Cache some save data for map pixel lookup
-            terrainData = save.GetTerrainMapSubfile().Map;
-            zoneData = save.GetLotSubfile().Lots;
+            // Cache some save data for map pixel lookup (if it's there)
+            if (save.ContainsTerrainMapSubfile())
+                terrainData = save.GetTerrainMapSubfile().Map;
+            else
+                terrainData = null;
+            if (save.ContainsLotSubfile())
+                zoneData = save.GetLotSubfile().Lots;
+            else
+                zoneData = null;
 
             // Set window title
             this.Text = "SC4Cartographer - '" + Path.GetFileName(path) + "'";
@@ -450,21 +456,12 @@ namespace SC4CartographerUI
         }
 
         /// <summary>
-        /// Check if a save has the subfile we need, if it does then we can load it
-        /// if not avoid it otherwise SC4Parsernwill throw an exception
+        /// Check if a save has a lot subfile
         /// </summary>
-        public bool CheckSaveCanLoad(string path)
+        public bool CheckSaveContainsLotSubfile(string path)
         {
-            try
-            {
-                SC4SaveFile save = new SC4SaveFile(path);
-                save.GetLotSubfile();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            SC4SaveFile save = new SC4SaveFile(path);
+            return save.ContainsLotSubfile();
         }
 
         /// <summary>
@@ -1406,42 +1403,42 @@ namespace SC4CartographerUI
                             }
                             break;
                         case "Streets":
-                            if (objects.Contains(MapObject.StreetNetwork))
+                            if (objects.Contains(MapObject.StreetNetwork1))
                             {
                                 node.Checked = true;
                                 CheckAllParents(node.Parent, true);
                             }
                             break;
                         case "Roads":
-                            if (objects.Contains(MapObject.RoadNetwork))
+                            if (objects.Contains(MapObject.RoadNetwork1))
                             {
                                 node.Checked = true;
                                 CheckAllParents(node.Parent, true);
                             }
                             break;
                         case "OneWayRoads":
-                            if (objects.Contains(MapObject.OneWayRoadNetwork))
+                            if (objects.Contains(MapObject.OneWayRoadNetwork1))
                             {
                                 node.Checked = true;
                                 CheckAllParents(node.Parent, true);
                             }
                             break;
                         case "Avenues":
-                            if (objects.Contains(MapObject.AvenueNetwork))
+                            if (objects.Contains(MapObject.AvenueNetwork1))
                             {
                                 node.Checked = true;
                                 CheckAllParents(node.Parent, true);
                             }
                             break;
                         case "Railways":
-                            if (objects.Contains(MapObject.RailwayNetwork))
+                            if (objects.Contains(MapObject.RailwayNetwork1))
                             {
                                 node.Checked = true;
                                 CheckAllParents(node.Parent, true);
                             }
                             break;
                         case "Subways":
-                            if (objects.Contains(MapObject.SubwayNetwork))
+                            if (objects.Contains(MapObject.SubwayNetwork2))
                             {
                                 node.Checked = true;
                                 CheckAllParents(node.Parent, true);
@@ -1525,22 +1522,22 @@ namespace SC4CartographerUI
                                 objects.Add(MapObject.TerrainMap);
                                 break;
                             case "Streets":
-                                objects.Add(MapObject.StreetNetwork);
+                                objects.Add(MapObject.StreetNetwork1);
                                 break;
                             case "Roads":
-                                objects.Add(MapObject.RoadNetwork);
+                                objects.Add(MapObject.RoadNetwork1);
                                 break;
                             case "OneWayRoads":
-                                objects.Add(MapObject.OneWayRoadNetwork);
+                                objects.Add(MapObject.OneWayRoadNetwork1);
                                 break;
                             case "Avenues":
-                                objects.Add(MapObject.AvenueNetwork);
+                                objects.Add(MapObject.AvenueNetwork1);
                                 break;
                             case "Railways":
-                                objects.Add(MapObject.RailwayNetwork);
+                                objects.Add(MapObject.RailwayNetwork1);
                                 break;
                             case "Subways":
-                                objects.Add(MapObject.SubwayNetwork);
+                                objects.Add(MapObject.SubwayNetwork2);
                                 break;
                         }
                     }
@@ -1735,24 +1732,30 @@ namespace SC4CartographerUI
 
             result = $"Mouse: {x}, {y}px (tile: {cityX}x, {cityY}z) ";
 
-            try
+            if (terrainData != null)
             {
-                result += $" (height: {terrainData[cityY][cityX]})";
-            }
-            catch (IndexOutOfRangeException) { } // Silently continue when we accidently get a range outside of the terrain map bounds 
-
-            // See if there is any zone data on that segment
-            foreach (Lot lot in zoneData)
-            {
-                for (int lotZ = lot.MinTileZ; lotZ <= lot.MaxTileZ; lotZ++)
+                try
                 {
-                    if (lotZ == cityY)
+                    result += $" (height: {terrainData[cityY][cityX]})";
+                }
+                catch (IndexOutOfRangeException) { } // Silently continue when we accidently get a range outside of the terrain map bounds 
+            }
+
+            if (zoneData != null)
+            {
+                // See if there is any zone data on that segment
+                foreach (Lot lot in zoneData)
+                {
+                    for (int lotZ = lot.MinTileZ; lotZ <= lot.MaxTileZ; lotZ++)
                     {
-                        for (int lotX = lot.MinTileX; lotX <= lot.MaxTileX; lotX++)
+                        if (lotZ == cityY)
                         {
-                            if (lotX == cityX)
+                            for (int lotX = lot.MinTileX; lotX <= lot.MaxTileX; lotX++)
                             {
-                                result += $" (zone: {SC4Parser.Constants.LOT_ZONE_TYPE_STRINGS[lot.ZoneType]} [{SC4Parser.Constants.LOT_ZONE_WEALTH_STRINGS[lot.ZoneWealth]}])";
+                                if (lotX == cityX)
+                                {
+                                    result += $" (zone: {SC4Parser.Constants.LOT_ZONE_TYPE_STRINGS[lot.ZoneType]} [{SC4Parser.Constants.LOT_ZONE_WEALTH_STRINGS[lot.ZoneWealth]}])";
+                                }
                             }
                         }
                     }
@@ -1789,7 +1792,7 @@ namespace SC4CartographerUI
                 {
                     SavePathTextbox.Text = rootSimCitySavePath;
                     path = FindRandomSavegameFileInPath(rootSimCitySavePath);
-                    if (CheckSaveCanLoad(path))
+                    if (CheckSaveContainsLotSubfile(path))
                     {
                         validSaveFound = true;
                     }

@@ -27,12 +27,12 @@ namespace SC4CartographerUI
         IndustrialHighZone,
         IndustrialMidZone,
         IndustrialLowZone,  
-        StreetNetwork,
-        RoadNetwork,
-        OneWayRoadNetwork,
-        AvenueNetwork,
-        RailwayNetwork,
-        SubwayNetwork
+        StreetNetwork1,
+        RoadNetwork1,
+        OneWayRoadNetwork1,
+        AvenueNetwork1,
+        RailwayNetwork1,
+        SubwayNetwork2
     }
 
     public enum MapColorObject
@@ -181,11 +181,11 @@ namespace SC4CartographerUI
             MapObject.IndustrialHighZone,
             MapObject.IndustrialMidZone,
             MapObject.IndustrialLowZone,
-            MapObject.StreetNetwork,
-            MapObject.RoadNetwork,
-            MapObject.OneWayRoadNetwork,
-            MapObject.AvenueNetwork,
-            MapObject.RailwayNetwork,
+            MapObject.StreetNetwork1,
+            MapObject.RoadNetwork1,
+            MapObject.OneWayRoadNetwork1,
+            MapObject.AvenueNetwork1,
+            MapObject.RailwayNetwork1,
         };
 
         public Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> TerrainDataDictionary
@@ -442,12 +442,12 @@ namespace SC4CartographerUI
         // Helper lookup dictionary for network tile types
         public static Dictionary<byte, MapObject> NetworkTypeLookupDictionary = new Dictionary<byte, MapObject>()
         {
-            {0x00, MapObject.RoadNetwork},
-            {0x01, MapObject.RailwayNetwork},
-            {0x03, MapObject.StreetNetwork},
-            {0x06, MapObject.AvenueNetwork},
-            {0x07, MapObject.SubwayNetwork},
-            {0x0A, MapObject.OneWayRoadNetwork},
+            {0x00, MapObject.RoadNetwork1},
+            {0x01, MapObject.RailwayNetwork1},
+            {0x03, MapObject.StreetNetwork1},
+            {0x06, MapObject.AvenueNetwork1},
+            {0x07, MapObject.SubwayNetwork2},
+            {0x0A, MapObject.OneWayRoadNetwork1},
         };
     }
 }
