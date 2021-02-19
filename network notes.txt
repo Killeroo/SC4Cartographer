@@ -6,11 +6,9 @@ Bugs:
 - Road colors blend into top layer of height
 
 Cleanup:
-- Cleanup network tile render code (appearance and dictionary lookup in mapparameters)
 - TODOs
 
 Enhancements:
-- Add default transport colour
 - control scroll to zoom
 - simple auto expand on visible layers checkbox
 - Switch to using other terrain colour values for more accurate colours (from file)
@@ -46,3 +44,4 @@ Tickets:
 - Smooth squares option
 - probably should hunt down those preview memory leaks
 - Draw network tiles with padding
+- Add default transport colour (won't add)

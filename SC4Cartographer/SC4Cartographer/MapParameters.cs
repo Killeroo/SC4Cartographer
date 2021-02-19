@@ -439,8 +439,8 @@ namespace SC4CartographerUI
             this.VisibleMapObjects = mapCreationParameters.VisibleMapObjects;
         }
 
-        // Helper lookup dictionary for network tile types
-        public static Dictionary<byte, MapObject> NetworkTypeLookupDictionary = new Dictionary<byte, MapObject>()
+        // Helper lookup dictionary for network tile types and their related enum
+        public static Dictionary<byte, MapObject> NetworkTypeToMapObject = new Dictionary<byte, MapObject>()
         {
             {0x00, MapObject.RoadNetwork1},
             {0x01, MapObject.RailwayNetwork1},
