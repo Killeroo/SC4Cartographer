@@ -429,7 +429,7 @@ namespace SC4CartographerUI
                              //case 0x0D: c = Color.AntiqueWhite; break;
                              //case 0x0E: c = Color.AntiqueWhite; break;
                              //case 0x0F: c = Color.AntiqueWhite; break;
-                            default: tileColor = Color.Violet; break;
+                            //default: tileColor = Color.Violet; break;
                         }
 
                         // So...
