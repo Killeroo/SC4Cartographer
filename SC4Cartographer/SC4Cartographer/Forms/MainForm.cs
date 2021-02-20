@@ -1298,13 +1298,14 @@ namespace SC4CartographerUI
                 JPEGRadioButton.Checked = true;
             }
 
-            // Layers tree
-            VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
-            CheckAllNodes(VisibleObjectsTreeView.Nodes, false); // Uncheck everything first
-            PopulateLayersTreeView(VisibleObjectsTreeView.Nodes, parameters.VisibleMapObjects);
-            VisibleObjectsTreeView.CollapseAll();
-            ShowUncheckedNodes(VisibleObjectsTreeView.Nodes);
-            VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
+            // Setup visible layers tree
+            VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;             // Remove callbacks 
+            CheckAllNodes(VisibleObjectsTreeView.Nodes, false);                                 // Uncheck everything first
+            PopulateLayersTreeView(VisibleObjectsTreeView.Nodes, parameters.VisibleMapObjects); // Fill up the tree
+            VisibleObjectsTreeView.CollapseAll();                                               // Collapse everything 
+            ShowUncheckedNodes(VisibleObjectsTreeView.Nodes);                                   // Make sure unchecked items are expanded
+            VisibleObjectsTreeView.Nodes[0].EnsureVisible();                                    // Hacky but make sure that we are focusing on the top item
+            VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;             // Renable callbacks
 
             RegisterAppearanceEvents();
         }
