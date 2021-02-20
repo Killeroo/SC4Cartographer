@@ -4,9 +4,6 @@ Bugs:
 - Zones are cut off at the top/edge of the map
 - Road colors blend into top layer of height
 
-Cleanup:
-- TODOs
-
 Enhancements:
 - simple auto expand on visible layers checkbox
 - Switch to using other terrain colour values for more accurate colours (from file)

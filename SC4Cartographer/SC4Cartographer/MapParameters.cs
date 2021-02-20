@@ -276,6 +276,11 @@ namespace SC4CartographerUI
 
         #endregion
 
+        /// <summary>
+        /// Saves the current MapParameters object to a file. This method expects exceptions to be handled
+        /// outside of the method
+        /// </summary>
+        /// <param name="path">Path to file to save to</param>
         public void SaveToFile(string path)
         {
             List<string> properties = new List<string>();
@@ -311,7 +316,10 @@ namespace SC4CartographerUI
             }
         }
 
-        // TODO: Add comments
+        /// <summary>
+        /// Loads MapParameters from a file and fills object with values. Expects exceptions to be handled externally
+        /// </summary>
+        /// <param name="path">path to map parameters file</param>
         public void LoadFromFile(string path)
         {
             MapCreationParameters mapCreationParameters = new MapCreationParameters(this);
@@ -369,7 +377,7 @@ namespace SC4CartographerUI
                     string[] dataValues = property.Value.Split(',');
 
                     bool enabled = (dataValues[0] == "true" ? true : false);
-                    string alias = dataValues[1].Replace("\"", ""); //TODO: so why even use speachmarks, also detect bad characters here?
+                    string alias = dataValues[1].Replace("\"", ""); 
                     MapColorObject colorObject = (MapColorObject)Enum.Parse(typeof(MapColorObject), dataValues[2]);
                     int height = int.Parse(dataValues[3]);
 

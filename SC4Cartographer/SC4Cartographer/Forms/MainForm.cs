@@ -323,7 +323,6 @@ namespace SC4CartographerUI
                 // Reset cursor 
                 this.Cursor = Cursors.Default;
 
-                // TODO: Exception can fire twice and cause errorform to be used twice and crash?
                 var errorForm = new ErrorForm(
                     "Error creating preview",
                     $"Could not create preview map for '{Path.GetFileName(path)}'.",
@@ -1789,6 +1788,7 @@ namespace SC4CartographerUI
         {
             if (zoomFactor == 1)
             {
+                zoomedMapBitmap?.Dispose(); // Delete old zoomed in image
                 CenterPictureBox(MapPictureBox, mapBitmap);
                 return;
             }
@@ -1808,7 +1808,6 @@ namespace SC4CartographerUI
             if (newSize.Width > MAX_ZOOM_SIZE)
             {
                 // Recursively reset zoom until we reach a more 'restrained' zoom size
-                // TODO: Check this, I don't think it works
                 zoomFactor--;
                 ZoomTrackBar.Value--;
                 ZoomImage(center);
@@ -2255,8 +2254,6 @@ namespace SC4CartographerUI
             MapCreationParameters pristineParameters = new MapCreationParameters();
 
             // Copy over the output path
-            // TODO: Watch it....
-            // TODO: need common method for resetting and setting ui
             pristineParameters.OutputPath = map.Parameters.OutputPath;
 
             SetAppearanceUIValuesUsingParameters(pristineParameters);
