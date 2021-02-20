@@ -8,7 +8,6 @@ Cleanup:
 - TODOs
 
 Enhancements:
-- control scroll to zoom
 - simple auto expand on visible layers checkbox
 - Switch to using other terrain colour values for more accurate colours (from file)
 
@@ -43,3 +42,4 @@ Tickets:
 - Draw network tiles with padding
 - Add default transport colour (won't add)
 - autosave and load current parameters
+- control scroll to zoom

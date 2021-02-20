@@ -404,6 +404,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(653, 656);
             this.panel1.TabIndex = 2;
+            this.panel1.MouseWheel += new System.Windows.Forms.MouseEventHandler(Panel1_MouseWheel);
             // 
             // OpenTextLabel
             // 

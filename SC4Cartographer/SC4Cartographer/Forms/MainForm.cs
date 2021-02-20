@@ -2341,6 +2341,54 @@ namespace SC4CartographerUI
             MousePositionToolStripStatusLabel.Text = "";
         }
 
+        /// <summary>
+        /// Trying to implement control scroll to zoom in, works but doesn't feel natural because it should
+        /// zoom in on the part of the map that the mouse is hovering over but I cba
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Panel1_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            //if (ModifierKeys.HasFlag(Keys.Control))
+            //{
+            //    if (e.Delta > 0)
+            //    {
+            //        // Scroll up
+
+            //        // Shitty hack to get around the fact that we can't have 0 as a zoomfactor
+            //        if (zoomFactor == -1)
+            //            zoomFactor = 1;
+            //        else
+            //            zoomFactor++;
+            //    }
+            //    else
+            //    {
+            //        // Scroll down
+            //        if (zoomFactor == 1)
+            //            zoomFactor = -1;
+            //        else
+            //            zoomFactor--;
+            //    }
+
+            //    if (zoomFactor > 4)
+            //    {
+            //        zoomFactor = 4;
+            //    }
+            //    else if (zoomFactor < -4)
+            //    {
+            //        zoomFactor = -4;
+            //    }
+
+            //    ZoomTrackBar.Value = zoomFactor;
+
+            //    ZoomImage(false);
+            //}
+            //else
+            //{
+            ((HandledMouseEventArgs)e).Handled = true;
+            //}
+        }
+
         #endregion
 
         #region Save Games Control Events
