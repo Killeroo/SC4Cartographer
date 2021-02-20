@@ -1,13 +1,8 @@
 Tasks:
 
 Bugs:
-- Zones are cut off at the top/edge of the map
-- Road colors blend into top layer of height
 
 Enhancements:
-- Switch to using other terrain colour values for more accurate colours (from file)
-
-reset zoom when changing grid size?
 
 ---------------------------------------------------------------------------------------------
 
@@ -34,8 +29,8 @@ github, simtrop, sc4devot
 Tickets:
 - Add shadows to terrain
 - Smooth squares option
-- probably should hunt down those preview memory leaks
 - Draw network tiles with padding
-- Add default transport colour (won't add)
+- Add default transport colour 
 - autosave and load current parameters
-- control scroll to zoom
+- control scroll to zoom (finish with arrows)
+- Zones are cut off at the top/edge of the map (doesn't affect output files)

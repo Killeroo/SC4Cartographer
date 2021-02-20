@@ -40,7 +40,7 @@ namespace SC4CartographerUI
     public partial class MainForm : Form
     {
         private const int MAX_ZOOM_SIZE = 10000;
-        private const string SC4PARSER_VERSION = "v1.0.0.0";
+        private const string SC4PARSER_VERSION = "v1.1.0.0";
 
         /// <summary>
         /// Currently loaded map
@@ -4018,7 +4018,7 @@ namespace SC4CartographerUI
         #region Grid, Zone and Terrain Properties Events
 
         /// <summary>
-        /// All pretty basic, when the value is changed they call the update preview function
+        /// All pretty basic, when the value is changed they call the update preview function (apart from segment size)
         /// 
         /// NOTE: All the callbacks for a lot of these are setup manually after the application has loaded.
         /// this is to avoid the callbacks being fired when they are being set with values from the MapCreationParameters
@@ -4027,6 +4027,11 @@ namespace SC4CartographerUI
         private void GridSegmentSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+
+            // Reset zoom when changing segment size
+            zoomFactor = 1;
+            ZoomTrackBar.Value = 0;
+            ZoomImage(true);
         }
 
         private void SegmentPaddingNumericUpDown_ValueChanged(object sender, EventArgs e)
