@@ -1302,7 +1302,8 @@ namespace SC4CartographerUI
             VisibleObjectsTreeView.AfterCheck -= VisibleObjectsTreeView_AfterCheck;
             CheckAllNodes(VisibleObjectsTreeView.Nodes, false); // Uncheck everything first
             PopulateLayersTreeView(VisibleObjectsTreeView.Nodes, parameters.VisibleMapObjects);
-            VisibleObjectsTreeView.ExpandAll();
+            VisibleObjectsTreeView.CollapseAll();
+            ShowUncheckedNodes(VisibleObjectsTreeView.Nodes);
             VisibleObjectsTreeView.AfterCheck += VisibleObjectsTreeView_AfterCheck;
 
             RegisterAppearanceEvents();
@@ -1706,6 +1707,27 @@ namespace SC4CartographerUI
             }
 
             return objects;
+        }
+
+        /// <summary>
+        /// Parses recursively through a treenode collection and makes sure that any node that
+        /// is unchecked is expanded
+        /// </summary>
+        /// <param name="nodes"></param>
+        public void ShowUncheckedNodes(TreeNodeCollection nodes)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Nodes.Count != 0)
+                {
+                    ShowUncheckedNodes(node.Nodes);
+                }
+                else
+                {
+                    if (node.Checked == false)
+                        node.EnsureVisible();
+                }   
+            }
         }
 
         /// <summary>
@@ -2312,7 +2334,6 @@ namespace SC4CartographerUI
             ZoomTrackBar.Value = 0;
             ZoomImage(true);
         }
-
 
         #endregion
 

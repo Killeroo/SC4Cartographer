@@ -5,7 +5,6 @@ Bugs:
 - Road colors blend into top layer of height
 
 Enhancements:
-- simple auto expand on visible layers checkbox
 - Switch to using other terrain colour values for more accurate colours (from file)
 
 reset zoom when changing grid size?
