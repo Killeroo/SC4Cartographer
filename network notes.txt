@@ -25,12 +25,3 @@ Readme:
 -Release
 new SC4Parser release (new doc generation)
 github, simtrop, sc4devot
-
-Tickets:
-- Add shadows to terrain
-- Smooth squares option
-- Draw network tiles with padding
-- Add default transport colour 
-- autosave and load current parameters
-- control scroll to zoom (finish with arrows)
-- Zones are cut off at the top/edge of the map (doesn't affect output files)

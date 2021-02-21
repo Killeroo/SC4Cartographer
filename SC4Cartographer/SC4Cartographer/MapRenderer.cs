@@ -415,21 +415,21 @@ namespace SC4CartographerUI
                         {
                             case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
                             case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
-                            //case 0x02: c = Color.Blue; break;
+                            case 0x02: tileColor = Color.Blue; break;
                             case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
-                            //case 0x04: tileColor = Color.OrangeRed; break;
-                            //case 0x05: tileColor = Color.Orange; break;
+                            case 0x04: tileColor = Color.OrangeRed; break;
+                            case 0x05: tileColor = Color.Orange; break;
                             case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
-                            //case 0x07: tileColor = Color.YellowGreen; break;// subway?
-                            //case 0x08: tileColor = Color.Green; break;// subway?
-                            //case 0x09: c = Color.Blue; break;
+                            case 0x07: tileColor = Color.YellowGreen; break;// subway?
+                            case 0x08: tileColor = Color.Green; break;// subway?
+                            case 0x09: tileColor = Color.Blue; break;
                             case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
-                             //case 0x0B: c = Color.Green; break;
-                             //case 0x0C: c = Color.PaleVioletRed; break;
-                             //case 0x0D: c = Color.AntiqueWhite; break;
-                             //case 0x0E: c = Color.AntiqueWhite; break;
-                             //case 0x0F: c = Color.AntiqueWhite; break;
-                            //default: tileColor = Color.Violet; break;
+                             case 0x0B: tileColor = Color.Green; break;
+                             case 0x0C: tileColor = Color.PaleVioletRed; break;
+                             case 0x0D: tileColor = Color.AntiqueWhite; break;
+                             case 0x0E: tileColor = Color.AntiqueWhite; break;
+                             case 0x0F: tileColor = Color.AntiqueWhite; break;
+                            default: tileColor = Color.Violet; break;
                         }
 
                         // So...

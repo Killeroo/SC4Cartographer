@@ -133,9 +133,22 @@ namespace SC4CartographerUI
 
         public MainForm(string path) : this()
         {
-            // Try and load parameters from path if they have been given to program
-            // (this is called when an associated file [.sc4cart] is used to call program)
-            LoadMapParameters(path);
+            switch (Path.GetExtension(path))
+            {
+                case ".sc4cart":
+                    {
+                        // Try and load parameters from path if they have been given to program
+                        // (this is called when an associated file [.sc4cart] is used to call program)
+                        LoadMapParameters(path);
+                        break;
+                    }
+                case ".sc4":
+                    {
+                        // Try and load the save game at the path given to us
+                        LoadSaveGame(path);
+                        break;
+                    }
+            }
         }
 
         #region Form Functionality
@@ -1966,7 +1979,7 @@ namespace SC4CartographerUI
         {
             // Load a random map on open
             //logger = new RichTextBoxLogger(LogTextBox);
-            if (Directory.Exists(rootSimCitySavePath))
+            if (Directory.Exists(rootSimCitySavePath) && mapLoaded != true)
             {
                 bool validSaveFound = false;
                 string path = "";

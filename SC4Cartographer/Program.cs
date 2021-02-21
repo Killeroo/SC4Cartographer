@@ -24,7 +24,7 @@ namespace SC4CartographerUI
             }
             else
             {
-                // Try and run program with properties file specified
+                // Try and run program with properties file or savegame specified
                 Application.Run(new MainForm(args[0]));
             }
         }
