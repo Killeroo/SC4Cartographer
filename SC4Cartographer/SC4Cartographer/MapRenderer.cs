@@ -415,21 +415,21 @@ namespace SC4CartographerUI
                         {
                             case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
                             case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
-                            case 0x02: tileColor = Color.Blue; break;
+                            //case 0x02: tileColor = Color.Blue; break;
                             case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
-                            case 0x04: tileColor = Color.OrangeRed; break;
-                            case 0x05: tileColor = Color.Orange; break;
+                            //case 0x04: tileColor = Color.OrangeRed; break;
+                            //case 0x05: tileColor = Color.Orange; break;
                             case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
-                            case 0x07: tileColor = Color.YellowGreen; break;// subway?
-                            case 0x08: tileColor = Color.Green; break;// subway?
-                            case 0x09: tileColor = Color.Blue; break;
+                            //case 0x07: tileColor = Color.YellowGreen; break;// subway?
+                            //case 0x08: tileColor = Color.Green; break;// subway?
+                            //case 0x09: tileColor = Color.Blue; break;
                             case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
-                             case 0x0B: tileColor = Color.Green; break;
-                             case 0x0C: tileColor = Color.PaleVioletRed; break;
-                             case 0x0D: tileColor = Color.AntiqueWhite; break;
-                             case 0x0E: tileColor = Color.AntiqueWhite; break;
-                             case 0x0F: tileColor = Color.AntiqueWhite; break;
-                            default: tileColor = Color.Violet; break;
+                            // case 0x0B: tileColor = Color.Green; break;
+                            // case 0x0C: tileColor = Color.PaleVioletRed; break;
+                            // case 0x0D: tileColor = Color.AntiqueWhite; break;
+                            // case 0x0E: tileColor = Color.AntiqueWhite; break;
+                            // case 0x0F: tileColor = Color.AntiqueWhite; break;
+                            //default: tileColor = Color.Violet; break;
                         }
 
                         // So...
@@ -500,7 +500,57 @@ namespace SC4CartographerUI
                     }
                 }
 
-                // Render grid lines
+                // Render Bridge Network Subfile
+                if (parameters.VisibleMapObjects.FindAll(x => x.ToString().Contains("Network1")).Count() != 0
+                   && save.ContainsBridgeNetworkSubfile())
+                {
+                    // Loop through each tile in save
+                    foreach (BridgeNetworkTile tile in save.GetBridgeNetworkSubfile().NetworkTiles)
+                    {
+                        // Check if we have a related enum for the network tile we are dealing with
+                        if (MapCreationParameters.NetworkTypeToMapObject.ContainsKey(tile.NetworkType))
+                        {
+                            // Skip over if object isn't in visible objects
+                            if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeToMapObject[tile.NetworkType]) == false)
+                                continue;
+                        }
+
+                        // Select colour
+                        Color tileColor = new Color();
+                        switch (tile.NetworkType)
+                        {
+                            case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
+                            case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
+                            //case 0x02: tileColor = Color.Blue; break;
+                            case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
+                            //case 0x04: tileColor = Color.OrangeRed; break;
+                            //case 0x05: tileColor = Color.Orange; break;
+                            case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
+                            //case 0x07: tileColor = Color.YellowGreen; break;// subway?
+                            //case 0x08: tileColor = Color.Green; break;// subway?
+                            //case 0x09: tileColor = Color.Blue; break;
+                            case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
+                            // case 0x0B: tileColor = Color.Green; break;
+                            // case 0x0C: tileColor = Color.PaleVioletRed; break;
+                            // case 0x0D: tileColor = Color.AntiqueWhite; break;
+                            // case 0x0E: tileColor = Color.AntiqueWhite; break;
+                            // case 0x0F: tileColor = Color.AntiqueWhite; break;
+                            //default: tileColor = Color.Violet; break;
+                        }
+
+                        // Draw the tile
+                        Rectangle rect = new Rectangle(
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ / 16)),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX - tile.MinSizeX) / 16) + 1),
+                            parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ - tile.MinSizeZ) / 16) + 1)
+                        );
+
+                        g.FillRectangle(new SolidBrush(tileColor), rect);
+                    }
+                }
+
+                    // Render grid lines
                 if (parameters.ShowGridLines)
                 {
                     Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);

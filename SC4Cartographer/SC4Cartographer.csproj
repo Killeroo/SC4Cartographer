@@ -117,6 +117,9 @@
     <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile2.cs">
       <Link>SC4Parser\DataStructures\NetworkTile2.cs</Link>
     </Compile>
+	<Compile Include="..\SC4Parser\SC4Parser\DataStructures\BridgeNetworkTile.cs">
+      <Link>SC4Parser\DataStructures\BridgeNetworkTile.cs</Link>
+    </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
       <Link>SC4Parser\Files\DatabaseDirectoryFile.cs</Link>
     </Compile>
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\SubFiles\NetworkSubfile2.cs">
       <Link>SC4Parser\Subfiles\NetworkSubfile2.cs</Link>
+    </Compile>
+	<Compile Include="..\SC4Parser\SC4Parser\SubFiles\BridgeNetworkSubfile.cs">
+      <Link>SC4Parser\Subfiles\BridgeNetworkSubfile.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Extensions.cs">
       <Link>SC4Parser\Extensions.cs</Link>
