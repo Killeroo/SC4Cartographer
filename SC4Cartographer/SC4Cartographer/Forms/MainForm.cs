@@ -40,7 +40,7 @@ namespace SC4CartographerUI
     public partial class MainForm : Form
     {
         private const int MAX_ZOOM_SIZE = 10000;
-        private const string SC4PARSER_VERSION = "v1.1.0.0";
+        private const string SC4PARSER_VERSION = "v1.1.0 (c31bdd4)";
 
         /// <summary>
         /// Currently loaded map
