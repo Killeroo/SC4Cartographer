@@ -1,5 +1,5 @@
 # SC4Cartographer
-[![](https://img.shields.io/badge/stable%20version-1.0.0-brightgreen.svg)](https://github.com/Killeroo/SC4Cartographer/releases) 
+[![](https://img.shields.io/badge/stable%20version-1.1.0-brightgreen.svg)](https://github.com/Killeroo/SC4Cartographer/releases) 
 
 Generate maps for your SimCity4 cities!
 
@@ -21,12 +21,6 @@ Here are some map images that have been created using SC4Cartographer
 ![alt text](Images/Interpol.png)
 ![alt text](Images/Kensington.png)
 
-# Screenshots
-
-![alt text](Images/Screenshots/screenshot1.png)
-![alt text](Images/Screenshots/screenshot2.png)
-![alt text](Images/Screenshots/screenshot3.png)
-
 # Building & Developing
 
 First thing you want to do is make sure you have .NET Framework installed (you probably will), then you will need to pull down the repository and it's submodules:
@@ -44,7 +38,7 @@ SC4Cartographer uses another library I made called SC4Parser for parsing and loa
 ```
 MIT License
 
-Copyright (c) 2020 Matthew Carney
+Copyright (c) 2021 Matthew Carney
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
