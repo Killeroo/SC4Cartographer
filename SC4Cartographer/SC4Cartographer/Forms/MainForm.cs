@@ -2344,9 +2344,12 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void ResetZoomButton_Click(object sender, EventArgs e)
         {
-            zoomFactor = 1;
-            ZoomTrackBar.Value = 0;
-            ZoomImage(true);
+            if (zoomFactor != 1)
+            {
+                zoomFactor = 1;
+                ZoomTrackBar.Value = 0;
+                ZoomImage(true);
+            }
         }
 
         #endregion
