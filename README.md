@@ -5,7 +5,7 @@ Generate maps for your SimCity4 cities!
 
 ![alt text](Images/Screenshots/screenshot_main.png)
 
-Maps are created using a city's zone information.
+Maps are created using a city's terrain, zone and transport data. All colours and aspects of the map are fully customisable.
 
 # Downloads
 The latest stable release can be downloaded [here](https://github.com/Killeroo/SC4Cartographer/releases/latest)
@@ -14,12 +14,17 @@ The latest stable release can be downloaded [here](https://github.com/Killeroo/S
 
 Here are some map images that have been created using SC4Cartographer
 
-![alt text](Images/The_Last_Wish.png)
+![XCity's The Last Wish](Images/The_Last_Wish.png)
 ![alt text](Images/Casarano.png)
 ![alt text](Images/unknown.png)
+![XCity](Images/River_Side_no_transport.png)
+![XCity's Breath of the Dying](Images/Breath_of_the_Dying.png)
 ![alt text](Images/wow.png)
 ![alt text](Images/Interpol.png)
+![XCity's Avalanche](Images/Avalanche.png)
 ![alt text](Images/Kensington.png)
+![XCity](Images/38.png)
+![XCity's Bears Matrix](Images/BearsMatrix1.png)
 
 # Building & Developing
 
@@ -32,6 +37,11 @@ Now if you open up SC4Cartographer.sln in Visual Studio 2017 community or higher
 If you want to modify any of the [UI code](https://github.com/Killeroo/SC4Cartographer/blob/716bedd7d1c1ac253b502ddce1208dee76670605/SC4Cartographer/MainForm.cs#L22) or [map generation](https://github.com/Killeroo/SC4Cartographer/blob/716bedd7d1c1ac253b502ddce1208dee76670605/SC4Cartographer/MapRenderer.cs#L17) code you can find it in the SC4Cartographer project (it will be a bit messy).
 
 SC4Cartographer uses another library I made called SC4Parser for parsing and loading data from SimCity 4 savegames, so if you want to use or modify any of that functionality you can find it [here](https://github.com/Killeroo/SC4Parser).
+
+# Thanks
+
+* Special Thanks to [XCity](https://community.simtropolis.com/profile/792216-xcity/) for helping test and who's cities a lot of the example maps were created from.
+* [SC4 Encyclopedia](https://wiki.sc4devotion.com/index.php?title=Main_Page), without the excellent documentation on this site none of this would be possible.
 
 # License
 
