@@ -73,7 +73,7 @@ namespace SC4CartographerUI
 
         private void OpenLogDirectoryButton_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", Path.GetDirectoryName(logPath));
+            Process.Start("explorer.exe", string.Format("/select,\"{0}\"", logPath));// Path.GetDirectoryName(logPath));
         }
     }
 }
