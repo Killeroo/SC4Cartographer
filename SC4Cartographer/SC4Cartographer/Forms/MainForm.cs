@@ -95,6 +95,11 @@ namespace SC4CartographerUI
 
         public MainForm()
         {
+            // Setup parser logger
+            // (Do this first so the logger is ready for when we load the first map
+            //logger = new RichTextBoxLogger(LogTextBox);
+            fileLogger = new FileLogger();
+
             InitializeComponent();
 
             // Setup cleanup timer
@@ -109,9 +114,6 @@ namespace SC4CartographerUI
             memoryUsedUpdateTimer.Elapsed += MemoryUsedUpdateTimer_Elapsed;
             memoryUsedUpdateTimer.Start();
 
-            // Setup parser logger
-            //logger = new RichTextBoxLogger(LogTextBox);
-            fileLogger = new FileLogger();
 
             // Create some new default map parameters
             map.Parameters = new MapCreationParameters();
