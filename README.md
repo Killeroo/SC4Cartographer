@@ -34,7 +34,7 @@ git clone --recurse-submodules https://github.com/Killeroo/SC4Cartographer.git
 ```
 Now if you open up SC4Cartographer.sln in Visual Studio 2017 community or higher you are good to go!
 
-If you want to modify any of the [UI code](https://github.com/Killeroo/SC4Cartographer/blob/716bedd7d1c1ac253b502ddce1208dee76670605/SC4Cartographer/MainForm.cs#L22) or [map generation](https://github.com/Killeroo/SC4Cartographer/blob/716bedd7d1c1ac253b502ddce1208dee76670605/SC4Cartographer/MapRenderer.cs#L17) code you can find it in the SC4Cartographer project (it will be a bit messy).
+If you want to modify any of the [UI code](https://github.com/Killeroo/SC4Cartographer/blob/4340afa866ec4372cf08c5ca9cbac3bc38e67a64/SC4Cartographer/SC4Cartographer/Forms/MainForm.cs#L40) or [map generation](https://github.com/Killeroo/SC4Cartographer/blob/4340afa866ec4372cf08c5ca9cbac3bc38e67a64/SC4Cartographer/SC4Cartographer/MapRenderer.cs#L24) code you can find it in the SC4Cartographer project (it will be a bit messy).
 
 SC4Cartographer uses another library I made called SC4Parser for parsing and loading data from SimCity 4 savegames, so if you want to use or modify any of that functionality you can find it [here](https://github.com/Killeroo/SC4Parser).
 
