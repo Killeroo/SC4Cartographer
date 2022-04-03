@@ -123,7 +123,13 @@ namespace SC4CartographerUI
             //RegisterAppearanceEvents();
 
             // Set our default save location to be our current directory
-            OutputPathTextbox.Text = Directory.GetCurrentDirectory();
+            // (Don't save to system32 which is sometimes our path when starting sometimes)
+            string initialDirectory = Directory.GetCurrentDirectory();
+            if (initialDirectory == @"C:\WINDOWS\system32")
+            {
+                initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
+            OutputPathTextbox.Text = initialDirectory;
 
             // Set cursor to end of textbox
             OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
