@@ -397,13 +397,6 @@ namespace SC4CartographerUI
                 forceRecenter = true;
             }
 
-            if (newMap)
-            {
-                // If loading a new map we reset the zoom values
-                ZoomTrackBar.Value = 0;
-                zoomFactor = 1;
-            }
-
             // Set image
             MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             if (zoomFactor != 1)
