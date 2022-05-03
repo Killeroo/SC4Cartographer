@@ -9,13 +9,10 @@ namespace SC4CartographerUI
 {
     public class MapApperanceSerializer
     {
-        const int VERSION = 1;
+        private const int VERSION = 1;
 
-        MapCreationParameters parameters;
 
-        public MapApperanceSerializer(MapCreationParameters parameters)
         {
-            this.parameters = parameters;
         }
         /// <summary>
         /// Save the a MapParameters object to a file.
@@ -23,7 +20,7 @@ namespace SC4CartographerUI
         /// </summary>
         /// <param name="parameters">The MapParameters object to save.</param>
         /// <param name="path">Path to file to save to</param>
-        public void SaveToFile(string path)
+        public void SaveToFile(MapCreationParameters parameters, string path)
         {
             List<string> properties = parameters.ToStrings();
             properties.Insert(0, $"Version:{VERSION};");
@@ -47,7 +44,7 @@ namespace SC4CartographerUI
         /// Loads MapParameters from a file and fills object with values. Expects exceptions to be handled externally
         /// </summary>
         /// <param name="path">path to map parameters file</param>
-        public void LoadFromFile(string path)
+        public void LoadFromFile(MapCreationParameters parameters, string path)
         {
             MapCreationParameters newParameters = new MapCreationParameters(parameters);
             Dictionary<MapColorObject, Color> colors = parameters.ColorDictionary;

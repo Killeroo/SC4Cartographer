@@ -125,14 +125,11 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
-        public readonly MapApperanceSerializer serializer;
-        
         public MapCreationParameters() 
         {
-            serializer = new MapApperanceSerializer(this);
         }
         
-        public MapCreationParameters(MapCreationParameters parameters) : this()
+        public MapCreationParameters(MapCreationParameters parameters)
         {
             OutputPath = parameters.OutputPath;
             OutputFormat = parameters.OutputFormat;

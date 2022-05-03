@@ -50,8 +50,9 @@ namespace SC4CartographerUI
         //avoiding a messy PR here, otherwise i'd rename the above 'map' to "Map" which is 47 changes.
         //this way it can still be easily converted to a property and renamed later.
         public Map Map => map;
-
-        MapApperanceSaveLoadDialogs mapApperanceSaveLoadDialogs;
+        
+        private readonly MapApperanceSaveLoadDialogs mapApperanceSaveLoadDialogs;
+        private readonly MapApperanceSerializer mapApperanceSerializer = new MapApperanceSerializer();
 
         /// <summary>
         /// Map Bitmaps used for preview and for actually saving to a file
@@ -121,8 +122,8 @@ namespace SC4CartographerUI
             memoryUsedUpdateTimer.Start();
 
             
-            mapApperanceSaveLoadDialogs = new MapApperanceSaveLoadDialogs(this);
-            
+            mapApperanceSaveLoadDialogs = new MapApperanceSaveLoadDialogs(this, mapApperanceSerializer);
+
             // Create some new default map parameters
             map.Parameters = new MapCreationParameters();
 
@@ -4060,6 +4061,5 @@ namespace SC4CartographerUI
         #endregion
 
         #endregion
-
     }
 }

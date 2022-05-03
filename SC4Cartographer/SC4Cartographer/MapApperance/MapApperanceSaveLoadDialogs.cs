@@ -6,15 +6,16 @@ namespace SC4CartographerUI
 {
     internal class MapApperanceSaveLoadDialogs
     {
-        const string defaultFilename = "map_appearance.sc4cart";        
+        private const string defaultFilename = "map_appearance.sc4cart";
 
-        MapCreationParameters Parameters => mainForm.Map.Parameters;
-
-        readonly MainForm mainForm;
-
-        public MapApperanceSaveLoadDialogs(MainForm mainForm)
+        private MapCreationParameters Parameters => mainForm.Map.Parameters;
+        private readonly MainForm mainForm;
+        private readonly MapApperanceSerializer serializer;
+        
+        public MapApperanceSaveLoadDialogs(MainForm mainForm, MapApperanceSerializer serializer)
         {
             this.mainForm = mainForm;
+            this.serializer = serializer;
         }
 
         public void SaveMapParametersWithDialog()
@@ -43,7 +44,7 @@ namespace SC4CartographerUI
         {
             try
             {
-                Parameters.serializer.SaveToFile(path);
+                serializer.SaveToFile(Parameters, path);
 
                 var successForm = new SuccessForm(
                     "Map appearance saved",
@@ -103,7 +104,7 @@ namespace SC4CartographerUI
         {
             try
             {
-                Parameters.serializer.LoadFromFile(path);
+                serializer.LoadFromFile(Parameters, path);
             }
             catch (Exception ex)
             {
