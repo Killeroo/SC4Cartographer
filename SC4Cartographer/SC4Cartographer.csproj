@@ -202,7 +202,9 @@
     <Compile Include="SC4Cartographer\Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SC4Cartographer\MapParameters.cs" />
+    <Compile Include="SC4Cartographer\MapApperance\MapApperanceSaveLoadDialogs.cs" />
+    <Compile Include="SC4Cartographer\MapApperance\MapApperanceSerializer.cs" />
+    <Compile Include="SC4Cartographer\MapApperance\MapParameters.cs" />
     <Compile Include="SC4Cartographer\MapRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

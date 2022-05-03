@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.IO;
 
 using System.Drawing;
 
@@ -126,8 +125,6 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
-        public static int VERSION = 1;
-
         public MapCreationParameters() { }
         public MapCreationParameters(MapCreationParameters parameters)
         {
@@ -145,6 +142,8 @@ namespace SC4CartographerUI
             VisibleMapObjects = parameters.VisibleMapObjects;
             TerrainDataDictionary = parameters.TerrainDataDictionary;
         }
+
+        readonly MapApperanceSerializer serializer = new MapApperanceSerializer();
 
         #region Ouput
 
@@ -276,175 +275,42 @@ namespace SC4CartographerUI
 
         #endregion
 
-        /// <summary>
-        /// Saves the current MapParameters object to a file. This method expects exceptions to be handled
-        /// outside of the method
-        /// </summary>
-        /// <param name="path">Path to file to save to</param>
-        public void SaveToFile(string path)
+        public List<string> ToStrings()
         {
-            List<string> properties = new List<string>();
-
-            // Get the properties as a list of strings
-            properties.Add($"Version:{VERSION};");
-            properties.Add("!!!WARNING: This file is Case-Sensitive!!!");
-            properties.Add($"ShowGridLines:{(ShowGridLines ? "true" : "false")};");
-            properties.Add($"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};");
-            properties.Add($"BlendTerrainColors:{(BlendTerrainLayers ? "true" : "false")};");
-            properties.Add($"GridSegmentSize:{GridSegmentSize};");
-            properties.Add($"SegmentPaddingX:{SegmentPaddingX};");
-            properties.Add($"SegmentPaddingY:{SegmentPaddingY};");
-            properties.Add($"SegmentOffsetX:{SegmentOffsetX};");
-            properties.Add($"SegmentOffsetY:{SegmentOffsetY};");
-            properties.Add($"VisibleObjects:{string.Join(",", VisibleMapObjects)};");
+            List<string> properties = new List<string>
+            {
+                $"ShowGridLines:{(ShowGridLines ? "true" : "false")};",
+                $"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};",
+                $"BlendTerrainColors:{(BlendTerrainLayers ? "true" : "false")};",
+                $"GridSegmentSize:{GridSegmentSize};",
+                $"SegmentPaddingX:{SegmentPaddingX};",
+                $"SegmentPaddingY:{SegmentPaddingY};",
+                $"SegmentOffsetX:{SegmentOffsetX};",
+                $"SegmentOffsetY:{SegmentOffsetY};",
+                $"VisibleObjects:{string.Join(",", VisibleMapObjects)};"
+            };
+            
             foreach (var data in TerrainDataDictionary)
             {
                 properties.Add($"TerrainData@{data.Key}:{(data.Value.enabled ? "true" : "false")},\"{data.Value.alias}\",{data.Value.colorObject},{data.Value.height};");
             }
+            
             foreach (var color in ColorDictionary)
             {
                 properties.Add($"Color@{color.Key}:{color.Value.R},{color.Value.G},{color.Value.B};");
             }
 
-            // Write each properties to a line in a file
-            using (StreamWriter writer = new StreamWriter(path))
-            {
-                foreach (string property in properties)
-                {
-                    writer.WriteLine(property);
-                }
-            }
+            return properties;
         }
 
-        /// <summary>
-        /// Loads MapParameters from a file and fills object with values. Expects exceptions to be handled externally
-        /// </summary>
-        /// <param name="path">path to map parameters file</param>
+        public void SaveToFile(string path)
+        {
+            serializer.SaveToFile(this, path);
+        }
+
         public void LoadFromFile(string path)
         {
-            MapCreationParameters mapCreationParameters = new MapCreationParameters(this);
-            Dictionary<MapColorObject, Color> colors = ColorDictionary;
-            Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> terrainData = TerrainDataDictionary;
-
-            Dictionary<string, string> properties = new Dictionary<string, string>();
-
-            string line = "";
-            using (StreamReader reader = new StreamReader(path))
-            {
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // Split the line via ':'
-                    string[] lineData = line.Replace(";", "").Split(':');
-
-                    string propertyKey = lineData.First();//.ToLower();
-                    string propertyValue = lineData.Last();//.ToLower();
-
-                    // Add line info to properties dictionary
-                    // (first part is the property name, second part is property value)
-                    properties.Add(propertyKey, propertyValue);
-                }
-            }
-            
-
-            if (properties["Version"] == "")
-            {
-                throw new Exception($"Could not find version of properties file. Can't parse file.");
-            }
-
-            if (int.Parse(properties["Version"]) > VERSION)
-            {
-                throw new Exception($"Properties file version too high. Can only parse version {VERSION} or lower, version {properties["version"]} found in file");
-            }
-
-            // Loop through each property 
-            foreach (var property in properties)
-            {
-                // Sort and assign colours seperately
-                if (property.Key.Contains("Color@"))
-                {
-                    string colorKey = property.Key.Split('@').Last();
-                    string[] colorValues = property.Value.Split(',');
-                    int r = int.Parse(colorValues[0]);
-                    int g = int.Parse(colorValues[1]);
-                    int b = int.Parse(colorValues[2]);
-
-                    // Load the colors from the file into the dictionary
-                    colors[(MapColorObject)Enum.Parse(typeof(MapColorObject), colorKey)] = Color.FromArgb(r, g, b);
-                }
-                else if (property.Key.Contains("TerrainData@"))
-                {
-                    string dataKey = property.Key.Split('@').Last();
-                    string[] dataValues = property.Value.Split(',');
-
-                    bool enabled = (dataValues[0] == "true" ? true : false);
-                    string alias = dataValues[1].Replace("\"", ""); 
-                    MapColorObject colorObject = (MapColorObject)Enum.Parse(typeof(MapColorObject), dataValues[2]);
-                    int height = int.Parse(dataValues[3]);
-
-                    // Load terrain data into dictionary
-                    terrainData[(TerrainObject)Enum.Parse(typeof(TerrainObject), dataKey)] = (enabled, alias, colorObject, height);
-                }
-                else
-                {
-                    // Sort all other properties
-                    switch (property.Key)
-                    {
-                        case "ShowGridLines":
-                            if (property.Value == "true")
-                                mapCreationParameters.ShowGridLines = true;
-                            else
-                                mapCreationParameters.ShowGridLines = false;
-                            break;
-                        case "ShowZoneOutLines":
-                            if (property.Value == "true")
-                                mapCreationParameters.ShowZoneOutlines = true;
-                            else
-                                mapCreationParameters.ShowZoneOutlines = false;
-                            break;
-                        case "BlendTerrainColors":
-                            if (property.Value == "true")
-                                mapCreationParameters.BlendTerrainLayers = true;
-                            else
-                                mapCreationParameters.BlendTerrainLayers = false;
-                            break;
-                        case "GridSegmentSize":
-                            mapCreationParameters.GridSegmentSize = int.Parse(property.Value);
-                            break;
-                        case "SegmentPaddingX":
-                            mapCreationParameters.SegmentPaddingX = int.Parse(property.Value);
-                            break;
-                        case "SegmentPaddingY":
-                            mapCreationParameters.SegmentPaddingY = int.Parse(property.Value);
-                            break;
-                        case "SegmentOffsetX":
-                            mapCreationParameters.SegmentOffsetX = int.Parse(property.Value);
-                            break;
-                        case "SegmentOffsetY":
-                            mapCreationParameters.SegmentOffsetY = int.Parse(property.Value);
-                            break;
-                        case "VisibleObjects":
-                            mapCreationParameters.VisibleMapObjects = new List<MapObject>();
-
-                            foreach (string mapObject in property.Value.Split(','))
-                            {
-                                mapCreationParameters.VisibleMapObjects.Add((MapObject)Enum.Parse(typeof(MapObject), mapObject));
-                            }
-                            break;
-                    }
-                }
-            }
-
-            // Now everything has been loaded safely, apply them to our current map properties object
-            this.ColorDictionary = colors;
-            this.ShowGridLines = mapCreationParameters.ShowGridLines;
-            this.ShowZoneOutlines = mapCreationParameters.ShowZoneOutlines;
-            this.BlendTerrainLayers = mapCreationParameters.BlendTerrainLayers;
-            this.GridSegmentSize = mapCreationParameters.GridSegmentSize;
-            this.SegmentPaddingX = mapCreationParameters.SegmentPaddingX;
-            this.SegmentPaddingY = mapCreationParameters.SegmentPaddingY;
-            this.SegmentOffsetX = mapCreationParameters.SegmentOffsetX;
-            this.SegmentOffsetY = mapCreationParameters.SegmentOffsetY;
-            this.VisibleMapObjects = mapCreationParameters.VisibleMapObjects;
+            serializer.LoadFromFile(this, path);
         }
 
         // Helper lookup dictionary for network tile types and their related enum
