@@ -113,7 +113,7 @@ namespace SC4CartographerUI
                         case "ShowGridLines":
                             newParameters.ShowGridLines = Convert.ToBoolean(property.Value);
                             break;
-                        case "ShowZoneOutLines":
+                        case "ShowZoneOutlines":
                             newParameters.ShowZoneOutlines = Convert.ToBoolean(property.Value);
                             break;
                         case "BlendTerrainColors":
