@@ -7,17 +7,23 @@ using System.Drawing;
 
 namespace SC4CartographerUI
 {
-    internal class MapApperanceSerializer
+    public class MapApperanceSerializer
     {
         const int VERSION = 1;
 
+        MapCreationParameters parameters;
+
+        public MapApperanceSerializer(MapCreationParameters parameters)
+        {
+            this.parameters = parameters;
+        }
         /// <summary>
         /// Save the a MapParameters object to a file.
         /// Does not handle exceptions.
         /// </summary>
         /// <param name="parameters">The MapParameters object to save.</param>
         /// <param name="path">Path to file to save to</param>
-        public void SaveToFile(MapCreationParameters parameters, string path)
+        public void SaveToFile(string path)
         {
             List<string> properties = parameters.ToStrings();
             properties.Insert(0, $"Version:{VERSION};");
@@ -41,11 +47,11 @@ namespace SC4CartographerUI
         /// Loads MapParameters from a file and fills object with values. Expects exceptions to be handled externally
         /// </summary>
         /// <param name="path">path to map parameters file</param>
-        public void LoadFromFile(MapCreationParameters currentParameters, string path)
+        public void LoadFromFile(string path)
         {
-            MapCreationParameters newParameters = new MapCreationParameters(currentParameters);
-            Dictionary<MapColorObject, Color> colors = currentParameters.ColorDictionary;
-            Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> terrainData = currentParameters.TerrainDataDictionary;
+            MapCreationParameters newParameters = new MapCreationParameters(parameters);
+            Dictionary<MapColorObject, Color> colors = parameters.ColorDictionary;
+            Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> terrainData = parameters.TerrainDataDictionary;
 
             Dictionary<string, string> properties = new Dictionary<string, string>();
 
@@ -147,16 +153,16 @@ namespace SC4CartographerUI
             }
 
             // Now everything has been loaded safely, apply them to our current map properties object
-            currentParameters.ColorDictionary = colors;
-            currentParameters.ShowGridLines = newParameters.ShowGridLines;
-            currentParameters.ShowZoneOutlines = newParameters.ShowZoneOutlines;
-            currentParameters.BlendTerrainLayers = newParameters.BlendTerrainLayers;
-            currentParameters.GridSegmentSize = newParameters.GridSegmentSize;
-            currentParameters.SegmentPaddingX = newParameters.SegmentPaddingX;
-            currentParameters.SegmentPaddingY = newParameters.SegmentPaddingY;
-            currentParameters.SegmentOffsetX = newParameters.SegmentOffsetX;
-            currentParameters.SegmentOffsetY = newParameters.SegmentOffsetY;
-            currentParameters.VisibleMapObjects = newParameters.VisibleMapObjects;
+            parameters.ColorDictionary = colors;
+            parameters.ShowGridLines = newParameters.ShowGridLines;
+            parameters.ShowZoneOutlines = newParameters.ShowZoneOutlines;
+            parameters.BlendTerrainLayers = newParameters.BlendTerrainLayers;
+            parameters.GridSegmentSize = newParameters.GridSegmentSize;
+            parameters.SegmentPaddingX = newParameters.SegmentPaddingX;
+            parameters.SegmentPaddingY = newParameters.SegmentPaddingY;
+            parameters.SegmentOffsetX = newParameters.SegmentOffsetX;
+            parameters.SegmentOffsetY = newParameters.SegmentOffsetY;
+            parameters.VisibleMapObjects = newParameters.VisibleMapObjects;
         }
     }
 }

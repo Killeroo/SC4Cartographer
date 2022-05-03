@@ -43,7 +43,7 @@ namespace SC4CartographerUI
         {
             try
             {
-                Parameters.SaveToFile(path);
+                Parameters.serializer.SaveToFile(path);
 
                 var successForm = new SuccessForm(
                     "Map appearance saved",
@@ -103,7 +103,7 @@ namespace SC4CartographerUI
         {
             try
             {
-                Parameters.LoadFromFile(path);
+                Parameters.serializer.LoadFromFile(path);
             }
             catch (Exception ex)
             {

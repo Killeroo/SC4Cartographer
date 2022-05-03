@@ -125,8 +125,14 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
-        public MapCreationParameters() { }
-        public MapCreationParameters(MapCreationParameters parameters)
+        public readonly MapApperanceSerializer serializer;
+        
+        public MapCreationParameters() 
+        {
+            serializer = new MapApperanceSerializer(this);
+        }
+        
+        public MapCreationParameters(MapCreationParameters parameters) : this()
         {
             OutputPath = parameters.OutputPath;
             OutputFormat = parameters.OutputFormat;
@@ -142,8 +148,6 @@ namespace SC4CartographerUI
             VisibleMapObjects = parameters.VisibleMapObjects;
             TerrainDataDictionary = parameters.TerrainDataDictionary;
         }
-
-        readonly MapApperanceSerializer serializer = new MapApperanceSerializer();
 
         #region Ouput
 
@@ -301,16 +305,6 @@ namespace SC4CartographerUI
             }
 
             return properties;
-        }
-
-        public void SaveToFile(string path)
-        {
-            serializer.SaveToFile(this, path);
-        }
-
-        public void LoadFromFile(string path)
-        {
-            serializer.LoadFromFile(this, path);
         }
 
         // Helper lookup dictionary for network tile types and their related enum
