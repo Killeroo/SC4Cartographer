@@ -126,6 +126,7 @@ namespace SC4CartographerUI
 
             // Create some new default map parameters
             map.Parameters = new MapCreationParameters();
+            mapApperanceSerializer.TryLoadFromUserTempFolder(map.Parameters);
 
             // Setup appearance tab
             SetAppearanceUIValuesUsingParameters(map.Parameters);
@@ -1980,6 +1981,11 @@ namespace SC4CartographerUI
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             ShowAppearanceTabUI(true);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mapApperanceSerializer.SaveToUserTempFolder(map.Parameters);
         }
 
         #endregion

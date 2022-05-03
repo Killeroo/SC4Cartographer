@@ -9,11 +9,30 @@ namespace SC4CartographerUI
 {
     public class MapApperanceSerializer
     {
+        private const string tempFilename = "map_appearance_autosave.sc4cart";
+        private readonly string tempFilePath = Path.Combine(Path.GetTempPath(), tempFilename);
         private const int VERSION = 1;
 
-
+        public void SaveToUserTempFolder(MapCreationParameters parameters)
         {
+            SaveToFile(parameters, tempFilePath);
         }
+
+        public void TryLoadFromUserTempFolder(MapCreationParameters parameters)
+        {
+            if (File.Exists(tempFilePath))
+            {
+                try
+                {
+                    LoadFromFile(parameters, tempFilePath);
+                }
+                catch (Exception)
+                {
+                    // should probably log this
+                }
+            }
+        }
+
         /// <summary>
         /// Save the a MapParameters object to a file.
         /// Does not handle exceptions.
