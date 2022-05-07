@@ -142,6 +142,23 @@ namespace SC4CartographerUI
                     g.Clear(parameters.ColorDictionary[MapColorObject.Background]);
                 }
 
+                // Render grid lines
+                if (parameters.ShowGridLines)
+                {
+                    Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
+                    gridLinesPen.Width = 1;
+
+                    for (int y = 0; y < gridSizeY; ++y)
+                    {
+                        g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
+                    }
+
+                    for (int x = 0; x < gridSizeX; ++x)
+                    {
+                        g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize);
+                    }
+                }
+
                 // Render lots
                 if (parameters.VisibleMapObjects.FindAll(x => x.ToString().Contains("Zone")).Count() != 0
                     && save.ContainsLotSubfile())
@@ -396,6 +413,31 @@ namespace SC4CartographerUI
                     }
                 }
 
+                // Render buildings
+                if (parameters.VisibleMapObjects.Contains(MapObject.Building)
+                    && save.ContainsBuildingsSubfile())
+                {
+                    Brush b = new SolidBrush(parameters.ColorDictionary[MapColorObject.Buildings]);
+                    Pen pe = new Pen(parameters.ColorDictionary[MapColorObject.BuildingsOutline], 1);
+                    double unit = parameters.GridSegmentSize /  16d;
+
+                    foreach (var building in save.GetBuildingSubfile().Buildings)
+                    {
+                        Rectangle rect = new Rectangle(
+                                (int)(unit * Math.Ceiling(building.MinCoordinateX)),
+                                (int)(unit * Math.Ceiling(building.MinCoordinateZ)),
+                                (int)(unit * Math.Ceiling(building.MaxCoordinateX - building.MinCoordinateX)),
+                                (int)(unit * Math.Ceiling(building.MaxCoordinateZ - building.MinCoordinateZ)));
+
+                        g.FillRectangle(b, rect);
+
+                        if (parameters.ShowBuildingOutlines)
+                        {
+                            g.DrawRectangle(pe, rect);
+                        }
+                    }
+                }
+
                 // Render Network Subfile 1
                 if (parameters.VisibleMapObjects.FindAll(x => x.ToString().Contains("Network1")).Count() != 0
                     && save.ContainsNetworkSubfile1())
@@ -547,23 +589,6 @@ namespace SC4CartographerUI
                         );
 
                         g.FillRectangle(new SolidBrush(tileColor), rect);
-                    }
-                }
-
-                    // Render grid lines
-                if (parameters.ShowGridLines)
-                {
-                    Pen gridLinesPen = new Pen(parameters.ColorDictionary[MapColorObject.GridLines]);
-                    gridLinesPen.Width = 1;
-
-                    for (int y = 0; y < gridSizeY; ++y)
-                    {
-                        g.DrawLine(gridLinesPen, 0, y * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize, y * parameters.GridSegmentSize);
-                    }
-
-                    for (int x = 0; x < gridSizeX; ++x)
-                    {
-                        g.DrawLine(gridLinesPen, x * parameters.GridSegmentSize, 0, x * parameters.GridSegmentSize, gridSizeY * parameters.GridSegmentSize);
                     }
                 }
 

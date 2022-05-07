@@ -27,6 +27,7 @@ namespace SC4CartographerUI
         IndustrialHighZone,
         IndustrialMidZone,
         IndustrialLowZone,  
+        Building,
         StreetNetwork1,
         RoadNetwork1,
         OneWayRoadNetwork1,
@@ -54,6 +55,9 @@ namespace SC4CartographerUI
         IndustrialHigh,
         IndustrialMid,
         IndustrialLow,
+
+        Buildings,
+        BuildingsOutline,
 
         Street,
         Road,
@@ -135,6 +139,7 @@ namespace SC4CartographerUI
             OutputFormat = parameters.OutputFormat;
             ShowGridLines = parameters.ShowGridLines;
             ShowZoneOutlines = parameters.ShowZoneOutlines;
+            ShowBuildingOutlines = parameters.ShowBuildingOutlines;
             BlendTerrainLayers = parameters.BlendTerrainLayers;
             SegmentPaddingX = parameters.SegmentPaddingX;
             SegmentPaddingY = parameters.SegmentPaddingY;
@@ -157,6 +162,7 @@ namespace SC4CartographerUI
 
         public bool ShowGridLines = false;
         public bool ShowZoneOutlines = false;
+        public bool ShowBuildingOutlines = true;
         public bool BlendTerrainLayers = false;
         public int GridSegmentSize = 5;//10;
         public int SegmentPaddingX = 1;//4;
@@ -181,6 +187,7 @@ namespace SC4CartographerUI
             MapObject.IndustrialHighZone,
             MapObject.IndustrialMidZone,
             MapObject.IndustrialLowZone,
+            //MapObject.Building,
             MapObject.StreetNetwork1,
             MapObject.RoadNetwork1,
             MapObject.OneWayRoadNetwork1,
@@ -241,6 +248,9 @@ namespace SC4CartographerUI
             {MapColorObject.IndustrialMid, Color.FromArgb(198, 183, 51)},
             {MapColorObject.IndustrialLow, Color.FromArgb(208, 208, 48)},
 
+            {MapColorObject.Buildings, Color.FromArgb(178, 178, 178)},
+            {MapColorObject.BuildingsOutline, Color.FromArgb(153, 153, 153)},
+
             {MapColorObject.Street, Color.FromArgb(225, 225, 225) },
             {MapColorObject.Road, Color.FromArgb(225, 225, 225)},
             {MapColorObject.OneWayRoad, Color.FromArgb(225, 225, 225)},
@@ -290,6 +300,7 @@ namespace SC4CartographerUI
             properties.Add("!!!WARNING: This file is Case-Sensitive!!!");
             properties.Add($"ShowGridLines:{(ShowGridLines ? "true" : "false")};");
             properties.Add($"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};");
+            properties.Add($"ShowBuildingOutlines:{(ShowBuildingOutlines ? "true" : "false")};");
             properties.Add($"BlendTerrainColors:{(BlendTerrainLayers ? "true" : "false")};");
             properties.Add($"GridSegmentSize:{GridSegmentSize};");
             properties.Add($"SegmentPaddingX:{SegmentPaddingX};");
@@ -401,6 +412,12 @@ namespace SC4CartographerUI
                             else
                                 mapCreationParameters.ShowZoneOutlines = false;
                             break;
+                        case "ShowBuildingOutlines":
+                            if (property.Value == "true")
+                                mapCreationParameters.ShowBuildingOutlines = true;
+                            else
+                                mapCreationParameters.ShowBuildingOutlines = false;
+                            break;
                         case "BlendTerrainColors":
                             if (property.Value == "true")
                                 mapCreationParameters.BlendTerrainLayers = true;
@@ -438,6 +455,7 @@ namespace SC4CartographerUI
             this.ColorDictionary = colors;
             this.ShowGridLines = mapCreationParameters.ShowGridLines;
             this.ShowZoneOutlines = mapCreationParameters.ShowZoneOutlines;
+            this.ShowBuildingOutlines = mapCreationParameters.ShowBuildingOutlines;
             this.BlendTerrainLayers = mapCreationParameters.BlendTerrainLayers;
             this.GridSegmentSize = mapCreationParameters.GridSegmentSize;
             this.SegmentPaddingX = mapCreationParameters.SegmentPaddingX;

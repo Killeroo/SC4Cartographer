@@ -761,10 +761,10 @@ namespace SC4CartographerUI
         private void RegisterAppearanceEvents()
         {
             this.ShowZoneOutlinesCheckbox.CheckedChanged += new System.EventHandler(this.ShowZoneOutlinesCheckbox_CheckedChanged);
-            this.SegmentOffsetNumericUpDown.ValueChanged += new System.EventHandler(this.SegmentOffsetNumericUpDown_ValueChanged);
             this.SegmentPaddingNumericUpDown.ValueChanged += new System.EventHandler(this.SegmentPaddingNumericUpDown_ValueChanged);
             this.GridSegmentSizeNumericUpDown.ValueChanged += new System.EventHandler(this.GridSegmentSizeNumericUpDown_ValueChanged);
             this.ShowGridLinesCheckbox.CheckedChanged += new System.EventHandler(this.ShowGridLinesCheckbox_CheckedChanged);
+            this.ShowBuildingOutlinesCheckBox.CheckedChanged += new System.EventHandler(this.ShowBuildingOutlinesCheckBox_CheckedChanged);
             this.BlendTerrainColorsCheckBox.CheckedChanged += new System.EventHandler(this.BlendTerrainColorsCheckBox_CheckedChanged);
             this.SpaceportEditButton.Click += new System.EventHandler(this.SpaceportEditButton_Click);
             this.SeaportsEditButton.Click += new System.EventHandler(this.SeaportsEditButton_Click);
@@ -778,7 +778,7 @@ namespace SC4CartographerUI
             this.CommercialZoneMidEditButton.Click += new System.EventHandler(this.CommercialZoneMidEditButton_Click);
             this.CommercialZoneLowEditButton.Click += new System.EventHandler(this.CommercialZoneLowEditButton_Click);
             this.GridLinesEditTextbox.Click += new System.EventHandler(this.GridLinesEditTextbox_Click);
-            this.BuildingsEditButton.Click += new System.EventHandler(this.BuildingsEditButton_Click);
+            this.PloppedBuildingsEditButton.Click += new System.EventHandler(this.PloppableBuildingsEditButton_Click);
             this.ResidentialZoneLowEditButton.Click += new System.EventHandler(this.ResidentialZoneLowEditButton_Click);
             this.ResidentialZoneHighEditButton.Click += new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
             this.ResidentialZoneMidEditButton.Click += new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
@@ -790,6 +790,9 @@ namespace SC4CartographerUI
             this.RailwayEditButton.Click += new System.EventHandler(this.RailwayEditButton_Click);
             this.SubwayEditButton.Click += new System.EventHandler(this.SubwayEditButton_Click);
             this.EditOutputPathButton.Click += new System.EventHandler(this.EditOutputPathButton_Click);
+
+            this.BuildingsEditButton.Click += new System.EventHandler(this.BuildingsEditButton_Click);
+            this.BuildingsOutlineEditButton.Click += new System.EventHandler(this.BuildingsOutlineEditButton_Click);
 
             this.TerrainLayer1CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer1CheckBox_CheckedChanged);
             this.TerrainLayer2CheckBox.CheckedChanged += new System.EventHandler(this.TerrainLayer2CheckBox_CheckedChanged);
@@ -863,7 +866,6 @@ namespace SC4CartographerUI
 
             // Register mouse wheel callbacks to stop mouse wheels incrementing values too quickly
             this.GridSegmentSizeNumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
-            this.SegmentOffsetNumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
             this.SegmentPaddingNumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
             this.TerrainLayer1NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
             this.TerrainLayer2NumericUpDown.MouseWheel += NumericUpDown_MouseWheel;
@@ -897,11 +899,11 @@ namespace SC4CartographerUI
         private void DeregisterAppearanceEvents()
         {
             this.ShowZoneOutlinesCheckbox.CheckedChanged -= new System.EventHandler(this.ShowZoneOutlinesCheckbox_CheckedChanged);
-            this.SegmentOffsetNumericUpDown.ValueChanged -= new System.EventHandler(this.SegmentOffsetNumericUpDown_ValueChanged);
             this.SegmentPaddingNumericUpDown.ValueChanged -= new System.EventHandler(this.SegmentPaddingNumericUpDown_ValueChanged);
             this.GridSegmentSizeNumericUpDown.ValueChanged -= new System.EventHandler(this.GridSegmentSizeNumericUpDown_ValueChanged);
             this.ShowGridLinesCheckbox.CheckedChanged -= new System.EventHandler(this.ShowGridLinesCheckbox_CheckedChanged);
             this.BlendTerrainColorsCheckBox.CheckedChanged -= new System.EventHandler(this.BlendTerrainColorsCheckBox_CheckedChanged);
+            this.ShowBuildingOutlinesCheckBox.CheckedChanged -= new System.EventHandler(this.ShowBuildingOutlinesCheckBox_CheckedChanged);
             this.SpaceportEditButton.Click -= new System.EventHandler(this.SpaceportEditButton_Click);
             this.SeaportsEditButton.Click -= new System.EventHandler(this.SeaportsEditButton_Click);
             this.AirportsEditButton.Click -= new System.EventHandler(this.AirportsEditButton_Click);
@@ -914,7 +916,7 @@ namespace SC4CartographerUI
             this.CommercialZoneMidEditButton.Click -= new System.EventHandler(this.CommercialZoneMidEditButton_Click);
             this.CommercialZoneLowEditButton.Click -= new System.EventHandler(this.CommercialZoneLowEditButton_Click);
             this.GridLinesEditTextbox.Click -= new System.EventHandler(this.GridLinesEditTextbox_Click);
-            this.BuildingsEditButton.Click -= new System.EventHandler(this.BuildingsEditButton_Click);
+            this.PloppedBuildingsEditButton.Click -= new System.EventHandler(this.PloppableBuildingsEditButton_Click);
             this.ResidentialZoneLowEditButton.Click -= new System.EventHandler(this.ResidentialZoneLowEditButton_Click);
             this.ResidentialZoneHighEditButton.Click -= new System.EventHandler(this.ResidentialZoneHighEditButton_Click);
             this.ResidentialZoneMidEditButton.Click -= new System.EventHandler(this.ResidentialZoneMidEditButton_Click);
@@ -926,6 +928,8 @@ namespace SC4CartographerUI
             this.RailwayEditButton.Click -= new System.EventHandler(this.RailwayEditButton_Click);
             this.SubwayEditButton.Click -= new System.EventHandler(this.SubwayEditButton_Click);
             this.EditOutputPathButton.Click -= new System.EventHandler(this.EditOutputPathButton_Click);
+            this.BuildingsEditButton.Click -= new System.EventHandler(this.BuildingsEditButton_Click);
+            this.BuildingsOutlineEditButton.Click -= new System.EventHandler(this.BuildingsOutlineEditButton_Click);
 
             this.TerrainLayer1CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer1CheckBox_CheckedChanged);
             this.TerrainLayer2CheckBox.CheckedChanged -= new System.EventHandler(this.TerrainLayer2CheckBox_CheckedChanged);
@@ -998,7 +1002,6 @@ namespace SC4CartographerUI
             this.TerrainLayer23Button.Click -= new System.EventHandler(this.TerrainLayer23Button_click);
 
             this.GridSegmentSizeNumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
-            this.SegmentOffsetNumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
             this.SegmentPaddingNumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
             this.TerrainLayer1NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
             this.TerrainLayer2NumericUpDown.MouseWheel -= NumericUpDown_MouseWheel;
@@ -1040,7 +1043,7 @@ namespace SC4CartographerUI
             // Fill zone stuff
             GridBackgroundTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Background];
             GridLinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.GridLines];
-            BuildingsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
+            PloppedBuildingsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.PloppedBuilding];
             ZoneOutlinesTextbox.BackColor = parameters.ColorDictionary[MapColorObject.ZoneOutline];
             MilitaryTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Military];
             AirportsTextbox.BackColor = parameters.ColorDictionary[MapColorObject.Airport];
@@ -1063,6 +1066,10 @@ namespace SC4CartographerUI
             AvenueTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Avenue];
             RailwayTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Railway];
             SubwayTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Subway];
+
+            // Building stuff
+            BuildingsTextBox.BackColor = parameters.ColorDictionary[MapColorObject.Buildings];
+            BuildingsOutlineTextBox.BackColor = parameters.ColorDictionary[MapColorObject.BuildingsOutline];
 
             // Terrain stuff
             TerrainLayer1CheckBox.Checked = parameters.TerrainDataDictionary[TerrainObject.Layer1].enabled;
@@ -1300,9 +1307,9 @@ namespace SC4CartographerUI
             // Grid stuff
             GridSegmentSizeNumericUpDown.Value = parameters.GridSegmentSize;
             SegmentPaddingNumericUpDown.Value = parameters.SegmentPaddingX;
-            SegmentOffsetNumericUpDown.Value = parameters.SegmentOffsetX;
             ShowGridLinesCheckbox.Checked = parameters.ShowGridLines;
             ShowZoneOutlinesCheckbox.Checked = parameters.ShowZoneOutlines;
+            ShowBuildingOutlinesCheckBox.Checked = parameters.ShowBuildingOutlines;
             BlendTerrainColorsCheckBox.Checked = parameters.BlendTerrainLayers;
 
             // Output stuff
@@ -1344,7 +1351,7 @@ namespace SC4CartographerUI
 
             parameters.ColorDictionary[MapColorObject.Background] = GridBackgroundTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.GridLines] = GridLinesTextbox.BackColor;
-            parameters.ColorDictionary[MapColorObject.PloppedBuilding] = BuildingsTextbox.BackColor;
+            parameters.ColorDictionary[MapColorObject.PloppedBuilding] = PloppedBuildingsTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.ZoneOutline] = ZoneOutlinesTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.Military] = MilitaryTextbox.BackColor;
             parameters.ColorDictionary[MapColorObject.Airport] = AirportsTextbox.BackColor;
@@ -1366,6 +1373,9 @@ namespace SC4CartographerUI
             parameters.ColorDictionary[MapColorObject.Avenue] = AvenueTextBox.BackColor;
             parameters.ColorDictionary[MapColorObject.Railway] = RailwayTextBox.BackColor;
             parameters.ColorDictionary[MapColorObject.Subway] = SubwayTextBox.BackColor;
+
+            parameters.ColorDictionary[MapColorObject.Buildings] = BuildingsTextBox.BackColor;
+            parameters.ColorDictionary[MapColorObject.BuildingsOutline] = BuildingsOutlineTextBox.BackColor;
 
             parameters.ColorDictionary[MapColorObject.TerrainLayer1] = TerrainLayer1ColorTextBox.BackColor;
             parameters.ColorDictionary[MapColorObject.TerrainLayer2] = TerrainLayer2ColorTextBox.BackColor;
@@ -1418,9 +1428,8 @@ namespace SC4CartographerUI
             parameters.GridSegmentSize = (int)GridSegmentSizeNumericUpDown.Value;
             parameters.SegmentPaddingX = (int)SegmentPaddingNumericUpDown.Value;
             parameters.SegmentPaddingY = (int)SegmentPaddingNumericUpDown.Value;
-            parameters.SegmentOffsetX = (int)SegmentOffsetNumericUpDown.Value;
-            parameters.SegmentOffsetY = (int)SegmentOffsetNumericUpDown.Value;
             parameters.ShowGridLines = ShowGridLinesCheckbox.Checked;
+            parameters.ShowBuildingOutlines = ShowBuildingOutlinesCheckBox.Checked;
             parameters.ShowZoneOutlines = ShowZoneOutlinesCheckbox.Checked;
             parameters.BlendTerrainLayers = BlendTerrainColorsCheckBox.Checked;
 
@@ -1448,17 +1457,15 @@ namespace SC4CartographerUI
             VisibleObjectsTreeView.Visible = show;
             ColorsTabControl.Visible = show;
             GridSegmentSizeLabel.Visible = show;
-            SegmentOffsetLabel.Visible = show;
             SegmentPaddingLabel.Visible = show;
             OutputFormatLabel.Visible = show;
             OutputPathLabel.Visible = show;
+            SizeLabel.Visible = show;
+            SizesComboBox.Visible = show;
             PixelLabel1.Visible = show;
             PixelLabel2.Visible = show;
-            PixelLabel3.Visible = show;
             GridSegmentSizeNumericUpDown.Visible = show;
-            SegmentOffsetNumericUpDown.Visible = show;
             SegmentPaddingNumericUpDown.Visible = show;
-            SegmentOffsetLabel.Visible = show;
             ShowGridLinesCheckbox.Visible = show;
             ShowZoneOutlinesCheckbox.Visible = show;
             BlendTerrainColorsCheckBox.Visible = show;
@@ -1633,6 +1640,12 @@ namespace SC4CartographerUI
                                 node.Checked = true;
                             }
                             break;
+                        case "Buildings":
+                            if (objects.Contains(MapObject.Building))
+                            {
+                                node.Checked = true;
+                            }
+                            break;
                     }
                 }
             }
@@ -1721,6 +1734,9 @@ namespace SC4CartographerUI
                                 break;
                             case "Subways":
                                 objects.Add(MapObject.SubwayNetwork2);
+                                break;
+                            case "Buildings":
+                                objects.Add(MapObject.Building);
                                 break;
                         }
                     }
@@ -2774,17 +2790,17 @@ namespace SC4CartographerUI
             }
         }
 
-        private void BuildingsEditButton_Click(object sender, EventArgs e)
+        private void PloppableBuildingsEditButton_Click(object sender, EventArgs e)
         {
             colorDialog = new ColorDialog();
-            colorDialog.Color = BuildingsTextbox.BackColor;
+            colorDialog.Color = PloppedBuildingsTextbox.BackColor;
             colorDialog.AllowFullOpen = true;
             colorDialog.FullOpen = true;
             //colorDialog.StartPosition = FormStartPosition.CenterParent;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
-                BuildingsTextbox.BackColor = colorDialog.Color;
+                PloppedBuildingsTextbox.BackColor = colorDialog.Color;
 
                 SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
             }
@@ -4097,6 +4113,42 @@ namespace SC4CartographerUI
 
         #endregion
 
+        #region Buildings Tab Events
+
+        private void BuildingsEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = BuildingsTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                BuildingsTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        private void BuildingsOutlineEditButton_Click(object sender, EventArgs e)
+        {
+            colorDialog = new ColorDialog();
+            colorDialog.Color = BuildingsOutlineTextBox.BackColor;
+            colorDialog.AllowFullOpen = true;
+            colorDialog.FullOpen = true;
+            //colorDialog.StartPosition = FormStartPosition.CenterParent;
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                BuildingsOutlineTextBox.BackColor = colorDialog.Color;
+
+                SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+            }
+        }
+
+        #endregion
+
         #region Grid, Zone and Terrain Properties Events
 
         /// <summary>
@@ -4137,6 +4189,11 @@ namespace SC4CartographerUI
         }
 
         private void BlendTerrainColorsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        private void ShowBuildingOutlinesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
         }
