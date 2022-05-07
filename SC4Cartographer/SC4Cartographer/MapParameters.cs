@@ -167,8 +167,6 @@ namespace SC4CartographerUI
         public int GridSegmentSize = 5;//10;
         public int SegmentPaddingX = 1;//4;
         public int SegmentPaddingY = 1;//4;
-        public int SegmentOffsetX = 0;//2;
-        public int SegmentOffsetY = 0;//2;
 
         public List<MapObject> VisibleMapObjects = new List<MapObject>()
         {
@@ -305,8 +303,6 @@ namespace SC4CartographerUI
             properties.Add($"GridSegmentSize:{GridSegmentSize};");
             properties.Add($"SegmentPaddingX:{SegmentPaddingX};");
             properties.Add($"SegmentPaddingY:{SegmentPaddingY};");
-            properties.Add($"SegmentOffsetX:{SegmentOffsetX};");
-            properties.Add($"SegmentOffsetY:{SegmentOffsetY};");
             properties.Add($"VisibleObjects:{string.Join(",", VisibleMapObjects)};");
             foreach (var data in TerrainDataDictionary)
             {
@@ -432,12 +428,6 @@ namespace SC4CartographerUI
                             break;
                         case "SegmentPaddingY":
                             mapCreationParameters.SegmentPaddingY = int.Parse(property.Value);
-                            break;
-                        case "SegmentOffsetX":
-                            mapCreationParameters.SegmentOffsetX = int.Parse(property.Value);
-                            break;
-                        case "SegmentOffsetY":
-                            mapCreationParameters.SegmentOffsetY = int.Parse(property.Value);
                             break;
                         case "VisibleObjects":
                             mapCreationParameters.VisibleMapObjects = new List<MapObject>();
