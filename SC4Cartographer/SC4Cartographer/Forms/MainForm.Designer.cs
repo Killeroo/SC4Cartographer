@@ -425,8 +425,10 @@
             this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.MapPictureBox.TabIndex = 2;
             this.MapPictureBox.TabStop = false;
+            this.MapPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseDown);
             this.MapPictureBox.MouseLeave += new System.EventHandler(this.MapPictureBox_MouseLeave);
             this.MapPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseMove);
+            this.MapPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseUp);
             // 
             // SaveButton
             // 

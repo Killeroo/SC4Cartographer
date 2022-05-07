@@ -93,6 +93,12 @@ namespace SC4CartographerUI
         private int oldSegmentSize = 0;
         private int zoomFactor = 1;
 
+        // Picture box drag move variables
+        private int picturePosX;
+        private int picturePosY;
+        private bool draggingMap;
+        private bool skipTick = false;
+
         public MainForm()
         {
             // Setup parser logger
@@ -2358,13 +2364,39 @@ namespace SC4CartographerUI
         #region MapPictureBox Events
 
         /// <summary>
-        /// Mouse move event for picture box, used to populate info on bottom tool strip
+        /// Mouse move event for picture box, used to populate info on bottom tool strip and move the map when holding left
+        /// mouse button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        int mouseX = 0;
+        int mouseY = 0;
         private void MapPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            MousePositionToolStripStatusLabel.Text = GetMapPixelInfo(e.X, e.Y);
+            mouseX = e.X;
+            mouseY = e.Y;
+            // Don't show any map info while drag moving the map
+            if (!draggingMap)
+            {
+                MousePositionToolStripStatusLabel.Text = GetMapPixelInfo(e.X, e.Y);
+            }
+
+            // Skip everyother picture box reposition, done for performance reasons
+            // the map bleeds weirdly when moved on every tick, especially around the edges
+            // this produces some slight gittering but is better in my mind than tearing and other
+            // weirdness
+            skipTick = !skipTick;
+
+            if (!draggingMap || sender == null || skipTick)
+            {
+                return;
+            }
+
+            var pictureBox = sender as PictureBox;
+
+            // Move the picture box coordinates relative to where the picture was first dragged from
+            pictureBox.Top = e.Y + pictureBox.Top - picturePosY;
+            pictureBox.Left = e.X + pictureBox.Left - picturePosX;
         }
 
         /// <summary>
@@ -2375,6 +2407,37 @@ namespace SC4CartographerUI
         private void MapPictureBox_MouseLeave(object sender, EventArgs e)
         {
             MousePositionToolStripStatusLabel.Text = "";
+        }
+
+        /// <summary>
+        /// Mouse click event, used when mouse starting to dragging map.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapPictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Only drag move picture when pressing left click
+            if (e.Button != MouseButtons.Left) return;
+            draggingMap = true;
+
+            // Store the position we originally clicked on
+            // we will use this to move the image relative to this point
+            picturePosX = e.X;
+            picturePosY = e.Y;
+        }
+
+        /// <summary>
+        /// Use when mouse is released on the map. To stop moving map.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (sender == null) return;
+            var pictureBox = sender as PictureBox;
+
+            // Stop moving picture
+            draggingMap = false;
         }
 
         /// <summary>
