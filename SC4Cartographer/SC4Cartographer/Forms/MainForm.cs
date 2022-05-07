@@ -1914,6 +1914,11 @@ namespace SC4CartographerUI
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
+        private string result = "";
+        private int cityTileX = 0;
+        private int cityTileY = 0;
+        private double cityCoordX = 0;
+        private double cityCoordY = 0;
         private string GetMapPixelInfo(int x, int y)
         {
             // If we are zoomed in (or out) don't both getting map pixel info
@@ -1921,26 +1926,23 @@ namespace SC4CartographerUI
             if (zoomFactor != 1)
                 return "";
 
-            string result = "";
-
-            int cityX = 0;
-            int cityY = 0;
-
             // Don't try and fetch any details if nothing is loaded
             if (mapLoaded == false)
                 return "";
 
             // Work out coordinates on map
-            cityX = x / map.Parameters.GridSegmentSize;
-            cityY = y / map.Parameters.GridSegmentSize;
+            cityTileX = x / map.Parameters.GridSegmentSize;
+            cityTileY = y / map.Parameters.GridSegmentSize;
+            cityCoordX = x / (map.Parameters.GridSegmentSize / 16d);
+            cityCoordY = y / (map.Parameters.GridSegmentSize / 16d);
 
-            result = $"Mouse: {x}, {y}px (tile: {cityX}x, {cityY}z) ";
+            result = $"Mouse: {x}, {y}px (tile: {cityTileX}x, {cityTileY}z) (coord: {cityCoordX}x{cityCoordY})";
 
             if (terrainData != null)
             {
                 try
                 {
-                    result += $" (height: {terrainData[cityY][cityX]})";
+                    result += $" (height: {terrainData[cityTileY][cityTileX]})";
                 }
                 catch (IndexOutOfRangeException) { } // Silently continue when we accidently get a range outside of the terrain map bounds 
             }
@@ -1952,11 +1954,11 @@ namespace SC4CartographerUI
                 {
                     for (int lotZ = lot.MinTileZ; lotZ <= lot.MaxTileZ; lotZ++)
                     {
-                        if (lotZ == cityY)
+                        if (lotZ == cityTileY)
                         {
                             for (int lotX = lot.MinTileX; lotX <= lot.MaxTileX; lotX++)
                             {
-                                if (lotX == cityX)
+                                if (lotX == cityTileX)
                                 {
                                     result += $" (zone: {SC4Parser.Constants.LOT_ZONE_TYPE_STRINGS[lot.ZoneType]} [{SC4Parser.Constants.LOT_ZONE_WEALTH_STRINGS[lot.ZoneWealth]}])";
                                 }
