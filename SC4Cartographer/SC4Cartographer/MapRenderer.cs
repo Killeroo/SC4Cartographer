@@ -383,8 +383,8 @@ namespace SC4CartographerUI
                             case Constants.ORIENTATION_NORTH:
                             case Constants.ORIENTATION_SOUTH:
                                 rect = new Rectangle(
-                                    parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
-                                    parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                    parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX),
+                                    parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ),
                                     (parameters.GridSegmentSize * lot.SizeX) - (parameters.SegmentPaddingX * 2),
                                     (parameters.GridSegmentSize * lot.SizeZ) - (parameters.SegmentPaddingY * 2));
                                 break;
@@ -392,8 +392,8 @@ namespace SC4CartographerUI
                             case Constants.ORIENTATION_WEST:
                             case Constants.ORIENTATION_EAST:
                                 rect = new Rectangle(
-                                    parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX) + parameters.SegmentOffsetX,
-                                    parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ) + parameters.SegmentOffsetY,
+                                    parameters.SegmentPaddingX + (parameters.GridSegmentSize * lot.MinTileX),
+                                    parameters.SegmentPaddingY + (parameters.GridSegmentSize * lot.MinTileZ),
                                     (parameters.GridSegmentSize * lot.SizeZ) - (parameters.SegmentPaddingX * 2),
                                     (parameters.GridSegmentSize * lot.SizeX) - (parameters.SegmentPaddingY * 2));
 

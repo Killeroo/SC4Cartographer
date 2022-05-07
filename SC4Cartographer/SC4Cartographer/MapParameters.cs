@@ -143,8 +143,6 @@ namespace SC4CartographerUI
             BlendTerrainLayers = parameters.BlendTerrainLayers;
             SegmentPaddingX = parameters.SegmentPaddingX;
             SegmentPaddingY = parameters.SegmentPaddingY;
-            SegmentOffsetX = parameters.SegmentOffsetX;
-            SegmentOffsetY = parameters.SegmentOffsetY;
             GridSegmentSize = parameters.GridSegmentSize;
             ColorDictionary = parameters.ColorDictionary;
             VisibleMapObjects = parameters.VisibleMapObjects;
@@ -450,8 +448,6 @@ namespace SC4CartographerUI
             this.GridSegmentSize = mapCreationParameters.GridSegmentSize;
             this.SegmentPaddingX = mapCreationParameters.SegmentPaddingX;
             this.SegmentPaddingY = mapCreationParameters.SegmentPaddingY;
-            this.SegmentOffsetX = mapCreationParameters.SegmentOffsetX;
-            this.SegmentOffsetY = mapCreationParameters.SegmentOffsetY;
             this.VisibleMapObjects = mapCreationParameters.VisibleMapObjects;
         }
 
