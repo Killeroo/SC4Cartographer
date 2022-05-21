@@ -1982,7 +1982,7 @@ namespace SC4CartographerUI
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mapApperanceSerializer.SaveToUserTempFolder(map.Parameters);
+            mapApperanceSerializer.TrySaveToUserTempFolder(map.Parameters);
         }
 
         #endregion

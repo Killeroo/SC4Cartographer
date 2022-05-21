@@ -13,9 +13,16 @@ namespace SC4CartographerUI
         private readonly string TEMP_FILEPATH = Path.Combine(Path.GetTempPath(), TEMP_FILENAME);
         private const int VERSION = 1;
 
-        public void SaveToUserTempFolder(MapCreationParameters parameters)
+        public void TrySaveToUserTempFolder(MapCreationParameters parameters)
         {
-            SaveToFile(parameters, TEMP_FILEPATH);
+            try
+            {
+                SaveToFile(parameters, TEMP_FILEPATH);
+            }
+            catch (Exception)
+            {
+                // Ignore
+            }
         }
         
         public bool TryLoadFromUserTempFolder(out MapCreationParameters parameters)
