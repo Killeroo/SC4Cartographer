@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace SC4CartographerUI
 {
-    public class MapApperanceSerializer
+    public class MapAppearanceSerializer
     {
         private const string tempFilename = "map_appearance_autosave.sc4cart";
         private readonly string tempFilePath = Path.Combine(Path.GetTempPath(), tempFilename);
