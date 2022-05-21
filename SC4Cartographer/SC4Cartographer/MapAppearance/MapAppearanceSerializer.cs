@@ -7,13 +7,10 @@ using System.Drawing;
 
 namespace SC4CartographerUI
 {
-    public class MapApperanceSerializer
+    public class MapAppearanceSerializer
     {
         private const int VERSION = 1;
 
-
-        {
-        }
         /// <summary>
         /// Save the a MapParameters object to a file.
         /// Does not handle exceptions.

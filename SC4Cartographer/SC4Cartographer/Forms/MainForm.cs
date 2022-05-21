@@ -51,8 +51,8 @@ namespace SC4CartographerUI
         //this way it can still be easily converted to a property and renamed later.
         public Map Map => map;
         
-        private readonly MapApperanceSaveLoadDialogs mapApperanceSaveLoadDialogs;
-        private readonly MapApperanceSerializer mapApperanceSerializer = new MapApperanceSerializer();
+        private readonly MapAppearanceSaveLoadDialogs mapApperanceSaveLoadDialogs;
+        private readonly MapAppearanceSerializer mapApperanceSerializer = new MapAppearanceSerializer();
 
         /// <summary>
         /// Map Bitmaps used for preview and for actually saving to a file
@@ -122,7 +122,7 @@ namespace SC4CartographerUI
             memoryUsedUpdateTimer.Start();
 
             
-            mapApperanceSaveLoadDialogs = new MapApperanceSaveLoadDialogs(this, mapApperanceSerializer);
+            mapApperanceSaveLoadDialogs = new MapAppearanceSaveLoadDialogs(this, mapApperanceSerializer);
 
             // Create some new default map parameters
             map.Parameters = new MapCreationParameters();

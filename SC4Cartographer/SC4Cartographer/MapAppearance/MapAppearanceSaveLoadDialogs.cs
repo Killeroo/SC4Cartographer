@@ -4,15 +4,15 @@ using System.Windows.Forms;
 
 namespace SC4CartographerUI
 {
-    internal class MapApperanceSaveLoadDialogs
+    internal class MapAppearanceSaveLoadDialogs
     {
         private const string defaultFilename = "map_appearance.sc4cart";
 
         private MapCreationParameters Parameters => mainForm.Map.Parameters;
         private readonly MainForm mainForm;
-        private readonly MapApperanceSerializer serializer;
+        private readonly MapAppearanceSerializer serializer;
         
-        public MapApperanceSaveLoadDialogs(MainForm mainForm, MapApperanceSerializer serializer)
+        public MapAppearanceSaveLoadDialogs(MainForm mainForm, MapAppearanceSerializer serializer)
         {
             this.mainForm = mainForm;
             this.serializer = serializer;
