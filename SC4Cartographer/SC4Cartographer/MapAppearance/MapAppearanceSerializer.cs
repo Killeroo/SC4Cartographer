@@ -9,13 +9,13 @@ namespace SC4CartographerUI
 {
     public class MapAppearanceSerializer
     {
-        private const string tempFilename = "map_appearance_autosave.sc4cart";
-        private readonly string tempFilePath = Path.Combine(Path.GetTempPath(), tempFilename);
+        private const string TEMP_FILENAME = "map_appearance_autosave.sc4cart";
+        private readonly string TEMP_FILEPATH = Path.Combine(Path.GetTempPath(), TEMP_FILENAME);
         private const int VERSION = 1;
 
         public void SaveToUserTempFolder(MapCreationParameters parameters)
         {
-            SaveToFile(parameters, tempFilePath);
+            SaveToFile(parameters, TEMP_FILEPATH);
         }
         
         public bool TryLoadFromUserTempFolder(out MapCreationParameters parameters)
@@ -23,11 +23,11 @@ namespace SC4CartographerUI
             bool sucsess = false;
             parameters = null;
 
-            if (File.Exists(tempFilePath))
+            if (File.Exists(TEMP_FILEPATH))
             {
                 try
                 {
-                    parameters = LoadFromFile(tempFilePath);
+                    parameters = LoadFromFile(TEMP_FILEPATH);
                     sucsess = true;
                 }
                 catch (Exception)
@@ -47,10 +47,7 @@ namespace SC4CartographerUI
         /// <param name="path">Path to file to save to</param>
         public void SaveToFile(MapCreationParameters parameters, string path)
         {
-            List<string> properties = parameters.ToStrings();
-            properties.Insert(0, $"Version:{VERSION};");
-            properties.Insert(1, "!!!WARNING: This file is Case-Sensitive!!!");
-
+            var properties = ParametersToStringList(parameters);
             WritePropertiesToFile(path, properties);
         }
 
@@ -63,6 +60,36 @@ namespace SC4CartographerUI
                     writer.WriteLine(property);
                 }
             }
+        }
+        
+        List<string> ParametersToStringList(MapCreationParameters parameters)
+        {
+            List<string> properties = new List<string>
+            {
+                $"Version:{VERSION};",
+                "!!!WARNING: This file is Case-Sensitive!!!",
+                $"ShowGridLines:{(parameters.ShowGridLines ? "true" : "false")};",
+                $"ShowZoneOutlines:{(parameters.ShowZoneOutlines ? "true" : "false")};",
+                $"BlendTerrainColors:{(parameters.BlendTerrainLayers ? "true" : "false")};",
+                $"GridSegmentSize:{parameters.GridSegmentSize};",
+                $"SegmentPaddingX:{parameters.SegmentPaddingX};",
+                $"SegmentPaddingY:{parameters.SegmentPaddingY};",
+                $"SegmentOffsetX:{parameters.SegmentOffsetX};",
+                $"SegmentOffsetY:{parameters.SegmentOffsetY};",
+                $"VisibleObjects:{string.Join(",", parameters.VisibleMapObjects)};"
+            };
+
+            foreach (var data in parameters.TerrainDataDictionary)
+            {
+                properties.Add($"TerrainData@{data.Key}:{(data.Value.enabled ? "true" : "false")},\"{data.Value.alias}\",{data.Value.colorObject},{data.Value.height};");
+            }
+
+            foreach (var color in parameters.ColorDictionary)
+            {
+                properties.Add($"Color@{color.Key}:{color.Value.R},{color.Value.G},{color.Value.B};");
+            }
+
+            return properties;
         }
 
         /// <summary>

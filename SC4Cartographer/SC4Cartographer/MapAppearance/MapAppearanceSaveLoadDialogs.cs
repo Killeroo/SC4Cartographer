@@ -7,7 +7,7 @@ namespace SC4CartographerUI
     internal class MapAppearanceSaveLoadDialogs
     {
         private const string defaultFilename = "map_appearance.sc4cart";
-
+        private const string FileFilter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
         private readonly MainForm mainForm;
         private readonly MapAppearanceSerializer serializer;
         
@@ -31,7 +31,7 @@ namespace SC4CartographerUI
                 fileDialog.RestoreDirectory = true;
                 //fileDialog.CheckFileExists = true;
                 fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                fileDialog.Filter = FileFilter;
                 if (fileDialog.ShowDialog(mainForm) == DialogResult.OK)
                 {
                     TrySaveAndShowResults(parameters, fileDialog.FileName);
@@ -76,7 +76,7 @@ namespace SC4CartographerUI
                 fileDialog.RestoreDirectory = true;
                 fileDialog.CheckFileExists = true;
                 fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
+                fileDialog.Filter = FileFilter;
                 if (fileDialog.ShowDialog(mainForm) == DialogResult.OK)
                 {
                     // Load new parameters and regenerate preview

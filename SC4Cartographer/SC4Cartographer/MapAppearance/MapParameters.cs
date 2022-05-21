@@ -276,33 +276,6 @@ namespace SC4CartographerUI
 
         #endregion
 
-        public List<string> ToStrings()
-        {
-            List<string> properties = new List<string>
-            {
-                $"ShowGridLines:{(ShowGridLines ? "true" : "false")};",
-                $"ShowZoneOutlines:{(ShowZoneOutlines ? "true" : "false")};",
-                $"BlendTerrainColors:{(BlendTerrainLayers ? "true" : "false")};",
-                $"GridSegmentSize:{GridSegmentSize};",
-                $"SegmentPaddingX:{SegmentPaddingX};",
-                $"SegmentPaddingY:{SegmentPaddingY};",
-                $"SegmentOffsetX:{SegmentOffsetX};",
-                $"SegmentOffsetY:{SegmentOffsetY};",
-                $"VisibleObjects:{string.Join(",", VisibleMapObjects)};"
-            };
-            
-            foreach (var data in TerrainDataDictionary)
-            {
-                properties.Add($"TerrainData@{data.Key}:{(data.Value.enabled ? "true" : "false")},\"{data.Value.alias}\",{data.Value.colorObject},{data.Value.height};");
-            }
-            
-            foreach (var color in ColorDictionary)
-            {
-                properties.Add($"Color@{color.Key}:{color.Value.R},{color.Value.G},{color.Value.B};");
-            }
-
-            return properties;
-        }
 
         // Helper lookup dictionary for network tile types and their related enum
         public static Dictionary<byte, MapObject> NetworkTypeToMapObject = new Dictionary<byte, MapObject>()
