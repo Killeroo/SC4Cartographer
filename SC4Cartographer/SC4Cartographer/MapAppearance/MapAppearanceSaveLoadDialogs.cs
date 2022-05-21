@@ -8,7 +8,6 @@ namespace SC4CartographerUI
     {
         private const string defaultFilename = "map_appearance.sc4cart";
 
-        private MapCreationParameters Parameters => mainForm.Map.Parameters;
         private readonly MainForm mainForm;
         private readonly MapAppearanceSerializer serializer;
         
@@ -18,7 +17,7 @@ namespace SC4CartographerUI
             this.serializer = serializer;
         }
 
-        public void SaveMapParametersWithDialog()
+        public void SaveMapParametersWithDialog(MapCreationParameters parameters)
         {
             // Create generic name at current directory
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), defaultFilename);
@@ -35,16 +34,16 @@ namespace SC4CartographerUI
                 fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
                 if (fileDialog.ShowDialog(mainForm) == DialogResult.OK)
                 {
-                    TrySaveAndShowResults(fileDialog.FileName);
+                    TrySaveAndShowResults(parameters, fileDialog.FileName);
                 }
             }
         }
 
-        private void TrySaveAndShowResults(string path)
+        private void TrySaveAndShowResults(MapCreationParameters parameters, string path)
         {
             try
             {
-                serializer.SaveToFile(Parameters, path);
+                serializer.SaveToFile(parameters, path);
 
                 var successForm = new SuccessForm(
                     "Map appearance saved",
@@ -104,7 +103,10 @@ namespace SC4CartographerUI
         {
             try
             {
-                serializer.LoadFromFile(Parameters, path);
+                var parameters = serializer.LoadFromFile(path);
+                
+                // Populate appearance ui items with new parameters
+                mainForm.SetAppearanceUIValuesUsingParameters(parameters);
             }
             catch (Exception ex)
             {
@@ -119,9 +121,6 @@ namespace SC4CartographerUI
 
                 return;
             }
-
-            // Populate appearance ui items with new parameters
-            mainForm.SetAppearanceUIValuesUsingParameters(Parameters);
         }
     }
 }

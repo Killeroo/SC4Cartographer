@@ -46,10 +46,6 @@ namespace SC4CartographerUI
         /// Currently loaded map
         /// </summary>
         public Map map = new Map();
-
-        //avoiding a messy PR here, otherwise i'd rename the above 'map' to "Map" which is 47 changes.
-        //this way it can still be easily converted to a property and renamed later.
-        public Map Map => map;
         
         private readonly MapAppearanceSaveLoadDialogs mapApperanceSaveLoadDialogs;
         private readonly MapAppearanceSerializer mapApperanceSerializer = new MapAppearanceSerializer();
@@ -121,12 +117,13 @@ namespace SC4CartographerUI
             memoryUsedUpdateTimer.Elapsed += MemoryUsedUpdateTimer_Elapsed;
             memoryUsedUpdateTimer.Start();
 
-            
             mapApperanceSaveLoadDialogs = new MapAppearanceSaveLoadDialogs(this, mapApperanceSerializer);
 
-            // Create some new default map parameters
-            map.Parameters = new MapCreationParameters();
-            mapApperanceSerializer.TryLoadFromUserTempFolder(map.Parameters);
+            // Try load map parameters from file, otherwise create some new default map parameters
+            if (mapApperanceSerializer.TryLoadFromUserTempFolder(out MapCreationParameters loaded))
+                map.Parameters = loaded;
+            else
+                map.Parameters = new MapCreationParameters();
 
             // Setup appearance tab
             SetAppearanceUIValuesUsingParameters(map.Parameters);
@@ -2173,7 +2170,7 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            mapApperanceSaveLoadDialogs.SaveMapParametersWithDialog();
+            mapApperanceSaveLoadDialogs.SaveMapParametersWithDialog(map.Parameters);
         }
 
         /// <summary>

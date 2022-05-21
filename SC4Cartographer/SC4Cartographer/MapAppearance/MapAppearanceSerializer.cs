@@ -17,20 +17,26 @@ namespace SC4CartographerUI
         {
             SaveToFile(parameters, tempFilePath);
         }
-
-        public void TryLoadFromUserTempFolder(MapCreationParameters parameters)
+        
+        public bool TryLoadFromUserTempFolder(out MapCreationParameters parameters)
         {
+            bool sucsess = false;
+            parameters = null;
+
             if (File.Exists(tempFilePath))
             {
                 try
                 {
-                    LoadFromFile(parameters, tempFilePath);
+                    parameters = LoadFromFile(tempFilePath);
+                    sucsess = true;
                 }
                 catch (Exception)
                 {
                     // should probably log this
                 }
             }
+
+            return sucsess;
         }
 
         /// <summary>
@@ -63,9 +69,9 @@ namespace SC4CartographerUI
         /// Loads MapParameters from a file and fills object with values. Expects exceptions to be handled externally
         /// </summary>
         /// <param name="path">path to map parameters file</param>
-        public void LoadFromFile(MapCreationParameters parameters, string path)
+        public MapCreationParameters LoadFromFile(string path)
         {
-            MapCreationParameters newParameters = new MapCreationParameters(parameters);
+            MapCreationParameters parameters = new MapCreationParameters();
             Dictionary<MapColorObject, Color> colors = parameters.ColorDictionary;
             Dictionary<TerrainObject, (bool enabled, string alias, MapColorObject colorObject, int height)> terrainData = parameters.TerrainDataDictionary;
 
@@ -133,52 +139,43 @@ namespace SC4CartographerUI
                     switch (property.Key)
                     {
                         case "ShowGridLines":
-                            newParameters.ShowGridLines = Convert.ToBoolean(property.Value);
+                            parameters.ShowGridLines = Convert.ToBoolean(property.Value);
                             break;
                         case "ShowZoneOutlines":
-                            newParameters.ShowZoneOutlines = Convert.ToBoolean(property.Value);
+                            parameters.ShowZoneOutlines = Convert.ToBoolean(property.Value);
                             break;
                         case "BlendTerrainColors":
-                            newParameters.BlendTerrainLayers = Convert.ToBoolean(property.Value);
+                            parameters.BlendTerrainLayers = Convert.ToBoolean(property.Value);
                             break;
                         case "GridSegmentSize":
-                            newParameters.GridSegmentSize = int.Parse(property.Value);
+                            parameters.GridSegmentSize = int.Parse(property.Value);
                             break;
                         case "SegmentPaddingX":
-                            newParameters.SegmentPaddingX = int.Parse(property.Value);
+                            parameters.SegmentPaddingX = int.Parse(property.Value);
                             break;
                         case "SegmentPaddingY":
-                            newParameters.SegmentPaddingY = int.Parse(property.Value);
+                            parameters.SegmentPaddingY = int.Parse(property.Value);
                             break;
                         case "SegmentOffsetX":
-                            newParameters.SegmentOffsetX = int.Parse(property.Value);
+                            parameters.SegmentOffsetX = int.Parse(property.Value);
                             break;
                         case "SegmentOffsetY":
-                            newParameters.SegmentOffsetY = int.Parse(property.Value);
+                            parameters.SegmentOffsetY = int.Parse(property.Value);
                             break;
                         case "VisibleObjects":
-                            newParameters.VisibleMapObjects = new List<MapObject>();
+                            parameters.VisibleMapObjects = new List<MapObject>();
 
                             foreach (string mapObject in property.Value.Split(','))
                             {
-                                newParameters.VisibleMapObjects.Add((MapObject)Enum.Parse(typeof(MapObject), mapObject));
+                                parameters.VisibleMapObjects.Add((MapObject)Enum.Parse(typeof(MapObject), mapObject));
                             }
                             break;
                     }
                 }
             }
 
-            // Now everything has been loaded safely, apply them to our current map properties object
-            parameters.ColorDictionary = colors;
-            parameters.ShowGridLines = newParameters.ShowGridLines;
-            parameters.ShowZoneOutlines = newParameters.ShowZoneOutlines;
-            parameters.BlendTerrainLayers = newParameters.BlendTerrainLayers;
-            parameters.GridSegmentSize = newParameters.GridSegmentSize;
-            parameters.SegmentPaddingX = newParameters.SegmentPaddingX;
-            parameters.SegmentPaddingY = newParameters.SegmentPaddingY;
-            parameters.SegmentOffsetX = newParameters.SegmentOffsetX;
-            parameters.SegmentOffsetY = newParameters.SegmentOffsetY;
-            parameters.VisibleMapObjects = newParameters.VisibleMapObjects;
+            // Now everything has been loaded safely
+            return parameters;
         }
     }
 }
