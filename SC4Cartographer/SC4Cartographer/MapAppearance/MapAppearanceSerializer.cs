@@ -21,7 +21,7 @@ namespace SC4CartographerUI
             }
             catch (Exception)
             {
-                // Ignore
+                // should probably log this
             }
         }
         
@@ -54,23 +54,6 @@ namespace SC4CartographerUI
         /// <param name="path">Path to file to save to</param>
         public void SaveToFile(MapCreationParameters parameters, string path)
         {
-            var properties = ParametersToStringList(parameters);
-            WritePropertiesToFile(path, properties);
-        }
-
-        private static void WritePropertiesToFile(string path, List<string> properties)
-        {
-            using (StreamWriter writer = new StreamWriter(path))
-            {
-                foreach (string property in properties)
-                {
-                    writer.WriteLine(property);
-                }
-            }
-        }
-        
-        List<string> ParametersToStringList(MapCreationParameters parameters)
-        {
             List<string> properties = new List<string>
             {
                 $"Version:{VERSION};",
@@ -96,7 +79,13 @@ namespace SC4CartographerUI
                 properties.Add($"Color@{color.Key}:{color.Value.R},{color.Value.G},{color.Value.B};");
             }
 
-            return properties;
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (string property in properties)
+                {
+                    writer.WriteLine(property);
+                }
+            }
         }
 
         /// <summary>
