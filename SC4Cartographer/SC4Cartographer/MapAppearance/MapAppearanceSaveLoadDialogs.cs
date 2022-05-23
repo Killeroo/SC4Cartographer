@@ -8,12 +8,12 @@ namespace SC4CartographerUI
     {
         private const string DEFAULT_FILENAME = "map_appearance.sc4cart";
         private const string FILE_FILTER = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-        private readonly MainForm mainForm;
+        private readonly IWin32Window owner;
         private readonly MapAppearanceSerializer serializer;
         
-        public MapAppearanceSaveLoadDialogs(MainForm mainForm, MapAppearanceSerializer serializer)
+        public MapAppearanceSaveLoadDialogs(IWin32Window owner, MapAppearanceSerializer serializer)
         {
-            this.mainForm = mainForm;
+            this.owner = owner;
             this.serializer = serializer;
         }
 
@@ -32,7 +32,7 @@ namespace SC4CartographerUI
                 //fileDialog.CheckFileExists = true;
                 fileDialog.CheckPathExists = true;
                 fileDialog.Filter = FILE_FILTER;
-                if (fileDialog.ShowDialog(mainForm) == DialogResult.OK)
+                if (fileDialog.ShowDialog(owner) == DialogResult.OK)
                 {
                     TrySaveAndShowResults(parameters, fileDialog.FileName);
                 }
@@ -67,7 +67,7 @@ namespace SC4CartographerUI
             }
         }
 
-        public void LoadMapParametersWithDialog()
+        public bool TryLoadMapParametersWithDialog(out MapCreationParameters parameters)
         {
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
@@ -77,36 +77,30 @@ namespace SC4CartographerUI
                 fileDialog.CheckFileExists = true;
                 fileDialog.CheckPathExists = true;
                 fileDialog.Filter = FILE_FILTER;
-                if (fileDialog.ShowDialog(mainForm) == DialogResult.OK)
+                
+                if (fileDialog.ShowDialog(owner) == DialogResult.OK)
                 {
-                    // Load new parameters and regenerate preview
-                    TryLoad(fileDialog.FileName);
-
-                    // Change cursor to indicate that we are working on the preview
-                    mainForm.Cursor = Cursors.WaitCursor;
-
-                    // Only update preview if a map is loaded 
-                    if (mainForm.mapLoaded)
-                        mainForm.GenerateMapPreviewBitmaps(false);
-
-                    // Reset cursor 
-                    mainForm.Cursor = Cursors.Default;
-                }
+                    if(TryLoadWithErrorDialog(fileDialog.FileName, out parameters))
+                    {
+                        return true;
+                    }
+                }                
             }
+            
+            parameters = null;
+            return false;
         }
 
         /// <summary>
         /// Common function called when loading map parameters/properties/appearance from file
         /// </summary>
         /// <param name="path"></param>
-        public void TryLoad(string path)
+        public bool TryLoadWithErrorDialog(string path, out MapCreationParameters parameters)
         {
             try
             {
-                var parameters = serializer.LoadFromFile(path);
-                
-                // Populate appearance ui items with new parameters
-                mainForm.SetAppearanceUIValuesUsingParameters(parameters);
+                parameters = serializer.LoadFromFile(path);
+                return true;
             }
             catch (Exception ex)
             {
@@ -119,7 +113,8 @@ namespace SC4CartographerUI
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.ShowDialog();
 
-                return;
+                parameters = null;
+                return false;
             }
         }
     }

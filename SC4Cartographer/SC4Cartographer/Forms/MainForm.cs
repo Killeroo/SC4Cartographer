@@ -90,8 +90,8 @@ namespace SC4CartographerUI
             "Documents",
             "SimCity 4",
             "Regions");
-
-        public bool mapLoaded = false;
+        
+        private bool mapLoaded = false;
         private bool forceRecenter = false;
         private int oldSegmentSize = 0;
         private int zoomFactor = 1;
@@ -154,7 +154,8 @@ namespace SC4CartographerUI
                     {
                         // Try and load parameters from path if they have been given to program
                         // (this is called when an associated file [.sc4cart] is used to call program)
-                        mapApperanceSaveLoadDialogs.TryLoad(path);
+                        if(mapApperanceSaveLoadDialogs.TryLoadWithErrorDialog(path, out MapCreationParameters parameters))
+                            SetAppearanceUIValuesUsingParameters(parameters);
                         break;
                     }
                 case ".sc4":
@@ -947,7 +948,7 @@ namespace SC4CartographerUI
         /// modifi
         /// </summary>
         /// <param name="parameters"></param>
-        public void SetAppearanceUIValuesUsingParameters(MapCreationParameters parameters)
+        private void SetAppearanceUIValuesUsingParameters(MapCreationParameters parameters)
         {
             DeregisterAppearanceEvents();
 
@@ -2180,7 +2181,21 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mapApperanceSaveLoadDialogs.LoadMapParametersWithDialog();
+            // Load new parameters and regenerate preview
+            if(mapApperanceSaveLoadDialogs.TryLoadMapParametersWithDialog(out MapCreationParameters parameters))
+            { 
+                SetAppearanceUIValuesUsingParameters(parameters);
+                
+                // Change cursor to indicate that we are working on the preview
+                Cursor = Cursors.WaitCursor;
+
+                // Only update preview if a map is loaded 
+                if (mapLoaded)
+                    GenerateMapPreviewBitmaps(false);
+
+                // Reset cursor 
+                Cursor = Cursors.Default;
+            }
         }
 
         /// <summary>
