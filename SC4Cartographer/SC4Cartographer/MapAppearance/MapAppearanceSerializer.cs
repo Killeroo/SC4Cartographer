@@ -13,6 +13,10 @@ namespace SC4CartographerUI
         private readonly string TEMP_FILEPATH = Path.Combine(Path.GetTempPath(), TEMP_FILENAME);
         private const int VERSION = 1;
 
+        /// <summary>
+        /// Silently attempt to Save, catches any exceptions.
+        /// </summary>
+        /// <param name="parameters"></param>
         public void TrySaveToUserTempFolder(MapCreationParameters parameters)
         {
             try
@@ -24,7 +28,12 @@ namespace SC4CartographerUI
                 // should probably log this
             }
         }
-        
+
+        /// <summary>
+        /// Silently attempt to load, catches any exceptions.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns>True if loaded sucsessfully, false otherwise.</returns>
         public bool TryLoadFromUserTempFolder(out MapCreationParameters parameters)
         {
             bool sucsess = false;
