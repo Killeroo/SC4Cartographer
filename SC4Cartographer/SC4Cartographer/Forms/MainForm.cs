@@ -31,7 +31,7 @@ namespace SC4CartographerUI
     /// Map struct contains current save and map creation parameters
     /// Bundled together for convience
     /// </summary>
-    struct Map
+    public struct Map
     {
         public SC4SaveFile Save;
         public MapCreationParameters Parameters;
@@ -45,7 +45,10 @@ namespace SC4CartographerUI
         /// <summary>
         /// Currently loaded map
         /// </summary>
-        private Map map = new Map();
+        public Map map = new Map();
+        
+        private readonly MapAppearanceSaveLoadDialogs mapApperanceSaveLoadDialogs;
+        private readonly MapAppearanceSerializer mapApperanceSerializer = new MapAppearanceSerializer();
 
         /// <summary>
         /// Map Bitmaps used for preview and for actually saving to a file
@@ -87,7 +90,7 @@ namespace SC4CartographerUI
             "Documents",
             "SimCity 4",
             "Regions");
-
+        
         private bool mapLoaded = false;
         private bool forceRecenter = false;
         private int oldSegmentSize = 0;
@@ -120,9 +123,13 @@ namespace SC4CartographerUI
             memoryUsedUpdateTimer.Elapsed += MemoryUsedUpdateTimer_Elapsed;
             memoryUsedUpdateTimer.Start();
 
+            mapApperanceSaveLoadDialogs = new MapAppearanceSaveLoadDialogs(this, mapApperanceSerializer);
 
-            // Create some new default map parameters
-            map.Parameters = new MapCreationParameters();
+            // Try load map parameters from file, otherwise create some new default map parameters
+            if (mapApperanceSerializer.TryLoadFromUserTempFolder(out MapCreationParameters loaded))
+                map.Parameters = loaded;
+            else
+                map.Parameters = new MapCreationParameters();
 
             // Setup appearance tab
             SetAppearanceUIValuesUsingParameters(map.Parameters);
@@ -153,7 +160,8 @@ namespace SC4CartographerUI
                     {
                         // Try and load parameters from path if they have been given to program
                         // (this is called when an associated file [.sc4cart] is used to call program)
-                        LoadMapParameters(path);
+                        if(mapApperanceSaveLoadDialogs.TryLoadWithErrorDialog(path, out MapCreationParameters parameters))
+                            SetAppearanceUIValuesUsingParameters(parameters);
                         break;
                     }
                 case ".sc4":
@@ -575,93 +583,6 @@ namespace SC4CartographerUI
             {
                 var updateFormat = new UpdateForm(info);
                 updateFormat.ShowDialog();
-            }
-        }
-
-        #endregion
-
-        #region Menu Strip Functionality
-
-        /// <summary>
-        /// Common function called when saving map parameters/properties/appearance to a file
-        /// </summary>
-        /// <param name="path"></param>
-        public void SaveMapParameters(string path)
-        {
-            try
-            {
-                map.Parameters.SaveToFile(path);
-
-                var successForm = new SuccessForm(
-                    "Map appearance saved",
-                    $"Map appearance file '{Path.GetFileName(path)}' has been successfully saved to:",
-                    Path.GetDirectoryName(path),
-                    path);
-
-                successForm.StartPosition = FormStartPosition.CenterParent;
-                successForm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                ErrorForm form = new ErrorForm(
-                    "Could not save map properties",
-                    $"An error occured while trying to save map properties file ({path})",
-                    ex,
-                    false);
-
-                form.StartPosition = FormStartPosition.CenterParent;
-                form.ShowDialog();
-            }
-        }
-
-        /// <summary>
-        /// Common function called when loading map parameters/properties/appearance from file
-        /// </summary>
-        /// <param name="path"></param>
-        public void LoadMapParameters(string path)
-        {
-            try
-            {
-                // Try and load parameters from a file
-                map.Parameters.LoadFromFile(path);
-
-                // Populate appearance ui items with new parameters
-                SetAppearanceUIValuesUsingParameters(map.Parameters);
-            }
-            catch (Exception ex)
-            {
-                ErrorForm form = new ErrorForm(
-                    "Could not load map properties",
-                    $"An error occured while trying to load map properties from file ({path})",
-                    ex,
-                    false);
-
-                form.StartPosition = FormStartPosition.CenterParent;
-                form.ShowDialog();
-
-                return;
-            }
-        }
-
-        public void SaveMapParametersWithDialog()
-        {
-            // Create generic name at current directory
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "map_appearance.sc4cart");
-            filePath = Helper.GenerateFilename(filePath);
-
-            using (SaveFileDialog fileDialog = new SaveFileDialog())
-            {
-                fileDialog.Title = "Save SC4Cartographer map properties";
-                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.FileName = Path.GetFileName(filePath);
-                fileDialog.RestoreDirectory = true;
-                //fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    SaveMapParameters(fileDialog.FileName);
-                }
             }
         }
 
@@ -2084,6 +2005,11 @@ namespace SC4CartographerUI
             ShowAppearanceTabUI(true);
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mapApperanceSerializer.TrySaveToUserTempFolder(map.Parameters);
+        }
+
         #endregion
 
         #region Menu Strip Events
@@ -2269,7 +2195,7 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SaveMapParametersWithDialog();
+            mapApperanceSaveLoadDialogs.SaveMapParametersWithDialog(map.Parameters);
         }
 
         /// <summary>
@@ -2279,29 +2205,20 @@ namespace SC4CartographerUI
         /// <param name="e"></param>
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog fileDialog = new OpenFileDialog())
-            {
-                fileDialog.Title = "Load SC4Cartographer map properties";
-                fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                fileDialog.RestoreDirectory = true;
-                fileDialog.CheckFileExists = true;
-                fileDialog.CheckPathExists = true;
-                fileDialog.Filter = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-                if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    // Load new parameters and regenerate preview
-                    LoadMapParameters(fileDialog.FileName);
+            // Load new parameters and regenerate preview
+            if(mapApperanceSaveLoadDialogs.TryLoadMapParametersWithDialog(out MapCreationParameters parameters))
+            { 
+                SetAppearanceUIValuesUsingParameters(parameters);
+                
+                // Change cursor to indicate that we are working on the preview
+                Cursor = Cursors.WaitCursor;
 
-                    // Change cursor to indicate that we are working on the preview
-                    this.Cursor = Cursors.WaitCursor;
+                // Only update preview if a map is loaded 
+                if (mapLoaded)
+                    GenerateMapPreviewBitmaps(false);
 
-                    // Only update preview if a map is loaded 
-                    if (mapLoaded)
-                        GenerateMapPreviewBitmaps(false);
-
-                    // Reset cursor 
-                    this.Cursor = Cursors.Default;
-                }
+                // Reset cursor 
+                Cursor = Cursors.Default;
             }
         }
 
@@ -4284,6 +4201,5 @@ namespace SC4CartographerUI
         #endregion
 
         #endregion
-
     }
 }

@@ -117,7 +117,7 @@
     <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile2.cs">
       <Link>SC4Parser\DataStructures\NetworkTile2.cs</Link>
     </Compile>
-	<Compile Include="..\SC4Parser\SC4Parser\DataStructures\BridgeNetworkTile.cs">
+    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\BridgeNetworkTile.cs">
       <Link>SC4Parser\DataStructures\BridgeNetworkTile.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
@@ -162,7 +162,7 @@
     <Compile Include="..\SC4Parser\SC4Parser\SubFiles\NetworkSubfile2.cs">
       <Link>SC4Parser\Subfiles\NetworkSubfile2.cs</Link>
     </Compile>
-	<Compile Include="..\SC4Parser\SC4Parser\SubFiles\BridgeNetworkSubfile.cs">
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\BridgeNetworkSubfile.cs">
       <Link>SC4Parser\Subfiles\BridgeNetworkSubfile.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Extensions.cs">
@@ -202,7 +202,9 @@
     <Compile Include="SC4Cartographer\Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SC4Cartographer\MapParameters.cs" />
+    <Compile Include="SC4Cartographer\MapAppearance\MapAppearanceSaveLoadDialogs.cs" />
+    <Compile Include="SC4Cartographer\MapAppearance\MapAppearanceSerializer.cs" />
+    <Compile Include="SC4Cartographer\MapAppearance\MapParameters.cs" />
     <Compile Include="SC4Cartographer\MapRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
