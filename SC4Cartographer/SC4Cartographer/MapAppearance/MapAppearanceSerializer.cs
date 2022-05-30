@@ -69,7 +69,7 @@ namespace SC4CartographerUI
                 "!!!WARNING: This file is Case-Sensitive!!!",
                 $"ShowGridLines:{(parameters.ShowGridLines ? "true" : "false")};",
                 $"ShowZoneOutlines:{(parameters.ShowZoneOutlines ? "true" : "false")};",
-                $"ShowBuildingOutlines:{(ShowBuildingOutlines ? "true" : "false")};",
+                $"ShowBuildingOutlines:{(parameters.ShowBuildingOutlines ? "true" : "false")};",
                 $"BlendTerrainColors:{(parameters.BlendTerrainLayers ? "true" : "false")};",
                 $"GridSegmentSize:{parameters.GridSegmentSize};",
                 $"SegmentPaddingX:{parameters.SegmentPaddingX};",
@@ -176,7 +176,7 @@ namespace SC4CartographerUI
                             parameters.ShowZoneOutlines = Convert.ToBoolean(property.Value);
                             break;
 						case "ShowBuildingOutlines":
-                            mapCreationParameters.ShowBuildingOutlines = Convert.ToBoolean(property.Value);
+                            parameters.ShowBuildingOutlines = Convert.ToBoolean(property.Value);
                             break;
                         case "BlendTerrainColors":
                             parameters.BlendTerrainLayers = Convert.ToBoolean(property.Value);

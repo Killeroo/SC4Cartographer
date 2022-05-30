@@ -25,7 +25,8 @@ namespace SC4CartographerUI
         CommercialLowZone,
         IndustrialHighZone,
         IndustrialMidZone,
-        IndustrialLowZone,  
+        IndustrialLowZone,
+        Building,
         StreetNetwork1,
         RoadNetwork1,
         OneWayRoadNetwork1,
@@ -60,6 +61,9 @@ namespace SC4CartographerUI
         Avenue,
         Railway,
         Subway,
+
+        Buildings,
+        BuildingsOutline,
 
         TerrainLayer1,
         TerrainLayer2,
@@ -135,11 +139,10 @@ namespace SC4CartographerUI
             OutputFormat = parameters.OutputFormat;
             ShowGridLines = parameters.ShowGridLines;
             ShowZoneOutlines = parameters.ShowZoneOutlines;
+            ShowBuildingOutlines = parameters.ShowBuildingOutlines;
             BlendTerrainLayers = parameters.BlendTerrainLayers;
             SegmentPaddingX = parameters.SegmentPaddingX;
             SegmentPaddingY = parameters.SegmentPaddingY;
-            SegmentOffsetX = parameters.SegmentOffsetX;
-            SegmentOffsetY = parameters.SegmentOffsetY;
             GridSegmentSize = parameters.GridSegmentSize;
             ColorDictionary = parameters.ColorDictionary;
             VisibleMapObjects = parameters.VisibleMapObjects;
@@ -158,11 +161,10 @@ namespace SC4CartographerUI
         public bool ShowGridLines = false;
         public bool ShowZoneOutlines = false;
         public bool BlendTerrainLayers = false;
+        public bool ShowBuildingOutlines = true;
         public int GridSegmentSize = 5;//10;
         public int SegmentPaddingX = 1;//4;
         public int SegmentPaddingY = 1;//4;
-        public int SegmentOffsetX = 0;//2;
-        public int SegmentOffsetY = 0;//2;
 
         public List<MapObject> VisibleMapObjects = new List<MapObject>()
         {
@@ -181,6 +183,7 @@ namespace SC4CartographerUI
             MapObject.IndustrialHighZone,
             MapObject.IndustrialMidZone,
             MapObject.IndustrialLowZone,
+            //MapObject.Building,
             MapObject.StreetNetwork1,
             MapObject.RoadNetwork1,
             MapObject.OneWayRoadNetwork1,
@@ -247,6 +250,9 @@ namespace SC4CartographerUI
             {MapColorObject.Avenue, Color.FromArgb(80, 80, 80)},
             {MapColorObject.Railway, Color.FromArgb(179, 24, 21)},
             {MapColorObject.Subway, Color.FromArgb(120, 0, 180)},
+
+            {MapColorObject.Buildings, Color.FromArgb(178, 178, 178)},
+            {MapColorObject.BuildingsOutline, Color.FromArgb(153, 153, 153)},
 
             {MapColorObject.TerrainLayer1, Color.FromArgb(61, 102, 180)},
             {MapColorObject.TerrainLayer2, Color.FromArgb(65, 108, 182)},
