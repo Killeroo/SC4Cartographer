@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 using System.Drawing;
 
@@ -129,6 +130,8 @@ namespace SC4CartographerUI
     /// </summary>
     public class MapCreationParameters
     {
+        private const int VERSION = 1;
+
         public MapCreationParameters() 
         {
         }
@@ -149,7 +152,7 @@ namespace SC4CartographerUI
             TerrainDataDictionary = parameters.TerrainDataDictionary;
         }
 
-        #region Ouput
+        #region Output
 
         public string OutputPath;
         public OutFormat OutputFormat = OutFormat.PNG;
@@ -282,7 +285,6 @@ namespace SC4CartographerUI
 
         #endregion
 
-
         // Helper lookup dictionary for network tile types and their related enum
         public static Dictionary<byte, MapObject> NetworkTypeToMapObject = new Dictionary<byte, MapObject>()
         {
@@ -293,5 +295,150 @@ namespace SC4CartographerUI
             {0x07, MapObject.SubwayNetwork2},
             {0x0A, MapObject.OneWayRoadNetwork1},
         };
+
+        /// <summary>
+        /// Save the a MapParameters object to a file.
+        /// Does not handle exceptions.
+        /// </summary>
+        /// <param name="parameters">The MapParameters object to save.</param>
+        /// <param name="path">Path to file to save to</param>
+        public void SaveToFile(string path)
+        {
+            List<string> properties = new List<string>
+            {
+                $"Version:{VERSION};",
+                "!!!WARNING: This file is Case-Sensitive!!!",
+                $"ShowGridLines:{(this.ShowGridLines ? "true" : "false")};",
+                $"ShowZoneOutlines:{(this.ShowZoneOutlines ? "true" : "false")};",
+                $"ShowBuildingOutlines:{(this.ShowBuildingOutlines ? "true" : "false")};",
+                $"BlendTerrainColors:{(this.BlendTerrainLayers ? "true" : "false")};",
+                $"GridSegmentSize:{this.GridSegmentSize};",
+                $"SegmentPaddingX:{this.SegmentPaddingX};",
+                $"SegmentPaddingY:{this.SegmentPaddingY};",
+                $"VisibleObjects:{string.Join(",", this.VisibleMapObjects)};"
+            };
+
+            foreach (var data in this.TerrainDataDictionary)
+            {
+                properties.Add($"TerrainData@{data.Key}:{(data.Value.enabled ? "true" : "false")},\"{data.Value.alias}\",{data.Value.colorObject},{data.Value.height};");
+            }
+
+            foreach (var color in this.ColorDictionary)
+            {
+                properties.Add($"Color@{color.Key}:{color.Value.R},{color.Value.G},{color.Value.B};");
+            }
+
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (string property in properties)
+                {
+                    writer.WriteLine(property);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loads MapParameters from a file and fills object with values. Expects exceptions to be handled externally
+        /// </summary>
+        /// <param name="path">path to map parameters file</param>
+        public void LoadFromFile(string path)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+
+            string line = "";
+            using (StreamReader reader = new StreamReader(path))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Split the line via ':'
+                    string[] lineData = line.Replace(";", "").Split(':');
+
+                    string propertyKey = lineData.First();//.ToLower();
+                    string propertyValue = lineData.Last();//.ToLower();
+
+                    // Add line info to properties dictionary
+                    // (first part is the property name, second part is property value)
+                    properties.Add(propertyKey, propertyValue);
+                }
+            }
+
+            if (properties["Version"] == "")
+            {
+                throw new Exception($"Could not find version of properties file. Can't parse file.");
+            }
+
+            if (int.Parse(properties["Version"]) > VERSION)
+            {
+                throw new Exception($"Properties file version too high. Can only parse version {VERSION} or lower, version {properties["version"]} found in file");
+            }
+
+            // Loop through each property 
+            foreach (var property in properties)
+            {
+                // Sort and assign colours seperately
+                if (property.Key.Contains("Color@"))
+                {
+                    string colorKey = property.Key.Split('@').Last();
+                    string[] colorValues = property.Value.Split(',');
+                    int r = int.Parse(colorValues[0]);
+                    int g = int.Parse(colorValues[1]);
+                    int b = int.Parse(colorValues[2]);
+
+                    // Load the colors from the file into the dictionary
+                    ColorDictionary[(MapColorObject)Enum.Parse(typeof(MapColorObject), colorKey)] = Color.FromArgb(r, g, b);
+                }
+                else if (property.Key.Contains("TerrainData@"))
+                {
+                    string dataKey = property.Key.Split('@').Last();
+                    string[] dataValues = property.Value.Split(',');
+
+                    bool enabled = (dataValues[0] == "true" ? true : false);
+                    string alias = dataValues[1].Replace("\"", "");
+                    MapColorObject colorObject = (MapColorObject)Enum.Parse(typeof(MapColorObject), dataValues[2]);
+                    int height = int.Parse(dataValues[3]);
+
+                    // Load terrain data into dictionary
+                    this.TerrainDataDictionary[(TerrainObject)Enum.Parse(typeof(TerrainObject), dataKey)] = (enabled, alias, colorObject, height);
+                }
+                else
+                {
+                    // Sort all other properties
+                    switch (property.Key)
+                    {
+                        case "ShowGridLines":
+                            this.ShowGridLines = Convert.ToBoolean(property.Value);
+                            break;
+                        case "ShowZoneOutlines":
+                            this.ShowZoneOutlines = Convert.ToBoolean(property.Value);
+                            break;
+                        case "ShowBuildingOutlines":
+                            this.ShowBuildingOutlines = Convert.ToBoolean(property.Value);
+                            break;
+                        case "BlendTerrainColors":
+                            this.BlendTerrainLayers = Convert.ToBoolean(property.Value);
+                            break;
+                        case "GridSegmentSize":
+                            this.GridSegmentSize = int.Parse(property.Value);
+                            break;
+                        case "SegmentPaddingX":
+                            this.SegmentPaddingX = int.Parse(property.Value);
+                            break;
+                        case "SegmentPaddingY":
+                            this.SegmentPaddingY = int.Parse(property.Value);
+                            break;
+                        case "VisibleObjects":
+                            this.VisibleMapObjects = new List<MapObject>();
+
+                            foreach (string mapObject in property.Value.Split(','))
+                            {
+                                this.VisibleMapObjects.Add((MapObject)Enum.Parse(typeof(MapObject), mapObject));
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+
     }
 }

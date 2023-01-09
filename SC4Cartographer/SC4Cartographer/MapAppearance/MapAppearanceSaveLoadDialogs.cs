@@ -6,15 +6,57 @@ namespace SC4CartographerUI
 {
     internal class MapAppearanceSaveLoadDialogs
     {
+        private const string AUTOSAVE_FILENAME = "map_appearance_autosave.sc4cart";
         private const string DEFAULT_FILENAME = "map_appearance.sc4cart";
         private const string FILE_FILTER = "SC4Cartographer properties file (*.sc4cart)|*.sc4cart";
-        private readonly IWin32Window owner;
-        private readonly MapAppearanceSerializer serializer;
         
-        public MapAppearanceSaveLoadDialogs(IWin32Window owner, MapAppearanceSerializer serializer)
+        private readonly string autoSaveFilePath = Path.Combine(Path.GetTempPath(), AUTOSAVE_FILENAME);
+        private readonly IWin32Window owner;
+        
+        public MapAppearanceSaveLoadDialogs(IWin32Window owner)
         {
             this.owner = owner;
-            this.serializer = serializer;
+        }
+
+        /// <summary>
+        /// Silently attempt to Save, catches any exceptions.
+        /// </summary>
+        /// <param name="parameters"></param>
+        public void TrySaveToUserTempFolder(MapCreationParameters parameters)
+        {
+            try
+            {
+                parameters.SaveToFile(autoSaveFilePath);
+            }
+            catch (Exception)
+            {
+                // should probably log this
+            }
+        }
+
+        /// <summary>
+        /// Silently attempt to load, catches any exceptions.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns>True if loaded sucsessfully, false otherwise.</returns>
+        public bool TryLoadFromUserTempFolder(MapCreationParameters parameters)
+        {
+            bool success = false;
+
+            if (File.Exists(autoSaveFilePath))
+            {
+                try
+                {
+                    parameters.LoadFromFile(autoSaveFilePath);
+                    success = true;
+                }
+                catch (Exception)
+                {
+                    // should probably log this
+                }
+            }
+
+            return success;
         }
 
         /// <summary>
@@ -41,7 +83,7 @@ namespace SC4CartographerUI
                     string path = fileDialog.FileName;
                     try
                     {
-                        serializer.SaveToFile(parameters, path);
+                        parameters.SaveToFile(path);
 
                         var successForm = new SuccessForm(
                             "Map appearance saved",
@@ -72,7 +114,7 @@ namespace SC4CartographerUI
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns>True if loaded sucessesfully, otherwise false</returns>
-        public bool TryLoadMapParametersWithDialog(out MapCreationParameters parameters)
+        public bool TryLoadMapParametersWithDialog(MapCreationParameters parameters)
         {
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
@@ -85,14 +127,13 @@ namespace SC4CartographerUI
                 
                 if (fileDialog.ShowDialog(owner) == DialogResult.OK)
                 {
-                    if(TryLoadWithErrorDialog(fileDialog.FileName, out parameters))
+                    if(TryLoadWithErrorDialog(fileDialog.FileName, parameters))
                     {
                         return true;
                     }
                 }                
             }
-            
-            parameters = null;
+
             return false;
         }
 
@@ -102,11 +143,11 @@ namespace SC4CartographerUI
         /// <param name="path"></param>
         /// <param name="parameters"></param>
         /// <returns>True if loaded sucessesfully, otherwise false</returns>
-        public bool TryLoadWithErrorDialog(string path, out MapCreationParameters parameters)
+        public bool TryLoadWithErrorDialog(string path, MapCreationParameters parameters)
         {
             try
             {
-                parameters = serializer.LoadFromFile(path);
+                parameters.LoadFromFile(path);
                 return true;
             }
             catch (Exception ex)
@@ -120,7 +161,6 @@ namespace SC4CartographerUI
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.ShowDialog();
 
-                parameters = null;
                 return false;
             }
         }
