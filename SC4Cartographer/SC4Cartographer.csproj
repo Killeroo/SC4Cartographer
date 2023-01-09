@@ -208,6 +208,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SC4Cartographer\Components\RichTextBoxLogger.cs" />
+    <Compile Include="SC4Cartographer\RegionConfig.cs" />
     <Compile Include="SC4Cartographer\UpdateChecker.cs" />
     <Compile Include="SC4Cartographer\UpdateInfo.cs" />
     <EmbeddedResource Include="SC4Cartographer\Forms\AboutBox.resx">
