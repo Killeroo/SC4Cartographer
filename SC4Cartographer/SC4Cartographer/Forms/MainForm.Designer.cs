@@ -1036,6 +1036,7 @@
             this.ColorsTabControl.SelectedIndex = 0;
             this.ColorsTabControl.Size = new System.Drawing.Size(277, 305);
             this.ColorsTabControl.TabIndex = 2;
+            this.ColorsTabControl.SelectedIndexChanged += new System.EventHandler(this.ColorsTabControl_SelectedIndexChanged);
             // 
             // GridTabPage
             // 

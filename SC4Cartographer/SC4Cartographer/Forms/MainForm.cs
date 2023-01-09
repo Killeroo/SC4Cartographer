@@ -152,6 +152,9 @@ namespace SC4CartographerUI
             OutputPathTextbox.SelectionStart = OutputPathTextbox.Text.Length;
             OutputPathTextbox.SelectionLength = 0;
 
+            // Load the ColorTab index that was last selected
+            ColorsTabControl.SelectedIndex = Properties.Settings.Default.SelectedTab;
+
             // Focus on save button at start up
             SaveButton.Select();
         }
@@ -392,6 +395,9 @@ namespace SC4CartographerUI
             EnableMapButtons();
 
             mapLoaded = true;
+
+            Properties.Settings.Default.LoadedSaveGamePath = path;
+            Properties.Settings.Default.Save();
 
             // Call garbage collector to cleanup anything left over from last load
             //GC.Collect();
@@ -1933,22 +1939,32 @@ namespace SC4CartographerUI
             //logger = new RichTextBoxLogger(LogTextBox);
             if (Directory.Exists(rootSimCitySavePath) && mapLoaded != true)
             {
-                bool validSaveFound = false;
-                string path = "";
-
-                // Find a save that will load without errors (probably doesn't have a lot subfile :/)
-                while (validSaveFound == false)
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.LoadedSaveGamePath)
+                    && File.Exists(Properties.Settings.Default.LoadedSaveGamePath))
                 {
-                    SavePathTextbox.Text = rootSimCitySavePath;
-                    path = FindRandomSavegameFileInPath(rootSimCitySavePath);
-                    if (CheckSaveContainsLotSubfile(path))
-                    {
-                        validSaveFound = true;
-                    }
+                    // Load the last save game that was loaded 
+                    LoadSaveGame(Properties.Settings.Default.LoadedSaveGamePath);
                 }
+                else
+                {
+                    // Load a random save game
+                    bool validSaveFound = false;
+                    string path = "";
 
-                // Found a good save, load it
-                LoadSaveGame(path);
+                    // Find a save that will load without errors (probably doesn't have a lot subfile :/)
+                    while (validSaveFound == false)
+                    {
+                        SavePathTextbox.Text = rootSimCitySavePath;
+                        path = FindRandomSavegameFileInPath(rootSimCitySavePath);
+                        if (CheckSaveContainsLotSubfile(path))
+                        {
+                            validSaveFound = true;
+                        }
+                    }
+
+                    // Found a good save, load it
+                    LoadSaveGame(path);
+                }
             }
             else
             {
@@ -1957,7 +1973,6 @@ namespace SC4CartographerUI
 
             // Set current path as output path
             map.Parameters.OutputPath = Directory.GetCurrentDirectory();
-
 
             // Check for update on startup
             if (Properties.Settings.Default.IgnoreUpdatePrompts == false)
@@ -2669,6 +2684,16 @@ namespace SC4CartographerUI
             }
 
             SetAndUpdateMapCreationParameters(GetParametersFromAppearanceUIValues());
+        }
+
+        #endregion
+
+        #region Colors Tab Control Events
+
+        private void ColorsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SelectedTab = ColorsTabControl.SelectedIndex;
+            Properties.Settings.Default.Save();
         }
 
         #endregion
@@ -4207,5 +4232,6 @@ namespace SC4CartographerUI
         #endregion
 
         #endregion
+
     }
 }
