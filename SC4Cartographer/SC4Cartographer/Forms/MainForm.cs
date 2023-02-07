@@ -2617,6 +2617,56 @@ namespace SC4CartographerUI
                 LoadSaveGame((string)e.Node.Tag);
 
             }
+            if (e.Node.ImageIndex == 0)
+            {
+                SC4Parser.Region.Region region = new SC4Parser.Region.Region();
+                region.Load((string)e.Node.Tag);
+                //Bitmap mapImage = MapRenderer.CreateRegionBitmap(region, map.Parameters);
+
+                ////////////////////////////////////////////////////////////////////////////////////
+                /// Copied from GenerateMapPreview
+                ////////////////////////////////////////////////////////////////////////////////////
+
+                // Dispose of any old map previews before generating the new ones
+                mapBitmap?.Dispose();
+                zoomedMapBitmap?.Dispose();
+
+                // Generate normal preview image
+                MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
+                mapBitmap = MapRenderer.CreateRegionBitmap(region, normalMapPreviewParameters);
+
+                // Recenter the image if the size has changed
+                if (oldSegmentSize != map.Parameters.GridSegmentSize)
+                {
+                    forceRecenter = true;
+                }
+
+                // Set image
+                MapPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                if (zoomFactor != 1)
+                {
+                    ZoomImage(forceRecenter);
+                }
+                else
+                {
+                    if (forceRecenter)
+                    {
+                        CenterPictureBox(MapPictureBox, mapBitmap);
+                    }
+                    else
+                    {
+
+                        MapPictureBox.Image = mapBitmap;
+                    }
+                }
+
+                // Update status label
+                MapSizeToolStripStatusLabel.Text = $"Size: {mapBitmap.Width.ToString()} x {mapBitmap.Height.ToString()}px";
+
+                forceRecenter = false;
+                oldSegmentSize = map.Parameters.GridSegmentSize;
+
+            }
         }
 
         /// <summary>
