@@ -95,11 +95,11 @@
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Structures\Building.cs">
       <Link>SC4Parser\Structures\Building.cs</Link>
-    </Compile>    
-	<Compile Include="..\SC4Parser\SC4Parser\Region\Region.cs">
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Region\Region.cs">
       <Link>SC4Parser\Region\Region.cs</Link>
-    </Compile>    
-	<Compile Include="..\SC4Parser\SC4Parser\Region\Bitmap.cs">
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Region\Bitmap.cs">
       <Link>SC4Parser\Region\Bitmap.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Structures\DatabaseDirectoryResource.cs">
@@ -220,7 +220,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SC4Cartographer\Components\RichTextBoxLogger.cs" />
-    <Compile Include="SC4Cartographer\RegionConfig.cs" />
     <Compile Include="SC4Cartographer\UpdateChecker.cs" />
     <Compile Include="SC4Cartographer\UpdateInfo.cs" />
     <EmbeddedResource Include="SC4Cartographer\Forms\AboutBox.resx">
