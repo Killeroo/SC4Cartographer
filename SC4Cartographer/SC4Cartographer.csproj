@@ -93,32 +93,38 @@
     <Compile Include="..\SC4Parser\SC4Parser\Compression\QFS.cs">
       <Link>SC4Parser\QFS\QFS.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\Building.cs">
-      <Link>SC4Parser\DataStructures\Building.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\Building.cs">
+      <Link>SC4Parser\Structures\Building.cs</Link>
+    </Compile>    
+	<Compile Include="..\SC4Parser\SC4Parser\Region\Region.cs">
+      <Link>SC4Parser\Region\Region.cs</Link>
+    </Compile>    
+	<Compile Include="..\SC4Parser\SC4Parser\Region\Bitmap.cs">
+      <Link>SC4Parser\Region\Bitmap.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\DatabaseDirectoryResource.cs">
-      <Link>SC4Parser\DataStructures\DatabaseDirectoryResource.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\DatabaseDirectoryResource.cs">
+      <Link>SC4Parser\Structures\DatabaseDirectoryResource.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\DatabasePackedFileHeader.cs">
-      <Link>SC4Parser\DataStructures\DatabasePackedFileHeader.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\DatabasePackedFileHeader.cs">
+      <Link>SC4Parser\Structures\DatabasePackedFileHeader.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\IndexEntry.cs">
-      <Link>SC4Parser\DataStructures\IndexEntry.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\IndexEntry.cs">
+      <Link>SC4Parser\Structures\IndexEntry.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\Lot.cs">
-      <Link>SC4Parser\DataStructures\Lot.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\Lot.cs">
+      <Link>SC4Parser\Structures\Lot.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\SaveGameProperty.cs">
-      <Link>SC4Parser\DataStructures\SaveGameProperty.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\SaveGameProperty.cs">
+      <Link>SC4Parser\Structures\SaveGameProperty.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile1.cs">
-      <Link>SC4Parser\DataStructures\NetworkTile1.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\NetworkTile1.cs">
+      <Link>SC4Parser\Structures\NetworkTile1.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\NetworkTile2.cs">
-      <Link>SC4Parser\DataStructures\NetworkTile2.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\NetworkTile2.cs">
+      <Link>SC4Parser\Structures\NetworkTile2.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\DataStructures\BridgeNetworkTile.cs">
-      <Link>SC4Parser\DataStructures\BridgeNetworkTile.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\BridgeNetworkTile.cs">
+      <Link>SC4Parser\Structures\BridgeNetworkTile.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
       <Link>SC4Parser\Files\DatabaseDirectoryFile.cs</Link>
@@ -147,6 +153,9 @@
     <Compile Include="..\SC4Parser\SC4Parser\SubFiles\BuildingSubFile.cs">
       <Link>SC4Parser\Subfiles\BuildingSubFile.cs</Link>
     </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\SubFiles\ItemIndexSubfile.cs">
+      <Link>SC4Parser\Subfiles\ItemIndexSubfile.cs</Link>
+    </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\SubFiles\LotSubFile.cs">
       <Link>SC4Parser\Subfiles\LotSubFile.cs</Link>
     </Compile>
@@ -168,8 +177,11 @@
     <Compile Include="..\SC4Parser\SC4Parser\Extensions.cs">
       <Link>SC4Parser\Extensions.cs</Link>
     </Compile>
-    <Compile Include="..\SC4Parser\SC4Parser\Types\TypeGroupInstance.cs">
-      <Link>SC4Parser\Types\TypeGroupInstance.cs</Link>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\TypeGroupInstance.cs">
+      <Link>SC4Parser\Structures\TypeGroupInstance.cs</Link>
+    </Compile>
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\OccupancyGroup.cs">
+      <Link>SC4Parser\Structures\OccupancyGroup.cs</Link>
     </Compile>
     <Compile Include="SC4Cartographer\Forms\UpdateForm.cs">
       <SubType>Form</SubType>

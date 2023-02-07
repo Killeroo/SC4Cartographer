@@ -13,16 +13,12 @@ using System.Reflection;
 using System.Net;
 using System.Diagnostics;
 using System.Timers;
+using System.Text.RegularExpressions;
 
 using Timer = System.Timers.Timer;
 
-using SC4Parser.DataStructures;
-using SC4Parser.Files;
-using SC4Parser.Types;
-using SC4Parser.Subfiles;
 using SC4Parser;
 using SC4Parser.Logging;
-using System.Text.RegularExpressions;
 
 namespace SC4CartographerUI
 {
