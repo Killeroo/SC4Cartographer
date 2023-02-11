@@ -37,6 +37,8 @@ namespace SC4CartographerUI
     {
         private const int MAX_ZOOM_SIZE = 10000;
         private const string SC4PARSER_VERSION = "v1.1.0 (c31bdd4)";
+        private const string MAP_OPEN_CURSOR_RESOURCE_PATH = "SC4CartographerUI.SC4Cartographer.Resources.cursor-hand-open-fill.cur";
+        private const string MAP_GRAB_CURSOR_RESOURCE_PATH = "SC4CartographerUI.SC4Cartographer.Resources.cursor-hand-grab-fill.cur";
 
         /// <summary>
         /// Currently loaded map
@@ -94,15 +96,19 @@ namespace SC4CartographerUI
         // Picture box drag move variables
         private int picturePosX;
         private int picturePosY;
-        private bool draggingMap;
-        private bool skipTick = false;
+        private bool _draggingMap;
+        private bool _skipTick = false;
+
+        // Custom map cursors
+        private Cursor MapGrabCursor = Cursors.Default;
+        private Cursor MapOpenCursor = Cursors.Default;
 
         public MainForm()
         {
             // Setup parser logger
             // (Do this first so the logger is ready for when we load the first map
             //logger = new RichTextBoxLogger(LogTextBox);
-            fileLogger = new FileLogger();
+            //fileLogger = new FileLogger();
 
             InitializeComponent();
 
@@ -150,6 +156,9 @@ namespace SC4CartographerUI
 
             // Load the ColorTab index that was last selected
             ColorsTabControl.SelectedIndex = Properties.Settings.Default.SelectedTab;
+
+            // Setup our custom cursors
+            LoadCustomCursors();
 
             // Focus on save button at start up
             SaveButton.Select();
@@ -591,6 +600,28 @@ namespace SC4CartographerUI
             {
                 var updateFormat = new UpdateForm(info);
                 updateFormat.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Loads custom cursors used on the map preview
+        /// </summary>
+        private void LoadCustomCursors()
+        {
+            try
+            {
+                using (Stream openCursorStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(MAP_OPEN_CURSOR_RESOURCE_PATH))
+                using (Stream grabCursorStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(MAP_GRAB_CURSOR_RESOURCE_PATH))
+                {
+                    MapOpenCursor = new Cursor(openCursorStream);
+                    MapGrabCursor = new Cursor(grabCursorStream);
+                }
+            }
+            catch (Exception)
+            {
+                // Just reset the cursors if we encounter any error while loading
+                MapGrabCursor = Cursors.Default;
+                MapOpenCursor = Cursors.Default;
             }
         }
 
@@ -2235,7 +2266,7 @@ namespace SC4CartographerUI
                     GenerateMapPreviewBitmaps(false);
 
                 // Reset cursor 
-                Cursor = Cursors.Default;
+                Cursor = Cursors.Hand;
             }
         }
 
@@ -2327,19 +2358,27 @@ namespace SC4CartographerUI
         {
             mouseX = e.X;
             mouseY = e.Y;
+
             // Don't show any map info while drag moving the map
-            if (!draggingMap)
+            if (!_draggingMap)
             {
                 MousePositionToolStripStatusLabel.Text = GetMapPixelInfo(e.X, e.Y);
+
+                Cursor = MapOpenCursor;
+                MapPictureBox.Cursor = MapOpenCursor;
+            }
+            else
+            {
+                Cursor = MapGrabCursor;
             }
 
             // Skip everyother picture box reposition, done for performance reasons
             // the map bleeds weirdly when moved on every tick, especially around the edges
             // this produces some slight gittering but is better in my mind than tearing and other
             // weirdness
-            skipTick = !skipTick;
+            _skipTick = !_skipTick;
 
-            if (!draggingMap || sender == null || skipTick)
+            if (!_draggingMap || sender == null || _skipTick)
             {
                 return;
             }
@@ -2359,6 +2398,7 @@ namespace SC4CartographerUI
         private void MapPictureBox_MouseLeave(object sender, EventArgs e)
         {
             MousePositionToolStripStatusLabel.Text = "";
+            Cursor = Cursors.Default;
         }
 
         /// <summary>
@@ -2370,7 +2410,7 @@ namespace SC4CartographerUI
         {
             // Only drag move picture when pressing left click
             if (e.Button != MouseButtons.Left) return;
-            draggingMap = true;
+            _draggingMap = true;
 
             // Store the position we originally clicked on
             // we will use this to move the image relative to this point
@@ -2389,7 +2429,7 @@ namespace SC4CartographerUI
             var pictureBox = sender as PictureBox;
 
             // Stop moving picture
-            draggingMap = false;
+            _draggingMap = false;
         }
 
         /// <summary>
@@ -2438,6 +2478,7 @@ namespace SC4CartographerUI
             //{
             ((HandledMouseEventArgs)e).Handled = true;
             //}
+
         }
 
         #endregion
