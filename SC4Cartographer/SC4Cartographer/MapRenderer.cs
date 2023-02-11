@@ -53,12 +53,12 @@ namespace SC4CartographerUI
 
                     // Go through each height in the height map
                     SolidBrush brush = new SolidBrush(Color.White);
+                    Rectangle rect = new Rectangle();
                     for (int x = 0; x < gridSizeX; x++)
                     {
                         for (int y = 0; y < gridSizeY; y++)
                         {
                             // one grid segment has one height value, so we colour that grid segment
-                            Rectangle rect = new Rectangle();
                             rect = new Rectangle(
                                     (parameters.GridSegmentSize * x),
                                     (parameters.GridSegmentSize * y),
@@ -156,7 +156,7 @@ namespace SC4CartographerUI
                     Pen zoneOutlinePen = new Pen(parameters.ColorDictionary[MapColorObject.ZoneOutline]);
                     zoneOutlinePen.Width = 1;
 
-                    foreach (var lot in region.Zones)
+                    foreach (var lot in region.Lots)
                     {
                         Rectangle rect = new Rectangle();
 
