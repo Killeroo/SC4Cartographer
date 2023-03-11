@@ -38,6 +38,11 @@ namespace SC4CartographerUI
             Logger.AddLogOutput(this);
         }
 
+        public void DisableChannel(LogLevel level)
+        {
+            throw new NotImplementedException();
+        }
+
         public void EnableChannel(LogLevel level)
         {
             throw new NotImplementedException();

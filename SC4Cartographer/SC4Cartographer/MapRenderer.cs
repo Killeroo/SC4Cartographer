@@ -438,7 +438,7 @@ namespace SC4CartographerUI
         /// <param name="save">The save game object to extract the data for the map from</param>
         /// <param name="parameters">The display parameters of the map</param>
         /// <returns>A bitmap of the map</returns>
-        public static Bitmap CreateMapBitmap(SC4SaveFile save, MapCreationParameters parameters)
+        public static Bitmap CreateCityBitmap(SC4SaveFile save, MapCreationParameters parameters)
         {
             int gridSizeX = (int) save.GetRegionViewSubfile().CitySizeX;
             int gridSizeY = (int) save.GetRegionViewSubfile().CitySizeY;
@@ -1006,6 +1006,58 @@ namespace SC4CartographerUI
                         );
 
                         g.FillRectangle(new SolidBrush(tileColor), rect);
+                    }
+                }
+
+                if (save.ContainsPrebuiltNetworkSubfile())
+                {
+                    // Loop through each tile in save
+                    foreach (PrebuiltNetworkTile tile in save.GetPrebuiltNetworkSubfile().NetworkTiles)
+                    {
+                        // Check if we have a related enum for the network tile we are dealing with
+                        if (MapCreationParameters.NetworkTypeToMapObject.ContainsKey(tile.NetworkType))
+                        {
+                            // Skip over if object isn't in visible objects
+                            if (parameters.VisibleMapObjects.Contains(MapCreationParameters.NetworkTypeToMapObject[tile.NetworkType]) == false)
+                                continue;
+                        }
+
+                        // Select colour
+                        Color tileColor = new Color();
+                        switch (tile.NetworkType)
+                        {
+                            case 0x00: tileColor = parameters.ColorDictionary[MapColorObject.Road]; break; // Road
+                            case 0x01: tileColor = parameters.ColorDictionary[MapColorObject.Railway]; break; // Rail
+                            //case 0x02: tileColor = Color.Blue; break;
+                            case 0x03: tileColor = parameters.ColorDictionary[MapColorObject.Street]; break; // Street
+                            //case 0x04: tileColor = Color.OrangeRed; break;
+                            //case 0x05: tileColor = Color.Orange; break;
+                            case 0x06: tileColor = parameters.ColorDictionary[MapColorObject.Avenue]; break; // Avenue
+                            //case 0x07: tileColor = Color.YellowGreen; break;// subway?
+                            //case 0x08: tileColor = Color.Green; break;// subway?
+                            //case 0x09: tileColor = Color.Blue; break;
+                            case 0x0A: tileColor = parameters.ColorDictionary[MapColorObject.OneWayRoad]; break; // One way
+                                                                                                                 // case 0x0B: tileColor = Color.Green; break;
+                                                                                                                 // case 0x0C: tileColor = Color.PaleVioletRed; break;
+                                                                                                                 // case 0x0D: tileColor = Color.AntiqueWhite; break;
+                                                                                                                 // case 0x0E: tileColor = Color.AntiqueWhite; break;
+                                                                                                                 // case 0x0F: tileColor = Color.AntiqueWhite; break;
+                                                                                                                 //default: tileColor = Color.Violet; break;
+                        }
+                        tileColor = Color.Pink;
+
+                        // Draw the tile
+                        if (tile.MaxSizeX2 > 0 && tile.MaxSizeZ2 > 0)
+                        {
+                            Rectangle rect = new Rectangle(
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeX2 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate(tile.MinSizeZ2 / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeX2 - tile.MinSizeX2) / 16)),
+                                parameters.GridSegmentSize * (int)(Math.Truncate((tile.MaxSizeZ2 - tile.MinSizeZ2) / 16))
+                            );
+
+                            g.FillRectangle(new SolidBrush(Color.Purple), rect);
+                        }
                     }
                 }
 

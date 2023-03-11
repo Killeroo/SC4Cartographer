@@ -420,7 +420,7 @@ namespace SC4CartographerUI
 
             // Generate normal preview image
             MapCreationParameters normalMapPreviewParameters = new MapCreationParameters(map.Parameters);
-            mapBitmap = MapRenderer.CreateMapBitmap(map.Save, normalMapPreviewParameters);
+            mapBitmap = MapRenderer.CreateCityBitmap(map.Save, normalMapPreviewParameters);
 
             // Recenter the image if the size has changed
             if (oldSegmentSize != map.Parameters.GridSegmentSize)
