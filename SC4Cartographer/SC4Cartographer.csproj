@@ -79,6 +79,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -141,7 +145,7 @@
     <Compile Include="..\SC4Parser\SC4Parser\Structures\BridgeNetworkTile.cs">
       <Link>SC4Parser\Structures\BridgeNetworkTile.cs</Link>
     </Compile>
-	<Compile Include="..\SC4Parser\SC4Parser\Structures\PrebuiltNetworkTile.cs">
+    <Compile Include="..\SC4Parser\SC4Parser\Structures\PrebuiltNetworkTile.cs">
       <Link>SC4Parser\Structures\NetworkSubfile2.cs</Link>
     </Compile>
     <Compile Include="..\SC4Parser\SC4Parser\Files\DatabaseDirectoryFile.cs">
@@ -241,6 +245,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SC4Cartographer\Components\RichTextBoxLogger.cs" />
+    <Compile Include="SC4Cartographer\Maths.cs" />
     <Compile Include="SC4Cartographer\UpdateChecker.cs" />
     <Compile Include="SC4Cartographer\UpdateInfo.cs" />
     <EmbeddedResource Include="SC4Cartographer\Forms\AboutBox.resx">
@@ -271,6 +276,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
