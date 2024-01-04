@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
+using System.Numerics;
+using System.Windows;
 
 using System.Drawing;
 
@@ -142,5 +144,23 @@ namespace SC4CartographerUI
 
             return Color.FromArgb((int)red, (int)green, (int)blue);
         }
+
+        //public static Vector GridLocationToVector(float indexX, float indexY, float z, float scale)
+        //{
+        //    return new Vector(indexX * scale, indexY * scale, z);
+        //}
+
+        public static Vector3 GridLocationToVector(float indexX, float indexY, float z, float scale)
+        {
+            return new Vector3(indexX * scale, indexY * scale, z);
+        }
+
+        //public static Vector GetSurfaceNormalForGridLocation(float xIndex, float yIndex)
+        //{
+        //    return new Vector(0.0f, 0.0f, 0.0f);
+        //}
+
+
+
     }
 }
