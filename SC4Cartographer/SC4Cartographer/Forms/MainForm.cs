@@ -108,7 +108,7 @@ namespace SC4CartographerUI
             // Setup parser logger
             // (Do this first so the logger is ready for when we load the first map
             //logger = new RichTextBoxLogger(LogTextBox);
-            //fileLogger = new FileLogger();
+            fileLogger = new FileLogger();
 
             InitializeComponent();
 
